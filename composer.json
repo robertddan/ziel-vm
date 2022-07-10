@@ -2,7 +2,7 @@
     "name": "root/ziel",
     "autoload": {
         "psr-4": {
-            "Root\\Ziel\\": "src/"
+            "App\\Suiteziel\\": "src/Suiteziel/"
         }
     },
     "authors": [
