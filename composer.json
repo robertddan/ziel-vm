@@ -1,0 +1,15 @@
+{
+    "name": "root/ziel",
+    "autoload": {
+        "psr-4": {
+            "Root\\Ziel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Robert",
+            "email": "johnidevo@gmail.com"
+        }
+    ],
+    "require": {}
+}
