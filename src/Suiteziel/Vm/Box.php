@@ -25,7 +25,9 @@ pub fn decode(s: &str) -> Result<Vec<u8>, ParseIntError> {
 		return  "Hello woorld Memory";
 	}
 	public function decode($sHex){
-		$arr2 = str_split($sHex, 2);
+		$aHex = str_split($sHex, 2);
+		
+		var_dump($aHex);
 	}
 
 }
