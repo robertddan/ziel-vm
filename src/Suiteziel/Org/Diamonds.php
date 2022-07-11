@@ -2,10 +2,10 @@
 namespace App\Suiteziel\Org;
 
 
-class Memory
+class Diamonds
 {
-	public function test() {
-		return  "Hello woorld Memory";
+	public function write_to_file($sFilePath) {
+		return file_exists($sFilePath);
 	}
 }
 

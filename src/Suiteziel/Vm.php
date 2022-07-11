@@ -20,7 +20,7 @@ class Vm
 		
 		
 		$oBox = new Box();
-		$oVmBox = $oBox->new_from_file($sFilePath, $sParam);
+		$oVmBox = $oBox->new_from_file(); //$sFilePath, $sParam);
 		
 		
 		//let mut vm = Vm::new_from_file(&filename, params)?;

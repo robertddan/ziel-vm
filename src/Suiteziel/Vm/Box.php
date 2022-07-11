@@ -15,16 +15,16 @@ pub fn decode(s: &str) -> Result<Vec<u8>, ParseIntError> {
 	function __construct() {
 		print "In BaseClass constructor\n";
 	}	
-	public function new_from_call($sJson, $aParameters) {
+	public function new_from_call($sJson = null, $aParameters = null) {
 		return  "Hello woorld Memory";
 	}
-	public function new_from_cli($sJsonHex, $aParameters) {
+	public function new_from_cli($sJsonHex = null, $aParameters = null) {
 		return  "Hello woorld Memory";
 	}
-	public function new_from_file($sFilePath, $aParameters) {
+	public function new_from_file($sFilePath = null, $aParameters = null) {
 		return  "Hello woorld Memory";
 	}
-	public function decode($sHex){
+	public function decode($sHex = null){
 		$aHex = str_split($sHex, 2);
 		
 		var_dump($aHex);
