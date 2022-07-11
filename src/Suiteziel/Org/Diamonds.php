@@ -5,24 +5,26 @@ namespace App\Suiteziel\Org;
 class Diamonds
 {
 	
-	public $sFilePath;
 	public $sFilePathOutput;
 	public $sHex;
+	public $iCursor;
 		
 	public function __construct() {
-		$this->sFilePathOutput = "./src/diamonds/". date("Ymd") ."/";
+		$this->sFilePathOutput = "./src/diamonds/". date("YmdHisu") ."/";
+		$this->iCursor = 0;
 	}
 		
-	public function compile_contract($sFilePath = null) :bool {
+	public function compile_contract($sFilename = null) :bool {
 		if(empty($sFilePath)) return print '$sFilePath missing!';
-		else $this->$sFilePath = $sFilePath;
 		
+		$sFilePath = __APP__ .'contracts/'. $sFilename;
 		$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->sFilePathOutput .' '.$sFilePath;
 		
 		$output=null;
 		$retval=null;
 		exec($sCommand, $output, $retval);
 		print_r($output);
+		$this->iCursor = 1;
 		return true;
 	}
 	
@@ -30,17 +32,20 @@ class Diamonds
 		//if(empty($sFilePath)) return print '$sFilePath missing!';
 		//else $this->$sFilePath = $sFilePath;
 echo '<pre>';
-			
+
+		if ($this->iCursor !== 1) return false;
+
+		
 		$aFilesOutput = scandir($this->sFilePathOutput);
-		$sFilename = null;
+		$sContractName = null;
 	
 		foreach ($aFilesOutput as $sFileOutput) {
 			preg_match("/(\w)*bin-runtime\b/", $sFileOutput, $aMatches);
-			$sFilename = $sFileOutput;
+			$sContractName = $sFileOutput;
 			if(!empty($aMatches)) break;
 		}
 		
-		$this->sHex = file_get_contents($this->sFilePathOutput."/". $sFilename);
+		$this->sHex = file_get_contents($this->sFilePathOutput."/". $sContractName);
 		return true;
 	}
 	
