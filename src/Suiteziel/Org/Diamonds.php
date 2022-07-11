@@ -28,23 +28,16 @@ class Diamonds
 	public function read_from_file() {
 		//if(empty($sFilePath)) return print '$sFilePath missing!';
 		//else $this->$sFilePath = $sFilePath;
-
+echo '<pre>';
 			
 $aFilesOutput = scandir($this->sFilePathOutput);
-		var_dump($aFilesOutput);
-		
+	
 foreach ($aFilesOutput as $sFileOutput) {
-	
-preg_match("(/\w)*bin-runtime\b", $sFileOutput, $matches);
-	var_dump($matches);
-	
+	preg_match("/(\w)*bin-runtime\b/", $sFileOutput, $sMatches);
+	if(!empty($sMatches)) break;
 }
-/*
-preg_match('(\w)*bin-runtime\b', $sFileOutput, $matches);
-$host = $matches[1];
-*/
 
-		
+var_dump ($sMatches);
 		
 	}
 	
