@@ -15,7 +15,7 @@ class Diamonds
 	}
 		
 	public function compile_contract($sFilename = null) :bool {
-		if(empty($sFilePath)) return print '$sFilePath missing!';
+		if(empty($sFilename)) return print '$sFilename missing!'. PHP_EOL;
 		
 		$sFilePath = __APP__ .'contracts/'. $sFilename;
 		$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->sFilePathOutput .' '.$sFilePath;
