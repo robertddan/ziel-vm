@@ -15,10 +15,10 @@ pub fn decode(s: &str) -> Result<Vec<u8>, ParseIntError> {
 	function __construct() {
 		print "In BaseClass constructor\n";
 	}	
-	public function new_from_call(($sJson, $aParameters) {
+	public function new_from_call($sJson, $aParameters) {
 		return  "Hello woorld Memory";
 	}
-	public function new_from_cli(($sJsonHex, $aParameters) {
+	public function new_from_cli($sJsonHex, $aParameters) {
 		return  "Hello woorld Memory";
 	}
 	public function new_from_file($sFilePath, $aParameters) {

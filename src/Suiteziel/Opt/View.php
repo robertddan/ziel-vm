@@ -1,7 +1,7 @@
 <?php
-namespace App\Suiteziel\Org;
+namespace App\Suiteziel\Opt;
 
-class Cli
+class View
 {
 	public function run() {
 		return  "Hello woorld Vm";

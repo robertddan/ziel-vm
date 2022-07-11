@@ -1,5 +1,5 @@
 <?php
-namespace App\Suiteziel\Org;
+namespace App\Suiteziel\Opt;
 
 class Call
 {
