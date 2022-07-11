@@ -15,7 +15,6 @@ class Diamonds
 		$this->iCursor = 0;
 	}
 
-		
 	public function set_output_folder() :bool {
 		if (!empty($this->sFolder)) $this->sFilePathOutput = "./src/diamonds/". $this->sFolder ."/";
 		return true;
@@ -52,8 +51,8 @@ echo '<pre>';
 			$sContractName = $sFileOutput;
 			if(!empty($aMatches)) break;
 		}
-		
 		$this->sHex = file_get_contents($this->sFilePathOutput."/". $sContractName);
+		
 		return true;
 	}
 	
