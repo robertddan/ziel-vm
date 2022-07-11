@@ -38,7 +38,6 @@ class Diamonds
 	public function read_from_file() :bool {
 		//if(empty($sFilePath)) return print '$sFilePath missing!';
 		//else $this->$sFilePath = $sFilePath;
-echo '<pre>';
 
 		if ($this->iCursor !== 1) return false;
 
