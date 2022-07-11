@@ -7,6 +7,7 @@ class Diamonds
 	
 	public $sFilePath;
 	public $sFilePathOutput;
+	public $sHex;
 		
 	public function __construct() {
 		$this->sFilePathOutput = "./src/diamonds/". date("Ymd") ."/";
@@ -25,20 +26,22 @@ class Diamonds
 		return true;
 	}
 	
-	public function read_from_file() {
+	public function read_from_file() :bool {
 		//if(empty($sFilePath)) return print '$sFilePath missing!';
 		//else $this->$sFilePath = $sFilePath;
 echo '<pre>';
 			
-$aFilesOutput = scandir($this->sFilePathOutput);
+		$aFilesOutput = scandir($this->sFilePathOutput);
+		$sFilename = null;
 	
-foreach ($aFilesOutput as $sFileOutput) {
-	preg_match("/(\w)*bin-runtime\b/", $sFileOutput, $sMatches);
-	if(!empty($sMatches)) break;
-}
-
-var_dump ($sMatches);
+		foreach ($aFilesOutput as $sFileOutput) {
+			preg_match("/(\w)*bin-runtime\b/", $sFileOutput, $aMatches);
+			$sFilename = $sFileOutput;
+			if(!empty($aMatches)) break;
+		}
 		
+		$this->sHex = file_get_contents($this->sFilePathOutput."/". $sFilename);
+		return true;
 	}
 	
 	public function write_to_file($sFilePath) {
