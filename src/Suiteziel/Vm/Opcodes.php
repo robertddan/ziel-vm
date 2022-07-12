@@ -138,7 +138,7 @@ class Opcodes
 			case 0xf4: return "0xf4\t40\tDELEGATECALL\t\tMessage-call into this account with an alternative account’s code, but persisting the current values for sender and value\n"; break;
 			//0xfe_jj11_INVALID_s_NaN_s_Designated invalid instruction
 			case 0xff: return "0xff\t0\tSELFDESTRUCT\t\tHalt execution and register account for later deletion\n"; break;
-
+			default: return "$iKey\n";
 		}
 	}
 }
