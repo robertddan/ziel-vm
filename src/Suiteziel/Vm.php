@@ -12,8 +12,9 @@ Will be called from:
 -view
 -call over http like API
 -- regarding parameters passing
-
+...
 */
+
 class Vm
 {
 	public function run() {
@@ -23,7 +24,7 @@ class Vm
 		$oVmBox = $oBox->new_from_file(); //$sFilePath, $sParam);
 		
 		
-		//let mut vm = Vm::new_from_file(&filename, params)?;
+		//let mut vm = Vm::new_from_file(&filename, params)?8;
 		//println!("Correctly loaded VM");
 		
 	}
