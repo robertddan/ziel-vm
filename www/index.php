@@ -25,11 +25,13 @@ var_dump($oDiamonds->sHex);
 
 
 $aHex = str_split($oDiamonds->sHex, 2);
+$aaHex = array_chunk($aHex, 2);
 
-$aHexDec = array();
+
+$aaHexDec = array();
 	
 	
-foreach ($aHex as $sHex) {
+foreach ($aaHex as $aHex) {
 	/*
 	var_dump($sHex);
 	$hex = hexdec($sHex);
@@ -41,9 +43,9 @@ foreach ($aHex as $sHex) {
 	*/
 	
 	//$base = hexdec($sHex);
-	$base = base_convert($sHex, 16, 10);
+	$iBase = base_convert($aHex[0], 16, 10);
 	//var_dump($base);
-	array_push($aHexDec, $base);
+	array_push($aaHexDec, array($iBase, $aHex[1]));
 	
 }
 
@@ -52,8 +54,8 @@ use App\Suiteziel\Vm\Opcodes;
 $oOpcodes = new Opcodes();
 
 
-foreach ($aHexDec as $sHex) {
-	print($sHex ." \t# ". $oOpcodes->view($sHex));
+foreach ($aaHexDec as $aHex) {
+	print($aHex[1] ." \t# ". $oOpcodes->view($aHex[0]));
 }
 
 use App\Suiteziel\Vm\Stack;
