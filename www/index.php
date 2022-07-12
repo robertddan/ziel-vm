@@ -15,7 +15,13 @@ var_dump($oVm->run());
 echo '<pre>';
 
 use App\Suiteziel\Org\Diamonds;
+use App\Suiteziel\Vm\Opcodes;
+
 $oDiamonds = new Diamonds();
+$oOpcodes = new Opcodes();
+
+
+
 $oDiamonds->iCursor = 1; // skip compilation
 var_dump($oDiamonds->compile_contract('Contract.sol'));
 $oDiamonds->sFolder = '20220711084913000000';
@@ -44,14 +50,11 @@ foreach ($aaHex as $aHex) {
 	
 	//$base = hexdec($sHex);
 	$iBase = base_convert($aHex[0], 16, 10);
-	//var_dump($base);
+	var_dump($aHex);
 	array_push($aaHexDec, array($iBase, $aHex[1]));
 	
 }
 
-
-use App\Suiteziel\Vm\Opcodes;
-$oOpcodes = new Opcodes();
 
 
 foreach ($aaHexDec as $aHex) {
