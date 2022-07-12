@@ -56,7 +56,10 @@ foreach ($aHexDec as $sHex) {
 	print($oOpcodes->view($sHex));
 }
 
+use App\Suiteziel\Vm\Stack;
+$sStack = new Stack();
 
+var_dump($sStack);
 
 /*
 [96, 128, 96, 64, 82, 52, 128, 21, 96, 15, 87, 96, 0, 128, 253, 91, 80, 96, 4, 54, 16, 96, 50, 87, 96, 0, 53, 96, 224, 28, 128, 99, 12, 85, 105, 156, 20, 96, 55, 87, 128, 99,
