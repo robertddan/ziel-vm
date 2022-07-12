@@ -6,11 +6,17 @@ use Ds;
 class Stack
 {
 	public $iCursor;
+	public $aHex;
 		
 	public function __construct () {
 		$this->iCursor = 0;
 		$stack = new \Ds\Stack();
 		print_r($stack);
+	}
+
+	public function decode_hex ($sHex = null): bool {
+		$this->aHex = str_split($sHex, 2);
+		return true;
 	}
 
 	public function stack_pointer_set ($iKey = null) {
@@ -48,7 +54,4 @@ class Stack
 	}
 }
 
-/*
-opcodes vm memory stack parameters test
-*/
 ?>

@@ -149,7 +149,4 @@ class Opcodes
 	}
 }
 
-/*
-opcodes vm memory stack parameters test
-*/
 ?>
