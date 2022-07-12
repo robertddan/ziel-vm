@@ -53,7 +53,7 @@ $oOpcodes = new Opcodes();
 
 
 foreach ($aHexDec as $sHex) {
-	print($oOpcodes->view($sHex));
+	print($sHex ." \t# ". $oOpcodes->view($sHex));
 }
 
 use App\Suiteziel\Vm\Stack;
