@@ -4,7 +4,20 @@ namespace App\Suiteziel\Vm;
 
 class Opcodes
 {
-	public function view($iKey = null) {
+	public function initiate ($iKey = null, $aArguments = null) {
+		switch ($iKey) {
+			case 0x60: 
+				return "0x60\t3\tPUSH1\t\tPlace 1 byte item on stack\n"; 
+				break;
+			case 0x61: 
+				return "0x61\t3\tPUSH2\t\tPlace 2 byte item on stack\n"; 
+				break;
+			case 0x62: return "0x62\t3\tPUSH3\t\tPlace 3 byte item on stack\n"; break;
+			case 0x63: return "0x63\t3\tPUSH4\t\tPlace 4 byte item on stack\n"; break;
+		}
+	}
+	
+	public function describe($iKey = null) {
 		
 		switch ($iKey) {
 			case 0x00: return "0x00\t0\tSTOP\t\tHalts execution\n"; break;

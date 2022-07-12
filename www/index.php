@@ -34,40 +34,40 @@ $aHex = str_split($oDiamonds->sHex, 2);
 $aaHex = array_chunk($aHex, 2);
 
 
-$aaHexDec = array();
+$aaHexBased = array();
 	
 	
-foreach ($aaHex as $aHex) {
+foreach ($aaHex as $k => $aHex) {
 	/*
 	var_dump($sHex);
 	$hex = hexdec($sHex);
 	var_dump($hex);
 
-	$output = array_slice($aHex, $i, 2);
+	$output = array_slice($aHex, $k, 2);
 	$sHexChunk = implode("", $output);	
 	//var_dump($sHexChunk);
 	*/
 	
 	//$base = hexdec($sHex);
 	$iBase = base_convert($aHex[0], 16, 10);
-	var_dump($aHex);
-	array_push($aaHexDec, array($iBase, $aHex[1]));
+	//var_dump($aHex);
+	array_push($aaHexBased, array($iBase, $aHex[1]));
 	
 }
 
 
 
-foreach ($aaHexDec as $aHex) {
-	print($aHex[1] ." \t# ". $oOpcodes->view($aHex[0]));
+foreach ($aaHexBased as $aHex) {
+	print($aHex[1] ." \t# ". $oOpcodes->describe($aHex[0]));
 }
 
 use App\Suiteziel\Vm\Stack;
 $sStack = new Stack();
 
-var_dump($sStack);
+//var_dump($aaHexBased);
 
 /*
-[96, 128, 96, 64, 82, 52, 128, 21, 96, 15, 87, 96, 0, 128, 253, 91, 80, 96, 4, 54, 16, 96, 50, 87, 96, 0, 53, 96, 224, 28, 128, 99, 12, 85, 105, 156, 20, 96, 55, 87, 128, 99,
+[96, 128, 96, 64,// 82, 52, 128, 21, 96, 15, 87, 96, 0, 128, 253, 91, 80, 96, 4, 54, 16, 96, 50, 87, 96, 0, 53, 96, 224, 28, 128, 99, 12, 85, 105, 156, 20, 96, 55, 87, 128, 99,
  165, 243, 194, 59, 20, 96, 81, 87, 91, 96, 0, 128, 253, 91, 96, 63, 96, 0, 84, 129, 86, 91, 96, 64, 81, 144, 129, 82, 96, 32, 1, 96, 64, 81, 128, 145, 3, 144, 243, 91, 96, 9
 6, 96, 92, 54, 96, 4, 96, 113, 86, 91, 96, 98, 86, 91, 0, 91, 96, 106, 129, 131, 96, 168, 86,91, 96, 0, 85, 80, 80, 86, 91, 96, 0, 128, 96, 64, 131, 133, 3, 18, 21, 96, 131,
 87, 96, 0, 128, 253, 91, 80, 80, 128, 53, 146, 96, 32, 144, 145, 1, 53, 145, 80, 86, 91, 99, 78, 72, 123, 113, 96, 224, 27, 96, 0, 82, 96, 17, 96, 4, 82, 96, 36, 96, 0, 253,

@@ -10,6 +10,11 @@ class Stack
 		print_r($stack);
 	}
 
+	public function get_arguments($iKey = null, $aArguments = null): int {
+		$iKeyLeft = null;
+		return $iKeyLeft;
+	}
+	
 	public function test() {
 		return  "Hello woorld Stack";
 	}
