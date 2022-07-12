@@ -47,19 +47,17 @@ foreach ($aHex as $sHex) {
 }
 
 
-
 use App\Suiteziel\Vm\Opcodes;
-
 $oOpcodes = new Opcodes();
-	
-foreach ($aHexDec as $sHex) {
 
-	
-	var_dump($oOpcodes->test($sHex));
+
+foreach ($aHexDec as $sHex) {
+	print($oOpcodes->view($sHex));
 }
 
 
-	var_dump($aHexDec);
+var_dump($aHexDec);
+
 /*
 [96, 128, 96, 64, 82, 52, 128, 21, 96, 15, 87, 96, 0, 128, 253, 91, 80, 96, 4, 54, 16, 96, 50, 87, 96, 0, 53, 96, 224, 28, 128, 99, 12, 85, 105, 156, 20, 96, 55, 87, 128, 99,
  165, 243, 194, 59, 20, 96, 81, 87, 91, 96, 0, 128, 253, 91, 96, 63, 96, 0, 84, 129, 86, 91, 96, 64, 81, 144, 129, 82, 96, 32, 1, 96, 64, 81, 128, 145, 3, 144, 243, 91, 96, 9
