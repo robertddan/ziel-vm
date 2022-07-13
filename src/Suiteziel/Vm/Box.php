@@ -26,13 +26,13 @@ pub fn decode(s: &str) -> Result<Vec<u8>, ParseIntError> {
 	public function new_from_file($sFilePath = null, $aParameters = null) {
 		return  "Hello woorld Memory";
 	}
-	public function decode($sHex = null){
+	public function decode($sHex = null) {
 		$aHex = str_split($sHex, 2);
 		
 		//var_dump($aHex);
 	}
 
-	public function implement (&$oStack = null, $iKey = null, $aArguments = null) { // $aArguments = null, 
+	public function implement (&$oStack = null, $iKey = null, $aArguments = null): bool { // $aArguments = null, 
 		//$this->aArguments = $aArguments;
 		//$oStack->aArguments = '#######';
 		
@@ -53,6 +53,8 @@ pub fn decode(s: &str) -> Result<Vec<u8>, ParseIntError> {
 			case 0x67: $a = array(8); break; //PUSH8
 			case 0x68: $a = array(9); break; //PUSH9
 		}
+		
+		return true;
 	}
 	
 }
