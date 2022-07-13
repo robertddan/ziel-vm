@@ -57,6 +57,7 @@ foreach ($aHex as $k => $sHex) {
 
 foreach ($aHexBased as $sHex) {
 	print($sHex ." \t# ". $oOpcodes->describe($sHex));
+	
 }
 
 use App\Suiteziel\Vm\Stack;

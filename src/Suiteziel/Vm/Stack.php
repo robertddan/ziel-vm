@@ -1,17 +1,16 @@
 <?php
 namespace App\Suiteziel\Vm;
 
-use Ds;
-
 class Stack
 {
 	public $iCursor;
 	public $aHex;
+	public $aaStack;
+	public $aArguments;
 		
 	public function __construct () {
 		$this->iCursor = 0;
-		$stack = new \Ds\Stack();
-		print_r($stack);
+		$aaStack = array();
 	}
 
 	public function stack_pointer_set ($iKey = null) {
@@ -21,7 +20,13 @@ class Stack
 	public function initiate ($iKey = null) {
 		switch ($iKey) {
 			case 0x60:
-				return $iKey + 1; 
+				
+				/*
+					slice array from - to k + 1
+					push to stack
+				*/
+				
+				$this->aArguments = array_slice($this->aHex, $iKey + 1, 1);
 				//"0x60\t3\tPUSH1\t\tPlace 1 byte item on stack\n"; 
 				break;
 			case 0x61: 
@@ -37,9 +42,11 @@ class Stack
 				//"0x63\t3\tPUSH4\t\tPlace 4 byte item on stack\n"; 
 				break;
 		}
+		
+		$this->iCursor = $this->iCursor + 
 	}
 
-	public function implement ($iKey = null) {
+	public function implement ($iKey = null, $) {
 		switch ($iKey) {
 			case 0x60:
 				return $iKey + 1; 
@@ -60,9 +67,9 @@ class Stack
 		}
 	}
 	
-	public function arguments_get($iKey = null, $aArguments = null): int {
-		$iKeyLeft = null;
-		return $iKeyLeft;
+	public function arguments_get(): array {//$iKey = null, $aArguments = null): int {
+		//$iKeyLeft = null;
+		return $this->aArguments;
 	}
 	
 	public function test() {
