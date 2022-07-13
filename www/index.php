@@ -58,13 +58,20 @@ foreach ($aHex as $k => $sHex) {
 
 var_dump($oStack->stack_set($aHexBased));
 
-
+$iCountArguments = 0;
 foreach ($aHexBased as $k => $sHex) {
+	if ($iCountArguments !== 0) {
+		$iCountArguments = $iCountArguments - 1;
+		continue;
+	}
 	print($sHex ." \t# ". $oOpcodes->describe($sHex));
-	var_dump($oStack->initiate($k, $sHex));
-	var_dump('oStack->aArguments');
+	
+	$oStack->initiate($k, $sHex);
+	/*var_dump('oStack->aArguments');
 	var_dump($oStack->aArguments);
 	var_dump(count($oStack->aArguments));
+	*/
+	$iCountArguments = count($oStack->aArguments);
 }
 
 

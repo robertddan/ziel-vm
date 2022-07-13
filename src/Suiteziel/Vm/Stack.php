@@ -18,19 +18,20 @@ class Stack
 		return true;
 	}
 
-	public function initiate ($iKey = null, $sHex = null) {
+	public function initiate ($iKey = null, $sHex = null): bool {
 		switch ($sHex) {
 			case 0x60:
 				
 				/*
 					slice array from - to k + 1
 					push to stack
-				*/
+				
 				var_dump(array(
 					array_slice($this->aHex, $iKey + 1, 1),
 					'$iKey',
 					$iKey
 				));
+				*/
 				$this->aArguments = array_slice($this->aHex, $iKey + 1, 1);
 				//"0x60\t3\tPUSH1\t\tPlace 1 byte item on stack\n"; 
 				break;
@@ -47,6 +48,7 @@ class Stack
 				//"0x63\t3\tPUSH4\t\tPlace 4 byte item on stack\n"; 
 				break;
 		}
+		return true;
 	}
 
 	public function implement ($iKey = null) {
