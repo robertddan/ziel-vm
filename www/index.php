@@ -16,10 +16,13 @@ echo '<pre>';
 
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm\Opcodes;
+use App\Suiteziel\Vm\Stack;
+
 
 $oDiamonds = new Diamonds();
 $oOpcodes = new Opcodes();
 
+$oStack = new Stack();
 
 
 $oDiamonds->iCursor = 1; // skip compilation
@@ -57,7 +60,10 @@ foreach ($aHex as $k => $sHex) {
 
 foreach ($aHexBased as $sHex) {
 	print($sHex ." \t# ". $oOpcodes->describe($sHex));
-	
+	var_dump( $oStack->initiate($sHex));
+	var_dump('oStack->aArguments');
+	var_dump($oStack->aArguments);
+	var_dump(count($oStack->aArguments));
 }
 
 use App\Suiteziel\Vm\Stack;

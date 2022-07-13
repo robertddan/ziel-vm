@@ -3,7 +3,7 @@ namespace App\Suiteziel\Vm;
 
 class Stack
 {
-	public $iCursor;
+	//public $iCursor;
 	public $aHex;
 	public $aaStack;
 	public $aArguments;
@@ -42,8 +42,6 @@ class Stack
 				//"0x63\t3\tPUSH4\t\tPlace 4 byte item on stack\n"; 
 				break;
 		}
-		
-		$this->iCursor = $this->iCursor + 
 	}
 
 	public function implement ($iKey = null, $) {

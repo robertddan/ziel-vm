@@ -66,6 +66,7 @@ class Diamonds
 	}
 	
 	public function hex_base_convert ($sHex): int {
+		var_dump($sHex);
 		return base_convert($sHex, 16, 10);
 	}
 
