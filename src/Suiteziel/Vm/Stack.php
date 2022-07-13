@@ -24,14 +24,7 @@ class Stack
 		//$this->arguments_set(array());
 		
 		switch ($sHex) {
-			case 0x00: 
-				$this->aArguments = array_slice($this->aHex, $iKey, 0); 
-				var_dump(array(
-					$iKey,
-					$this->aArguments
-				));
-				
-				break; //STOP
+			case 0x00: $this->aArguments = array_slice($this->aHex, $iKey, 0); break; //STOP
 			case 0x01: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //ADD
 			case 0x02: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //MUL
 			case 0x03: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //SUB
@@ -48,7 +41,7 @@ class Stack
 			case 0x12: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //SLT
 			case 0x13: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //SGT
 			case 0x14: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //EQ
-			case 0x15: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //ISZERO
+			case 0x15: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //ISZERO
 			case 0x16: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //AND
 			case 0x17: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //OR
 			case 0x18: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //XOR
@@ -89,13 +82,7 @@ class Stack
 			case 0x59: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //MSIZE
 			case 0x5a: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //GAS
 			case 0x5b: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //JUMPDEST
-			case 0x60: 
-				$this->aArguments = array_slice($this->aHex, $iKey, 1); 
-				var_dump(array(
-					$iKey,
-					$this->aArguments
-				));
-				break; //PUSH1
+			case 0x60: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //PUSH1
 			case 0x61: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //PUSH2
 			case 0x62: $this->aArguments = array_slice($this->aHex, $iKey, 3); break; //PUSH3
 			case 0x63: $this->aArguments = array_slice($this->aHex, $iKey, 4); break; //PUSH4
