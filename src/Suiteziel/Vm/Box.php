@@ -32,13 +32,13 @@ pub fn decode(s: &str) -> Result<Vec<u8>, ParseIntError> {
 		//var_dump($aHex);
 	}
 
-	public function implement ($iKey = null, $aArguments = null, &$oStack) {
+	public function implement (&$oStack = null, $iKey = null, $aArguments = null) { // $aArguments = null, 
 		//$this->aArguments = $aArguments;
 		//$oStack->aArguments = '#######';
 		
 		switch ($iKey) {
 			case 0x60: 
-				$a = array(2); 
+				return array_unshift($oStack->aaStack, array_reverse($aArguments));
 				break; //PUSH1
 			case 0x61:
 				return array_unshift($oStack->aaStack, array_reverse($aArguments));
