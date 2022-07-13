@@ -41,7 +41,7 @@ class Stack
 			case 0x12: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //SLT
 			case 0x13: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //SGT
 			case 0x14: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //EQ
-			case 0x15: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //ISZERO
+			case 0x15: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //ISZERO
 			case 0x16: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //AND
 			case 0x17: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //OR
 			case 0x18: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //XOR
