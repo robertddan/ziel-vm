@@ -17,12 +17,13 @@ echo '<pre>';
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\Vm\Stack;
+use App\Suiteziel\Vm\Box;
 
 
 $oDiamonds = new Diamonds();
 $oOpcodes = new Opcodes();
-
 $oStack = new Stack();
+$oBox = new Box();
 
 
 $oDiamonds->iCursor = 1; // skip compilation
@@ -68,7 +69,7 @@ foreach ($aHexBased as $k => $sHex) {
 	}
 	
 	$oStack->initiate($k, $sHex);
-var_dump('args',$oStack->aArguments);
+	//var_dump('args',$oStack->aArguments);
 	print($sHex ." \t# ". $oOpcodes->describe($sHex, $oStack->aArguments));
 
 	/*
@@ -78,7 +79,12 @@ var_dump('args',$oStack->aArguments);
 	*/
 
 	$iCountArguments = count($oStack->aArguments);
-var_dump('k',$k);
+	
+	
+	//$oBox->implement($sHex, $oStack);
+	$oBox->implement($sHex, $oStack->aArguments);
+	var_dump($oStack->aaStack);
+	
 	//if ($k >= 12) break;
 }
 

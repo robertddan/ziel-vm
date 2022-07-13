@@ -10,8 +10,8 @@ class Stack
 		
 	public function __construct () {
 		$this->iCursor = 0;
-		$aaStack = array();
-		$aArguments = array();
+		$this->aaStack = array();
+		$this->aArguments = array();
 	}
 
 	public function stack_set ($aHex = null): bool {
@@ -82,7 +82,10 @@ class Stack
 			case 0x59: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //MSIZE
 			case 0x5a: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //GAS
 			case 0x5b: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //JUMPDEST
-			case 0x60: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //PUSH1
+			case 0x60: 
+				$this->aArguments = array_slice($this->aHex, $iKey, 1);
+				
+				break; //PUSH1
 			case 0x61: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //PUSH2
 			case 0x62: $this->aArguments = array_slice($this->aHex, $iKey, 3); break; //PUSH3
 			case 0x63: $this->aArguments = array_slice($this->aHex, $iKey, 4); break; //PUSH4
@@ -163,27 +166,6 @@ class Stack
 		return true;
 	}
 
-	public function implement ($iKey = null) {
-		switch ($iKey) {
-			case 0x60:
-				return $iKey; 
-				//"0x60\t3\tPUSH1\t\tPlace 1 byte item on stack\n"; 
-				break;
-			case 0x61: 
-				return $iKey + 2; 
-				//"0x61\t3\tPUSH2\t\tPlace 2 byte item on stack\n"; 
-				break;
-			case 0x62: 
-				return $iKey + 3; 
-				//"0x62\t3\tPUSH3\t\tPlace 3 byte item on stack\n"; 
-				break;
-			case 0x63: 
-				return $iKey + 4; 
-				//"0x63\t3\tPUSH4\t\tPlace 4 byte item on stack\n"; 
-				break;
-		}
-	}
-	
 	public function arguments_get(): array {//$iKey = null, $aArguments = null): int {
 		//$iKeyLeft = null;
 		return $this->aArguments;
