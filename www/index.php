@@ -56,18 +56,17 @@ foreach ($aHex as $k => $sHex) {
 	
 }
 
+var_dump($oStack->stack_set($aHexBased));
 
 
-foreach ($aHexBased as $sHex) {
+foreach ($aHexBased as $k => $sHex) {
 	print($sHex ." \t# ". $oOpcodes->describe($sHex));
-	var_dump( $oStack->initiate($sHex));
+	var_dump($oStack->initiate($k, $sHex));
 	var_dump('oStack->aArguments');
 	var_dump($oStack->aArguments);
 	var_dump(count($oStack->aArguments));
 }
 
-use App\Suiteziel\Vm\Stack;
-$sStack = new Stack();
 
 //var_dump($aaHexBased);
 

@@ -13,19 +13,24 @@ class Stack
 		$aaStack = array();
 	}
 
-	public function stack_pointer_set ($iKey = null) {
-		$this->iCursor = $iKey;
+	public function stack_set ($aHex = null): bool {
+		$this->aHex = $aHex;
+		return true;
 	}
 
-	public function initiate ($iKey = null) {
-		switch ($iKey) {
+	public function initiate ($iKey = null, $sHex = null) {
+		switch ($sHex) {
 			case 0x60:
 				
 				/*
 					slice array from - to k + 1
 					push to stack
 				*/
-				
+				var_dump(array(
+					array_slice($this->aHex, $iKey + 1, 1),
+					'$iKey',
+					$iKey
+				));
 				$this->aArguments = array_slice($this->aHex, $iKey + 1, 1);
 				//"0x60\t3\tPUSH1\t\tPlace 1 byte item on stack\n"; 
 				break;
@@ -44,7 +49,7 @@ class Stack
 		}
 	}
 
-	public function implement ($iKey = null, $) {
+	public function implement ($iKey = null) {
 		switch ($iKey) {
 			case 0x60:
 				return $iKey + 1; 
