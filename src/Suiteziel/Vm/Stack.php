@@ -11,6 +11,7 @@ class Stack
 	public function __construct () {
 		$this->iCursor = 0;
 		$aaStack = array();
+		$aArguments = array();
 	}
 
 	public function stack_set ($aHex = null): bool {
@@ -76,7 +77,11 @@ class Stack
 		//$iKeyLeft = null;
 		return $this->aArguments;
 	}
-	
+		
+	public function arguments_set($aArguments) {//$iKey = null, $aArguments = null): int {
+		//$iKeyLeft = null;
+		$this->aArguments = $aArguments;
+	}
 	public function test() {
 		return  "Hello woorld Stack";
 	}
