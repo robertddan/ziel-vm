@@ -64,6 +64,10 @@ class Diamonds
 		$this->aHex = str_split($this->sHex, 2);
 		return $this->aHex;
 	}
+	
+	public function hex_base_convert ($sHex): int {
+		return base_convert($sHex, 16, 10);
+	}
 
 }
 

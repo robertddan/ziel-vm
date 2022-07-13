@@ -47,7 +47,7 @@ foreach ($aHex as $k => $sHex) {
 	*/
 	
 	//$base = hexdec($sHex);
-	$iBase = base_convert($sHex, 16, 10);
+	$iBase = $oDiamonds->hex_base_convert($sHex);
 	//var_dump($aHex);
 	array_push($aHexBased, $iBase);
 	
