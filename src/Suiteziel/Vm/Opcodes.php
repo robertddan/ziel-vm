@@ -142,7 +142,7 @@ class Opcodes
 			case 0xf2: return "0xf2\t40\tCALLCODE\t\t".$sArguments."\t\tMessage-call into this account with alternative account’s code\n"; break;
 			case 0xf3: return "0xf3\t0\tRETURN\t\t".$sArguments."\t\tHalt execution returning output data\n"; break;
 			case 0xf4: return "0xf4\t40\tDELEGATECALL\t\t".$sArguments."\t\tMessage-call into this account with an alternative account’s code, but persisting the current values for sender and value\n"; break;
-			//0xfe_jj11_INVALID_s_NaN_s_Designated invalid instruction
+			case 0xfe: return "0xff\tNaN\tINVALID\t\t".$sArguments."\t\tDesignated invalid instruction\n"; break;
 			case 0xff: return "0xff\t0\tSELFDESTRUCT\t\t".$sArguments."\t\tHalt execution and register account for later deletion\n"; break;
 			default: return "$iKey\n";
 		}

@@ -21,7 +21,7 @@ class Stack
 
 	public function initiate ($iKey = null, $sHex = null): bool {
 		switch ($sHex) {
-			case 0x00: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //STOP
+			case 0x00: $this->aArguments = array_slice($this->aHex, $iKey + 1, 0); break; //STOP
 			case 0x01: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //ADD
 			case 0x02: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //MUL
 			case 0x03: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //SUB
@@ -140,17 +140,17 @@ class Stack
 			case 0x9d: $this->aArguments = array_slice($this->aHex, $iKey + 1, 14); break; //SWAP14
 			case 0x9e: $this->aArguments = array_slice($this->aHex, $iKey + 1, 15); break; //SWAP15
 			case 0x9f: $this->aArguments = array_slice($this->aHex, $iKey + 1, 16); break; //SWAP16
-			case 0xa0: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //LOG0
-			case 0xa1: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //LOG1
-			case 0xa2: $this->aArguments = array_slice($this->aHex, $iKey + 1, 2); break; //LOG2
-			case 0xa3: $this->aArguments = array_slice($this->aHex, $iKey + 1, 3); break; //LOG3
-			case 0xa4: $this->aArguments = array_slice($this->aHex, $iKey + 1, 4); break; //LOG4
-			case 0xf0: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //CREATE
-			case 0xf1: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //CALL
-			case 0xf2: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //CALLCODE
-			case 0xf3: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //RETURN
-			case 0xf4: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //DELEGATECALL
-			//0xfe_jj11_INVALID_s_NaN_s_Designated invalid instruction
+			case 0xa0: $this->aArguments = array_slice($this->aHex, $iKey + 1, 2); break; //LOG0
+			case 0xa1: $this->aArguments = array_slice($this->aHex, $iKey + 1, 3); break; //LOG1
+			case 0xa2: $this->aArguments = array_slice($this->aHex, $iKey + 1, 4); break; //LOG2
+			case 0xa3: $this->aArguments = array_slice($this->aHex, $iKey + 1, 5); break; //LOG3
+			case 0xa4: $this->aArguments = array_slice($this->aHex, $iKey + 1, 6); break; //LOG4
+			case 0xf0: $this->aArguments = array_slice($this->aHex, $iKey + 1, 3); break; //CREATE
+			case 0xf1: $this->aArguments = array_slice($this->aHex, $iKey + 1, 7); break; //CALL
+			case 0xf2: $this->aArguments = array_slice($this->aHex, $iKey + 1, 7); break; //CALLCODE
+			case 0xf3: $this->aArguments = array_slice($this->aHex, $iKey + 1, 2); break; //RETURN
+			case 0xf4: $this->aArguments = array_slice($this->aHex, $iKey + 1, 6); break; //DELEGATECALL
+			case 0xfe: $this->aArguments = array_slice($this->aHex, $iKey + 1, 0); break; //INVALID
 			case 0xff: $this->aArguments = array_slice($this->aHex, $iKey + 1, 1); break; //SELFDESTRUCT
 
 		}
