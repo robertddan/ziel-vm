@@ -57,24 +57,29 @@ foreach ($aHex as $k => $sHex) {
 }
 
 var_dump($oStack->stack_set($aHexBased));
+var_dump(implode(",", $aHexBased));
 
 $iCountArguments = 0;
+
 foreach ($aHexBased as $k => $sHex) {
 	if ($iCountArguments !== 0) {
 		$iCountArguments = $iCountArguments - 1;
 		continue;
 	}
-	$oStack->arguments_set(array());
+	
 	$oStack->initiate($k, $sHex);
-	
+var_dump('args',$oStack->aArguments);
 	print($sHex ." \t# ". $oOpcodes->describe($sHex, $oStack->aArguments));
-	
+
 	/*
 	var_dump('oStack->aArguments');
 	var_dump($oStack->aArguments);
 	var_dump(count($oStack->aArguments));
 	*/
+
 	$iCountArguments = count($oStack->aArguments);
+var_dump('k',$k);
+	if ($k >= 12) break;
 }
 
 
