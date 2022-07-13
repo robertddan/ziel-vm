@@ -79,7 +79,7 @@ var_dump('args',$oStack->aArguments);
 
 	$iCountArguments = count($oStack->aArguments);
 var_dump('k',$k);
-	if ($k >= 12) break;
+	//if ($k >= 12) break;
 }
 
 
