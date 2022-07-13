@@ -6,6 +6,7 @@ class Diamonds
 {
 	
 	public $sFilePathOutput;
+	public $aHex;
 	public $sHex;
 	public $iCursor;
 	public $sFolder;
@@ -58,6 +59,12 @@ class Diamonds
 	public function write_to_file($sFilePath) {
 		return file_exists($sFilePath);
 	}
+	
+	public function decode_hex (): array {
+		$this->aHex = str_split($this->sHex, 2);
+		return $this->aHex;
+	}
+
 }
 
 /*

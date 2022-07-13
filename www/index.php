@@ -30,7 +30,8 @@ if ($oDiamonds->iCursor) var_dump($oDiamonds->read_from_file());
 var_dump($oDiamonds->sHex);
 
 
-$aHex = str_split($oDiamonds->sHex, 2);
+$aHex = $oDiamonds->decode_hex();
+
 $aaHex = array_chunk($aHex, 2);
 
 
