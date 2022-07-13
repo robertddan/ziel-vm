@@ -64,9 +64,11 @@ foreach ($aHexBased as $k => $sHex) {
 		$iCountArguments = $iCountArguments - 1;
 		continue;
 	}
-	print($sHex ." \t# ". $oOpcodes->describe($sHex));
-	
+
 	$oStack->initiate($k, $sHex);
+	
+	print($sHex ." \t# ". $oOpcodes->describe($sHex, $oStack->aArguments));
+	
 	/*var_dump('oStack->aArguments');
 	var_dump($oStack->aArguments);
 	var_dump(count($oStack->aArguments));
