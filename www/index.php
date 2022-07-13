@@ -32,13 +32,10 @@ var_dump($oDiamonds->sHex);
 
 $aHex = $oDiamonds->decode_hex();
 
-$aaHex = array_chunk($aHex, 2);
-
-
-$aaHexBased = array();
+$aHexBased = array();
 	
 	
-foreach ($aaHex as $k => $aHex) {
+foreach ($aHex as $k => $sHex) {
 	/*
 	var_dump($sHex);
 	$hex = hexdec($sHex);
@@ -50,16 +47,16 @@ foreach ($aaHex as $k => $aHex) {
 	*/
 	
 	//$base = hexdec($sHex);
-	$iBase = base_convert($aHex[0], 16, 10);
+	$iBase = base_convert($sHex, 16, 10);
 	//var_dump($aHex);
-	array_push($aaHexBased, array($iBase, $aHex[1]));
+	array_push($aHexBased, $iBase);
 	
 }
 
 
 
-foreach ($aaHexBased as $aHex) {
-	print($aHex[1] ." \t# ". $oOpcodes->describe($aHex[0]));
+foreach ($aHexBased as $sHex) {
+	print($sHex ." \t# ". $oOpcodes->describe($sHex));
 }
 
 use App\Suiteziel\Vm\Stack;
