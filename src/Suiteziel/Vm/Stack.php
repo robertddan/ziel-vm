@@ -14,11 +14,6 @@ class Stack
 		print_r($stack);
 	}
 
-	public function decode_hex ($sHex = null): bool {
-		$this->aHex = str_split($sHex, 2);
-		return true;
-	}
-
 	public function stack_pointer_set ($iKey = null) {
 		$this->iCursor = $iKey;
 	}
