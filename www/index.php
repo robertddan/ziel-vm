@@ -53,7 +53,7 @@ foreach ($aHex as $k => $sHex) {
 	$iBase = $oDiamonds->hex_base_convert($sHex);
 	//var_dump($aHex);
 	array_push($aHexBased, $iBase);
-	
+
 }
 
 var_dump($oOpcodes->hex_set($aHexBased));
@@ -66,10 +66,10 @@ foreach ($aHexBased as $k => $sHex) {
 		$iCountArguments = $iCountArguments - 1;
 		continue;
 	}
-	
+
 	$oOpcodes->initiate($k, $sHex);
 	//var_dump('args',$oOpcodes->aArguments);
-	print($sHex ." \t# ". $oOpcodes->describe($sHex, $oOpcodes->aArguments));
+	print($oOpcodes->describe($sHex));
 
 	/*
 	var_dump('oStack->aArguments');
@@ -78,12 +78,12 @@ foreach ($aHexBased as $k => $sHex) {
 	*/
 
 	$iCountArguments = count($oOpcodes->aArguments);
-	
-	
+
+
 	//$oBox->implement($sHex, $oOpcodes);
 	if (!$oBox->implement($oOpcodes, $sHex, $oOpcodes->aArguments)) die('oBox->implement');
 	var_dump($oOpcodes->aaStack);
-	
+
 	//if ($k >= 12) break;
 }
 
