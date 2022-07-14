@@ -52,7 +52,8 @@ foreach ($aHexBased as $k => $sHex) {
 	$iCountArguments = count($oOpcodes->aArguments);
 	//if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
 	
-	//var_dump($oOpcodes->aaStack);
+	var_dump('$oOpcodes->opcodes');
+	var_dump($oOpcodes->opcodes(5, $sHex));
 
 }
 
