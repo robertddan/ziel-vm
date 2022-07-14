@@ -4,14 +4,14 @@ namespace App\Suiteziel\Org;
 
 class Diamonds
 {
-	
+
 	public $sFilePathOutput;
 	public $aHex;
 	public $sHex;
 	public $iCursor;
 	public $sFolder;
 	public $sContract;
-		
+
 	public function __construct() {
 		$this->sFilePathOutput = "./src/diamonds/". date("YmdHisu") ."/";
 		$this->iCursor = 0;
@@ -38,10 +38,11 @@ class Diamonds
 		$retval=null;
 		exec($sCommand, $output, $retval);
 		print_r($output);
+		sleep(2);
 		$this->iCursor = 1;
 		return true;
 	}
-	
+
 	public function read_from_file() :bool {
 		//if(empty($sFilePath)) return print '$sFilePath missing!';
 		//else $this->$sFilePath = $sFilePath;
@@ -61,16 +62,16 @@ class Diamonds
 		
 		return true;
 	}
-	
+
 	public function write_to_file($sFilePath) {
 		return file_exists($sFilePath);
 	}
-	
+
 	public function decode_hex () :bool {
 		$this->aHex = str_split($this->sHex, 2);
 		return true;
 	}
-	
+
 	public function hex_base_convert ($sHex): int {
 		return base_convert($sHex, 16, 10);
 	}

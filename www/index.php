@@ -17,10 +17,10 @@ $oBox = new Box();
 
 
 $oDiamonds->iCursor = 1; // skip compilation
-$oDiamonds->sContract = 'Contract.sol';
+$oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
+$oDiamonds->sFolder = '20220714115532000000'; // specify folder
+if (!$oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
 if (!$oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
-$oDiamonds->sFolder = '20220711084913000000';
-if (!$oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder');
 if (!$oDiamonds->iCursor) die('oDiamonds->iCursor');
 if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
@@ -50,9 +50,9 @@ foreach ($aHexBased as $k => $sHex) {
 	if (!$oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate');
 	if (!$oOpcodes->describe($sHex)) die('oOpcodes->describe');
 	$iCountArguments = count($oOpcodes->aArguments);
-	if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
+	//if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
 	
-	var_dump($oOpcodes->aaStack);
+	//var_dump($oOpcodes->aaStack);
 
 }
 
