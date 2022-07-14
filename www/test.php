@@ -1,9 +1,4 @@
 <?php
-
-require __DIR__ .'/../vendor/autoload.php';
-
-define("__APP__", __DIR__ .'/../src/');
-
 # memory
 ini_set('error_reporting', E_ALL);
 ini_set('memory_limit', -1);
@@ -17,4 +12,5 @@ ini_set('xdebug.var_display_max_depth', '10');
 ini_set('xdebug.var_display_max_children', '256');
 ini_set('xdebug.var_display_max_data', '1024');
 
+return var_dump('++');
 ?>

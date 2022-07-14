@@ -10,6 +10,7 @@ class Diamonds
 	public $sHex;
 	public $iCursor;
 	public $sFolder;
+	public $sContract;
 		
 	public function __construct() {
 		$this->sFilePathOutput = "./src/diamonds/". date("YmdHisu") ."/";
@@ -22,11 +23,11 @@ class Diamonds
 		return true;
 	}
 
-	public function compile_contract($sFilename = null) :bool {
-		if(empty($sFilename)) return print '$sFilename missing!'. PHP_EOL;
-		if ($this->iCursor === 1) return false;
+	public function compile_contract() :bool {
+		if(empty($this->sContract)) return false; //print '$sFilename missing!'. PHP_EOL;
+		if ($this->iCursor === 1) return true;
 		
-		$sFilePath = __APP__ .'contracts/'. $sFilename;
+		$sFilePath = __APP__ .'contracts/'. $this->sContract;
 		$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->sFilePathOutput .' '.$sFilePath;
 		
 		$output=null;
