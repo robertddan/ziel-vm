@@ -17,6 +17,10 @@ class Diamonds
 		$this->iCursor = 0;
 	}
 
+	public function hex_get () :array {
+		return $this->aHex;
+	}
+	
 	public function set_output_folder() :bool {
 		if (empty($this->sFolder)) return false;
 		$this->sFilePathOutput = "./src/diamonds/". $this->sFolder ."/";
@@ -24,7 +28,7 @@ class Diamonds
 	}
 
 	public function compile_contract() :bool {
-		if(empty($this->sContract)) return false; //print '$sFilename missing!'. PHP_EOL;
+		if (empty($this->sContract)) return false; //print '$sFilename missing!'. PHP_EOL;
 		if ($this->iCursor === 1) return true;
 		
 		$sFilePath = __APP__ .'contracts/'. $this->sContract;

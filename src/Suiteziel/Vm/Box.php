@@ -15,7 +15,6 @@ pub fn decode(s: &str) -> Result<Vec<u8>, ParseIntError> {
 }
 */
 	function __construct() {
-		print "In BaseClass constructor\n";
 	}	
 	public function new_from_call($sJson = null, $aParameters = null) {
 		return  "Hello woorld Memory";

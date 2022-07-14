@@ -15,9 +15,8 @@ class Opcodes
 		$this->aArguments = array();
 	}
 
-	public function hex_set ($aHex = null) :bool {
+	public function hex_set ($aHex = null) {
 		$this->aHex = $aHex;
-		return true;
 	}
 
 	public function initiate ($iKey = null, $sHex = null) :bool {
