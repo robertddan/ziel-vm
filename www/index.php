@@ -26,6 +26,8 @@ if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
 if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 if (!$oOpcodes->hex_set($oDiamonds->aHex)) die('$oOpcodes->hex_set');
+
+var_dump(implode(",", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(",", $oDiamonds->aHex));
 
 

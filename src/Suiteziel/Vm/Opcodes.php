@@ -32,7 +32,7 @@ class Opcodes
 	public function describe($iKey = null, $sHex = null) :bool {
 		$sArguments = implode(",", $this->aArguments);
 		if (!isset($this->aaOpcodes[$sHex])) { print "$iKey\t------------- Default:\t\t$sHex\t# ----------- \n"; return true; }
-		print "$iKey\t$sHex\t#". $this->aaOpcodes[$sHex][3] ."\t0\t". $this->aaOpcodes[$sHex][3] ."\t\t". $sArguments ."\t\t". $this->aaOpcodes[$sHex][4] ."\n";
+		print "$iKey\t". base_convert($sHex, 10, 16) ."\t#". $this->aaOpcodes[$sHex][2] ."\t0\t". $this->aaOpcodes[$sHex][3] ."\t\t". $sArguments ."\t\t". $this->aaOpcodes[$sHex][4] ."\n";
 		return true;
 	}
 	
