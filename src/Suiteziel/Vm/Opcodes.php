@@ -18,7 +18,247 @@ class Opcodes
 	public function hex_set ($aHex = null) {
 		$this->aHex = $aHex;
 	}
+/*
+000 PUSH1 80
+002 PUSH1 40
+004 MSTORE
+005 CALLVALUE
+006 DUP1
+007 ISZERO
+008 PUSH2 0010
+011 JUMPI
+012 PUSH1 00
+014 DUP1
+015 REVERT
+016 JUMPDEST
+017 POP
+018 PUSH2 0150
+021 DUP1
+022 PUSH2 0020
+025 PUSH1 00
+027 CODECOPY
+028 PUSH1 00
+030 RETURN
+031 INVALID
+032 PUSH1 80
+034 PUSH1 40
+036 MSTORE
+037 CALLVALUE
+038 DUP1
+039 ISZERO
+040 PUSH2 0010
+043 JUMPI
+044 PUSH1 00
+046 DUP1
+047 REVERT
+048 JUMPDEST
+049 POP
+050 PUSH1 04
+052 CALLDATASIZE
+053 LT
+054 PUSH2 0036
+057 JUMPI
+058 PUSH1 00
+060 CALLDATALOAD
+061 PUSH1 e0
+063 SHR
+064 DUP1
+065 PUSH4 2e64cec1
+070 EQ
+071 PUSH2 003b
+074 JUMPI
+075 DUP1
+076 PUSH4 6057361d
+081 EQ
+082 PUSH2 0059
+085 JUMPI
+086 JUMPDEST
+087 PUSH1 00
+089 DUP1
+090 REVERT
+091 JUMPDEST
+092 PUSH2 0043
+095 PUSH2 0075
+098 JUMP
+099 JUMPDEST
+100 PUSH1 40
+102 MLOAD
+103 PUSH2 0050
+106 SWAP2
+107 SWAP1
+108 PUSH2 00d9
+111 JUMP
+112 JUMPDEST
+113 PUSH1 40
+115 MLOAD
+116 DUP1
+117 SWAP2
+118 SUB
+119 SWAP1
+120 RETURN
+121 JUMPDEST
+122 PUSH2 0073
+125 PUSH1 04
+127 DUP1
+128 CALLDATASIZE
+129 SUB
+130 DUP2
+131 ADD
+132 SWAP1
+133 PUSH2 006e
+136 SWAP2
+137 SWAP1
+138 PUSH2 009d
+141 JUMP
+142 JUMPDEST
+143 PUSH2 007e
+146 JUMP
+147 JUMPDEST
+148 STOP
+149 JUMPDEST
+150 PUSH1 00
+152 DUP1
+153 SLOAD
+*/
+	
+	public function opcodes ($iKey = null, $sHex = null) :bool {
+		$aaOpcodes = array(
+			array('', 0, 0x00, "STOP", "Halts execution"),
+			array('', 3, 0x01, "ADD", "Addition operation"),
+			array('', 5, 0x02, "MUL", "Multiplication operation"),
+			array('', 3, 0x03, "SUB", "Subtraction operation"),
+			array('', 5, 0x04, "DIV", "Integer division operation"),
+			array('', 5, 0x05, "SDIV", "Signed integer division operation (truncated)"),
+			array('', 5, 0x06, "MOD", "Modulo remainder operation"),
+			array('', 5, 0x07, "SMOD", "Signed modulo remainder operation"),
+			array('', 8, 0x08, "ADDMOD", "Modulo addition operation"),
+			array('', 8, 0x09, "MULMOD", "Modulo multiplication operation"),
+			array('', 10, 0x0a, "EXP", "Exponential operation"),
+			array('', 5, 0x0b, "SIGNEXTEND", "Extend length of two’s complement signed integer"),
+			array('', 3, 0x10, "LT", "Less-than comparison"),
+			array('', 3, 0x11, "GT", "Greater-than comparison"),
+			array('', 3, 0x12, "SLT", "Signed less-than comparison"),
+			array('', 3, 0x13, "SGT", "Signed greater-than comparison"),
+			array('', 3, 0x14, "EQ", "Equality comparison"),
+			array('', 3, 0x15, "ISZERO", "Simple not operator"),
+			array('', 3, 0x16, "AND", "Bitwise AND operation"),
+			array('', 3, 0x17, "OR", "Bitwise OR operation"),
+			array('', 3, 0x18, "XOR", "Bitwise XOR operation"),
+			array('', 3, 0x19, "NOT", "Bitwise NOT operation"),
+			array('', 3, 0x1a, "BYTE", "Retrieve single byte from word"),
+			array('', 30, 0x20, "SHA3", "Compute Keccak-256 hash"),
+			array('', 2, 0x30, "ADDRESS", "Get address of currently executing account"),
+			array('', 20, 0x31, "BALANCE", "Get balance of the given account"),
+			array('', 2, 0x32, "ORIGIN", "Get execution origination address"),
+			array('', 2, 0x33, "CALLER", "Get caller address"),
+			array('', 2, 0x34, "CALLVALUE", "Get deposited value by the instruction/transaction responsible for this execution"),
+			array('', 3, 0x35, "CALLDATALOAD", "Get input data of current environment"),
+			array('', 2, 0x36, "CALLDATASIZE", "Get size of input data in current environment"),
+			array('', 3, 0x37, "CALLDATACOPY", "Copy input data in current environment to memory"),
+			array('', 2, 0x38, "CODESIZE", "Get size of code running in current environment"),
+			array('', 3, 0x39, "CODECOPY", "Copy code running in current environment to memory"),
+			array('', 2, 0x3a, "GASPRICE", "Get price of gas in current environment"),
+			array('', 20, 0x3b, "EXTCODESIZE", "Get size of an account’s code"),
+			array('', 20, 0x3c, "EXTCODECOPY", "Copy an account’s code to memory"),
+			array('', 20, 0x40, "BLOCKHASH", "Get the hash of one of the 256 most recent complete blocks"),
+			array('', 2, 0x41, "COINBASE", "Get the block’s beneficiary address"),
+			array('', 2, 0x42, "TIMESTAMP", "Get the block’s timestamp"),
+			array('', 2, 0x43, "NUMBER", "Get the block’s number"),
+			array('', 2, 0x44, "DIFFICULTY", "Get the block’s difficulty"),
+			array('', 2, 0x45, "GASLIMIT", "Get the block’s gas limit"),
+			array('', 2, 0x50, "POP", "Remove item from stack"),
+			array('', 3, 0x51, "MLOAD", "Load word from memory"),
+			array('', 3, 0x52, "MSTORE", "Save word to memory"),
+			array('', 3, 0x53, "MSTORE8", "Save byte to memory"),
+			array('', 50, 0x54, "SLOAD", "Load word from storage"),
+			array('', 5000, 0x55, "SSTORE", "Save word to storage"),
+			array('', 8, 0x56, "JUMP", "Alter the program counter"),
+			array('', 10, 0x57, "JUMPI", "Conditionally alter the program counter"),
+			array('', 2, 0x58, "PC", "Get the value of the program counter prior to the increment corresponding to this instruction"),
+			array('', 2, 0x59, "MSIZE", "Get the size of active memory in bytes"),
+			array('', 2, 0x5a, "GAS", "Get the amount of available gas, including the corresponding reduction for the cost of this instruction"),
+			array('', 1, 0x5b, "JUMPDEST", "Mark a valid destination for jumps"),
+			array('', 3, 0x60, "PUSH1", "Place 1 byte item on stack"),
+			array('', 3, 0x61, "PUSH2", "Place 2 byte item on stack"),
+			array('', 3, 0x62, "PUSH3", "Place 3 byte item on stack"),
+			array('', 3, 0x63, "PUSH4", "Place 4 byte item on stack"),
+			array('', 3, 0x64, "PUSH5", "Place 5 byte item on stack"),
+			array('', 3, 0x65, "PUSH6", "Place 6 byte item on stack"),
+			array('', 3, 0x66, "PUSH7", "Place 7 byte item on stack"),
+			array('', 3, 0x67, "PUSH8", "Place 8 byte item on stack"),
+			array('', 3, 0x68, "PUSH9", "Place 9 byte item on stack"),
+			array('', 3, 0x69, "PUSH10", "Place 10 byte item on stack"),
+			array('', 3, 0x6a, "PUSH11", "Place 11 byte item on stack"),
+			array('', 3, 0x6b, "PUSH12", "Place 12 byte item on stack"),
+			array('', 3, 0x6c, "PUSH13", "Place 13 byte item on stack"),
+			array('', 3, 0x6d, "PUSH14", "Place 14 byte item on stack"),
+			array('', 3, 0x6e, "PUSH15", "Place 15 byte item on stack"),
+			array('', 3, 0x6f, "PUSH16", "Place 16 byte item on stack"),
+			array('', 3, 0x70, "PUSH17", "Place 17 byte item on stack"),
+			array('', 3, 0x71, "PUSH18", "Place 18 byte item on stack"),
+			array('', 3, 0x72, "PUSH19", "Place 19 byte item on stack"),
+			array('', 3, 0x73, "PUSH20", "Place 20 byte item on stack"),
+			array('', 3, 0x74, "PUSH21", "Place 21 byte item on stack"),
+			array('', 3, 0x75, "PUSH22", "Place 22 byte item on stack"),
+			array('', 3, 0x76, "PUSH23", "Place 23 byte item on stack"),
+			array('', 3, 0x77, "PUSH24", "Place 24 byte item on stack"),
+			array('', 3, 0x78, "PUSH25", "Place 25 byte item on stack"),
+			array('', 3, 0x79, "PUSH26", "Place 26 byte item on stack"),
+			array('', 3, 0x7a, "PUSH27", "Place 27 byte item on stack"),
+			array('', 3, 0x7b, "PUSH28", "Place 28 byte item on stack"),
+			array('', 3, 0x7c, "PUSH29", "Place 29 byte item on stack"),
+			array('', 3, 0x7d, "PUSH30", "Place 30 byte item on stack"),
+			array('', 3, 0x7e, "PUSH31", "Place 31 byte item on stack"),
+			array('', 3, 0x7f, "PUSH32", "Place 32 byte (full word) item on stack"),
+			array('', 3, 0x80, "DUP1", "Duplicate 1st stack item"),
+			array('', 3, 0x81, "DUP2", "Duplicate 2nd stack item"),
+			array('', 3, 0x82, "DUP3", "Duplicate 3rd stack item"),
+			array('', 3, 0x83, "DUP4", "Duplicate 4th stack item"),
+			array('', 3, 0x84, "DUP5", "Duplicate 5th stack item"),
+			array('', 3, 0x85, "DUP6", "Duplicate 6th stack item"),
+			array('', 3, 0x86, "DUP7", "Duplicate 7th stack item"),
+			array('', 3, 0x87, "DUP8", "Duplicate 8th stack item"),
+			array('', 3, 0x88, "DUP9", "Duplicate 9th stack item"),
+			array('', 3, 0x89, "DUP10", "Duplicate 10th stack item"),
+			array('', 3, 0x8a, "DUP11", "Duplicate 11th stack item"),
+			array('', 3, 0x8b, "DUP12", "Duplicate 12th stack item"),
+			array('', 3, 0x8c, "DUP13", "Duplicate 13th stack item"),
+			array('', 3, 0x8d, "DUP14", "Duplicate 14th stack item"),
+			array('', 3, 0x8e, "DUP15", "Duplicate 15th stack item"),
+			array('', 3, 0x8f, "DUP16", "Duplicate 16th stack item"),
+			array('', 3, 0x90, "SWAP1", "Exchange 1st and 2nd stack items"),
+			array('', 3, 0x91, "SWAP2", "Exchange 1st and 3rd stack items"),
+			array('', 3, 0x92, "SWAP3", "Exchange 1st and 4th stack items"),
+			array('', 3, 0x93, "SWAP4", "Exchange 1st and 5th stack items"),
+			array('', 3, 0x94, "SWAP5", "Exchange 1st and 6th stack items"),
+			array('', 3, 0x95, "SWAP6", "Exchange 1st and 7th stack items"),
+			array('', 3, 0x96, "SWAP7", "Exchange 1st and 8th stack items"),
+			array('', 3, 0x97, "SWAP8", "Exchange 1st and 9th stack items"),
+			array('', 3, 0x98, "SWAP9", "Exchange 1st and 10th stack items"),
+			array('', 3, 0x99, "SWAP10", "Exchange 1st and 11th stack items"),
+			array('', 3, 0x9a, "SWAP11", "Exchange 1st and 12th stack items"),
+			array('', 3, 0x9b, "SWAP12", "Exchange 1st and 13th stack items"),
+			array('', 3, 0x9c, "SWAP13", "Exchange 1st and 14th stack items"),
+			array('', 3, 0x9d, "SWAP14", "Exchange 1st and 15th stack items"),
+			array('', 3, 0x9e, "SWAP15", "Exchange 1st and 16th stack items"),
+			array('', 3, 0x9f, "SWAP16", "Exchange 1st and 17th stack items"),
+			array('', 375, 0xa0, "LOG0", "Append log record with no topics"),
+			array('', 750, 0xa1, "LOG1", "Append log record with one topic"),
+			array('', 1125, 0xa2, "LOG2", "Append log record with two topics"),
+			array('', 1500, 0xa3, "LOG3", "Append log record with three topics"),
+			array('', 1875, 0xa4, "LOG4", "Append log record with four topics"),
+			array('', 32000, 0xf0, "CREATE", "Create a new account with associated code"),
+			array('', 40, 0xf1, "CALL", "Message-call into an account"),
+			array('', 40, 0xf2, "CALLCODE", "Message-call into this account with alternative account’s code"),
+			array('', 0, 0xf3, "RETURN", "Halt execution returning output data"),
+			array('', 40, 0xf4, "DELEGATECALL", "Message-call into this account with an alternative account’s code, but persisting the current values for sender and value"),
+			array('', 40, 0xfe, "INVALID", "Designated invalid instruction"),
+			array('', 0, 0xff, "SELFDESTRUCT", "Halt execution and register account for later deletion"),
 
+
+		);
+	}
+	
 	public function initiate ($iKey = null, $sHex = null) :bool {
 		$iKey = $iKey + 1;
 		//$this->arguments_set(array());
@@ -117,7 +357,7 @@ class Opcodes
 			case 0x7d: $this->aArguments = array_slice($this->aHex, $iKey, 30); break; //PUSH30
 			case 0x7e: $this->aArguments = array_slice($this->aHex, $iKey, 31); break; //PUSH31
 			case 0x7f: $this->aArguments = array_slice($this->aHex, $iKey, 32); break; //PUSH32
-			case 0x80: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //DUP1
+			case 0x80: $this->aArguments = array_slice($this->aHex, $iKey, 0); break; //DUP1
 			case 0x81: $this->aArguments = array_slice($this->aHex, $iKey, 2); break; //DUP2
 			case 0x82: $this->aArguments = array_slice($this->aHex, $iKey, 3); break; //DUP3
 			case 0x83: $this->aArguments = array_slice($this->aHex, $iKey, 4); break; //DUP4

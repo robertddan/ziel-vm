@@ -1,4 +1,4 @@
-    /* "src/contracts/Storage.sol":199:555  contract Storage {... */
+    /* "src/contracts/Storage.sol":191:547  contract Storage {... */
   mstore(0x40, 0x80)
   callvalue
   dup1
@@ -20,7 +20,7 @@ tag_1:
 stop
 
 sub_0: assembly {
-        /* "src/contracts/Storage.sol":199:555  contract Storage {... */
+        /* "src/contracts/Storage.sol":191:547  contract Storage {... */
       mstore(0x40, 0x80)
       callvalue
       dup1
@@ -48,13 +48,13 @@ sub_0: assembly {
       0x00
       dup1
       revert
-        /* "src/contracts/Storage.sol":474:553  function retrieve() public view returns (uint256){... */
+        /* "src/contracts/Storage.sol":466:545  function retrieve() public view returns (uint256){... */
     tag_3:
-        /* "src/contracts/Storage.sol":515:522  uint256 */
+        /* "src/contracts/Storage.sol":507:514  uint256 */
       0x00
-        /* "src/contracts/Storage.sol":540:546  number */
+        /* "src/contracts/Storage.sol":532:538  number */
       sload
-        /* "src/contracts/Storage.sol":474:553  function retrieve() public view returns (uint256){... */
+        /* "src/contracts/Storage.sol":466:545  function retrieve() public view returns (uint256){... */
       mload(0x40)
         /* "#utility.yul":160:185   */
       swap1
@@ -64,14 +64,14 @@ sub_0: assembly {
       0x20
         /* "#utility.yul":133:151   */
       add
-        /* "src/contracts/Storage.sol":474:553  function retrieve() public view returns (uint256){... */
+        /* "src/contracts/Storage.sol":466:545  function retrieve() public view returns (uint256){... */
       mload(0x40)
       dup1
       swap2
       sub
       swap1
       return
-        /* "src/contracts/Storage.sol":329:393  function store(uint256 num) public {... */
+        /* "src/contracts/Storage.sol":321:385  function store(uint256 num) public {... */
     tag_4:
       tag_9
       tag_10
@@ -80,11 +80,11 @@ sub_0: assembly {
       tag_11
       jump	// in
     tag_10:
-        /* "src/contracts/Storage.sol":374:380  number */
+        /* "src/contracts/Storage.sol":366:372  number */
       0x00
-        /* "src/contracts/Storage.sol":374:386  number = num */
+        /* "src/contracts/Storage.sol":366:378  number = num */
       sstore
-        /* "src/contracts/Storage.sol":329:393  function store(uint256 num) public {... */
+        /* "src/contracts/Storage.sol":321:385  function store(uint256 num) public {... */
       jump
     tag_9:
       stop
@@ -123,5 +123,5 @@ sub_0: assembly {
       pop
       jump	// out
 
-    auxdata: 0xa26469706673582212201779fafc4f9fc193f7760a1313cf5f3ca97427c49b04233d80aa850cbab1697f64736f6c634300080f0033
+    auxdata: 0xa264697066735822122010a74f9187dc7391d7b8887a52082dee5456f7a700b0abfad5ee020598bbaf8264736f6c634300080f0033
 }
