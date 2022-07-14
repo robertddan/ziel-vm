@@ -18,13 +18,13 @@ $oBox = new Box();
 
 $oDiamonds->iCursor = 1; // skip compilation
 $oDiamonds->sContract = 'Contract.sol';
-if (!$oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
+if (!$oDiamonds->compile_contract()).die('oDiamonds->compile_contract');
 $oDiamonds->sFolder = '20220711084913000000';
-if (!$oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder');
-if (!$oDiamonds->iCursor) die('oDiamonds->iCursor');
-if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
+if (!$oDiamonds->set_output_folder()).die('oDiamonds->set_output_folder');
+if (!$oDiamonds->iCursor).die('oDiamonds->iCursor');
+if (!$oDiamonds->read_from_file()).die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
-if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
+if (!$oDiamonds->decode_hex()).die('oDiamonds->decode_hex');
 
 $aHex = $oDiamonds->hex_get();
 $aHexBased = array();
