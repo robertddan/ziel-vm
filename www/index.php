@@ -26,22 +26,15 @@ if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
 if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 
+
 $aHex = $oDiamonds->hex_get();
-$aHexBased = array();
-	
-	
-foreach ($aHex as $k => $sHex) {
-	$iBase = $oDiamonds->hex_base_convert($sHex);
-	array_push($aHexBased, $iBase);
-}
-
-$oOpcodes->hex_set($aHexBased);
-var_dump(implode(",", $aHexBased));
-
+$oOpcodes->hex_set($aHex);
+var_dump(implode(",", $aHex));
 
 $iCountArguments = 0;
 
-foreach ($aHexBased as $k => $sHex) {
+
+foreach ($aHex as $k => $sHex) {
 	if ($iCountArguments !== 0) {
 		$iCountArguments = $iCountArguments - 1;
 		continue;

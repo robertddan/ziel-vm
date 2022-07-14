@@ -17,10 +17,6 @@ class Diamonds
 		$this->iCursor = 0;
 	}
 
-	public function hex_get () :array {
-		return $this->aHex;
-	}
-	
 	public function set_output_folder() :bool {
 		if (empty($this->sFolder)) return false;
 		$this->sFilePathOutput = "./src/diamonds/". $this->sFolder ."/";
@@ -44,12 +40,8 @@ class Diamonds
 	}
 
 	public function read_from_file() :bool {
-		//if(empty($sFilePath)) return print '$sFilePath missing!';
-		//else $this->$sFilePath = $sFilePath;
-
 		if ($this->iCursor !== 1) return false;
 
-		
 		$aFilesOutput = scandir($this->sFilePathOutput);
 		$sContractName = null;
 	
@@ -62,18 +54,18 @@ class Diamonds
 		
 		return true;
 	}
-
-	public function write_to_file($sFilePath) {
-		return file_exists($sFilePath);
-	}
-
+	
 	public function decode_hex () :bool {
-		$this->aHex = str_split($this->sHex, 2);
+		$aHex = str_split($this->sHex, 2);
+		$this->aHex = array_map(function($sHex) {
+			return base_convert($sHex, 16, 10);
+		}, $aHex);
+
 		return true;
 	}
 
-	public function hex_base_convert ($sHex): int {
-		return base_convert($sHex, 16, 10);
+	public function hex_get () :array {
+		return $this->aHex;
 	}
 
 }

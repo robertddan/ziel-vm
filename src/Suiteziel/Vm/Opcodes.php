@@ -9,7 +9,7 @@ class Opcodes
 	public $aaStack;
 	public $aArguments;
 	public $aaOpcodes;
-	
+
 	public function __construct () {
 		$this->iCursor = 0;
 		$this->aaStack = array();
@@ -21,6 +21,20 @@ class Opcodes
 		$this->aHex = $aHex;
 	}
 
+	public function initiate ($iKey = null, $sHex = null) :bool {
+		$iKey = $iKey + 1;
+		if (!isset($this->aaOpcodes[$sHex])) { $this->aArguments = array(); return true; }
+		$this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0]);
+		return true;
+	}
+
+	public function describe($iKey = null, $sHex = null) :bool {
+		$sArguments = implode(",", $this->aArguments);
+		if (!isset($this->aaOpcodes[$sHex])) { print "$iKey\t------------- Default:\t\t$sHex\t# ----------- \n"; return true; }
+		print "$iKey\t$sHex\t#". $this->aaOpcodes[$sHex][3] ."\t0\t". $this->aaOpcodes[$sHex][3] ."\t\t". $sArguments ."\t\t". $this->aaOpcodes[$sHex][4] ."\n";
+		return true;
+	}
+	
 	public function opcodes ($iKey = null, $sHex = null) {
 		switch ($iKey) {
 			case 1: return $this->aaOpcodes[$sHex][0]; //arguments
@@ -32,21 +46,7 @@ class Opcodes
 		}
 		return true;
 	}
-	
-	public function initiate ($iKey = null, $sHex = null) :bool {
-		$iKey = $iKey + 1;
-		if (!isset($this->aaOpcodes[$sHex])) { $this->aArguments = array(); return true; }
-		$this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0]);
-		return true;
-	}
 
-	public function describe($iKey = null, $sHex = null) :bool {
-		$sArguments = implode(",", $this->aArguments);
-		if (!isset($this->aaOpcodes[$sHex])) { print "------------- Default:\t\t$iKey\t$sHex\t# ----------- \n"; return true; }
-		print "$iKey\t$sHex\t#". $this->aaOpcodes[$sHex][2] ."\t0\t". $this->aaOpcodes[$sHex][3] ."\t\t". $this->aaOpcodes[$sHex][4] ."\n";
-		return true;
-	}
-	
 	public function set_opcodes () {
 		$this->aaOpcodes = array(
 			0x00 => array(0, 0, 0x00, "STOP", "Halts execution"),
@@ -186,7 +186,6 @@ class Opcodes
 			0xff => array(0, 0, 0xff, "SELFDESTRUCT", "Halt execution and register account for later deletion"),
 		);
 	}
-
 }
 
 ?>
