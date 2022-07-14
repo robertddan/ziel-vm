@@ -67,24 +67,13 @@ foreach ($aHexBased as $k => $sHex) {
 		continue;
 	}
 
-	$oOpcodes->initiate($k, $sHex);
-	//var_dump('args',$oOpcodes->aArguments);
-	print($oOpcodes->describe($sHex));
-
-	/*
-	var_dump('oStack->aArguments');
-	var_dump($oOpcodes->aArguments);
-	var_dump(count($oOpcodes->aArguments));
-	*/
-
+	if (!$oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate');
+	if (!$oOpcodes->describe($sHex)) die('oOpcodes->describe');
 	$iCountArguments = count($oOpcodes->aArguments);
-
-
-	//$oBox->implement($sHex, $oOpcodes);
 	if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
+	
 	var_dump($oOpcodes->aaStack);
 
-	//if ($k >= 12) break;
 }
 
 
