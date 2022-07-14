@@ -42,6 +42,7 @@ class Opcodes
 			0x18 => array(0, 3, 0x18, "XOR", "Bitwise XOR operation"),
 			0x19 => array(0, 3, 0x19, "NOT", "Bitwise NOT operation"),
 			0x1a => array(0, 3, 0x1a, "BYTE", "Retrieve single byte from word"),
+			0x1c => array(0, 3, 0x1c, "SHR", "Logical right shift operation"),
 			0x20 => array(0, 30, 0x20, "SHA3", "Compute Keccak-256 hash"),
 			0x30 => array(0, 2, 0x30, "ADDRESS", "Get address of currently executing account"),
 			0x31 => array(0, 20, 0x31, "BALANCE", "Get balance of the given account"),
@@ -148,6 +149,9 @@ class Opcodes
 			0xf2 => array(0, 40, 0xf2, "CALLCODE", "Message-call into this account with alternative account’s code"),
 			0xf3 => array(0, 0, 0xf3, "RETURN", "Halt execution returning output data"),
 			0xf4 => array(0, 40, 0xf4, "DELEGATECALL", "Message-call into this account with an alternative account’s code, but persisting the current values for sender and value"),
+			0xf5 => array(0, 0, 0xf5, "CREATE2", "Create a new account with associated code."),
+			0xfa => array(0, 0, 0xfa, "STATICCALL", "Static message-call into an account."),
+			0xfd => array(0, 0, 0xfd, "REVERT", "Halt execution reverting state changes but returning data and remaining gas."),
 			0xfe => array(0, 40, 0xfe, "INVALIDL", "Designated invalid instruction"),
 			0xff => array(0, 0, 0xff, "SELFDESTRUCT", "Halt execution and register account for later deletion"),
 		);
@@ -299,6 +303,7 @@ class Opcodes
 			case 0x18: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //XOR
 			case 0x19: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //NOT
 			case 0x1a: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //BYTE
+			case 0x1c: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //SHR
 			case 0x20: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //SHA3
 			case 0x30: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //ADDRESS
 			case 0x31: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //BALANCE
@@ -408,6 +413,9 @@ class Opcodes
 			case 0xf2: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //CALLCODE
 			case 0xf3: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //RETURN
 			case 0xf4: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //DELEGATECALL
+			case 0xf5: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //CREATE2
+			case 0xfa: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //STATICCALL
+			case 0xfd: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //REVERT
 			case 0xfe: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //INVALID
 			case 0xff: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //SELFDESTRUCT
 		}
@@ -440,6 +448,7 @@ class Opcodes
 			case 0x18: print "$iKey\t$sHex\t# 0x18\t3\tXOR\t\t".$sArguments."\t\tBitwise XOR operation\n"; break;
 			case 0x19: print "$iKey\t$sHex\t# 0x19\t3\tNOT\t\t".$sArguments."\t\tBitwise NOT operation\n"; break;
 			case 0x1a: print "$iKey\t$sHex\t# 0x1a\t3\tBYTE\t\t".$sArguments."\t\tRetrieve single byte from word\n"; break;
+			case 0x1c: print "$iKey\t$sHex\t# 0x1a\t3\tSHR\t\t".$sArguments."\t\tLogical right shift operation.\n"; break;
 			case 0x20: print "$iKey\t$sHex\t# 0x20\t30\tSHA3\t\t".$sArguments."\t\tCompute Keccak-256 hash\n"; break;
 			case 0x30: print "$iKey\t$sHex\t# 0x30\t2\tADDRESS\t\t".$sArguments."\t\tGet address of currently executing account\n"; break;
 			case 0x31: print "$iKey\t$sHex\t# 0x31\t20\tBALANCE\t\t".$sArguments."\t\tGet balance of the given account\n"; break;
@@ -546,9 +555,12 @@ class Opcodes
 			case 0xf2: print "$iKey\t$sHex\t# 0xf2\t40\tCALLCODE\t\t".$sArguments."\t\tMessage-call into this account with alternative account’s code\n"; break;
 			case 0xf3: print "$iKey\t$sHex\t# 0xf3\t0\tRETURN\t\t".$sArguments."\t\tHalt execution returning output data\n"; break;
 			case 0xf4: print "$iKey\t$sHex\t# 0xf4\t40\tDELEGATECALL\t\t".$sArguments."\t\tMessage-call into this account with an alternative account’s code, but persisting the current values for sender and value\n"; break;
+			case 0xf5: print "$iKey\t$sHex\t# 0x9d\t3\tCREATE2\t\t".$sArguments."\t\tCreate a new account with associated code.\n"; break;
+			case 0xfa: print "$iKey\t$sHex\t# 0x9e\t3\tSTATICCALL\t\t".$sArguments."\t\tStatic message-call into an account.\n"; break;
+			case 0xfd: print "$iKey\t$sHex\t# 0x9f\t3\tREVERT\t\t".$sArguments."\t\tHalt execution reverting state changes but returning data and remaining gas.\n"; break;
 			case 0xfe: print "$iKey\t$sHex\t# 0xff\tNaN\tINVALID\t\t".$sArguments."\t\tDesignated invalid instruction\n"; break;
 			case 0xff: print "$iKey\t$sHex\t# 0xff\t0\tSELFDESTRUCT\t\t".$sArguments."\t\tHalt execution and register account for later deletion\n"; break;
-			default: print "default: $iKey\n";
+			default: print "default: $iKey\t$sHex\t#\n";
 		}
 		return true;
 	}
