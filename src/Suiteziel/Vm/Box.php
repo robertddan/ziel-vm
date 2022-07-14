@@ -32,8 +32,8 @@ pub fn decode(s: &str) -> Result<Vec<u8>, ParseIntError> {
 		//var_dump($aHex);
 	}
 	
-	public function push ():null {
-		array_unshift($oStack->aaStack, array_reverse($oStack->aArguments))
+	public function push () {
+		array_unshift($oStack->aaStack, array_reverse($oStack->aArguments));
 	}
 	
 	public function implement (&$oStack = null, $iKey = null): bool { // $aArguments = null, 

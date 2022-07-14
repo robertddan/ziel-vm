@@ -26,15 +26,15 @@ $oBox = new Box();
 
 
 $oDiamonds->iCursor = 1; // skip compilation
-var_dump($oDiamonds->compile_contract('Contract.sol'));
+if (!$oDiamonds->compile_contract('Contract.sol')).die('oDiamonds->compile_contract');
 $oDiamonds->sFolder = '20220711084913000000';
-var_dump($oDiamonds->set_output_folder());
-if ($oDiamonds->iCursor) var_dump($oDiamonds->read_from_file());
+if (!$oDiamonds->set_output_folder()).die('oDiamonds->set_output_folder');
+if (!$oDiamonds->iCursor).die('oDiamonds->iCursor');
+if (!$oDiamonds->read_from_file()).die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
+if (!$oDiamonds->decode_hex()).die('oDiamonds->decode_hex');
 
-
-$aHex = $oDiamonds->decode_hex();
-
+$aHex = $oDiamonds->aHex();
 $aHexBased = array();
 	
 	

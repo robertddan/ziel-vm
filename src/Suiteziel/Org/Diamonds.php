@@ -17,7 +17,8 @@ class Diamonds
 	}
 
 	public function set_output_folder() :bool {
-		if (!empty($this->sFolder)) $this->sFilePathOutput = "./src/diamonds/". $this->sFolder ."/";
+		if (empty($this->sFolder)) return false;
+		$this->sFilePathOutput = "./src/diamonds/". $this->sFolder ."/";
 		return true;
 	}
 
@@ -60,9 +61,9 @@ class Diamonds
 		return file_exists($sFilePath);
 	}
 	
-	public function decode_hex (): array {
+	public function decode_hex () :bool {
 		$this->aHex = str_split($this->sHex, 2);
-		return $this->aHex;
+		return true;
 	}
 	
 	public function hex_base_convert ($sHex): int {

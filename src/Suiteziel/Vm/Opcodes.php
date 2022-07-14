@@ -15,12 +15,12 @@ class Opcodes
 		$this->aArguments = array();
 	}
 
-	public function hex_set ($aHex = null): bool {
+	public function hex_set ($aHex = null) :bool {
 		$this->aHex = $aHex;
 		return true;
 	}
 
-	public function initiate ($iKey = null, $sHex = null): bool {
+	public function initiate ($iKey = null, $sHex = null) :bool {
 		$iKey = $iKey + 1;
 		//$this->arguments_set(array());
 		
@@ -61,7 +61,7 @@ class Opcodes
 			case 0x39: $this->aArguments = array_slice($this->aHex, $iKey, 3); break; //CODECOPY
 			case 0x3a: $this->aArguments = array_slice($this->aHex, $iKey, 0); break; //GASPRICE
 			case 0x3b: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //EXTCODESIZE
-			case 0x3c: $this->aArguments = array_slice($this->aHex, $iKey, 3); break; //EXTCODECOPY
+			case 0x3c: $this->aArguments = array_slice($this->aHex, $iKey, 4); break; //EXTCODECOPY
 			case 0x40: $this->aArguments = array_slice($this->aHex, $iKey, 1); break; //BLOCKHASH
 			case 0x41: $this->aArguments = array_slice($this->aHex, $iKey, 0); break; //COINBASE
 			case 0x42: $this->aArguments = array_slice($this->aHex, $iKey, 0); break; //TIMESTAMP
@@ -167,7 +167,7 @@ class Opcodes
 		return true;
 	}
 
-	public function describe($iKey = null):bool {
+	public function describe($iKey = null) :bool {
 		$sArguments = implode(",", $this->aArguments);
 		switch ($iKey) {
 			case 0x00: print "$iKey\t# 0x00\t0\tSTOP\t\t".$sArguments."\t\tHalts execution\n"; break;
