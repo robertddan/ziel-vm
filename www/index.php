@@ -48,7 +48,7 @@ foreach ($aHexBased as $k => $sHex) {
 	}
 
 	if (!$oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate');
-	if (!$oOpcodes->describe($sHex)) die('oOpcodes->describe');
+	if (!$oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 	$iCountArguments = count($oOpcodes->aArguments);
 	//if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
 	
@@ -58,18 +58,105 @@ foreach ($aHexBased as $k => $sHex) {
 
 
 /*
-[96, 128, 96, 64,// 82, 52, 128, 21, 96, 15, 87, 96, 0, 128, 253, 91, 80, 96, 4, 54, 16, 96, 50, 87, 96, 0, 53, 96, 224, 28, 128, 99, 12, 85, 105, 156, 20, 96, 55, 87, 128, 99,
- 165, 243, 194, 59, 20, 96, 81, 87, 91, 96, 0, 128, 253, 91, 96, 63, 96, 0, 84, 129, 86, 91, 96, 64, 81, 144, 129, 82, 96, 32, 1, 96, 64, 81, 128, 145, 3, 144, 243, 91, 96, 9
-6, 96, 92, 54, 96, 4, 96, 113, 86, 91, 96, 98, 86, 91, 0, 91, 96, 106, 129, 131, 96, 168, 86,91, 96, 0, 85, 80, 80, 86, 91, 96, 0, 128, 96, 64, 131, 133, 3, 18, 21, 96, 131,
-87, 96, 0, 128, 253, 91, 80, 80, 128, 53, 146, 96, 32, 144, 145, 1, 53, 145, 80, 86, 91, 99, 78, 72, 123, 113, 96, 224, 27, 96, 0, 82, 96, 17, 96, 4, 82, 96, 36, 96, 0, 253,
-91, 96, 0, 128, 130, 18, 128, 21, 96, 1, 96, 1, 96, 255, 27, 3, 132, 144, 3, 133, 19, 22, 21, 96, 199, 87, 96, 199, 96, 146, 86, 91, 96, 1, 96, 255, 27, 131, 144, 3, 132, 18,
- 129, 22, 21, 96, 221, 87, 96, 221, 96, 146, 86, 91, 80, 80, 1, 144, 86, 254, 162, 100, 105, 112, 102, 115, 88, 34, 18, 32, 175, 3, 110, 61, 208, 220, 218, 141, 143, 130, 158
-
-array(281) { [0]=> int(96) [1]=> int(128) [2]=> int(96) [3]=> int(64) [4]=> int(82) [5]=> int(52) [6]=> int(128) [7]=> int(21) [8]=> int(96) [9]=> int(15) [10]=> int(87) [11]=> 
-int(96) [12]=> int(0) [13]=> int(128) [14]=> int(253) [15]=> int(91) [16]=> int(80) [17]=> int(96) [18]=> int(4) [19]=> int(54) [20]=> int(16) [21]=> 
-int(96) [22]=> int(50) [23]=> int(87) [24]=> int(96) [25]=> int(0) [26]=> int(53) [27]=> int(96) [28]=> int(224) [29]=> int(28) [30]=> int(128) [31]=> 
-int(99) [32]=> int(12) [33]=> int(85) [34]=> int(105) [35]=> int(156) [36]=> int(20) [37]=> int(96) [38]=> int(55) [39]=> int(87) [40]=> int(128) [41]=>
-
-
+000 PUSH1 80
+002 PUSH1 40
+004 MSTORE
+005 CALLVALUE
+006 DUP1
+007 ISZERO
+008 PUSH2 0010
+011 JUMPI
+012 PUSH1 00
+014 DUP1
+015 REVERT
+016 JUMPDEST
+017 POP
+018 PUSH2 0150
+021 DUP1
+022 PUSH2 0020
+025 PUSH1 00
+027 CODECOPY
+028 PUSH1 00
+030 RETURN
+031 INVALID
+032 PUSH1 80
+034 PUSH1 40
+036 MSTORE
+037 CALLVALUE
+038 DUP1
+039 ISZERO
+040 PUSH2 0010
+043 JUMPI
+044 PUSH1 00
+046 DUP1
+047 REVERT
+048 JUMPDEST
+049 POP
+050 PUSH1 04
+052 CALLDATASIZE
+053 LT
+054 PUSH2 0036
+057 JUMPI
+058 PUSH1 00
+060 CALLDATALOAD
+061 PUSH1 e0
+063 SHR
+064 DUP1
+065 PUSH4 2e64cec1
+070 EQ
+071 PUSH2 003b
+074 JUMPI
+075 DUP1
+076 PUSH4 6057361d
+081 EQ
+082 PUSH2 0059
+085 JUMPI
+086 JUMPDEST
+087 PUSH1 00
+089 DUP1
+090 REVERT
+091 JUMPDEST
+092 PUSH2 0043
+095 PUSH2 0075
+098 JUMP
+099 JUMPDEST
+100 PUSH1 40
+102 MLOAD
+103 PUSH2 0050
+106 SWAP2
+107 SWAP1
+108 PUSH2 00d9
+111 JUMP
+112 JUMPDEST
+113 PUSH1 40
+115 MLOAD
+116 DUP1
+117 SWAP2
+118 SUB
+119 SWAP1
+120 RETURN
+121 JUMPDEST
+122 PUSH2 0073
+125 PUSH1 04
+127 DUP1
+128 CALLDATASIZE
+129 SUB
+130 DUP2
+131 ADD
+132 SWAP1
+133 PUSH2 006e
+136 SWAP2
+137 SWAP1
+138 PUSH2 009d
+141 JUMP
+142 JUMPDEST
+143 PUSH2 007e
+146 JUMP
+147 JUMPDEST
+148 STOP
+149 JUMPDEST
+150 PUSH1 00
+152 DUP1
+153 SLOAD
 */
 ?>
