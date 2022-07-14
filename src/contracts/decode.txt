@@ -1,0 +1,57 @@
+string(344) "6080604052348015600f57600080fd5b506004361060325760003560e01c80632e64cec11460375780636057361d14604c575b600080fd5b60005460405190815260200160405180910390f35b605c6057366004605e565b600055565b005b600060208284031215606f57600080fd5b503591905056fea26469706673582212201779fafc4f9fc193f7760a1313cf5f3ca97427c49b04233d80aa850cbab1697f64736f6c634300080f0033"
+string(554) "96,128,96,64,82,52,128,21,96,15,87,96,0,128,253,91,80,96,4,54,16,96,50,87,96,0,53,96,224,28,128,99,46,100,206,193,20,96,55,87,128,99,96,87,54,29,20,96,76,87,91,96,0,128,253,91,96,0,84,96,64,81,144,129,82,96,32,1,96,64,81,128,145,3,144,243,91,96,92,96,87,54,96,4,96,94,86,91,96,0,85,86,91,0,91,96,0,96,32,130,132,3,18,21,96,111,87,96,0,128,253,91,80,53,145,144,80,86,254,162,100,105,112,102,115,88,34,18,32,23,121,250,252,79,159,193,147,247,118,10,19,19,207,95,60,169,116,39,196,155,4,35,61,128,170,133,12,186,177,105,127,100,115,111,108,99,67,0,8,15,0,51"
+96	# 0x60	3	PUSH1		128		Place 1 byte item on stack
+96	# 0x60	3	PUSH1		64		Place 1 byte item on stack
+82	# 0x52	3	MSTORE		52,128		Save word to memory
+21	# 0x15	3	ISZERO		96		Simple not operator
+default: 15
+96	# 0x60	3	PUSH1		0		Place 1 byte item on stack
+128	# 0x80	3	DUP1		253		Duplicate 1st stack item
+91	# 0x5b	1	JUMPDEST				Mark a valid destination for jumps
+80	# 0x50	2	POP		96		Remove item from stack
+4	# 0x04	5	DIV		54,16		Integer division operation
+96	# 0x60	3	PUSH1		50		Place 1 byte item on stack
+87	# 0x57	10	JUMPI		96,0		Conditionally alter the program counter
+53	# 0x35	3	CALLDATALOAD		96		Get input data of current environment
+default: 224
+128	# 0x80	3	DUP1		99		Duplicate 1st stack item
+default: 46
+default: 206
+20	# 0x14	3	EQ		96,55		Equality comparison
+87	# 0x57	10	JUMPI		128,99		Conditionally alter the program counter
+96	# 0x60	3	PUSH1		87		Place 1 byte item on stack
+54	# 0x36	2	CALLDATASIZE				Get size of input data in current environment
+default: 29
+20	# 0x14	3	EQ		96,76		Equality comparison
+87	# 0x57	10	JUMPI		91,96		Conditionally alter the program counter
+0	# 0x00	0	STOP				Halts execution
+128	# 0x80	3	DUP1		253		Duplicate 1st stack item
+91	# 0x5b	1	JUMPDEST				Mark a valid destination for jumps
+96	# 0x60	3	PUSH1		0		Place 1 byte item on stack
+84	# 0x54	50	SLOAD		96		Load word from storage
+64	# 0x40	20	BLOCKHASH		81		Get the hash of one of the 256 most recent complete blocks
+144	# 0x90	3	SWAP1		129		Exchange 1st and 2nd stack items
+82	# 0x52	3	MSTORE		96,32		Save word to memory
+1	# 0x01	3	ADD		96,64		Addition operation
+81	# 0x51	3	MLOAD		128		Load word from memory
+145	# 0x91	3	SWAP2		3,144		Exchange 1st and 3rd stack items
+243	# 0xf3	0	RETURN		91,96		Halt execution returning output data
+default: 92
+54	# 0x36	2	CALLDATASIZE				Get size of input data in current environment
+96	# 0x60	3	PUSH1		4		Place 1 byte item on stack
+96	# 0x60	3	PUSH1		94		Place 1 byte item on stack
+86	# 0x56	8	JUMP		91		Alter the program counter
+96	# 0x60	3	PUSH1		0		Place 1 byte item on stack
+85	# 0x55	5000	SSTORE		86,91		Save word to storage
+0	# 0x00	0	STOP				Halts execution
+91	# 0x5b	1	JUMPDEST				Mark a valid destination for jumps
+96	# 0x60	3	PUSH1		0		Place 1 byte item on stack
+96	# 0x60	3	PUSH1		32		Place 1 byte item on stack
+130	# 0x82	3	DUP3		132,3,18		Duplicate 3rd stack item
+21	# 0x15	3	ISZERO		96		Simple not operator
+111	# 0x6f	3	PUSH16		87,96,0,128,253,91,80,53,145,144,80,86,254,162,100,105		Place 16 byte item on stack
+112	# 0x70	3	PUSH17		102,115,88,34,18,32,23,121,250,252,79,159,193,147,247,118,10		Place 17 byte item on stack
+19	# 0x13	3	SGT		19,207		Signed greater-than comparison
+default: 95
+116	# 0x74	3	PUSH21		39,196,155,4,35,61,128,170,133,12,186,177,105,127,100,115,111,108,99,67,0		Place 21 byte item on stack
+8	# 0x08	8	ADDMOD		15,0,51		Modulo addition operation
