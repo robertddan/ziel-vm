@@ -64,10 +64,6 @@ class Diamonds
 		return true;
 	}
 
-	public function hex_get () :array {
-		return $this->aHex;
-	}
-
 }
 
 /*

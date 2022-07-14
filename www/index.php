@@ -25,16 +25,13 @@ if (!$oDiamonds->iCursor) die('oDiamonds->iCursor');
 if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
 if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
+if (!$oOpcodes->hex_set($oDiamonds->aHex)) die('$oOpcodes->hex_set');
+var_dump(implode(",", $oDiamonds->aHex));
 
 
-$aHex = $oDiamonds->hex_get();
-$oOpcodes->hex_set($aHex);
-var_dump(implode(",", $aHex));
+$iCountArguments = 0; //if ! stack #no continue...
 
-$iCountArguments = 0;
-
-
-foreach ($aHex as $k => $sHex) {
+foreach ($oDiamonds->aHex as $k => $sHex) {
 	if ($iCountArguments !== 0) {
 		$iCountArguments = $iCountArguments - 1;
 		continue;

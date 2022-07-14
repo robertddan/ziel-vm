@@ -17,8 +17,9 @@ class Opcodes
 		$this->set_opcodes();
 	}
 	
-	public function hex_set ($aHex = null) {
+	public function hex_set ($aHex = null) :bool {
 		$this->aHex = $aHex;
+		return true;
 	}
 
 	public function initiate ($iKey = null, $sHex = null) :bool {
