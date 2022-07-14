@@ -160,109 +160,7 @@ class Opcodes
 	public function hex_set ($aHex = null) {
 		$this->aHex = $aHex;
 	}
-/*
-000 PUSH1 80
-002 PUSH1 40
-004 MSTORE
-005 CALLVALUE
-006 DUP1
-007 ISZERO
-008 PUSH2 0010
-011 JUMPI
-012 PUSH1 00
-014 DUP1
-015 REVERT
-016 JUMPDEST
-017 POP
-018 PUSH2 0150
-021 DUP1
-022 PUSH2 0020
-025 PUSH1 00
-027 CODECOPY
-028 PUSH1 00
-030 RETURN
-031 INVALID
-032 PUSH1 80
-034 PUSH1 40
-036 MSTORE
-037 CALLVALUE
-038 DUP1
-039 ISZERO
-040 PUSH2 0010
-043 JUMPI
-044 PUSH1 00
-046 DUP1
-047 REVERT
-048 JUMPDEST
-049 POP
-050 PUSH1 04
-052 CALLDATASIZE
-053 LT
-054 PUSH2 0036
-057 JUMPI
-058 PUSH1 00
-060 CALLDATALOAD
-061 PUSH1 e0
-063 SHR
-064 DUP1
-065 PUSH4 2e64cec1
-070 EQ
-071 PUSH2 003b
-074 JUMPI
-075 DUP1
-076 PUSH4 6057361d
-081 EQ
-082 PUSH2 0059
-085 JUMPI
-086 JUMPDEST
-087 PUSH1 00
-089 DUP1
-090 REVERT
-091 JUMPDEST
-092 PUSH2 0043
-095 PUSH2 0075
-098 JUMP
-099 JUMPDEST
-100 PUSH1 40
-102 MLOAD
-103 PUSH2 0050
-106 SWAP2
-107 SWAP1
-108 PUSH2 00d9
-111 JUMP
-112 JUMPDEST
-113 PUSH1 40
-115 MLOAD
-116 DUP1
-117 SWAP2
-118 SUB
-119 SWAP1
-120 RETURN
-121 JUMPDEST
-122 PUSH2 0073
-125 PUSH1 04
-127 DUP1
-128 CALLDATASIZE
-129 SUB
-130 DUP2
-131 ADD
-132 SWAP1
-133 PUSH2 006e
-136 SWAP2
-137 SWAP1
-138 PUSH2 009d
-141 JUMP
-142 JUMPDEST
-143 PUSH2 007e
-146 JUMP
-147 JUMPDEST
-148 STOP
-149 JUMPDEST
-150 PUSH1 00
-152 DUP1
-153 SLOAD
-*/
-	
+
 	public function opcodes ($iKey = null, $sHex = null) {
 		switch ($iKey) {
 			case 1: return $this->aaOpcodes[$sHex][0]; //arguments
@@ -278,6 +176,11 @@ class Opcodes
 	public function initiate ($iKey = null, $sHex = null) :bool {
 		$iKey = $iKey + 1;
 		//$this->arguments_set(array());
+		
+		if (!isset($this->aaOpcodes[$sHex])) return false;
+		$this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0]);
+		
+		/*
 		
 		switch ($sHex) {
 			case 0x00: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //STOP
@@ -419,11 +322,17 @@ class Opcodes
 			case 0xfe: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //INVALID
 			case 0xff: $this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0] ); break; //SELFDESTRUCT
 		}
+		*/
 		return true;
 	}
 
 	public function describe($iKey = null, $sHex = null) :bool {
 		$sArguments = implode(",", $this->aArguments);
+		
+		if (!isset($this->aaOpcodes[$sHex])) return false;
+		print "$iKey\t$sHex\t#". $this->aaOpcodes[$sHex][2] ."\t0\t". $this->aaOpcodes[$sHex][3] ."\t\t". $this->aaOpcodes[$sHex][4] ."\n";
+			
+/*
 		switch ($sHex) {
 			case 0x00: print "$iKey\t$sHex\t# 0x00\t0\tSTOP\t\t".$sArguments."\t\tHalts execution\n"; break;
 			case 0x01: print "$iKey\t$sHex\t# 0x01\t3\tADD\t\t".$sArguments."\t\tAddition operation\n"; break;
@@ -562,6 +471,7 @@ class Opcodes
 			case 0xff: print "$iKey\t$sHex\t# 0xff\t0\tSELFDESTRUCT\t\t".$sArguments."\t\tHalt execution and register account for later deletion\n"; break;
 			default: print "default: $iKey\t$sHex\t#\n";
 		}
+*/
 		return true;
 	}
 }
