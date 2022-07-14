@@ -81,7 +81,7 @@ foreach ($aHexBased as $k => $sHex) {
 
 
 	//$oBox->implement($sHex, $oOpcodes);
-	if (!$oBox->implement($oOpcodes, $sHex, $oOpcodes->aArguments)) die('oBox->implement');
+	if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
 	var_dump($oOpcodes->aaStack);
 
 	//if ($k >= 12) break;
