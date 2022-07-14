@@ -22,7 +22,6 @@ use App\Suiteziel\Vm\Box;
 
 $oDiamonds = new Diamonds();
 $oOpcodes = new Opcodes();
-$oStack = new Stack();
 $oBox = new Box();
 
 
@@ -57,7 +56,7 @@ foreach ($aHex as $k => $sHex) {
 	
 }
 
-var_dump($oStack->stack_set($aHexBased));
+var_dump($oOpcodes->hex_set($aHexBased));
 var_dump(implode(",", $aHexBased));
 
 $iCountArguments = 0;
@@ -68,22 +67,22 @@ foreach ($aHexBased as $k => $sHex) {
 		continue;
 	}
 	
-	$oStack->initiate($k, $sHex);
-	//var_dump('args',$oStack->aArguments);
-	print($sHex ." \t# ". $oOpcodes->describe($sHex, $oStack->aArguments));
+	$oOpcodes->initiate($k, $sHex);
+	//var_dump('args',$oOpcodes->aArguments);
+	print($sHex ." \t# ". $oOpcodes->describe($sHex, $oOpcodes->aArguments));
 
 	/*
 	var_dump('oStack->aArguments');
-	var_dump($oStack->aArguments);
-	var_dump(count($oStack->aArguments));
+	var_dump($oOpcodes->aArguments);
+	var_dump(count($oOpcodes->aArguments));
 	*/
 
-	$iCountArguments = count($oStack->aArguments);
+	$iCountArguments = count($oOpcodes->aArguments);
 	
 	
-	//$oBox->implement($sHex, $oStack);
-	if (!$oBox->implement($oStack, $sHex, $oStack->aArguments)) die('oBox->implement');
-	var_dump($oStack->aaStack);
+	//$oBox->implement($sHex, $oOpcodes);
+	if (!$oBox->implement($oOpcodes, $sHex, $oOpcodes->aArguments)) die('oBox->implement');
+	var_dump($oOpcodes->aaStack);
 	
 	//if ($k >= 12) break;
 }
