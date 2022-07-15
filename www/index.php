@@ -44,19 +44,17 @@ foreach ($oDiamonds->aHex as $k => $sHex) {
 	
 	
 	if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
-
+/*
 	// 1024 bits stack
 $str = bin2hex("test");
 
 //var_dump(base_convert("$str", 16, 10));
-var_dump(str_pad($sHex, 64, 0)); //0x
+var_dump(str_pad("0x" . $str, 64, 0)); //0x
 
-var_dump('$hex');
-//32 bytes long
-var_dump(strlen(str_pad($sHex, 64, 0)));
-$hex = bin2hex($sHex);
-var_dump($hex);
-
+var_dump('$hex');#
+var_dump(str_pad("0x" . $str, 64, 0));
+var_dump(hex2bin(0x96000000000000000000000000000000000000000000000000000000000000));
+*/
 }
 
 

@@ -4,6 +4,8 @@ namespace App\Suiteziel\Vm;
 
 class Box
 {
+	public $i_pc; //program counter
+	public $i_sp; //stack pointer
 	
 	public $aArguments;
 /*
