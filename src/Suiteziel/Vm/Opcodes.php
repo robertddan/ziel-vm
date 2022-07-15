@@ -45,11 +45,11 @@ class Opcodes
 	
 	public function opcodes ($iKey = null, $sHex = null) {
 		switch ($iKey) {
-			case 1: return $this->aaOpcodes[$sHex][0]; //arguments
-			case 2: return $this->aaOpcodes[$sHex][1]; //price
-			case 3: return $this->aaOpcodes[$sHex][2]; //hex name
-			case 4: return $this->aaOpcodes[$sHex][3]; //name
-			case 5: return $this->aaOpcodes[$sHex][4]; //description
+			case 1: return $this->aaOpcodes[$sHex][0]; break; //arguments
+			case 2: return $this->aaOpcodes[$sHex][1]; break; //price
+			case 3: return $this->aaOpcodes[$sHex][2]; break; //hex name
+			case 4: return $this->aaOpcodes[$sHex][3]; break; //name
+			case 5: return $this->aaOpcodes[$sHex][4]; break; //description
 			default: return false;
 		}
 		return true;
