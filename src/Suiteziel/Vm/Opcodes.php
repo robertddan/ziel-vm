@@ -4,9 +4,8 @@ namespace App\Suiteziel\Vm;
 
 class Opcodes
 {
-	//public $iCursor;
+	
 	public $aHex;
-	public $aaStack;
 	public $aArguments;
 	public $aaOpcodes;
 

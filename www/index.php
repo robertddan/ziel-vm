@@ -26,13 +26,13 @@ if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
 if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 
-
 var_dump(implode(",", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(",", $oDiamonds->aHex));
 
 if (!$oVm->set_hex($oDiamonds->aHex)) die('oVm->set_hex');
 
 $oVm->run();
+
 
 /*
 
