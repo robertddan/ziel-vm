@@ -42,7 +42,9 @@ foreach ($oDiamonds->aHex as $k => $sHex) {
 	if (!$oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate');
 	if (!$oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 	$iCountArguments = count($oOpcodes->aArguments);
-	//if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
+	
+	
+	if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
 
 
 }
