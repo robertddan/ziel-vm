@@ -43,6 +43,7 @@ foreach ($oDiamonds->aHex as $k => $sHex) {
 	
 	if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
 
+	// 1024 bits stack
 
 }
 
