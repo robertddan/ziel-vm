@@ -30,8 +30,6 @@ class Box
 	}
 	public function decode($sHex = null) {
 		$aHex = str_split($sHex, 2);
-		
-		//var_dump($aHex);
 	}
 	
 	public function push () {
@@ -45,7 +43,6 @@ class Box
 	
 	public function implement ($iKey = null, $sHex = null): bool { // $aArguments = null, 
 		
-		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 		
 		$iCountArguments = 0; //box pc var
@@ -57,15 +54,16 @@ class Box
 
 			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate');
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
-			
-			//if (!$this->oBox->implement($k, $sHex)) die('oBox->implement');
+			if (!$this->oStack->positioning($k, $sHex)) die('oStack->positioning');
+
 			
 			$iCountArguments = count($this->oOpcodes->aArguments);
-
-
+			
 		}
-		
-		
+
+/*
+
+*/
 		
 		//if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate');
 		//if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');

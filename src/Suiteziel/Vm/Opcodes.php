@@ -13,6 +13,7 @@ class Opcodes
 		$this->iCursor = 0;
 		$this->aaStack = array();
 		$this->aArguments = array();
+		
 		$this->set_opcodes();
 	}
 	
