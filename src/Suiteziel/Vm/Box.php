@@ -31,13 +31,15 @@ class Box
 		array_unshift($oStack->aaStack, array_reverse($oStack->aArguments));
 	}
 	
-	public function implement (&$oStack = null, $iKey = null): bool { // $aArguments = null, 
+	public function implement ($iKey = null): bool { // $aArguments = null, 
 		//$this->aArguments = $aArguments;
 		//$oStack->aArguments = '#######';
+		case 4: return $this->aaOpcodes[$sHex][3]; //name
+		case 5: return $this->aaOpcodes[$sHex][4]; //description
 		
 		switch ($iKey) {
 			case 0x60: 
-				return array_unshift($oStack->aaStack, array_reverse($oStack->aArguments));
+				return array_unshift($this->oStack->aaStack, array_reverse($this->oStack->aArguments));
 				break; //ADD
 		}
 		

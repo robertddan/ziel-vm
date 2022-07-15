@@ -10,11 +10,13 @@ use App\Suiteziel\Vm\Opcodes;
 class Vm
 {
 	public $oOpcodes;
+	public $oMemory;
 	public $oStack;
 	public $aHex;
 	
 	public function __construct() {
 		$this->oOpcodes = new Opcodes();
+		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
 		$this->oBox = new Box();
 	}
@@ -30,7 +32,7 @@ class Vm
 	
 	// loop
 	public function run () {
-		$iCountArguments = 0; //if ! stack #no continue...
+		$iCountArguments = 0; //box pc var
 
 		foreach ($this->aHex as $k => $sHex) {
 			if ($iCountArguments !== 0) {
@@ -42,26 +44,16 @@ class Vm
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			$iCountArguments = count($this->oOpcodes->aArguments);
 
+/*
+1. set_oo variables
+2. instantiate in second layer
+3. 
+*/
 
-			if (!$this->implement($sHex)) die('Vm->implement');
+			if (!$this->oBox->implement($k, $sHex)) die('oBox->implement');
 
 		}
 		
-	}
-	
-	public function implement ($iKey = null): bool { // $aArguments = null, 
-		//$this->aArguments = $aArguments;
-		//$oStack->aArguments = '#######';
-		case 4: return $this->aaOpcodes[$sHex][3]; //name
-		case 5: return $this->aaOpcodes[$sHex][4]; //description
-		
-		switch ($iKey) {
-			case 0x60: 
-				return array_unshift($this->oStack->aaStack, array_reverse($this->oStack->aArguments));
-				break; //ADD
-		}
-		
-		return true;
 	}
 
 }
