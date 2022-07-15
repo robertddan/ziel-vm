@@ -4,17 +4,14 @@ require __DIR__.'/../config/bootstrap.php';
 
 echo '<pre>';
 
-
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\Vm\Stack;
 use App\Suiteziel\Vm\Box;
 
-
 $oDiamonds = new Diamonds();
 $oOpcodes = new Opcodes();
 $oBox = new Box();
-
 
 $oDiamonds->iCursor = 1; // skip compilation
 $oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
