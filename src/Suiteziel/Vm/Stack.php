@@ -2,10 +2,11 @@
 namespace App\Suiteziel\Vm;
 
 class Stack
-{
+{ 
+	public $i_sp; //stack pointer
 		
 	public function __construct () {
-		$this->iCursor = 0;
+		$this->i_sp = 0;
 		$this->aaStack = array();
 		$this->aArguments = array();
 	}
@@ -22,6 +23,9 @@ class Stack
 	public function test() {
 		return  "Hello woorld Stack";
 	}
+	
+	
+	
 }
 
 ?>

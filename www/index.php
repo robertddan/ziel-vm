@@ -8,10 +8,13 @@ use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\Vm\Stack;
 use App\Suiteziel\Vm\Box;
+use App\Suiteziel\Vm;
 
 $oDiamonds = new Diamonds();
 $oOpcodes = new Opcodes();
+$oStack = new Stack();
 $oBox = new Box();
+$oVm = new Vm();
 
 $oDiamonds->iCursor = 1; // skip compilation
 $oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
@@ -22,13 +25,16 @@ if (!$oDiamonds->iCursor) die('oDiamonds->iCursor');
 if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
 if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
-if (!$oOpcodes->hex_set($oDiamonds->aHex)) die('$oOpcodes->hex_set');
+
 
 var_dump(implode(",", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(",", $oDiamonds->aHex));
 
+if (!$oVm->set_hex($oDiamonds->aHex)) die('oVm->set_hex');
 
+$oVm->run();
 
+/*
 
 $iCountArguments = 0; //if ! stack #no continue...
 
@@ -44,6 +50,8 @@ foreach ($oDiamonds->aHex as $k => $sHex) {
 	
 	
 	if (!$oBox->implement($oOpcodes, $sHex)) die('oBox->implement');
+	
+*/
 /*
 	// 1024 bits stack
 $str = bin2hex("test");
@@ -55,8 +63,10 @@ var_dump('$hex');#
 var_dump(str_pad("0x" . $str, 64, 0));
 var_dump(hex2bin(0x96000000000000000000000000000000000000000000000000000000000000));
 */
+/*
+	
 }
-
+*/
 
 /*
 [
