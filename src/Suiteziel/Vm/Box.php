@@ -37,6 +37,7 @@ class Box extends Vm
 			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate');
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			
+			$this->oStack->arguments_set($this->oOpcodes->aArguments);
 			if (!$this->oStack->positioning($k, $sHex)) die('oStack->positioning');
 
 			$this->i_pc = count($this->oOpcodes->aArguments);

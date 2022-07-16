@@ -31,9 +31,9 @@ class Stack extends Box
 		switch ($sHex) {
 			case 0x00: return 0; break; //STOP
 			case 0x01: 
-				array_unshift($this->aaStack, "apple", "raspberry");
-				return true; 
+				array_unshift($this->aaStack, array_reverse($this->aArguments));
 				
+				return true; 
 			break; //ADD
 			case 0x02: return 0; break; //MUL
 			case 0x03: return 0; break; //SUB
