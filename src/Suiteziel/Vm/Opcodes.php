@@ -2,7 +2,9 @@
 namespace App\Suiteziel\Vm;
 
 
-class Opcodes
+use App\Suiteziel\Vm\Box;
+
+class Opcodes extends Box
 {
 	
 	public $aHex;
@@ -24,8 +26,6 @@ class Opcodes
 
 	public function initiate ($iKey = null, $sHex = null) :bool {
 		$iKey = $iKey + 1;
-		
-		
 		if (!isset($this->aaOpcodes[$sHex])) { $this->aArguments = array(); return true; }
 		$this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0]);
 		return true;

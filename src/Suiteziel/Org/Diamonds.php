@@ -6,6 +6,7 @@ class Diamonds
 {
 
 	public $sFilePathOutput;
+	public static $_aHex;
 	public $aHex;
 	public $sHex;
 	public $iCursor;
@@ -57,7 +58,7 @@ class Diamonds
 	
 	public function decode_hex () :bool {
 		$aHex = str_split($this->sHex, 2);
-		$this->aHex = array_map(function($sHex) {
+		$this->aHex = self::$_aHex = array_map(function($sHex) {
 			return base_convert($sHex, 16, 10);
 		}, $aHex);
 
@@ -66,7 +67,4 @@ class Diamonds
 
 }
 
-/*
-opcodes vm memory stack parameters test
-*/
 ?>

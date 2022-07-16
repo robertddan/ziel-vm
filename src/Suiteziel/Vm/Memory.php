@@ -2,14 +2,16 @@
 namespace App\Suiteziel\Vm;
 
 
-class Memory
+use App\Suiteziel\Vm\Box;
+
+class Memory extends Box
 {
+	public function __construct () {
+		
+	}
 	public function test() {
 		return  "Hello woorld Memory";
 	}
 }
 
-/*
-opcodes vm memory stack parameters test
-*/
 ?>
