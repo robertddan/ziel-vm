@@ -38,13 +38,23 @@ class Stack extends Box
 			case 0x00: return 1; break; //STOP
 			case 0x01:
 				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
-				
-				var_dump($a_e, array_sum($a_e));
 				array_unshift($this->aaStack, array_sum($a_e));
-			return true; 
+				var_dump(implode("::", $this->aaStack));
+				return true; 
 			break; //ADD
-			case 0x02: return 1; break; //MUL
-			case 0x03: return 1; break; //SUB
+			case 0x02:
+				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				array_unshift($this->aaStack, array_product($a_e));
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //MUL
+			case 0x03:
+				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+		var_dump($a_e);
+				var_dump(implode("::", $this->aaStack));
+				array_unshift($this->aaStack, bcsub($a_e[0], $a_e[1]));
+				return true; 
+			break; //SUB
 			case 0x04: return 1; break; //DIV
 			case 0x05: return 1; break; //SDIV
 			case 0x06: return 1; break; //MOD

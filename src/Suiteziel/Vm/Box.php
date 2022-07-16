@@ -27,7 +27,11 @@ class Box extends Vm
 
 	public function implement (): bool {
 		//if (!$this->set_hex() && empty($this->aHex)) die('Box->implement');
-		$this->aHex = array(0x60, 0x02, 0x60, 0x03, 0x01);
+		$this->aHex = array(
+			0x60, 0x02, 0x60, 0x03, 0x01,
+			0x60, 0x03, 0x02,
+			0x60, 0x64, 0x03,
+		);
 
 		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
