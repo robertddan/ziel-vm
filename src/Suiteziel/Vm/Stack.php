@@ -15,8 +15,13 @@ class Stack extends Box
 		$this->i_sp = 0;
 		$this->aaStack = array();
 		$this->aArguments = array();
+		$this->iDelta = 0;
 	}
 
+	public function delta_set($iDelta) {
+		$this->iDelta = $iDelta;
+	}
+	
 	public function arguments_get() :array {//$i_k = null, $aArguments = null): int {
 		//$i_kLeft = null;
 		return $this->aArguments;
@@ -27,59 +32,61 @@ class Stack extends Box
 		$this->aArguments = $aArguments;
 	}
 	
-			
-	public function bytes32($sHex) {
-		return "0x". str_pad($sHex, 30, 0, STR_PAD_LEFT); //!string 
-	}
-	
 	public function positioning($i_k = null, $sHex = null) {
 
+		
 		switch ($sHex) {
 			case 0x00: return 1; break; //STOP
 			case 0x01:
-				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				array_unshift($this->aaStack, array_sum($a_e));
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //ADD
 			case 0x02:
-				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				array_unshift($this->aaStack, array_product($a_e));
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //MUL
 			case 0x03:
-				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				array_unshift($this->aaStack, ($a_e[0] - $a_e[1]));
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SUB
 			case 0x04:
-				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				array_unshift($this->aaStack, ($a_e[0] / $a_e[1]));
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //DIV
 			case 0x05: 
-				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				array_unshift($this->aaStack, ($a_e[0] / $a_e[1]));
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SDIV
 			case 0x06: 
-				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				if ($a_e[1] == 0) array_unshift($this->aaStack, 0);
 				else array_unshift($this->aaStack, ($a_e[0] % $a_e[1]));
 				var_dump(implode("::", $this->aaStack));
 			break; //MOD
 			case 0x07: 
-				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				if ($a_e[1] == 0) array_unshift($this->aaStack, 0);
 				else array_unshift($this->aaStack, ($a_e[0] % $a_e[1]));
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SMOD
-			case 0x08: return 1; break; //ADDMOD
+			case 0x08: 
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[1] == 0) array_unshift($this->aaStack, 0);
+				else array_unshift($this->aaStack, ($a_e[0] % $a_e[1]));
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //ADDMOD
 			case 0x09: return 1; break; //MULMOD
 			case 0x0a: return 1; break; //EXP
 			case 0x0b: return 1; break; //SIGNEXTEND
@@ -177,34 +184,34 @@ class Stack extends Box
 			case 0x8d: return 1; break; //DUP14
 			case 0x8e: return 1; break; //DUP15
 			case 0x8f: return 1; break; //DUP16
-			case 0x90: return 1; break; //SWAP1
-			case 0x91: return 1; break; //SWAP2
-			case 0x92: return 1; break; //SWAP3
-			case 0x93: return 1; break; //SWAP4
-			case 0x94: return 1; break; //SWAP5
-			case 0x95: return 1; break; //SWAP6
-			case 0x96: return 1; break; //SWAP7
-			case 0x97: return 1; break; //SWAP8
-			case 0x98: return 1; break; //SWAP9
-			case 0x99: return 1; break; //SWAP10
-			case 0x9a: return 1; break; //SWAP11
-			case 0x9b: return 1; break; //SWAP12
-			case 0x9c: return 1; break; //SWAP13
-			case 0x9d: return 1; break; //SWAP14
-			case 0x9e: return 1; break; //SWAP15
-			case 0x9f: return 1; break; //SWAP16
-			case 0xa0: return 1; break; //LOG0
-			case 0xa1: return 1; break; //LOG1
-			case 0xa2: return 1; break; //LOG2
-			case 0xa3: return 1; break; //LOG3
-			case 0xa4: return 1; break; //LOG4
-			case 0xf0: return 1; break; //CREATE
-			case 0xf1: return 1; break; //CALL
-			case 0xf2: return 1; break; //CALLCODE
-			case 0xf3: return 1; break; //RETURN
-			case 0xf4: return 1; break; //DELEGATECALL
+			case 0x90: return 1;  break; //SWAP1
+			case 0x91: return 1;  break; //SWAP2
+			case 0x92: return 1;  break; //SWAP3
+			case 0x93: return 1;  break; //SWAP4
+			case 0x94: return 1;  break; //SWAP5
+			case 0x95: return 1;  break; //SWAP6
+			case 0x96: return 1;  break; //SWAP7
+			case 0x97: return 1;  break; //SWAP8
+			case 0x98: return 1;  break; //SWAP9
+			case 0x99: return 1;  break; //SWAP10
+			case 0x9a: return 1;  break; //SWAP11
+			case 0x9b: return 1;  break; //SWAP12
+			case 0x9c: return 1;  break; //SWAP13
+			case 0x9d: return 1;  break; //SWAP14
+			case 0x9e: return 1;  break; //SWAP15
+			case 0x9f: return 1;  break; //SWAP16
+			case 0xa0: return 1;  break; //LOG0
+			case 0xa1: return 1;  break; //LOG1
+			case 0xa2: return 1;  break; //LOG2
+			case 0xa3: return 1;  break; //LOG3
+			case 0xa4: return 1;  break; //LOG4
+			case 0xf0: return 1;  break; //CREATE
+			case 0xf1: return 1;  break; //CALL
+			case 0xf2: return 1;  break; //CALLCODE
+			case 0xf3: return 1;  break; //RETURN
+			case 0xf4: return 1;  break; //DELEGATECALL
 			//0xfe_jj11_INVALID_s_NaN_s_Designated invalid instruction
-			case 0xff: return 1; break; //SELFDESTRUCT
+			case 0xff: return 1;  break; //SELFDESTRUCT
 			default: return true; break;
 		}
 		return true;
