@@ -24,17 +24,17 @@ class Opcodes extends Box
 		return true;
 	}
 
-	public function initiate ($iKey = null, $sHex = null) :bool {
-		$iKey = $iKey + 1;
+	public function initiate ($i_k = null, $sHex = null) :bool {  // view
+		$i_k = $i_k + 1;
 		if (!isset($this->aaOpcodes[$sHex])) { $this->aArguments = array(); return true; }
-		$this->aArguments = array_slice($this->aHex, $iKey, $this->aaOpcodes[$sHex][0]);
+		$this->aArguments = array_slice($this->aHex, $i_k, $this->aaOpcodes[$sHex][0]);
 		return true;
 	}
 
-	public function describe($iKey = null, $sHex = null) :bool {
+	public function describe($i_k = null, $sHex = null) :bool {
 		$sArguments = implode(",", $this->aArguments);
-		if (!isset($this->aaOpcodes[$sHex])) { print "$iKey\t------------- Default:\t\t$sHex\t# ----------- \n"; return true; }
-		print "$iKey\t". base_convert($sHex, 10, 16) ."\t#". 
+		if (!isset($this->aaOpcodes[$sHex])) { print "$i_k\t------------- Default:\t\t$sHex\t# ----------- \n"; return true; }
+		print "$i_k\t". base_convert($sHex, 10, 16) ."\t#". 
 			$this->aaOpcodes[$sHex][2] ."\t". 
 			$this->aaOpcodes[$sHex][0] ."\t". 
 			$this->aaOpcodes[$sHex][3] ."\t\t". 
@@ -43,8 +43,8 @@ class Opcodes extends Box
 		return true;
 	}
 	
-	public function opcodes ($iKey = null, $sHex = null) {
-		switch ($iKey) {
+	public function opcodes ($i_k = null, $sHex = null) {
+		switch ($i_k) {
 			case 1: return $this->aaOpcodes[$sHex][0]; break; //arguments
 			case 2: return $this->aaOpcodes[$sHex][1]; break; //price
 			case 3: return $this->aaOpcodes[$sHex][2]; break; //hex name

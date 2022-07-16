@@ -25,24 +25,33 @@ class Box extends Vm
 		return true;
 	}
 
-	public function implement ($iKey = null, $sHex = null): bool {
-		if (!$this->set_hex() && empty($this->aHex)) die('Box->implement');
+	public function implement (): bool {
+		//if (!$this->set_hex() && empty($this->aHex)) die('Box->implement');
+		$this->aHex = array(0x60, 0x02, 0x60, 0x03, 0x01);
+		
+
+		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 		
+		$i_opargs = 0;
 		foreach ($this->aHex as $k => $sHex) {
-			if ($this->i_pc !== 0) {
-				$this->i_pc--;
-				continue;
+			if ($i_opargs !== 0) {
+				$i_opargs--;
+				continue; 
 			}
-			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate');
+		
+			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			
 			$this->oStack->arguments_set($this->oOpcodes->aArguments);
 			if (!$this->oStack->positioning($k, $sHex)) die('oStack->positioning');
 
-			$this->i_pc = count($this->oOpcodes->aArguments);
+			$i_opargs = count($this->oOpcodes->aArguments);
 			
 		}
+		
+		var_dump('$this->oStack->aaStack');
+		var_dump($this->oStack->aaStack);
 		return true;
 	}
 
