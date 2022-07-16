@@ -109,9 +109,25 @@ class Stack extends Box
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //EXP
-			case 0x0b: return 1; break; //SIGNEXTEND
-			case 0x10: return 1; break; //LT
-			case 0x11: return 1; break; //GT
+			case 0x0b:
+			
+			break; //SIGNEXTEND
+			case 0x10:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] < $a_e[1]) $i = 1;
+				else $i = 0;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //LT
+			case 0x11: 
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] > $a_e[1]) $i = 1;
+				else $i = 0;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //GT
 			case 0x12: return 1; break; //SLT
 			case 0x13: return 1; break; //SGT
 			case 0x14: return 1; break; //EQ
