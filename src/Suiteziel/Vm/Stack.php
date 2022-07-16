@@ -81,13 +81,29 @@ class Stack extends Box
 				return true; 
 			break; //SMOD
 			case 0x08: 
+				
+	/*
+				var_dump(array(
+				$this->aaStack
+					$this->aaStack,
+					'delta',
+					$this->iDelta,
+					count($this->aaStack)
+				));
+	*/
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
-				if ($a_e[1] == 0) array_unshift($this->aaStack, 0);
-				else array_unshift($this->aaStack, ($a_e[0] % $a_e[1]));
+				if ($a_e[2] == 0) array_unshift($this->aaStack, 0);
+				else array_unshift($this->aaStack, ($a_e[0] + ($a_e[1] % $a_e[2])));
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //ADDMOD
-			case 0x09: return 1; break; //MULMOD
+			case 0x09:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[2] == 0) array_unshift($this->aaStack, 0);
+				else array_unshift($this->aaStack, ($a_e[0] * ($a_e[1] % $a_e[2])));
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //MULMOD
 			case 0x0a: return 1; break; //EXP
 			case 0x0b: return 1; break; //SIGNEXTEND
 			case 0x10: return 1; break; //LT
