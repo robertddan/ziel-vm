@@ -24,8 +24,12 @@ var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(" ", $oDiamonds->aHex));
 
 
+//$binarydata = hash('sha3-256', 'The quick brown fox jumps over the lazy dog');
+var_dump(true and false == true);
+var_dump(base_convert(0x1770, 10, 2));
 $oVm->run();
 
+hex2bin
 /*
 	// 1024 bits stack
 $str = bin2hex("test");

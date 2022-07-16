@@ -128,14 +128,70 @@ class Stack extends Box
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //GT
-			case 0x12: return 1; break; //SLT
-			case 0x13: return 1; break; //SGT
-			case 0x14: return 1; break; //EQ
-			case 0x15: return 1; break; //ISZERO
-			case 0x16: return 1; break; //AND
-			case 0x17: return 1; break; //OR
-			case 0x18: return 1; break; //XOR
-			case 0x19: return 1; break; //NOT
+			case 0x12: // Where all values are treated as two’s complement signed 256-bit integers.
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] < $a_e[1]) $i = 1;
+				else $i = 0;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SLT
+			case 0x13:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] > $a_e[1]) $i = 1;
+				else $i = 0;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SGT
+			case 0x14:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] == $a_e[1]) $i = 1;
+				else $i = 0;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //EQ
+			case 0x15:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] == 0) $i = 1;
+				else $i = 0;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //ISZERO
+			case 0x16:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] and $a_e[1]) $i = true;
+				else $i = false;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //AND
+			case 0x17:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] or $a_e[1]) $i = true;
+				else $i = false;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //OR
+			case 0x18: 
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] xor $a_e[1]) $i = true;
+				else $i = false;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //XOR
+			case 0x19:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				if ($a_e[0] == 0) $i = true;
+				else $i = false;
+				array_unshift($this->aaStack, $i);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //NOT
 			case 0x1a: return 1; break; //BYTE
 			case 0x20: return 1; break; //SHA3
 			case 0x30: return 1; break; //ADDRESS
