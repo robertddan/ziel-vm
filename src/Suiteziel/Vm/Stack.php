@@ -29,7 +29,7 @@ class Stack extends Box
 	
 			
 	public function bytes32($sHex) {
-		return "0x". str_pad($sHex, 30, 0, STR_PAD_LEFT);
+		return "0x". str_pad($sHex, 30, 0, STR_PAD_LEFT); //!string 
 	}
 	
 	public function positioning($i_k = null, $sHex = null) {
@@ -97,7 +97,7 @@ class Stack extends Box
 			case 0x5a: return 1; break; //GAS
 			case 0x5b: return 1; break; //JUMPDEST
 			case 0x60:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $this->bytes32($aArgument));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH1
 			case 0x61: return 1; break; //PUSH2

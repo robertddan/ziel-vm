@@ -1,5 +1,5 @@
 <?php
-
+declare(encoding='UTF-8');
 require __DIR__.'/../config/bootstrap.php';
 
 echo '<pre>';
@@ -20,8 +20,8 @@ if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
 var_dump($oDiamonds->sHex);
 if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 
-var_dump(implode(",", str_split($oDiamonds->sHex, 2)));
-var_dump(implode(",", $oDiamonds->aHex));
+var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
+var_dump(implode(" ", $oDiamonds->aHex));
 
 
 $oVm->run();
