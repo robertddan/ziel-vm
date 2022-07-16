@@ -50,15 +50,35 @@ class Stack extends Box
 			break; //MUL
 			case 0x03:
 				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
-		var_dump($a_e);
+				array_unshift($this->aaStack, ($a_e[0] - $a_e[1]));
 				var_dump(implode("::", $this->aaStack));
-				array_unshift($this->aaStack, bcsub($a_e[0], $a_e[1]));
 				return true; 
 			break; //SUB
-			case 0x04: return 1; break; //DIV
-			case 0x05: return 1; break; //SDIV
-			case 0x06: return 1; break; //MOD
-			case 0x07: return 1; break; //SMOD
+			case 0x04:
+				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				array_unshift($this->aaStack, ($a_e[0] / $a_e[1]));
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DIV
+			case 0x05: 
+				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				array_unshift($this->aaStack, ($a_e[0] / $a_e[1]));
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SDIV
+			case 0x06: 
+				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				if ($a_e[1] == 0) array_unshift($this->aaStack, 0);
+				else array_unshift($this->aaStack, ($a_e[0] % $a_e[1]));
+				var_dump(implode("::", $this->aaStack));
+			break; //MOD
+			case 0x07: 
+				$a_e = array_splice($this->aaStack, 0, count($this->aaStack));
+				if ($a_e[1] == 0) array_unshift($this->aaStack, 0);
+				else array_unshift($this->aaStack, ($a_e[0] % $a_e[1]));
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SMOD
 			case 0x08: return 1; break; //ADDMOD
 			case 0x09: return 1; break; //MULMOD
 			case 0x0a: return 1; break; //EXP
