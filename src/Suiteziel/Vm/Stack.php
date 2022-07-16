@@ -84,7 +84,6 @@ class Stack extends Box
 				
 	/*
 				var_dump(array(
-				$this->aaStack
 					$this->aaStack,
 					'delta',
 					$this->iDelta,
@@ -104,7 +103,12 @@ class Stack extends Box
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //MULMOD
-			case 0x0a: return 1; break; //EXP
+			case 0x0a: 
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, (pow($a_e[0], $a_e[1])));
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //EXP
 			case 0x0b: return 1; break; //SIGNEXTEND
 			case 0x10: return 1; break; //LT
 			case 0x11: return 1; break; //GT
