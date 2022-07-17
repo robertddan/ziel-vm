@@ -192,6 +192,13 @@ class Stack extends Box
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //NOT				
+			case 0x1a:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				for($i = 0; $i < strlen($a_e[1]); $i++) $a_e[0] = ord($a_e[1]);
+				array_unshift($this->aaStack, $a_e[0]);
+				var_dump(implode("::", $this->aaStack));
+				return true;
+			break; //BYTE
 			case 0x1b:
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				array_unshift($this->aaStack, ($a_e[0] >> $a_e[1]));
@@ -199,54 +206,29 @@ class Stack extends Box
 				return true; 
 			break; //SHL Left shift operation.
 			case 0x1c:
-
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
-				/*
-				var_dump(array(
-					'$a_e',
-					$a_e,
-					$this->aaStack,
-					'delta',
-					$this->iDelta,
-					count($this->aaStack)
-				));
-				*/
 				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
-				
 				var_dump(implode("::", $this->aaStack));
-				
 				return true; 
 			break; //SHR Logical right shift operation.
 			case 0x1d:
-
-				/*
-				var_dump(array(
-					'$a_e',
-					$a_e,
-					$this->aaStack,
-					'delta',
-					$this->iDelta,
-					count($this->aaStack)
-				));
-				*/
-				
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
 				var_dump(implode("::", $this->aaStack));
 				return true;
-
 			break; //SAR 
-			case 0x1a:
-/*
-$var = "n";
-for($i = 0; $i < strlen($var); $i++)
-{
-   echo ord($var[$i])."<br/>";
-}
-*/
-			break; //BYTE
-			case 0x20: return 1; break; //SHA3
-			case 0x30: return 1; break; //ADDRESS
+			case 0x20:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$s_sha3 = hash('sha3-256', $a_e[1]);
+				array_unshift($this->aaStack, $s_sha3);
+				var_dump(implode("::", $this->aaStack));
+				return true;
+			break; //SHA3
+			case 0x30:
+
+				var_dump(implode("::", $this->aaStack));
+				return true;
+			break; //ADDRESS
 			case 0x31: return 1; break; //BALANCE
 			case 0x32: return 1; break; //ORIGIN
 			case 0x33: return 1; break; //CALLER
