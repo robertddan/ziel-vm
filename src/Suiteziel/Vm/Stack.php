@@ -162,37 +162,89 @@ class Stack extends Box
 			break; //ISZERO
 			case 0x16:
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
-				if ($a_e[0] and $a_e[1]) $i = true;
-				else $i = false;
+				if ($a_e[0] and $a_e[1]) $i = 1;
+				else $i = 0;
 				array_unshift($this->aaStack, $i);
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //AND
 			case 0x17:
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
-				if ($a_e[0] or $a_e[1]) $i = true;
-				else $i = false;
+				if ($a_e[0] or $a_e[1]) $i = 1;
+				else $i = 0;
 				array_unshift($this->aaStack, $i);
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //OR
 			case 0x18: 
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
-				if ($a_e[0] xor $a_e[1]) $i = true;
-				else $i = false;
+				if ($a_e[0] xor $a_e[1]) $i = 1;
+				else $i = 0;
 				array_unshift($this->aaStack, $i);
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //XOR
 			case 0x19:
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
-				if ($a_e[0] == 0) $i = true;
-				else $i = false;
+				if ($a_e[0] == 0) $i = 1;
+				else $i = 0;
 				array_unshift($this->aaStack, $i);
 				var_dump(implode("::", $this->aaStack));
 				return true; 
-			break; //NOT
-			case 0x1a: return 1; break; //BYTE
+			break; //NOT				
+			case 0x1b:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, ($a_e[0] >> $a_e[1]));
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SHL Left shift operation.
+			case 0x1c:
+
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				/*
+				var_dump(array(
+					'$a_e',
+					$a_e,
+					$this->aaStack,
+					'delta',
+					$this->iDelta,
+					count($this->aaStack)
+				));
+				*/
+				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
+				
+				var_dump(implode("::", $this->aaStack));
+				
+				return true; 
+			break; //SHR Logical right shift operation.
+			case 0x1d:
+
+				/*
+				var_dump(array(
+					'$a_e',
+					$a_e,
+					$this->aaStack,
+					'delta',
+					$this->iDelta,
+					count($this->aaStack)
+				));
+				*/
+				
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
+				var_dump(implode("::", $this->aaStack));
+				return true;
+
+			break; //SAR 
+			case 0x1a:
+/*
+$var = "n";
+for($i = 0; $i < strlen($var); $i++)
+{
+   echo ord($var[$i])."<br/>";
+}
+*/
+			break; //BYTE
 			case 0x20: return 1; break; //SHA3
 			case 0x30: return 1; break; //ADDRESS
 			case 0x31: return 1; break; //BALANCE

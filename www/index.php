@@ -29,7 +29,6 @@ var_dump(true and false == true);
 var_dump(base_convert(0x1770, 10, 2));
 $oVm->run();
 
-hex2bin
 /*
 	// 1024 bits stack
 $str = bin2hex("test");
