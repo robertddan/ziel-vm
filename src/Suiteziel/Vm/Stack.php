@@ -263,81 +263,375 @@ class Stack extends Box
 				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH1
-			case 0x61: return 1; break; //PUSH2
-			case 0x62: return 1; break; //PUSH3
-			case 0x63: return 1; break; //PUSH4
-			case 0x64: return 1; break; //PUSH5
-			case 0x65: return 1; break; //PUSH6
-			case 0x66: return 1; break; //PUSH7
-			case 0x67: return 1; break; //PUSH8
-			case 0x68: return 1; break; //PUSH9
-			case 0x69: return 1; break; //PUSH10
-			case 0x6a: return 1; break; //PUSH11
-			case 0x6b: return 1; break; //PUSH12
-			case 0x6c: return 1; break; //PUSH13
-			case 0x6d: return 1; break; //PUSH14
-			case 0x6e: return 1; break; //PUSH15
-			case 0x6f: return 1; break; //PUSH16
-			case 0x70: return 1; break; //PUSH17
-			case 0x71: return 1; break; //PUSH18
-			case 0x72: return 1; break; //PUSH19
-			case 0x73: return 1; break; //PUSH20
-			case 0x74: return 1; break; //PUSH21
-			case 0x75: return 1; break; //PUSH22
-			case 0x76: return 1; break; //PUSH23
-			case 0x77: return 1; break; //PUSH24
-			case 0x78: return 1; break; //PUSH25
-			case 0x79: return 1; break; //PUSH26
-			case 0x7a: return 1; break; //PUSH27
-			case 0x7b: return 1; break; //PUSH28
-			case 0x7c: return 1; break; //PUSH29
-			case 0x7d: return 1; break; //PUSH30
-			case 0x7e: return 1; break; //PUSH31
-			case 0x7f: return 1; break; //PUSH32
-			case 0x80: return 1; break; //DUP1
-			case 0x81: return 1; break; //DUP2
-			case 0x82: return 1; break; //DUP3
-			case 0x83: return 1; break; //DUP4
-			case 0x84: return 1; break; //DUP5
-			case 0x85: return 1; break; //DUP6
-			case 0x86: return 1; break; //DUP7
-			case 0x87: return 1; break; //DUP8
-			case 0x88: return 1; break; //DUP9
-			case 0x89: return 1; break; //DUP10
-			case 0x8a: return 1; break; //DUP11
-			case 0x8b: return 1; break; //DUP12
-			case 0x8c: return 1; break; //DUP13
-			case 0x8d: return 1; break; //DUP14
-			case 0x8e: return 1; break; //DUP15
-			case 0x8f: return 1; break; //DUP16
-			case 0x90: return 1;  break; //SWAP1
-			case 0x91: return 1;  break; //SWAP2
-			case 0x92: return 1;  break; //SWAP3
-			case 0x93: return 1;  break; //SWAP4
-			case 0x94: return 1;  break; //SWAP5
-			case 0x95: return 1;  break; //SWAP6
-			case 0x96: return 1;  break; //SWAP7
-			case 0x97: return 1;  break; //SWAP8
-			case 0x98: return 1;  break; //SWAP9
-			case 0x99: return 1;  break; //SWAP10
-			case 0x9a: return 1;  break; //SWAP11
-			case 0x9b: return 1;  break; //SWAP12
-			case 0x9c: return 1;  break; //SWAP13
-			case 0x9d: return 1;  break; //SWAP14
-			case 0x9e: return 1;  break; //SWAP15
-			case 0x9f: return 1;  break; //SWAP16
-			case 0xa0: return 1;  break; //LOG0
-			case 0xa1: return 1;  break; //LOG1
-			case 0xa2: return 1;  break; //LOG2
-			case 0xa3: return 1;  break; //LOG3
-			case 0xa4: return 1;  break; //LOG4
-			case 0xf0: return 1;  break; //CREATE
-			case 0xf1: return 1;  break; //CALL
-			case 0xf2: return 1;  break; //CALLCODE
-			case 0xf3: return 1;  break; //RETURN
-			case 0xf4: return 1;  break; //DELEGATECALL
+			case 0x61:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH2
+			case 0x62:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH3
+			case 0x63:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH4
+			case 0x64:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH5
+			case 0x65:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH6
+			case 0x66:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH7
+			case 0x67:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH8
+			case 0x68:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH9
+			case 0x69:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH10
+			case 0x6a:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH11
+			case 0x6b:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH12
+			case 0x6c:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH13
+			case 0x6d:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH14
+			case 0x6e:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH15
+			case 0x6f:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH16
+			case 0x70:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH17
+			case 0x71:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH18
+			case 0x72:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH19
+			case 0x73:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH20
+			case 0x74:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH21
+			case 0x75:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH22
+			case 0x76:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH23
+			case 0x77:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH24
+			case 0x78:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH25
+			case 0x79:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH26
+			case 0x7a:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH27
+			case 0x7b:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH28
+			case 0x7c:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH29
+			case 0x7d:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH30
+			case 0x7e:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH31
+			case 0x7f:
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				return true; 
+			break; //PUSH32
+			case 0x80:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[0]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP1
+			case 0x81:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[1]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP2
+			case 0x82:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[2]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP3
+			case 0x83:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[3]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP4
+			case 0x84:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[4]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP5
+			case 0x85:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[5]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP6
+			case 0x86:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[6]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP7
+			case 0x87:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[7]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP8
+			case 0x88:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[8]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP9
+			case 0x89:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[9]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP10
+			case 0x8a:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[10]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP11
+			case 0x8b:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[11]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP12
+			case 0x8c:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[12]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP13
+			case 0x8d:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[13]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP14
+			case 0x8e:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[14]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP15
+			case 0x8f:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, $a_e[15]);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //DUP16
+			case 0x90:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[1];
+				$this->aaStack[1] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP1
+			case 0x91:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[2];
+				$this->aaStack[2] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP2
+			case 0x92:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[3];
+				$this->aaStack[3] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP3
+			case 0x93:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[4];
+				$this->aaStack[4] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP4
+			case 0x94:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[5];
+				$this->aaStack[5] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP5
+			case 0x95:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[6];
+				$this->aaStack[6] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP6
+			case 0x96:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[7];
+				$this->aaStack[7] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP7
+			case 0x97:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[8];
+				$this->aaStack[8] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP8
+			case 0x98:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[9];
+				$this->aaStack[9] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP9
+			case 0x99:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[10];
+				$this->aaStack[10] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP10
+			case 0x9a:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[11];
+				$this->aaStack[11] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP11
+			case 0x9b:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[12];
+				$this->aaStack[12] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP12
+			case 0x9c:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[13];
+				$this->aaStack[13] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP13
+			case 0x9d:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[14];
+				$this->aaStack[14] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP14
+			case 0x9e:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[15];
+				$this->aaStack[15] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP15
+			case 0x9f:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$this->aaStack[0] = $a_e[16];
+				$this->aaStack[16] = $a_e[0];
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //SWAP16
+			case 0xa0:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, 0);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //LOG0
+			case 0xa1:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, 0);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //LOG1
+			case 0xa2:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, 0);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //LOG2
+			case 0xa3:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, 0);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //LOG3
+			case 0xa4:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				array_unshift($this->aaStack, 0);
+				var_dump(implode("::", $this->aaStack));
+				return true; 
+			break; //LOG4
+			case 0xf0: return 1; break; //CREATE
+			case 0xf1: return 1; break; //CALL
+			case 0xf2: return 1; break; //CALLCODE
+			case 0xf3: return 1; break; //RETURN
+			case 0xf4: return 1; break; //DELEGATECALL
 			//0xfe_jj11_INVALID_s_NaN_s_Designated invalid instruction
-			case 0xff: return 1;  break; //SELFDESTRUCT
+			case 0xff: return 1; break; //SELFDESTRUCT
 			default: return true; break;
 		}
 		return true;

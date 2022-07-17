@@ -29,6 +29,13 @@ var_dump(true and false == true);
 var_dump(base_convert(0x1770, 10, 2));
 $oVm->run();
 
+
+$a = array(1,2,3,4,5);
+$aa = array();
+
+foreach ($a as $aArgument) array_unshift($aa, $aArgument);
+var_dump('$aa');
+var_dump($aa);
 /*
 	// 1024 bits stack
 $str = bin2hex("test");
