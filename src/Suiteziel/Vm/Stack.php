@@ -51,6 +51,7 @@ class Stack extends Box
 			break; //MUL
 			case 0x03:
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				var_dump($a_e);
 				array_unshift($this->aaStack, ($a_e[0] - $a_e[1]));
 				var_dump(implode("::", $this->aaStack));
 				return true; 
@@ -260,131 +261,131 @@ class Stack extends Box
 			case 0x5a: return 1; break; //GAS
 			case 0x5b: return 1; break; //JUMPDEST
 			case 0x60:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH1
 			case 0x61:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH2
 			case 0x62:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH3
 			case 0x63:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH4
 			case 0x64:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH5
 			case 0x65:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH6
 			case 0x66:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH7
 			case 0x67:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH8
 			case 0x68:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH9
 			case 0x69:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH10
 			case 0x6a:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH11
 			case 0x6b:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH12
 			case 0x6c:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH13
 			case 0x6d:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH14
 			case 0x6e:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH15
 			case 0x6f:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH16
 			case 0x70:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH17
 			case 0x71:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH18
 			case 0x72:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH19
 			case 0x73:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH20
 			case 0x74:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH21
 			case 0x75:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH22
 			case 0x76:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH23
 			case 0x77:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH24
 			case 0x78:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH25
 			case 0x79:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH26
 			case 0x7a:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH27
 			case 0x7b:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH28
 			case 0x7c:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH29
 			case 0x7d:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH30
 			case 0x7e:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH31
 			case 0x7f:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, pack("H*", str_replace($aArgument, "0x", "")));
+				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				return true; 
 			break; //PUSH32
 			case 0x80:

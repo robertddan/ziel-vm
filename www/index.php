@@ -23,20 +23,26 @@ if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(" ", $oDiamonds->aHex));
 
+/*
+var_dump(base_convert(6000, 10, 16));
+
+var_dump(base_convert(0x1770, 16, 8));
+var_dump(hex2bin(0x1770));
+var_dump(pack("H*", '36303030'));
+var_dump(pack("H*", 36303030));
+*/
 
 //$binarydata = hash('sha3-256', 'The quick brown fox jumps over the lazy dog');
-var_dump(true and false == true);
-var_dump(base_convert(0x1770, 10, 2));
+
 $oVm->run();
 
-
+/*
 $a = array(1,2,3,4,5);
 $aa = array();
 
 foreach ($a as $aArgument) array_unshift($aa, $aArgument);
-var_dump('$aa');
-var_dump($aa);
-/*
+
+
 	// 1024 bits stack
 $str = bin2hex("test");
 
