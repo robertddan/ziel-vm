@@ -458,96 +458,112 @@ class Stack extends Box
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[1];
 				$this->aaStack[1] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP1
 			case 0x91:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[2];
 				$this->aaStack[2] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP2
 			case 0x92:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[3];
 				$this->aaStack[3] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP3
 			case 0x93:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[4];
 				$this->aaStack[4] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP4
 			case 0x94:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[5];
 				$this->aaStack[5] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP5
 			case 0x95:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[6];
 				$this->aaStack[6] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP6
 			case 0x96:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[7];
 				$this->aaStack[7] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP7
 			case 0x97:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[8];
 				$this->aaStack[8] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP8
 			case 0x98:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[9];
 				$this->aaStack[9] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP9
 			case 0x99:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[10];
 				$this->aaStack[10] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP10
 			case 0x9a:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[11];
 				$this->aaStack[11] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP11
 			case 0x9b:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[12];
 				$this->aaStack[12] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP12
 			case 0x9c:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[13];
 				$this->aaStack[13] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP13
 			case 0x9d:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[14];
 				$this->aaStack[14] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP14
 			case 0x9e:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[15];
 				$this->aaStack[15] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP15
 			case 0x9f:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[16];
 				$this->aaStack[16] = $s_preview;
+				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP16
 			case 0xa0:
