@@ -4,4 +4,6 @@
 #php go-pear.phar
 
 sudo apt update
-sudo apt install php-ds
+#sudo apt install php-ds
+
+sudo apt install php-mbstring
