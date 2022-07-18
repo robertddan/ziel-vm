@@ -217,48 +217,7 @@ class Stack extends Box
 				var_dump(implode("::", $this->aaStack));
 				return true;
 			break; //SAR 
-			case 0x20:
-				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
-				$s_sha3 = hash('sha3-256', $a_e[1]);
-				array_unshift($this->aaStack, $s_sha3);
-				var_dump(implode("::", $this->aaStack));
-				return true;
-			break; //SHA3
-			case 0x30:
-
-				var_dump(implode("::", $this->aaStack));
-				return true;
-			break; //ADDRESS
-			case 0x31: return 1; break; //BALANCE
-			case 0x32: return 1; break; //ORIGIN
-			case 0x33: return 1; break; //CALLER
-			case 0x34: return 1; break; //CALLVALUE
-			case 0x35: return 1; break; //CALLDATALOAD
-			case 0x36: return 1; break; //CALLDATASIZE
-			case 0x37: return 1; break; //CALLDATACOPY
-			case 0x38: return 1; break; //CODESIZE
-			case 0x39: return 1; break; //CODECOPY
-			case 0x3a: return 1; break; //GASPRICE
-			case 0x3b: return 1; break; //EXTCODESIZE
-			case 0x3c: return 1; break; //EXTCODECOPY
-			case 0x40: return 1; break; //BLOCKHASH
-			case 0x41: return 1; break; //COINBASE
-			case 0x42: return 1; break; //TIMESTAMP
-			case 0x43: return 1; break; //NUMBER
-			case 0x44: return 1; break; //DIFFICULTY
-			case 0x45: return 1; break; //GASLIMIT
-			case 0x50: return 1; break; //POP
-			case 0x51: return 1; break; //MLOAD
-			case 0x52: return 1; break; //MSTORE
-			case 0x53: return 1; break; //MSTORE8
-			case 0x54: return 1; break; //SLOAD
-			case 0x55: return 1; break; //SSTORE
-			case 0x56: return 1; break; //JUMP
-			case 0x57: return 1; break; //JUMPI
-			case 0x58: return 1; break; //PC
-			case 0x59: return 1; break; //MSIZE
-			case 0x5a: return 1; break; //GAS
-			case 0x5b: return 1; break; //JUMPDEST
+//
 			case 0x60:
 				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
 				
@@ -566,6 +525,7 @@ class Stack extends Box
 				var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //SWAP16
+///
 			case 0xa0:
 				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
 				array_unshift($this->aaStack, 0);
@@ -596,13 +556,58 @@ class Stack extends Box
 				//var_dump(implode("::", $this->aaStack));
 				return true; 
 			break; //LOG4
+///
+			case 0x20:
+				$a_e = array_splice($this->aaStack, 0, $this->iDelta);
+				$s_sha3 = hash('sha3-256', $a_e[1]);
+				array_unshift($this->aaStack, $s_sha3);
+				var_dump(implode("::", $this->aaStack));
+				return true;
+			break; //SHA3
+			case 0x30:
+
+				var_dump(implode("::", $this->aaStack));
+				return true;
+			break; //ADDRESS
+			case 0x31: return 1; break; //BALANCE
+			case 0x32: return 1; break; //ORIGIN
+			case 0x33: return 1; break; //CALLER
+			case 0x34: return 1; break; //CALLVALUE
+			case 0x35: return 1; break; //CALLDATALOAD
+			case 0x36: return 1; break; //CALLDATASIZE
+			case 0x37: return 1; break; //CALLDATACOPY
+			case 0x38: return 1; break; //CODESIZE
+			case 0x39: return 1; break; //CODECOPY
+			case 0x3a: return 1; break; //GASPRICE
+			case 0x3b: return 1; break; //EXTCODESIZE
+			case 0x3c: return 1; break; //EXTCODECOPY
+			case 0x40: return 1; break; //BLOCKHASH
+			case 0x41: return 1; break; //COINBASE
+			case 0x42: return 1; break; //TIMESTAMP
+			case 0x43: return 1; break; //NUMBER
+			case 0x44: return 1; break; //DIFFICULTY
+			case 0x45: return 1; break; //GASLIMIT
+			case 0x50: return 1; break; //POP
+			case 0x51: return 1; break; //MLOAD
+			case 0x52: return 1; break; //MSTORE
+			case 0x53: return 1; break; //MSTORE8
+			case 0x54: return 1; break; //SLOAD
+			case 0x55: return 1; break; //SSTORE
+			case 0x56: return 1; break; //JUMP
+			case 0x57: return 1; break; //JUMPI
+			case 0x58: return 1; break; //PC
+			case 0x59: return 1; break; //MSIZE
+			case 0x5a: return 1; break; //GAS
+			case 0x5b: return 1; break; //JUMPDEST
+				
 			case 0xf0: return 1; break; //CREATE
 			case 0xf1: return 1; break; //CALL
 			case 0xf2: return 1; break; //CALLCODE
 			case 0xf3: return 1; break; //RETURN
 			case 0xf4: return 1; break; //DELEGATECALL
-			//0xfe_jj11_INVALID_s_NaN_s_Designated invalid instruction
+			case 0xfe: return 1; break; //INVALID
 			case 0xff: return 1; break; //SELFDESTRUCT
+///
 			default: return true; break;
 		}
 		return true;
