@@ -9,30 +9,18 @@ class Stack extends Box
 	public $i_sp; //stack pointer
 	public $aaStack;
 	private $a_e;
-	private $aArguments;
 		
 	public function __construct () {
 		$this->i_sp = 0;
 		$this->aaStack = array();
-		$this->aArguments = array();
 		$this->iDelta = 0;
 	}
 
 	public function delta_set($iDelta) {
 		$this->iDelta = $iDelta;
 	}
-	
-	public function arguments_get() :array {//$i_k = null, $aArguments = null): int {
-		//$i_kLeft = null;
-		return $this->aArguments;
-	}
-		
-	public function arguments_set($aArguments) {
-		//$i_kLeft = null;
-		$this->aArguments = $aArguments;
-	}
-	
-	public function positioning($i_k = null, $sHex = null) {
+
+	public function positioning($i_k = null, $sHex = null, $aArguments = null) {
 		switch ($sHex) {
 			case 0x00: return 1; break; //STOP
 			case 0x01:
@@ -217,133 +205,133 @@ class Stack extends Box
 			break; //SAR 
 //
 			case 0x60:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				
 				var_dump(count($this->aaStack),implode("::", $this->aaStack));
 				return true; 
 			break; //PUSH1
 			case 0x61:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH2
 			case 0x62:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH3
 			case 0x63:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH4
 			case 0x64:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH5
 			case 0x65:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH6
 			case 0x66:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH7
 			case 0x67:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH8
 			case 0x68:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH9
 			case 0x69:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH10
 			case 0x6a:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH11
 			case 0x6b:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH12
 			case 0x6c:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH13
 			case 0x6d:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH14
 			case 0x6e:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH15
 			case 0x6f:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH16
 			case 0x70:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH17
 			case 0x71:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH18
 			case 0x72:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH19
 			case 0x73:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH20
 			case 0x74:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH21
 			case 0x75:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH22
 			case 0x76:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH23
 			case 0x77:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH24
 			case 0x78:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH25
 			case 0x79:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH26
 			case 0x7a:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH27
 			case 0x7b:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH28
 			case 0x7c:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH29
 			case 0x7d:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH30
 			case 0x7e:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH31
 			case 0x7f:
-				foreach ($this->aArguments as $aArgument) array_unshift($this->aaStack, $aArgument);
+				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 				return true; 
 			break; //PUSH32
 			case 0x80:
