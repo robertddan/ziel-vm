@@ -78,6 +78,8 @@ var_dump(pow(2, 8));
 var_dump(pow(2, 9));
 var_dump(pow(2, 10));
 var_dump(pow(2, 11));
+var_dump(pow(2, 160));
+var_dump(pow(2, 160));
 
 
 /*

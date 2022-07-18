@@ -194,7 +194,6 @@ class Box extends Vm
 			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			
-			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			$this->oStack->arguments_set($this->oOpcodes->aArguments);
 
 
@@ -209,7 +208,7 @@ var_dump(array(
 
 			$this->oStack->delta_set($this->oOpcodes->aaOpcodes[$sHex][1]);
 			if (!$this->oStack->positioning($k, $sHex)) die('oStack->positioning');
-			if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
+			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
 			#if (!$this->oState->positioning($k, $sHex)) die('oState->positioning');
 
 #var_dump($this->oOpcodes->aArguments);
