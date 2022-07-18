@@ -18,7 +18,11 @@ class Opcodes extends Box
 		
 		$this->set_opcodes();
 	}
-	
+/*
+	public function __construct () {
+
+	}
+*/
 	public function hex_set ($aHex = null) :bool {
 		$this->aHex = $aHex;
 		return true;
@@ -28,12 +32,12 @@ class Opcodes extends Box
 		$i_k = $i_k + 1;
 		if (!isset($this->aaOpcodes[$sHex])) { $this->aArguments = array(); return true; }
 		$aArguments = array_slice($this->aHex, $i_k, $this->aaOpcodes[$sHex][0]);
-		
-		
+		$this->aArguments = $aArguments;
+/*
 		$this->aArguments = array_map(function($sHex) {
 			return pack("H*", $sHex);
 		}, $aArguments);
-		
+*/		
 		return true;
 	}
 

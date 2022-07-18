@@ -32,7 +32,11 @@ class State extends Box
 			"Iw" => "",
 		);
 	}
-	
+/*
+	public function __construct () {
+
+	}
+*/
 	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		switch ($sHex) {
 			default: return true; break;

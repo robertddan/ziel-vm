@@ -11,7 +11,11 @@ class Storage extends Box
 	public function __construct () {
 		$this->aaStorage = array();
 	}
-	
+/*
+	public function __construct () {
+
+	}
+*/
 	public function test() {
 		return  "Hello woorld Storage";
 	}

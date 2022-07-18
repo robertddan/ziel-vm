@@ -13,7 +13,11 @@ class Stack extends Box
 		$this->i_sp = 0;
 		$this->aaStack = array();
 	}
+/*
+	public function __construct () {
 
+	}
+*/
 	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		switch ($sHex) {
 			case 0x00: return 1; break; //STOP
@@ -200,8 +204,7 @@ class Stack extends Box
 //
 			case 0x60:
 				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
-				
-				var_dump(count($this->aaStack),implode("::", $this->aaStack));
+
 				return true; 
 			break; //PUSH1
 			case 0x61:

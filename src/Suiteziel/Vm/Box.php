@@ -32,8 +32,8 @@ class Box extends Vm
 	}
 
 	public function implement () :bool {
-		//if (!$this->set_hex() && empty($this->aHex)) die('Box->implement');
-		
+		if (!$this->set_hex() && empty($this->aHex)) die('Box->implement');
+/*
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
 
@@ -183,7 +183,7 @@ class Box extends Vm
 			//0x60, 313030, 0xfe, //INVALID
 			//0x60, 313030, 0xff, //SELFDESTRUCT
 		);
-		
+*/
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 		
 		$i_opargs = 0;
@@ -194,7 +194,11 @@ class Box extends Vm
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			$aArguments = $this->oOpcodes->aArguments;
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
-
+/*
+var_dump(array(
+	$k, $sHex, $aArguments, $iDelta
+));
+*/
 			if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
 			#if (!$this->oState->positioning($k, $sHex)) die('oState->positioning');

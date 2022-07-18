@@ -11,7 +11,11 @@ class Memory extends Box
 	public function __construct () {
 		$this->aaMemory = array();
 	}
-	
+/*
+	public function __construct () {
+
+	}
+*/
 	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		switch ($sHex) {
 			case 0x51:
