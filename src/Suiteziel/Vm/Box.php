@@ -196,6 +196,7 @@ class Box extends Vm
 			$aArguments = $this->oOpcodes->aArguments;
 
 			$this->oStack->delta_set($this->oOpcodes->aaOpcodes[$sHex][1]);
+			
 			if (!$this->oStack->positioning($k, $sHex, $aArguments)) die('oStack->positioning');
 			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
 			#if (!$this->oState->positioning($k, $sHex)) die('oState->positioning');
