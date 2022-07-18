@@ -31,30 +31,7 @@ var_dump(base_convert('808080808080808080808080808080808080808080808080808080808
 var_dump(strlen('1000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000'));
 
 /*
-function base32_encode($d)
-{
-list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
 
-foreach(str_split($d) as $c)
-		$b = $b . sprintf("%08b", ord($c));
-
-foreach(str_split($b, 5) as $c)
-		$r = $r . $t[bindec($c)];
-
-return($r);
-}
-function base32_decode($d)
-{
-list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
-
-foreach(str_split($d) as $c)
-	$b = $b . sprintf("%05b", strpos($t, $c));
-
-foreach(str_split($b, 8) as $c)
-	$r = $r . chr(bindec($c));
-
-return($r);
-}
 var_dump(base32_encode(8080808080808080808080808080808080808080808080808080808080808080));
 $32bytes = base32_encode(8080808080808080808080808080808080808080808080808080808080808080);
 $16bytes = "";
@@ -71,9 +48,8 @@ string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXW
 */
 
 // encode 32 bytes
-list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
 $d = "The quick brown fox jumps over the lazy dog";
-
+$d = "8080808080808080808080808080808080808080808080808080808080808080";
 
 var_dump(decode_32bytes(encode_32bytes ($d)));
 // decode 32 bytes
@@ -81,10 +57,7 @@ var_dump(decode_32bytes(encode_32bytes ($d)));
 string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH"
 */
 
-var_dump($r);
-list($t, $b, $r) = array("","","");
-$d = "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH";
-list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
+
 
 function encode_32bytes ($d) {
 	list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
