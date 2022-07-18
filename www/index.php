@@ -27,11 +27,10 @@ var_dump(implode(" ", $oDiamonds->aHex));
 
 
 var_dump(base_convert('8080808080808080808080808080808080808080808080808080808080808080', 16, 9));
-
 var_dump(strlen('1000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000'));
 
-/*
 
+/*
 var_dump(base32_encode(8080808080808080808080808080808080808080808080808080808080808080));
 $32bytes = base32_encode(8080808080808080808080808080808080808080808080808080808080808080);
 $16bytes = "";
@@ -41,36 +40,27 @@ var_dump($16bytes);
 
 //var_dump(base_convert($16bytes, 16, 10));
 //base_convert('8080808080808080808080808080808080808080808080808080808080808080', 16, 32)
-/*
- PHP Warning:  declare(encoding=...) ignored because Zend multibyte feature is turned off by settings in /workspace/CORDS/ziel/www/index.php on line 2
 
+/*
+
+PHP Warning:  declare(encoding=...) ignored because Zend multibyte feature is turned off by settings in /workspace/CORDS/ziel/www/index.php on line 2
 string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH"
+
 */
 
 // encode 32 bytes
 $d = "The quick brown fox jumps over the lazy dog";
 $d = "8080808080808080808080808080808080808080808080808080808080808080";
 
-var_dump(decode_32bytes(encode_32bytes ($d)));
+var_dump(decode_32bytes(encode_32bytes($d)));
 // decode 32 bytes
+
 /*
 string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH"
 */
 
 
 
-function encode_32bytes ($d) {
-	list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
-	foreach(str_split($d) as $c) $b = $b . sprintf("%08b", ord($c));
-	foreach(str_split($b, 5) as $c) $r = $r . $t[bindec($c)];
-	return $r;
-}
-function decode_32bytes ($d) {
-	list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
-	foreach(str_split($d) as $c) $b = $b . sprintf("%05b", strpos($t, $c));
-	foreach(str_split($b, 8) as $c) $r = $r . chr(bindec($c));
-	return $r;
-}
 
 
 var_dump('bits');

@@ -2,16 +2,16 @@
 namespace App\Suiteziel\Vm;
 
 
+use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\Vm\Memory;
 use App\Suiteziel\Vm\Stack;
-use App\Suiteziel\Org\Diamonds;
+use App\Suiteziel\Vm\State;
 
 class Box extends Vm
 {
 	public $aHex;
-	public $i_pc; //program counter
 	
 	public $oOpcodes;
 	public $oMemory;
@@ -22,6 +22,7 @@ class Box extends Vm
 		$this->oOpcodes = new Opcodes();
 		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
+		$this->oState = new State();
 	}
 
 	public function set_hex() :bool {
@@ -29,10 +30,9 @@ class Box extends Vm
 		return true;
 	}
 
-	public function implement (): bool {
+	public function implement () :bool {
 		//if (!$this->set_hex() && empty($this->aHex)) die('Box->implement');
 		
-
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
 
@@ -182,7 +182,6 @@ class Box extends Vm
 			//0x60, 313030, 0xfe, //INVALID
 			//0x60, 313030, 0xff, //SELFDESTRUCT
 		);
-
 		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 		
@@ -195,7 +194,10 @@ class Box extends Vm
 			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			
+			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			$this->oStack->arguments_set($this->oOpcodes->aArguments);
+
+
 /*
 var_dump(array(
 	'$sHex',
@@ -204,9 +206,11 @@ var_dump(array(
 	$this->oOpcodes->aArguments
 ));
 */
+
 			$this->oStack->delta_set($this->oOpcodes->aaOpcodes[$sHex][1]);
-			
 			if (!$this->oStack->positioning($k, $sHex)) die('oStack->positioning');
+			if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
+			#if (!$this->oState->positioning($k, $sHex)) die('oState->positioning');
 
 #var_dump($this->oOpcodes->aArguments);
 			

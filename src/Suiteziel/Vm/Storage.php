@@ -16,5 +16,12 @@ class Storage extends Box
 		return  "Hello woorld Storage";
 	}
 }
-
+/*
+type Account struct {
+	Nonce uint64
+	Balance *big.Int
+	Root common.Hash // merkle root of the storage trie
+	CodeHash []byte
+}
+*/
 ?>

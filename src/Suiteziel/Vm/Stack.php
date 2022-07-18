@@ -33,8 +33,6 @@ class Stack extends Box
 	}
 	
 	public function positioning($i_k = null, $sHex = null) {
-
-		
 		switch ($sHex) {
 			case 0x00: return 1; break; //STOP
 			case 0x01:
@@ -588,9 +586,7 @@ class Stack extends Box
 			case 0x44: return 1; break; //DIFFICULTY
 			case 0x45: return 1; break; //GASLIMIT
 			case 0x50: return 1; break; //POP
-			case 0x51: return 1; break; //MLOAD
-			case 0x52: return 1; break; //MSTORE
-			case 0x53: return 1; break; //MSTORE8
+
 			case 0x54: return 1; break; //SLOAD
 			case 0x55: return 1; break; //SSTORE
 			case 0x56: return 1; break; //JUMP
