@@ -62,7 +62,31 @@ string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXW
 */
 
 
+$config = [
+    'private_key_type' => OPENSSL_KEYTYPE_EC,
+    'curve_name' => 'secp256k1'
+];
 
+$res = openssl_pkey_new($config);
+
+if (!$res) {
+    echo 'ERROR: Fail to generate private key. -> ' . openssl_error_string();
+    exit;
+}
+
+// Generate Private Key
+openssl_pkey_export($res, $priv_key);
+
+// Get The Public Key
+$key_detail = openssl_pkey_get_details($res);
+$pub_key = $key_detail["key"];
+
+var_dump(array(
+$pub_key,
+$res,
+$key_detail,
+	
+));
 
 
 var_dump('bits');
