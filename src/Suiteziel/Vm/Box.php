@@ -213,7 +213,7 @@ var_dump(array(
 			#if (!$this->oState->positioning($k, $sHex)) die('oState->positioning');
 
 #var_dump($this->oOpcodes->aArguments);
-			
+
 			$i_opargs = count($this->oOpcodes->aArguments);
 			
 		}

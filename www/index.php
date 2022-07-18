@@ -6,9 +6,11 @@ require __DIR__.'/../config/bootstrap.php';
 
 echo '<pre>';
 
+use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 
+$oUtils = new Utils();
 $oDiamonds = new Diamonds();
 $oVm = new Vm();
 
@@ -52,7 +54,7 @@ string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXW
 $d = "The quick brown fox jumps over the lazy dog";
 $d = "8080808080808080808080808080808080808080808080808080808080808080";
 
-var_dump(decode_32bytes(encode_32bytes($d)));
+var_dump($oUtils->decode_32bytes($oUtils->encode_32bytes($d)));
 // decode 32 bytes
 
 /*

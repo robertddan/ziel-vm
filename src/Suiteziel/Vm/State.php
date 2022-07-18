@@ -9,7 +9,7 @@ class State extends Box
 	public $aaState;
 
 	public function __construct () {
-		$this->$aaState = array();
+		$this->aaState = array();
 	}
 	
 	public function positioning($i_k = null, $sHex = null) {
