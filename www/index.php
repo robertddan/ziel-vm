@@ -67,23 +67,39 @@ var_dump($16bytes);
 /*
  PHP Warning:  declare(encoding=...) ignored because Zend multibyte feature is turned off by settings in /workspace/CORDS/ziel/www/index.php on line 2
 
-string(52) "IFBEGRCFIZDUQSKKJNGE2TSPKBIVEU2UKVLFOWCZLIZDGNBVGY3B"
+string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH"
 */
-$b = $r = "";
-$d = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-    foreach(str_split($d) as $c)
-        $b = $b . sprintf("%08b", ord($c));
-var_dump($b);
 
-    foreach(str_split($b, 5) as $c)
-			//var_dump($d[bindec($c)]);
-      $r = $r . $d[bindec($c)];
+// encode 32 bytes
+list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
+$d = "The quick brown fox jumps over the lazy dog";
+
+
+var_dump(decode_32bytes(encode_32bytes ($d)));
+// decode 32 bytes
+/*
+string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH"
+*/
 
 var_dump($r);
+list($t, $b, $r) = array("","","");
+$d = "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH";
 list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
 
-foreach(str_split($d) as $c)
-	$b = $b . sprintf("%05b", strpos($t, $c));
+function encode_32bytes ($d) {
+	list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
+	foreach(str_split($d) as $c) $b = $b . sprintf("%08b", ord($c));
+	foreach(str_split($b, 5) as $c) $r = $r . $t[bindec($c)];
+	return $r;
+}
+function decode_32bytes ($d) {
+	list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
+	foreach(str_split($d) as $c) $b = $b . sprintf("%05b", strpos($t, $c));
+	foreach(str_split($b, 8) as $c) $r = $r . chr(bindec($c));
+	return $r;
+}
+
+
 var_dump('bits');
 var_dump(pow(2, 0));
 var_dump(pow(2, 1));
