@@ -6,7 +6,6 @@ require __DIR__.'/../config/bootstrap.php';
 
 echo '<pre>';
 
-use App\Suiteziel\Org\Database;
 use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;

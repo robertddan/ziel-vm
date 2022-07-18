@@ -39,6 +39,7 @@ o_db-new() = a
 o_db-write() = b
 
 
+use App\Suiteziel\Org\Database;
 $oDatabase = new Database();
 $aData = $oDatabase->new();
 var_dump($aData);
