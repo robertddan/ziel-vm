@@ -13,18 +13,7 @@ use App\Suiteziel\Vm;
 
 $oUtils = new Utils();
 $oDiamonds = new Diamonds();
-$oDatabase = new Database();
 $oVm = new Vm();
-
-
-$aData = $oDatabase->new();
-var_dump($aData);
-$aData['file'] = '20220718171223000000.json';
-$aData['data'] = array('Hello Database!');
-var_dump($oDatabase->write($aData));
-
-var_dump($oDatabase->set_filepath('20220718171223000000.json'));
-var_dump($oDatabase->read());
 
 
 $oDiamonds->iCursor = 1; // skip compilation

@@ -38,6 +38,18 @@ new o_db
 o_db-new() = a
 o_db-write() = b
 
+
+$oDatabase = new Database();
+$aData = $oDatabase->new();
+var_dump($aData);
+$aData['file'] = '20220718171223000000.json';
+$aData['data'] = array('Hello Database!');
+var_dump($oDatabase->write($aData));
+
+var_dump($oDatabase->set_filepath('20220718171223000000.json'));
+var_dump($oDatabase->read());
+
+
 */
 
 
