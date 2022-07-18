@@ -6,13 +6,22 @@ require __DIR__.'/../config/bootstrap.php';
 
 echo '<pre>';
 
+use App\Suiteziel\Org\Database;
 use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 
 $oUtils = new Utils();
 $oDiamonds = new Diamonds();
+$oDatabase = new Database();
 $oVm = new Vm();
+
+//var_dump($oDatabase->set_path());
+
+$aData = $oDatabase->new();
+var_dump($aData);
+$aData['data'] = array('Hello Database');
+var_dump($oDatabase->write($aData));
 
 $oDiamonds->iCursor = 1; // skip compilation
 $oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
