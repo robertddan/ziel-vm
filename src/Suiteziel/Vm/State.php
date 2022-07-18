@@ -33,7 +33,7 @@ class State extends Box
 		);
 	}
 	
-	public function positioning($i_k = null, $sHex = null) {
+	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		switch ($sHex) {
 			default: return true; break;
 		}

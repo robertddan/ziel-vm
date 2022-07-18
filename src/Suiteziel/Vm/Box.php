@@ -11,11 +11,12 @@ use App\Suiteziel\Vm\State;
 
 class Box extends Vm
 {
+	public $i_pc;
 	public $aHex;
-	
 	public $oOpcodes;
 	public $oMemory;
 	public $oStack;
+	public $oState;
 
 	function __construct() {
 		$this->i_pc = 0;
@@ -187,10 +188,8 @@ class Box extends Vm
 		
 		$i_opargs = 0;
 		foreach ($this->aHex as $k => $sHex) {
-			if ($i_opargs !== 0) {
-				$i_opargs--;
-				continue; 
-			}
+			if ($i_opargs !== 0) { $i_opargs--; continue; }
+			
 			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			$aArguments = $this->oOpcodes->aArguments;
