@@ -16,12 +16,16 @@ $oDiamonds = new Diamonds();
 $oDatabase = new Database();
 $oVm = new Vm();
 
-//var_dump($oDatabase->set_path());
 
 $aData = $oDatabase->new();
 var_dump($aData);
-$aData['data'] = array('Hello Database');
+$aData['file'] = '20220718171223000000.json';
+$aData['data'] = array('Hello Database!');
 var_dump($oDatabase->write($aData));
+
+var_dump($oDatabase->set_filepath('20220718171223000000.json'));
+var_dump($oDatabase->read());
+
 
 $oDiamonds->iCursor = 1; // skip compilation
 $oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
