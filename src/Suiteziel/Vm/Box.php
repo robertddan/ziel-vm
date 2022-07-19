@@ -123,7 +123,7 @@ class Box extends Vm
 			0x60, 303031, 0x86, //DUP7
 			0x60, 303031, 0x87, //DUP8
 			0x60, 313030, 0x88, //DUP9
-
+			
 			0x60, 313030, 0x89, //DUP10
 			0x60, 313030, 0x8a, //DUP11
 			0x60, 313030, 0x8b, //DUP12
@@ -154,7 +154,10 @@ class Box extends Vm
 			0x60, 313030, 0xa2, //LOG2
 			0x60, 313030, 0xa3, //LOG3
 			0x60, 313030, 0xa4, //LOG4
-	
+			
+			0x60, 313030, 0x56, //JUMP
+			//0x60, 313030, 0x57, //JUMPI
+			
 			//0x60, 313030, 0x30, //ADDRESS
 			//0x60, 313030, 0x31, //BALANCE
 			//0x60, 313030, 0x32, //ORIGIN
@@ -181,13 +184,11 @@ class Box extends Vm
 			//0x60, 313030, 0x53, //MSTORE8
 			//0x60, 313030, 0x54, //SLOAD
 			//0x60, 313030, 0x55, //SSTORE
-			//0x60, 313030, 0x56, //JUMP
-			//0x60, 313030, 0x57, //JUMPI
 			//0x60, 313030, 0x58, //PC
 			//0x60, 313030, 0x59, //MSIZE
 			//0x60, 313030, 0x5a, //GAS
 			//0x60, 313030, 0x5b, //JUMPDEST
-
+			
 			//0x60, 313030, 0xf0, //CREATE
 			//0x60, 313030, 0xf1, //CALL
 			//0x60, 313030, 0xf2, //CALLCODE
@@ -205,17 +206,29 @@ class Box extends Vm
 			
 			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
+			
 			$aArguments = $this->oOpcodes->aArguments;
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
+
 /*
 var_dump(array(
 	$k, $sHex, $aArguments, $iDelta
 ));
 */
-			if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
+$aa_p = array(
+	$k, 
+	$sHex,
+	$aArguments,
+	$iDelta,
+	$this->i_pc
+);
+
+			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
+	
+			//if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
 			#if (!$this->oState->positioning($k, $sHex)) die('oState->positioning');
-
+			
 			$i_opargs = count($aArguments);
 			
 		}

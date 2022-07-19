@@ -18,7 +18,8 @@ class Stack extends Box
 
 	}
 */
-	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+	public function positioning($aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+		list($i_k, $sHex, $aArguments, $iDelta, $i_pc) = $aa_p;
 		switch ($sHex) {
 			case 0x00: return 1; break; //STOP
 			case 0x01:
