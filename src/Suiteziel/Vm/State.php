@@ -32,15 +32,22 @@ class State extends Box
 			"Iw" => "",
 		);
 	}
-	
-/*
-	public function __construct () {
 
-	}
-*/
-	
-	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+		list($i_k, $sHex, $aArguments, $iDelta, &$i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
+			case 0x56:
+				$i_pc = $i_pc + 100;
+				return true; 
+			break; //JUMP
+			case 0x57:
+				$i_pc = $i_pc + 100;
+				return true; 
+			break; //JUMPI
+			case 0x58:
+				array_unshift($aaStack, $i_pc);
+				return true; 
+			break; //PC
 			default: return true; break;
 		}
 		return true;

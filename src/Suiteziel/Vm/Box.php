@@ -51,7 +51,7 @@ class Box extends Vm
 			0x60, 32, 0x60, 33, 0x01, //ADD
 			0x60, 313030, 0x02, //MUL
 			0x60, 363030, 0x03, //SUB
-
+/*
 			0x60, 36303030, 0x04, //DIV
 			0x60, 36303030, 0x05, //SDIV
 			0x60, 3130, 0x06, //MOD
@@ -154,9 +154,11 @@ class Box extends Vm
 			0x60, 313030, 0xa2, //LOG2
 			0x60, 313030, 0xa3, //LOG3
 			0x60, 313030, 0xa4, //LOG4
-			
+*/
 			0x60, 313030, 0x56, //JUMP
 			//0x60, 313030, 0x57, //JUMPI
+			
+			0x60, 313030, 0x58, //PC
 			
 			//0x60, 313030, 0x30, //ADDRESS
 			//0x60, 313030, 0x31, //BALANCE
@@ -184,7 +186,6 @@ class Box extends Vm
 			//0x60, 313030, 0x53, //MSTORE8
 			//0x60, 313030, 0x54, //SLOAD
 			//0x60, 313030, 0x55, //SSTORE
-			//0x60, 313030, 0x58, //PC
 			//0x60, 313030, 0x59, //MSIZE
 			//0x60, 313030, 0x5a, //GAS
 			//0x60, 313030, 0x5b, //JUMPDEST
@@ -211,25 +212,24 @@ class Box extends Vm
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
 
 /*
-var_dump(array(
-	$k, $sHex, $aArguments, $iDelta
-));
+s[0] if s[1] 6= 0
 */
 $aa_p = array(
 	$k, 
 	$sHex,
 	$aArguments,
 	$iDelta,
-	$this->i_pc
+	$this->i_pc,
+	$this->oStack->aaStack,
 );
 
 			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
-	
 			//if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
-			#if (!$this->oState->positioning($k, $sHex)) die('oState->positioning');
-			
+			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
+
 			$i_opargs = count($aArguments);
+			$this->i_pc = $k;
 			
 		}
 		
