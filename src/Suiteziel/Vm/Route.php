@@ -218,6 +218,7 @@ class Route extends Vm
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			
 			$aArguments = $this->oOpcodes->aArguments;
+var_dump(count($aArguments));
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
 
 /*
@@ -235,7 +236,7 @@ $aa_p = array(
 			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			
 			
-			$aa_p[4] = $aArguments = $this->oStack->aaStack;
+			$aa_p[4] = $this->oStack->aaStack;
 			
 			//if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
