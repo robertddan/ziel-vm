@@ -211,10 +211,7 @@ $this->oStack->aaStack,
 			break; //SAR 
 //
 			case 0x60:
-var_dump($this->aaStack);
 				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
-
-var_dump($this->aaStack);
 				return true; 
 			break; //PUSH1
 			case 0x61:

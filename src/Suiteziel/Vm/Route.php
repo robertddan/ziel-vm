@@ -218,7 +218,7 @@ class Route extends Vm
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			
 			$aArguments = $this->oOpcodes->aArguments;
-var_dump(count($aArguments));
+
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
 
 /*
