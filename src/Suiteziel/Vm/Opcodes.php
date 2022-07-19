@@ -2,9 +2,9 @@
 namespace App\Suiteziel\Vm;
 
 
-use App\Suiteziel\Vm\Box;
+use App\Suiteziel\Vm\Route;
 
-class Opcodes extends Box
+class Opcodes extends Route
 {
 	
 	public $aHex;

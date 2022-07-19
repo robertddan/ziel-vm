@@ -9,7 +9,7 @@ use App\Suiteziel\Vm\Memory;
 use App\Suiteziel\Vm\Stack;
 use App\Suiteziel\Vm\State;
 
-class Box extends Vm
+class Route extends Vm
 {
 	public $i_pc;
 	public $aHex;
@@ -43,15 +43,19 @@ class Box extends Vm
 		$this->i_sp = 0;
 */
 	public function implement () :bool {
-		//if (!$this->set_hex() && empty($this->aHex)) die('Box->implement');
+		//if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
 
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
 
-			0x60, 32, 0x60, 33, 0x01, //ADD
-			0x60, 313030, 0x02, //MUL
-			0x60, 363030, 0x03, //SUB
+			0x60, 32, //PUSH1
+			0x60, 33, //PUSH1
+			0x01, //ADD
+			0x60, 313030, //PUSH1
+			0x02, //MUL
 /*
+			0x60, 363030, 0x03, //SUB
+
 			0x60, 36303030, 0x04, //DIV
 			0x60, 36303030, 0x05, //SDIV
 			0x60, 3130, 0x06, //MOD
@@ -155,10 +159,13 @@ class Box extends Vm
 			0x60, 313030, 0xa3, //LOG3
 			0x60, 313030, 0xa4, //LOG4
 */
-			0x60, 313030, 0x56, //JUMP
+			0x60, 313030, //PUSH1
+			0x58, //PC
+			
+			//0x60, 32, //PUSH1
+			//0x60, 313030, 0x56, //JUMP
 			//0x60, 313030, 0x57, //JUMPI
 			
-			0x60, 313030, 0x58, //PC
 			
 			//0x60, 313030, 0x30, //ADDRESS
 			//0x60, 313030, 0x31, //BALANCE
@@ -203,6 +210,8 @@ class Box extends Vm
 		
 		$i_opargs = 0;
 		foreach ($this->aHex as $k => $sHex) {
+			$this->i_pc = $k;
+			
 			if ($i_opargs !== 0) { $i_opargs--; continue; }
 			
 			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate'); // view
@@ -214,8 +223,8 @@ class Box extends Vm
 /*
 s[0] if s[1] 6= 0
 */
+
 $aa_p = array(
-	$k, 
 	$sHex,
 	$aArguments,
 	$iDelta,
@@ -224,12 +233,15 @@ $aa_p = array(
 );
 
 			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
+			
+			
+			$aa_p[4] = $aArguments = $this->oStack->aaStack;
+			
 			//if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 
 			$i_opargs = count($aArguments);
-			$this->i_pc = $k;
 			
 		}
 		

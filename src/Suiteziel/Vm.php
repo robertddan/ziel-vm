@@ -2,22 +2,22 @@
 namespace App\Suiteziel;
 
 
-use App\Suiteziel\Vm\Box;
+use App\Suiteziel\Vm\Route;
 
 class Vm
 {
 
-	public $oBox;
+	public $oRoute;
 	
 	public function __construct() {
 		
 		
-		$this->oBox = new Box();
+		$this->oRoute = new Route();
 	}
 	
 
 	public function run () {
-		if (!$this->oBox->implement()) die('oBox->implement');
+		if (!$this->oRoute->implement()) die('oRoute->implement');
 		
 		
 	}

@@ -2,9 +2,9 @@
 namespace App\Suiteziel\Vm;
 
 
-use App\Suiteziel\Vm\Box;
+use App\Suiteziel\Vm\Route;
 
-class Stack extends Box
+class Stack extends Route
 { 
 	public $i_sp; //stack pointer
 	public $aaStack;
@@ -17,9 +17,16 @@ class Stack extends Box
 	public function __construct () {
 
 	}
+	
+$sHex,
+$aArguments,
+$iDelta,
+$this->i_pc,
+$this->oStack->aaStack,
 */
-	public function positioning($aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
-		list($i_k, $sHex, $aArguments, $iDelta, $i_pc) = $aa_p;
+	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
+
 		switch ($sHex) {
 			case 0x00: return 1; break; //STOP
 			case 0x01:
@@ -204,8 +211,10 @@ class Stack extends Box
 			break; //SAR 
 //
 			case 0x60:
+var_dump($this->aaStack);
 				foreach ($aArguments as $iArgument) array_unshift($this->aaStack, $iArgument);
 
+var_dump($this->aaStack);
 				return true; 
 			break; //PUSH1
 			case 0x61:
