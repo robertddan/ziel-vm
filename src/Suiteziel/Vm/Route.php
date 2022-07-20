@@ -48,15 +48,15 @@ class Route extends Vm
 
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
-
+/*
 			0x60, 32, //PUSH1
 			0x60, 33, //PUSH1
 			0x01, //ADD
 			0x62, 31, 30, 30, //PUSH1
 			0x02, //MUL
-
+			
 			0x62, 36, 30, 30, 0x03, //SUB
-
+			
 			0x63, 36, 30, 30, 30, 0x04, //DIV
 			0x63, 36, 30, 30, 30, 0x05, //SDIV
 			0x61, 31, 30, 0x06, //MOD
@@ -82,7 +82,7 @@ class Route extends Vm
 			0x62, 31, 30, 30, 0x1d, //SAR 
 			
 			0x62, 31, 30, 30, 0x20, //SHA3
-
+			
 			0x60, 54, //PUSH1
 			0x61, 54, 68, //PUSH2
 			0x62, 54, 68, 65, //PUSH3
@@ -157,14 +157,13 @@ class Route extends Vm
 			0x62, 31, 30, 30, 0xa2, //LOG2
 			0x62, 31, 30, 30, 0xa3, //LOG3
 			0x62, 31, 30, 30, 0xa4, //LOG4
-
-			0x62, 31, 30, 30, //PUSH1
+*/
+			0x62, 31, 31, 31, //PUSH3
 			0x58, //PC
+			//0x62, 31, 31, 31, //PUSH3
+			//0x56, //JUMP
 			
-			//0x60, 32, //PUSH1
-			//0x62, 31, 30, 30, 0x56, //JUMP
 			//0x62, 31, 30, 30, 0x57, //JUMPI
-			
 			
 			//0x62, 31, 30, 30, 0x30, //ADDRESS
 			//0x62, 31, 30, 30, 0x31, //BALANCE
@@ -217,7 +216,6 @@ class Route extends Vm
 			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
 			
 			$aArguments = $this->oOpcodes->aArguments;
-
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
 
 /*
@@ -235,14 +233,17 @@ $aa_p = array(
 			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			
 			
-			$aa_p[4] = $this->oStack->aaStack;
-			
 			//if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 
-			$i_opargs = count($aArguments);
+			$this->oStack->aaStack = $aa_p[4];
+						
+			var_dump('$aa_p->$aa_p->$aa_p');
+			var_dump($aa_p);
 			
+			$i_opargs = count($aArguments);
+			/**/
 		}
 		
 		var_dump('$this->oStack->aaStack');
