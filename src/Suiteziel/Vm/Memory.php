@@ -15,6 +15,9 @@ class Memory extends Route
 	public function __construct () {
 
 	}
+	memory[offset:offset+32] = value 
+	memory[offset] = value & 0xFF 
+	value = memory[offset:offset+32]
 */
 	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		switch ($sHex) {
