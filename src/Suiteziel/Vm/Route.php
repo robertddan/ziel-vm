@@ -161,7 +161,7 @@ class Route extends Vm
 			0x56, //JUMP
 			//0x57, //JUMPI
 			//0x58, //PC
-
+*/
 			0x60, 32, //PUSH1
 			0x60, 36, //PUSH1
 			0x57, //JUMPI
@@ -169,7 +169,12 @@ class Route extends Vm
 			0x60, 38, //PUSH1
 			0x60, 38, //PUSH1
 			0x00, //STOP
-*/
+			
+			0x60, 32, //PUSH1
+			0x60, 33, //PUSH1
+			0x01, //ADD
+			0x62, 31, 30, 30, //PUSH1
+			0x02, //MUL
 			
 			//0x62, 31, 30, 30, 0x30, //ADDRESS
 			//0x62, 31, 30, 30, 0x31, //BALANCE
@@ -231,8 +236,7 @@ $aa_p = array(
 	$aArguments,
 	$iDelta,
 	$this->i_pc,
-	$this->oStack->aaStack,
-	count($this->aHex)
+	$this->oStack->aaStack
 );
 			
 			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$i, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
@@ -247,7 +251,7 @@ $aa_p = array(
 			
 			
 			//var_dump($this->oStack->aaStack);
-			if ( count($this->aHex) == $aa_p[3]) break;
+			if ($aa_p[3] == 1025) break;
 			$i_opargs = count($aArguments);
 			/**/
 		}
