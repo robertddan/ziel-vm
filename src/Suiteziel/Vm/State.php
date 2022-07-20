@@ -47,9 +47,8 @@ class State extends Route
 			case 0x57:
 				$a_e = array_slice($aaStack, 0, $iDelta);
 				if ($a_e[1] != 0) $i_pc = $a_e[0];
-				else $i_pc = $i_pc;// + 1;
-				
-				var_dump($a_e);
+				else $i_pc = $i_pc; // + 1;
+				//var_dump($a_e);
 			break; //JUMPI
 			case 0x58:
 				array_unshift($aaStack, $i_pc);
