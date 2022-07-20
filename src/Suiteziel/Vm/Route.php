@@ -158,12 +158,12 @@ class Route extends Vm
 			0x62, 31, 30, 30, 0xa3, //LOG3
 			0x62, 31, 30, 30, 0xa4, //LOG4
 */
-			0x62, 31, 31, 31, //PUSH3
+			0x60, 34, //PUSH3
 			0x58, //PC
 			0x56, //JUMP
-			0x57, //JUMPI
-			0x00, //STOP
+			//0x57, //JUMPI
 			0x62, 31, 31, 31, //PUSH3
+			0x00, //STOP
 			
 			
 			//0x62, 31, 30, 30, 0x30, //ADDRESS
@@ -206,15 +206,17 @@ class Route extends Vm
 		);
 		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
-		
+///return var_dump($this->aHex);
 		$i_opargs = 0;
-		foreach ($this->aHex as $k => $sHex) {
-			$this->i_pc = $k;
+		//foreach ($this->aHex as $k => $sHex) {
+		for ($i = 0; $i<=count($this->aHex); $i++) {
+			$this->i_pc = $i;
+			$sHex = $this->aHex[$i];
 			
 			if ($i_opargs !== 0) { $i_opargs--; continue; }
 			
-			if (!$this->oOpcodes->initiate($k, $sHex)) die('oOpcodes->initiate'); // view
-			if (!$this->oOpcodes->describe($k, $sHex)) die('oOpcodes->describe');
+			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
+			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
 			
 			$aArguments = $this->oOpcodes->aArguments;
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
@@ -228,13 +230,14 @@ $aa_p = array(
 	count($this->aHex)
 );
 			
-			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
+			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$i, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			
 			
-			//if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
-			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
+			//if (!$this->oStack->positioning($i, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
+			//if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 			
+			$i = $aa_p[3];
 			$this->oStack->aaStack = $aa_p[4];
 			var_dump($this->oStack->aaStack);
 			if ( count($this->aHex) == $aa_p[3]) break;
