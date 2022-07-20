@@ -160,7 +160,7 @@ class Route extends Vm
 */
 			0x62, 31, 31, 31, //PUSH3
 			0x58, //PC
-			//0x62, 31, 31, 31, //PUSH3
+			0x62, 31, 31, 31, //PUSH3
 			//0x56, //JUMP
 			
 			//0x62, 31, 30, 30, 0x57, //JUMPI
@@ -217,11 +217,7 @@ class Route extends Vm
 			
 			$aArguments = $this->oOpcodes->aArguments;
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
-
-/*
-s[0] if s[1] 6= 0
-*/
-
+			
 $aa_p = array(
 	$sHex,
 	$aArguments,
@@ -229,18 +225,16 @@ $aa_p = array(
 	$this->i_pc,
 	$this->oStack->aaStack,
 );
-
+			
 			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			
 			
 			//if (!$this->oStack->positioning($k, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			//if (!$this->oMemory->positioning($k, $sHex)) die('oMemory->positioning');
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
-
+			
 			$this->oStack->aaStack = $aa_p[4];
-						
-			var_dump('$aa_p->$aa_p->$aa_p');
-			var_dump($aa_p);
+			
 			
 			$i_opargs = count($aArguments);
 			/**/

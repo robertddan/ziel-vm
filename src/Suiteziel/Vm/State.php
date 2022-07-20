@@ -38,23 +38,17 @@ class State extends Route
 		switch ($sHex) {
 			case 0x56:
 				$i_pc = $i_pc + 100;
-				return true; 
 			break; //JUMP
 			case 0x57:
 				$i_pc = $i_pc + 100;
-				return true; 
 			break; //JUMPI
 			case 0x58:
-				var_dump($aaStack);
 				array_unshift($aaStack, $i_pc);
-				var_dump($aaStack);
-
-				return true; 
 			break; //PC
-			default: return true; break;
+			default: break;
 		}
 		
-		$aa_p = array($sHex, $aArguments, $iDelta, $i_pc, $aaStack);
+		//$aa_p = array($sHex, $aArguments, $iDelta, $i_pc, $aaStack);
 		return true;
 	}
 }
