@@ -16,8 +16,17 @@ class Storage extends Route
 
 	}
 */
-	public function test() {
-		return  "Hello woorld Storage";
+	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+		switch ($sHex) {
+			case 0x54:
+			
+			break; //SLOAD
+			case 0x55:
+				
+			break; //SSTORE
+			default: return true; break;
+		}
+		return true;
 	}
 }
 /*

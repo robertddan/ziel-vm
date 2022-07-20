@@ -1,0 +1,7 @@
+Stack-manipulating opcodes (POP, PUSH, DUP, SWAP)
+Arithmetic/comparison/bitwise opcodes (ADD, SUB, GT, LT, AND, OR)
+Environmental opcodes (CALLER, CALLVALUE, NUMBER)
+Memory-manipulating opcodes (MLOAD, MSTORE, MSTORE8, MSIZE)
+Storage-manipulating opcodes (SLOAD, SSTORE)
+Program counter related opcodes (JUMP, JUMPI, PC, JUMPDEST)
+Halting opcodes (STOP, RETURN, REVERT, INVALID, SELFDESTRUCT)

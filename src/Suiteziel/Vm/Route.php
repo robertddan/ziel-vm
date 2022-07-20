@@ -31,18 +31,7 @@ class Route extends Vm
 		$this->aHex = Diamonds::$_aHex;
 		return true;
 	}
-/*
-		$this->i_pc = 0;
-		$this->i_pc = 0;
-		$this->i_pc = 0;
-		$this->i_pc = 0;
-		$this->i_pc = 0;
-		$this->i_pc = 0;
-		$this->i_sp = 0;
-		$this->i_sp = 0;
-		$this->i_sp = 0;
-		$this->i_sp = 0;
-*/
+
 	public function implement () :bool {
 		//if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
 
@@ -170,12 +159,7 @@ class Route extends Vm
 			0x62, //JUMPDEST
 			0x60, 38, //PUSH1
 			0x00, //STOP
-			
-			0x60, 32, //PUSH1
-			0x60, 33, //PUSH1
-			0x01, //ADD
-			0x62, 31, 30, 30, //PUSH1
-			0x02, //MUL
+		
 			
 			//0x62, 31, 30, 30, 0x30, //ADDRESS
 			//0x62, 31, 30, 30, 0x31, //BALANCE
@@ -201,9 +185,10 @@ class Route extends Vm
 			//0x62, 31, 30, 30, 0x51, //MLOAD
 			//0x62, 31, 30, 30, 0x52, //MSTORE
 			//0x62, 31, 30, 30, 0x53, //MSTORE8
+			//0x62, 31, 30, 30, 0x59, //MSIZE
+			
 			//0x62, 31, 30, 30, 0x54, //SLOAD
 			//0x62, 31, 30, 30, 0x55, //SSTORE
-			//0x62, 31, 30, 30, 0x59, //MSIZE
 			//0x62, 31, 30, 30, 0x5a, //GAS
 			//0x62, 31, 30, 30, 0x5b, //JUMPDEST
 			

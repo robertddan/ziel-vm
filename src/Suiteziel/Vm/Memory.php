@@ -30,6 +30,9 @@ class Memory extends Route
 			case 0x53:
 				
 			break; //MSTORE8
+			case 0x59:
+				
+			break; //MSIZE
 			default: return true; break;
 		}
 	}

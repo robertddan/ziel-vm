@@ -10,8 +10,6 @@ class Vm
 	public $oRoute;
 	
 	public function __construct() {
-		
-		
 		$this->oRoute = new Route();
 	}
 	
