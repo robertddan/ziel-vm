@@ -160,6 +160,7 @@ class Route extends Vm
 */
 			0x60, 34, //PUSH3
 			0x58, //PC
+			0x60, 35, //PUSH3
 			0x56, //JUMP
 			//0x57, //JUMPI
 			0x62, 31, 31, 31, //PUSH3
@@ -239,9 +240,10 @@ $aa_p = array(
 			
 			$i = $aa_p[3];
 			$this->oStack->aaStack = $aa_p[4];
+			
+			
 			var_dump($this->oStack->aaStack);
 			if ( count($this->aHex) == $aa_p[3]) break;
-			
 			$i_opargs = count($aArguments);
 			/**/
 		}

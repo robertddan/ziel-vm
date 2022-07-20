@@ -41,6 +41,7 @@ class State extends Route
 			break; //STOP
 			case 0x56:				
 				$a_e = array_slice($aaStack, 0, $iDelta);
+				var_dump($a_e);
 				$i_pc = $a_e[0];
 			break; //JUMP
 			case 0x57:
