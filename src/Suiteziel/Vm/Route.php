@@ -163,10 +163,11 @@ class Route extends Vm
 			//0x58, //PC
 */
 			0x60, 32, //PUSH1
-			0x60, 36, //PUSH1
+			0x60, 39, //PUSH1
 			0x57, //JUMPI
 			0x60, 38, //PUSH1
 			0x60, 38, //PUSH1
+			0x62, //JUMPDEST
 			0x60, 38, //PUSH1
 			0x00, //STOP
 			

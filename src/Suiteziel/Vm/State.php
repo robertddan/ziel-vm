@@ -54,7 +54,6 @@ class State extends Route
 				array_unshift($aaStack, $i_pc);
 			break; //PC
 			case 0x62:
-				array_unshift($aaStack, $i_pc);
 			break; //JUMPDEST
 			default: break;
 		}
