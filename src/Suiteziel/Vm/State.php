@@ -37,7 +37,7 @@ class State extends Route
 		list($sHex, $aArguments, $iDelta, &$i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
 			case 0x00:
-				$i_pc = 1025;
+				$i_pc = 'STOP';
 			break; //STOP
 			case 0x56:				
 				$a_e = array_slice($aaStack, 0, $iDelta);

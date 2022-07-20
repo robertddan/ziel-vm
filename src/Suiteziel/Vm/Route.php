@@ -251,7 +251,7 @@ $aa_p = array(
 			
 			
 			//var_dump($this->oStack->aaStack);
-			if ($aa_p[3] == 1025) break;
+			if ($aa_p[3] == 'STOP') break;
 			$i_opargs = count($aArguments);
 			/**/
 		}
