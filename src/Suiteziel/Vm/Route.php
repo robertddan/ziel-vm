@@ -157,13 +157,16 @@ class Route extends Vm
 			0x62, 31, 30, 30, 0xa2, //LOG2
 			0x62, 31, 30, 30, 0xa3, //LOG3
 			0x62, 31, 30, 30, 0xa4, //LOG4
-*/
-			0x60, 34, //PUSH3
-			0x58, //PC
-			0x60, 35, //PUSH3
-			0x56, //JUMP
+			
 			//0x57, //JUMPI
-			0x62, 31, 31, 31, //PUSH3
+			//0x58, //PC
+*/
+			0x60, 35, //PUSH1
+			0x60, 35, //PUSH1
+			0x56, //JUMP
+			0x60, 35, //PUSH1
+			0x60, 35, //PUSH1
+			0x60, 35, //PUSH1
 			0x00, //STOP
 			
 			
@@ -242,7 +245,7 @@ $aa_p = array(
 			$this->oStack->aaStack = $aa_p[4];
 			
 			
-			var_dump($this->oStack->aaStack);
+			//var_dump($this->oStack->aaStack);
 			if ( count($this->aHex) == $aa_p[3]) break;
 			$i_opargs = count($aArguments);
 			/**/
