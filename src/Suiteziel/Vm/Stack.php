@@ -28,7 +28,6 @@ $this->oStack->aaStack,
 		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
 
 		switch ($sHex) {
-			case 0x00: /*return 1; */break; //STOP
 			case 0x01:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, array_sum($a_e));

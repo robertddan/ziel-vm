@@ -34,13 +34,20 @@ class State extends Route
 	}
 
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
-		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
+		list($sHex, $aArguments, $iDelta, &$i_pc, &$aaStack, &$i_aHex) = $aa_p;
 		switch ($sHex) {
-			case 0x56:
-				$i_pc = $i_pc + 100;
+			case 0x00:
+				$i_pc = $i_aHex;
+			break; //STOP
+			case 0x56:				
+				$a_e = array_slice($aaStack, 0, $iDelta);
+				$i_pc = $a_e[0];
 			break; //JUMP
 			case 0x57:
-				$i_pc = $i_pc + 100;
+				$a_e = array_slice($aaStack, 0, $iDelta);
+				if ($a_e[1] != 0) $i_pc = $a_e[0];
+				else $i_pc = $i_pc + 1;
+				
 			break; //JUMPI
 			case 0x58:
 				array_unshift($aaStack, $i_pc);
