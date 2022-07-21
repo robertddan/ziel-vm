@@ -29,8 +29,8 @@ if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(" ", $oDiamonds->aHex));
 
-
-
+var_dump('base_convert');
+var_dump(base_convert(0x00000000000000000000000000000000000000000000000000000000000000FF, 10, 16));
 
 
 /*
