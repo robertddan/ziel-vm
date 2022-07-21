@@ -25,10 +25,12 @@ class Memory extends Route
 				$a_e = array_splice($this->aaMemory, 0, $iDelta);
 				array_unshift($this->aaMemory, array_sum($a_e));
 				var_dump(implode("Memory::", $this->aaMemory));
-				return true; 
 			break; //MLOAD
 			case 0x52:
-				
+				$a_e = array_splice($this->aaMemory, 0, $iDelta);
+				$this->aaMemory[$a_e[0]] = $a_e[1];
+				//array_unshift($this->aaMemory, array_sum($a_e));
+				//var_dump(implode("Memory::", $this->aaMemory));
 			break; //MSTORE
 			case 0x53:
 				
@@ -38,6 +40,7 @@ class Memory extends Route
 			break; //MSIZE
 			default: return true; break;
 		}
+		return true;
 	}
 }
 ?>

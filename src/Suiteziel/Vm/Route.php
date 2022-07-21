@@ -231,8 +231,10 @@ $aa_p = array(
 			
 			
 			//if (!$this->oStack->positioning($i, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
-			//if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
+			if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
+			
+			var_dump($this->oMemory->aaMemory);
 			
 			$i = $aa_p[3];
 			$this->oStack->aaStack = $aa_p[4];
