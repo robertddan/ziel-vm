@@ -6,10 +6,12 @@ require __DIR__.'/../config/bootstrap.php';
 
 echo '<pre>';
 
+use App\Suiteziel\Opt\View;
 use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 
+$oView = new View();
 $oUtils = new Utils();
 $oDiamonds = new Diamonds();
 $oVm = new Vm();

@@ -32,12 +32,12 @@ class Opcodes extends Route
 		$i_k = $i_k + 1;
 		if (!isset($this->aaOpcodes[$sHex])) { $this->aArguments = array(); return true; }
 		$aArguments = array_slice($this->aHex, $i_k, $this->aaOpcodes[$sHex][0]);
-		//$this->aArguments = $aArguments;
-
+		$this->aArguments = $aArguments;
+/*
 		$this->aArguments = array_map(function($sHex) {
 			return pack("H*", $sHex);
 		}, $aArguments);
-
+*/
 		return true;
 	}
 

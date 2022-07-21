@@ -33,11 +33,11 @@ class Route extends Vm
 	}
 
 	public function implement () :bool {
-		if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
-/*
+		//if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
+
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
-
+/*
 			0x60, 32, //PUSH1
 			0x60, 33, //PUSH1
 			0x01, //ADD
@@ -150,7 +150,7 @@ class Route extends Vm
 			0x56, //JUMP
 			//0x57, //JUMPI
 			//0x58, //PC
-
+*/
 			0x60, 32, //PUSH1
 			0x60, 39, //PUSH1
 			0x57, //JUMPI
@@ -202,7 +202,7 @@ class Route extends Vm
 			//0x62, 31, 30, 30, 0xfe, //INVALID
 			//0x62, 31, 30, 30, 0xff, //SELFDESTRUCT
 		);
-*/
+		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 ///return var_dump($this->aHex);
 		$i_opargs = 0;
