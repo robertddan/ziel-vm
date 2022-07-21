@@ -15,24 +15,26 @@ class Memory extends Route
 	public function __construct () {
 
 	}
-	memory[offset:offset+32] = value 
-	memory[offset] = value & 0xFF 
-	value = memory[offset:offset+32]
 */
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
 			case 0x51:
 				$a_s = array_splice($aaStack, 0, $iDelta);
-				$a_m = $this->aaMemory[$a_s[0]];
-				array_unshift($aaStack, );
-				var_dump(implode("Memory::", $this->aaMemory));
+				$a_m = $this->aaMemory[1234][$a_s[0]];
+				array_unshift($aaStack, $a_m);
+				var_dump("Memory::". implode("::", $this->aaMemory[1234]));
+				var_dump("Stack::". implode("::", $aaStack));
 			break; //MLOAD
 			case 0x52:
-				$a_e = array_splice($aaStack, 0, $iDelta);
-				$this->aaMemory[$a_e[0]] = $a_e[1];
-				//array_unshift($this->aaMemory, array_sum($a_e));
-				var_dump(implode("Memory::", $this->aaMemory));
+				$a_e = array_splice($aaStack, 0, $iDelta); 
+				$i=32;
+				while ($i<$a_e[0]) $i=32+$i; 
+				$aMemory = array_fill(0, $i, 0);
+				$aMemory[$a_e[0]] = $a_e[1];
+				//array_unshift($this->aaMemory, $aMemory);
+				$this->aaMemory[1234] = $aMemory;
+				var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE
 			case 0x53:
 				

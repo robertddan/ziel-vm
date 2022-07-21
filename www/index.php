@@ -29,7 +29,24 @@ if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(" ", $oDiamonds->aHex));
 
+
+
+
+$d = "ff";
+
+var_dump('decode_32bytes');
+var_dump($oUtils->encode_32bytes($d));
+var_dump($oUtils->decode_32bytes($d));
+var_dump('decode_32bytes');
+
+var_dump('32%33');
+var_dump(33%32);
+
 /*
+
+
+
+
 var_dump(base_convert('8080808080808080808080808080808080808080808080808080808080808080', 16, 9));
 var_dump(strlen('1000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000'));
 

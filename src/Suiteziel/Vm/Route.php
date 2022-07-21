@@ -152,15 +152,10 @@ class Route extends Vm
 			//0x58, //PC
 */
 			0x60, 32, //PUSH1
-			0x60, 39, //PUSH1
-			0x57, //JUMPI
-			0x60, 38, //PUSH1
-			0x60, 38, //PUSH1
-			0x62, //JUMPDEST
-			0x60, 38, //PUSH1
-		
-			0x60, 39, 0x52, //MSTORE
-			0x51, 39, //MLOAD
+			0x60, 33, //PUSH1
+			0x52, //MSTORE
+			0x60, 33, //PUSH1
+			0x51, //MLOAD
 			//0x62, 31, 30, 30, 0x53, //MSTORE8
 			//0x62, 31, 30, 30, 0x59, //MSIZE
 			
