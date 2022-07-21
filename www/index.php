@@ -32,17 +32,15 @@ var_dump(implode(" ", $oDiamonds->aHex));
 
 
 
+
+/*
+
 $d = "ff";
 
 var_dump('decode_32bytes');
 var_dump($oUtils->encode_32bytes($d));
 var_dump($oUtils->decode_32bytes($d));
 var_dump('decode_32bytes');
-
-var_dump('32%33');
-var_dump(33%32);
-
-/*
 
 
 

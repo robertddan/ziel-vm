@@ -202,7 +202,7 @@ class Route extends Vm
 ///return var_dump($this->aHex);
 		$i_opargs = 0;
 		//foreach ($this->aHex as $k => $sHex) {
-		for ($i = 0; $i<=count($this->aHex); $i++) {
+		for ($i = 0; $i<count($this->aHex); $i++) {
 			$this->i_pc = $i;
 			$sHex = $this->aHex[$i];
 			

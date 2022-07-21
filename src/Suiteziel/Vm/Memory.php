@@ -32,7 +32,6 @@ class Memory extends Route
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);
 				$aMemory[$a_e[0]] = $a_e[1];
-				//array_unshift($this->aaMemory, $aMemory);
 				$this->aaMemory[1234] = $aMemory;
 				var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE
