@@ -158,13 +158,14 @@ class Route extends Vm
 			0x60, 38, //PUSH1
 			0x62, //JUMPDEST
 			0x60, 38, //PUSH1
-			0x00, //STOP
 		
 			
-			//0x62, 31, 30, 30, 0x51, //MLOAD
-			//0x62, 31, 30, 30, 0x52, //MSTORE
+			//0x62, 31, //MLOAD
+			0x60, 39, 0x52, //MSTORE
 			//0x62, 31, 30, 30, 0x53, //MSTORE8
 			//0x62, 31, 30, 30, 0x59, //MSIZE
+			
+			0x00, //STOP
 			
 			//0x62, 31, 30, 30, 0x54, //SLOAD
 			//0x62, 31, 30, 30, 0x55, //SSTORE
@@ -231,10 +232,9 @@ $aa_p = array(
 			
 			
 			//if (!$this->oStack->positioning($i, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
-			if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
+			if (!$this->oMemory->positioning($aa_p)) die('oMemory->positioning');
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 			
-			var_dump($this->oMemory->aaMemory);
 			
 			$i = $aa_p[3];
 			$this->oStack->aaStack = $aa_p[4];
@@ -246,6 +246,8 @@ $aa_p = array(
 			/**/
 		}
 		
+		var_dump('$this->oMemory->aaMemory');
+		var_dump($this->oMemory->aaMemory);
 		var_dump('$this->oStack->aaStack');
 		var_dump($this->oStack->aaStack);
 		return true;

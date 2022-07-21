@@ -19,18 +19,19 @@ class Memory extends Route
 	memory[offset] = value & 0xFF 
 	value = memory[offset:offset+32]
 */
-	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
 			case 0x51:
 				$a_e = array_splice($this->aaMemory, 0, $iDelta);
-				array_unshift($this->aaMemory, array_sum($a_e));
+				//array_unshift($this->aaMemory, array_sum($a_e));
 				var_dump(implode("Memory::", $this->aaMemory));
 			break; //MLOAD
 			case 0x52:
-				$a_e = array_splice($this->aaMemory, 0, $iDelta);
+				$a_e = array_splice($aaStack, 0, $iDelta);
 				$this->aaMemory[$a_e[0]] = $a_e[1];
 				//array_unshift($this->aaMemory, array_sum($a_e));
-				//var_dump(implode("Memory::", $this->aaMemory));
+				var_dump(implode("Memory::", $this->aaMemory));
 			break; //MSTORE
 			case 0x53:
 				
