@@ -25,7 +25,6 @@ class Memory extends Route
 			case 0x51:
 				$a_s = array_splice($aaStack, 0, $iDelta);
 				$a_m = $this->aaMemory[$a_s[0]];
-				var_dump($a_m);
 				array_unshift($aaStack, );
 				var_dump(implode("Memory::", $this->aaMemory));
 			break; //MLOAD
