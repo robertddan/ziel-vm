@@ -11,7 +11,7 @@ use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 
-$oView = new View();
+//$oView = new View();
 $oUtils = new Utils();
 $oDiamonds = new Diamonds();
 $oVm = new Vm();
