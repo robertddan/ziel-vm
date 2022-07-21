@@ -29,11 +29,11 @@ if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(" ", $oDiamonds->aHex));
 
-
+/*
 var_dump(base_convert('8080808080808080808080808080808080808080808080808080808080808080', 16, 9));
 var_dump(strlen('1000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000'));
 
-/*
+
 var_dump(base32_encode(8080808080808080808080808080808080808080808080808080808080808080));
 $32bytes = base32_encode(8080808080808080808080808080808080808080808080808080808080808080);
 $16bytes = "";
@@ -50,7 +50,7 @@ PHP Warning:  declare(encoding=...) ignored because Zend multibyte feature is tu
 string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH"
 
 */
-
+/*
 // encode 32 bytes
 $d = "The quick brown fox jumps over the lazy dog";
 $d = "8080808080808080808080808080808080808080808080808080808080808080";
@@ -58,11 +58,11 @@ $d = "8080808080808080808080808080808080808080808080808080808080808080";
 var_dump($oUtils->decode_32bytes($oUtils->encode_32bytes($d)));
 // decode 32 bytes
 
-/*
+
 string(52) "KRUGKIDROVUWG2ZAMJZG653OEBTG66BANJ2W24DTEBXXMZLSEB2GQZJANRQXU6JAMRXWH"
 */
 
-
+/*
 $config = [
     'private_key_type' => OPENSSL_KEYTYPE_EC,
     'curve_name' => 'secp256k1'
@@ -89,7 +89,19 @@ $key_detail,
 	
 ));
 
-
+int(1)
+int(2)
+int(4)
+int(8)
+int(16)
+int(32)
+int(64)
+int(128)
+int(256)
+int(512)
+int(1024)
+int(2048)
+	
 var_dump('bits');
 var_dump(pow(2, 0));
 var_dump(pow(2, 1));
@@ -98,15 +110,13 @@ var_dump(pow(2, 3));
 var_dump(pow(2, 4));
 var_dump(pow(2, 5));
 var_dump(pow(2, 6));
-var_dump(pow(2, 7));
+var_dump(pow(2, 7)); //127
 var_dump(pow(2, 8));
 var_dump(pow(2, 9));
 var_dump(pow(2, 10));
 var_dump(pow(2, 11));
-var_dump(pow(2, 160));
-var_dump(pow(2, 160));
 
-
+*/
 /*
 var_dump(base_convert(6000, 10, 16));
 
