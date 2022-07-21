@@ -23,7 +23,10 @@ class Memory extends Route
 		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
 			case 0x51:
-				array_unshift($aaStack, $aaStack->aaMemory[$a_e[0]]);
+				$aS = array_splice($aaStack, 0, $iDelta);
+				$aM = $aaStack->aaMemory[$a_s[0]];
+				var_dump($a_m);
+				array_unshift($aaStack, );
 				var_dump(implode("Memory::", $this->aaMemory));
 			break; //MLOAD
 			case 0x52:

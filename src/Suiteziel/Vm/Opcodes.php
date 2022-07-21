@@ -115,7 +115,7 @@ class Opcodes extends Route
 			0x44 => array(0, 0, 2, 0x44, "DIFFICULTY", "Get the block’s difficulty"),
 			0x45 => array(0, 0, 2, 0x45, "GASLIMIT", "Get the block’s gas limit"),
 			0x50 => array(0, 0, 2, 0x50, "POP", "Remove item from stack"),
-			0x51 => array(1, 0, 3, 0x51, "MLOAD", "Load word from memory"),
+			0x51 => array(1, 1, 3, 0x51, "MLOAD", "Load word from memory"),
 			0x52 => array(0, 2, 3, 0x52, "MSTORE", "Save word to memory"),
 			0x53 => array(0, 2, 3, 0x53, "MSTORE8", "Save byte to memory"),
 			0x54 => array(0, 0, 50, 0x54, "SLOAD", "Load word from storage"),
