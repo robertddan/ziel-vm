@@ -42,6 +42,7 @@ class Route extends Vm
 
 			//0x56, //JUMP
 			//0x57, //JUMPI
+			//0x5b, //JUMPDEST
 			//0x58, //PC
 			0x30, //ADDRESS
 			
@@ -53,18 +54,24 @@ class Route extends Vm
 			//0x54, //SLOAD
 			//0x55, //SSTORE
 			
+			//0x3a, //GASPRICE
 			//0x31, //BALANCE
 			//0x32, //ORIGIN
+			
+			//0xf1, //CALL
+			//0xf2, //CALLCODE
 			//0x33, //CALLER
 			//0x34, //CALLVALUE
 			//0x35, //CALLDATALOAD
 			//0x36, //CALLDATASIZE
 			//0x37, //CALLDATACOPY
+			
 			//0x38, //CODESIZE
 			//0x39, //CODECOPY
-			//0x3a, //GASPRICE
+			
 			//0x3b, //EXTCODESIZE
 			//0x3c, //EXTCODECOPY
+			
 			//0x40, //BLOCKHASH
 			//0x41, //COINBASE
 			//0x42, //TIMESTAMP
@@ -74,11 +81,8 @@ class Route extends Vm
 			//0x50, //POP
 			
 			//0x5a, //GAS
-			//0x5b, //JUMPDEST
 			
 			//0xf0, //CREATE
-			//0xf1, //CALL
-			//0xf2, //CALLCODE
 			//0xf3, //RETURN
 			//0xf4, //DELEGATECALL
 			//0xfe, //INVALID
