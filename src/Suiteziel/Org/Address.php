@@ -9,9 +9,12 @@ use kornrunner\Keccak;
 
 class Address
 {
-	public $aConfig;
-	public $oOpaque;
+	private $aConfig;
+	private $oOpaque;
+	
+	public $sAddress;
 	public $sKeyPrivate;
+	public $sKeyPublic;
 	
 	public function __construct () {
 		$this->aConfig = array(
@@ -23,7 +26,7 @@ class Address
 		$this->generate_keys();
 	}
 	
-	public function generate_keys () {
+	public function generate_keys () :bool {
 		// Generate Private Key
 		openssl_pkey_export($this->oOpaque, $prev_key);
 
@@ -55,12 +58,12 @@ class Address
 
 		// Ethereum address has 20 bytes length. (40 hex characters long)
 		// We only need the last 20 bytes as Ethereum address
-		$wallet_address = '0x' . substr($hash, -40);
-		$wallet_private_key = '0x' . $priv_key_hex;
-		$wallet_pubic_key = '0x' . $pub_key_hex;
+		$this->sAddress = '0x' . substr($hash, -40);
+		$this->sKeyPrivate = '0x' . $priv_key_hex;
+		$this->sKeyPublic = '0x' . $pub_key_hex;
 
-		return array("address" => $wallet_address, "private_key" => $wallet_private_key, "pubic_key" => $wallet_pubic_key);
-		
+		//return array("address" => $wallet_address, "private_key" => $wallet_private_key, "pubic_key" => $wallet_pubic_key);
+		return true;
 		
 	}
 	
