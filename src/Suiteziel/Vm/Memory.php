@@ -52,6 +52,10 @@ class Memory extends Route
 				var_dump("Memory::". implode("::", $this->aaMemory[1234]));
 				//... Linear Diophantine Equations
 				// ...congruence equation (mod 8 or 9)
+				// .. 8 ≡ 23 (mod 5)...which is read, “8 is congruent to 23 modulo 5” (or just “mod 5”), by Levin (2019). 
+				//References
+				//Levin, O. (2019). Discrete mathematics: An open introduction (3 edition). CreateSpace Independent Publishing Platform. http://discrete.openmathbooks.org/pdfs/dmoi-tablet.pdf
+
 			break; //MSIZE
 			default: return true; break;
 		}
