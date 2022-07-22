@@ -17,9 +17,9 @@ use App\Suiteziel\Org\Session;
 $oSession = new Session();
 if (!$oSession->new_session()) die('$oSession->new_session()');
 if (!$oSession->load_session()) die('$oSession->load_session()');
-if (!$oSession->save_session()) die('$oSession->save_session()');
+if (!$oSession->save_session(array())) die('$oSession->save_session()');
 var_dump(array(
-	$oSession->serialized
+	$oSession->sData
 ));
 
 use App\Suiteziel\Org\Address;
