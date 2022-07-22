@@ -61,6 +61,7 @@ class State extends Route
 			break; //JUMPDEST
 			case 0x30:
 				array_unshift($aaStack, $this->aaState["Ia"]);
+				print("Stack::". implode("::", $aaStack));
 			break; //ADDRESS
 			default: break;
 		}

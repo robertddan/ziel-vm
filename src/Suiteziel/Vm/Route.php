@@ -45,55 +45,44 @@ class Route extends Vm
 			//0x58, //PC
 			0x30, //ADDRESS
 			
-			
-			0x60, 0xF4240, //PUSH1
-			0x60, 33, //PUSH1
-			0x52, //MSTORE
-			0x60, 164, //PUSH1
-			0x60, 90, //PUSH1
-			0x52, //MSTORE
-			0x60, 33, //PUSH1
-			0x51, //MLOAD
-			0x60, 0xF4240, //PUSH1
 			0x60, 33, //PUSH1
 			0x53, //MSTORE8
-			0x62, 31, 30, 30, 0x59, //MSIZE
+			0x59, //MSIZE
 			0x00, //STOP
 			
-			//0x62, 31, 30, 30, 0x54, //SLOAD
-			//0x62, 31, 30, 30, 0x55, //SSTORE
+			//0x54, //SLOAD
+			//0x55, //SSTORE
 			
-			//0x62, 31, 30, 30, 0x30, //ADDRESS
-			//0x62, 31, 30, 30, 0x31, //BALANCE
-			//0x62, 31, 30, 30, 0x32, //ORIGIN
-			//0x62, 31, 30, 30, 0x33, //CALLER
-			//0x62, 31, 30, 30, 0x34, //CALLVALUE
-			//0x62, 31, 30, 30, 0x35, //CALLDATALOAD
-			//0x62, 31, 30, 30, 0x36, //CALLDATASIZE
-			//0x62, 31, 30, 30, 0x37, //CALLDATACOPY
-			//0x62, 31, 30, 30, 0x38, //CODESIZE
-			//0x62, 31, 30, 30, 0x39, //CODECOPY
-			//0x62, 31, 30, 30, 0x3a, //GASPRICE
-			//0x62, 31, 30, 30, 0x3b, //EXTCODESIZE
-			//0x62, 31, 30, 30, 0x3c, //EXTCODECOPY
-			//0x62, 31, 30, 30, 0x40, //BLOCKHASH
-			//0x62, 31, 30, 30, 0x41, //COINBASE
-			//0x62, 31, 30, 30, 0x42, //TIMESTAMP
-			//0x62, 31, 30, 30, 0x43, //NUMBER
-			//0x62, 31, 30, 30, 0x44, //DIFFICULTY
-			//0x62, 31, 30, 30, 0x45, //GASLIMIT
-			//0x62, 31, 30, 30, 0x50, //POP
+			//0x31, //BALANCE
+			//0x32, //ORIGIN
+			//0x33, //CALLER
+			//0x34, //CALLVALUE
+			//0x35, //CALLDATALOAD
+			//0x36, //CALLDATASIZE
+			//0x37, //CALLDATACOPY
+			//0x38, //CODESIZE
+			//0x39, //CODECOPY
+			//0x3a, //GASPRICE
+			//0x3b, //EXTCODESIZE
+			//0x3c, //EXTCODECOPY
+			//0x40, //BLOCKHASH
+			//0x41, //COINBASE
+			//0x42, //TIMESTAMP
+			//0x43, //NUMBER
+			//0x44, //DIFFICULTY
+			//0x45, //GASLIMIT
+			//0x50, //POP
 			
-			//0x62, 31, 30, 30, 0x5a, //GAS
-			//0x62, 31, 30, 30, 0x5b, //JUMPDEST
+			//0x5a, //GAS
+			//0x5b, //JUMPDEST
 			
-			//0x62, 31, 30, 30, 0xf0, //CREATE
-			//0x62, 31, 30, 30, 0xf1, //CALL
-			//0x62, 31, 30, 30, 0xf2, //CALLCODE
-			//0x62, 31, 30, 30, 0xf3, //RETURN
-			//0x62, 31, 30, 30, 0xf4, //DELEGATECALL
-			//0x62, 31, 30, 30, 0xfe, //INVALID
-			//0x62, 31, 30, 30, 0xff, //SELFDESTRUCT
+			//0xf0, //CREATE
+			//0xf1, //CALL
+			//0xf2, //CALLCODE
+			//0xf3, //RETURN
+			//0xf4, //DELEGATECALL
+			//0xfe, //INVALID
+			//0xff, //SELFDESTRUCT
 		);
 		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');

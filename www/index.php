@@ -15,11 +15,7 @@ use App\Suiteziel\Vm;
 use App\Suiteziel\Org\Address;
 $oAddress = new Address();
 if (!$oAddress->generate_keys()) die('$oAddress->generate_keys()');
-var_dump(array(
-	$oAddress->sAddress,
-	$oAddress->sKeyPrivate,
-	$oAddress->sKeyPublic
-));
+
 
 $aSession = array(
 	'wallet' => array(
@@ -28,7 +24,7 @@ $aSession = array(
 		$oAddress->sKeyPublic
 	)
 );
-
+var_dump($aSession);
 
 use App\Suiteziel\Org\Session;
 $oSession = new Session();
