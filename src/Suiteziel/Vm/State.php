@@ -3,19 +3,18 @@ namespace App\Suiteziel\Vm;
 
 
 use App\Suiteziel\Vm\Route;
-use App\Suiteziel\Org\Address;
+use App\Suiteziel\Org\Session;
 
 class State extends Route
 {
-	public $oAddress;
+	public $oSession;
 	public $aaState;
 
 	public function __construct () {
-		$oAddress = new Address();
-		
+
 		$this->aaState = array(
 			// Ia, the address of the account which owns the code that is executing. 
-			"Ia" => $oAddress->sAddress,
+			"Ia" => Session::$_aData["wallet"][0],
 			// Io, the sender address of the transaction that originated this execution. 
 			"Io" => "",
 			// Ip, the price of gas in the transaction that originated this execution. 
@@ -61,6 +60,9 @@ class State extends Route
 			break; //PC
 			case 0x62:
 			break; //JUMPDEST
+			case 0x30:
+				array_unshift($aaStack, $this->aaState["Ia"]);
+			break; //ADDRESS
 			default: break;
 		}
 		

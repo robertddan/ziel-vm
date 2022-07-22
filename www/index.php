@@ -37,7 +37,7 @@ $oSession = new Session();
 if (!$oSession->load_session()) die('$oSession->load_session()');
 var_dump(array(
 	'$oSession',
-	$oSession->sData
+	$oSession->aData
 ));
 
 

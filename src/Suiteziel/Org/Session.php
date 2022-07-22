@@ -5,7 +5,8 @@ namespace App\Suiteziel\Org;
 class Session
 {
 	public $sPath;
-	public $sData;
+	public $aData;
+	public static $_aData;
 	
 	public function __construct () {
 		$this->sPath = __DIR__ .'/../.database/.session';
@@ -17,7 +18,7 @@ class Session
 	}
 
 	public function load_session () :bool {
-		$this->sData = unserialize(file_get_contents($this->sPath));
+		$this->aData = self::$_aData = unserialize(file_get_contents($this->sPath));
 		return true;
 	}
 
