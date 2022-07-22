@@ -8,4 +8,6 @@
 
 #sudo apt install php-mbstring
 
-composer require bariew/yii2-node-tree
+#composer require bariew/yii2-node-tree
+
+sudo apt install php-gmp

@@ -13,9 +13,11 @@ use App\Suiteziel\Vm;
 
 
 
+use App\Suiteziel\Org\Address;
 
 
-
+$oAddress = new Address();
+var_dump($oAddress->generate_keys());
 
 
 
