@@ -51,6 +51,7 @@ class Memory extends Route
 				array_unshift($aaStack, (count($this->aaMemory[1234])/3.2));
 				var_dump("Memory::". implode("::", $this->aaMemory[1234]));
 				//... Linear Diophantine Equations
+				// ...congruence equation (mod 8 or 9)
 			break; //MSIZE
 			default: return true; break;
 		}
