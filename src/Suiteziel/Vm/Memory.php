@@ -50,6 +50,7 @@ class Memory extends Route
 			case 0x59:
 				array_unshift($aaStack, (count($this->aaMemory[1234])/3.2));
 				var_dump("Memory::". implode("::", $this->aaMemory[1234]));
+				//... Linear Diophantine Equations
 			break; //MSIZE
 			default: return true; break;
 		}
