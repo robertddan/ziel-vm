@@ -58,8 +58,6 @@ class Route extends Vm
 			//0x31, //BALANCE
 			//0x32, //ORIGIN
 			
-			//0xf1, //CALL
-			//0xf2, //CALLCODE
 			//0x33, //CALLER
 			//0x34, //CALLVALUE
 			//0x35, //CALLDATALOAD
@@ -72,17 +70,22 @@ class Route extends Vm
 			//0x3b, //EXTCODESIZE
 			//0x3c, //EXTCODECOPY
 			
+			//Block Information
 			//0x40, //BLOCKHASH
 			//0x41, //COINBASE
 			//0x42, //TIMESTAMP
 			//0x43, //NUMBER
 			//0x44, //DIFFICULTY
 			//0x45, //GASLIMIT
-			//0x50, //POP
 			
+			//Stack, Memory, Storage and Flow Operations
+			//0x50, //POP
 			//0x5a, //GAS
 			
+			// f0s: System operations
 			//0xf0, //CREATE
+			//0xf1, //CALL
+			//0xf2, //CALLCODE
 			//0xf3, //RETURN
 			//0xf4, //DELEGATECALL
 			//0xfe, //INVALID
