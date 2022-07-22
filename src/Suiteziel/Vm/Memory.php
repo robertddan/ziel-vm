@@ -48,7 +48,8 @@ class Memory extends Route
 				var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE8
 			case 0x59:
-				//..coefficient
+				array_unshift($aaStack, (count($this->aaMemory[1234])/3.2));
+				var_dump("Memory::". implode("::", $this->aaMemory[1234]));
 			break; //MSIZE
 			default: return true; break;
 		}
