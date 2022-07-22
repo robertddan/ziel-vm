@@ -49,26 +49,16 @@ class Route extends Vm
 			0x60, 33, //PUSH1
 			0x53, //MSTORE8
 			0x59, //MSIZE
-			0x00, //STOP
-			
-			//0x54, //SLOAD
-			//0x55, //SSTORE
-			
-			//0x3a, //GASPRICE
-			//0x31, //BALANCE
 			//0x32, //ORIGIN
+			0x00, //STOP
 			
 			//0x33, //CALLER
 			//0x34, //CALLVALUE
 			//0x35, //CALLDATALOAD
 			//0x36, //CALLDATASIZE
 			//0x37, //CALLDATACOPY
-			
 			//0x38, //CODESIZE
 			//0x39, //CODECOPY
-			
-			//0x3b, //EXTCODESIZE
-			//0x3c, //EXTCODECOPY
 			
 			//Block Information
 			//0x40, //BLOCKHASH
@@ -77,6 +67,15 @@ class Route extends Vm
 			//0x43, //NUMBER
 			//0x44, //DIFFICULTY
 			//0x45, //GASLIMIT
+			
+			//0x31, //BALANCE
+			//0x3b, //EXTCODESIZE
+			//0x3c, //EXTCODECOPY
+				
+			//0x54, //SLOAD
+			//0x55, //SSTORE
+			
+			
 			
 			//Stack, Memory, Storage and Flow Operations
 			//0x50, //POP

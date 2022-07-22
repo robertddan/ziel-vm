@@ -27,7 +27,7 @@ class State extends Route
 			// Ib, the byte array that is the machine code to be executed. 
 			"Ib" => "",
 			// IH, the block header of the present block. 
-			"IH" => "",
+			"IH" => "", //array("c","s","i","d","l")
 			// Ie, the depth of the present message-call or contract-creation (i.e. the number of CALLs or CREATE(2)s being executed at present). 
 			"Ie" => "",
 			// Iw, the permission to make modi cations to the state.
@@ -63,10 +63,73 @@ class State extends Route
 				array_unshift($aaStack, $this->aaState["Ia"]);
 				print("Stack::". implode("::", $aaStack));
 			break; //ADDRESS
+			case 0x32:
+				array_unshift($aaStack, $this->aaState["Io"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //ORIGIN
+			case 0x33:
+				array_unshift($aaStack, $this->aaState["Is"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //CALLER
+			case 0x34:
+				array_unshift($aaStack, $this->aaState["Iv"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //CALLVALUE
+			case 0x35:
+				print("Stack::". implode("::", $aaStack));
+			break; //CALLDATALOAD
+			case 0x36:
+				print("Stack::". implode("::", $aaStack));
+			break; //CALLDATASIZE
+			case 0x37:
+				print("Stack::". implode("::", $aaStack));
+			break; //CALLDATACOPY	
+			case 0x38:
+				print("Stack::". implode("::", $aaStack));
+			break; //CODESIZE
+			case 0x39:
+				print("Stack::". implode("::", $aaStack));
+			break; //CODECOPY
+			case 0x3a:
+				array_unshift($aaStack, $this->aaState["Ip"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //GASPRICE
+			case 0x3b:
+				print("Stack::". implode("::", $aaStack));
+			break; //EXTCODESIZE
+			case 0x3c:
+				print("Stack::". implode("::", $aaStack));
+			break; //EXTCODECOPY
+			
+			case 0x40:
+				print("Stack::". implode("::", $aaStack));
+			break; //BLOCKHASH	
+			case 0x41:
+				array_unshift($aaStack, $this->aaState["IHc"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //COINBASE
+			case 0x42:
+				array_unshift($aaStack, $this->aaState["IHs"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //TIMESTAMP
+			case 0x43:
+				array_unshift($aaStack, $this->aaState["IHi"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //NUMBER
+			case 0x44:
+				array_unshift($aaStack, $this->aaState["IHd"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //DIFFICULTY
+			case 0x45:
+				array_unshift($aaStack, $this->aaState["IHl"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //GASLIMIT
+				
 			default: break;
 		}
 		
-		//$aa_p = array($sHex, $aArguments, $iDelta, $i_pc, $aaStack);
+		
+		//print("Stack::". implode("::", $aaStack));
 		return true;
 	}
 }
