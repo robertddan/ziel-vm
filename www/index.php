@@ -12,16 +12,6 @@ use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 
 
-
-use App\Suiteziel\Org\Session;
-$oSession = new Session();
-if (!$oSession->new_session()) die('$oSession->new_session()');
-if (!$oSession->load_session()) die('$oSession->load_session()');
-if (!$oSession->save_session(array())) die('$oSession->save_session()');
-var_dump(array(
-	$oSession->sData
-));
-
 use App\Suiteziel\Org\Address;
 $oAddress = new Address();
 if (!$oAddress->generate_keys()) die('$oAddress->generate_keys()');
@@ -31,8 +21,24 @@ var_dump(array(
 	$oAddress->sKeyPublic
 ));
 
+$aSession = array(
+	'wallet' => array(
+		$oAddress->sAddress,
+		$oAddress->sKeyPrivate,
+		$oAddress->sKeyPublic
+	)
+);
 
 
+use App\Suiteziel\Org\Session;
+$oSession = new Session();
+//if (!$oSession->new_session()) die('$oSession->new_session()');
+//if (!$oSession->save_session($aSession)) die('$oSession->save_session()');
+if (!$oSession->load_session()) die('$oSession->load_session()');
+var_dump(array(
+	'$oSession',
+	$oSession->sData
+));
 
 
 

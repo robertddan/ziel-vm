@@ -11,8 +11,8 @@ class Session
 		$this->sPath = __DIR__ .'/../.database/.session';
 	}
 	
-	public function new_session () :bool {
-		if (file_put_contents($this->sPath, serialize(array()))) return true;
+	public function new_session ($aData = array()) :bool {
+		if (file_put_contents($this->sPath, serialize($aData))) return true;
 		else return false;
 	}
 
@@ -21,8 +21,8 @@ class Session
 		return true;
 	}
 
-	public function save_session ($sData) :bool {
-		if (file_put_contents($this->sPath, serialize($sData))) return true;
+	public function save_session ($aData) :bool {
+		if (file_put_contents($this->sPath, serialize($aData))) return true;
 		else return false;
 	}
 	
