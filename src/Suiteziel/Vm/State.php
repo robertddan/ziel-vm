@@ -125,6 +125,38 @@ class State extends Route
 				print("Stack::". implode("::", $aaStack));
 			break; //GASLIMIT
 				
+			case 0x50:
+				print("Stack::". implode("::", $aaStack));
+			break; //POP
+			case 0x5a:
+				array_unshift($aaStack, $this->aaState["Ip"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //GAS
+			case 0xf0:
+				print("Stack::". implode("::", $aaStack));
+			break; //CREATE
+			case 0xf1:
+				print("Stack::". implode("::", $aaStack));
+			break; //CALL
+			case 0xf2:
+				print("Stack::". implode("::", $aaStack));
+			break; //CALLCODE
+			case 0xf3:
+				array_unshift($aaStack, $this->aaState["IHc"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //RETURN
+			case 0xf4:
+				array_unshift($aaStack, $this->aaState["IHs"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //DELEGATECALL
+			case 0xfe:
+				array_unshift($aaStack, $this->aaState["IHi"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //INVALID
+			case 0xff:
+				array_unshift($aaStack, $this->aaState["IHd"]);
+				print("Stack::". implode("::", $aaStack));
+			break; //SELFDESTRUCT
 			default: break;
 		}
 		

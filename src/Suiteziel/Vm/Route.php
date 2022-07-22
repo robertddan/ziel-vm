@@ -71,11 +71,9 @@ class Route extends Vm
 			//0x31, //BALANCE
 			//0x3b, //EXTCODESIZE
 			//0x3c, //EXTCODECOPY
-				
+		
 			//0x54, //SLOAD
 			//0x55, //SSTORE
-			
-			
 			
 			//Stack, Memory, Storage and Flow Operations
 			//0x50, //POP
