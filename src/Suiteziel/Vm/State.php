@@ -7,7 +7,6 @@ use App\Suiteziel\Org\Session;
 
 class State extends Route
 {
-	public $oSession;
 	public $aaState;
 
 	public function __construct () {
