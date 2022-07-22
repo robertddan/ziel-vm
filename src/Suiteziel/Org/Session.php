@@ -27,6 +27,9 @@ class Session
 		else return false;
 	}
 	
+	public function load_from_private_key () :bool {
+		return true;
+	}
 }
 
 ?>
