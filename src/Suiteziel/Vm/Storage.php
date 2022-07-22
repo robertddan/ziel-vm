@@ -2,9 +2,7 @@
 namespace App\Suiteziel\Vm;
 
 
-use App\Suiteziel\Vm\Route;
-
-class Storage extends Route
+class Storage 
 {
 	public $aaStorage;
 	

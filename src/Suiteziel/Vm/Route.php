@@ -8,6 +8,7 @@ use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\Vm\Memory;
 use App\Suiteziel\Vm\Stack;
 use App\Suiteziel\Vm\State;
+use App\Suiteziel\Vm\Storage;
 
 class Route extends Vm
 {
@@ -25,6 +26,7 @@ class Route extends Vm
 		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
 		$this->oState = new State();
+		$this->oStorage = new Storage();
 	}
 
 	public function set_hex() :bool {
@@ -163,7 +165,6 @@ class Route extends Vm
 			0x60, 33, //PUSH1
 			0x53, //MSTORE8
 			0x62, 31, 30, 30, 0x59, //MSIZE
-			
 			0x00, //STOP
 			
 			//0x62, 31, 30, 30, 0x54, //SLOAD
@@ -232,6 +233,7 @@ $aa_p = array(
 			
 			//if (!$this->oStack->positioning($i, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
 			if (!$this->oMemory->positioning($aa_p)) die('oMemory->positioning');
+			if (!$this->oStorage->positioning($aa_p)) die('oStorage->positioning');
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 			
 			
