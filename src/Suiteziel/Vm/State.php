@@ -3,15 +3,19 @@ namespace App\Suiteziel\Vm;
 
 
 use App\Suiteziel\Vm\Route;
+use App\Suiteziel\Org\Address;
 
 class State extends Route
 {
+	public $oAddress;
 	public $aaState;
 
 	public function __construct () {
+		$oAddress = new Address();
+		
 		$this->aaState = array(
 			// Ia, the address of the account which owns the code that is executing. 
-			"Ia" => "",
+			"Ia" => $oAddress->sAddress,
 			// Io, the sender address of the transaction that originated this execution. 
 			"Io" => "",
 			// Ip, the price of gas in the transaction that originated this execution. 
@@ -31,6 +35,8 @@ class State extends Route
 			// Iw, the permission to make modi cations to the state.
 			"Iw" => "",
 		);
+		
+		var_dump($this->aaState);
 	}
 
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {

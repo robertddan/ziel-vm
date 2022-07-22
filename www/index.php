@@ -13,8 +13,16 @@ use App\Suiteziel\Vm;
 
 
 
-use App\Suiteziel\Org\Address;
+use App\Suiteziel\Org\Session;
+$oSession = new Session();
+if (!$oSession->new_session()) die('$oSession->new_session()');
+if (!$oSession->load_session()) die('$oSession->load_session()');
+if (!$oSession->save_session()) die('$oSession->save_session()');
+var_dump(array(
+	$oSession->serialized
+));
 
+use App\Suiteziel\Org\Address;
 $oAddress = new Address();
 if (!$oAddress->generate_keys()) die('$oAddress->generate_keys()');
 var_dump(array(
