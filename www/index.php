@@ -11,6 +11,18 @@ use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 
+
+
+
+
+
+
+
+
+
+
+
+
 //$oView = new View();
 $oUtils = new Utils();
 $oDiamonds = new Diamonds();
@@ -30,15 +42,23 @@ var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(" ", $oDiamonds->aHex));
 
 var_dump('base_convert');
-var_dump(base_convert(0x00000000000000000000000000000000000000000000000000000000000000FF, 10, 16));
+//$f = '0000000000000000000000000000000000000000000000000000000000000000';
+$f = 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAA';
+var_dump(mb_strlen($f, '8bit'));
+$f = base_convert($f, 32, 2);
+
+var_dump(base_convert($f, 32, 8));
+var_dump($oUtils->encode_32bytes($f));
 
 
+var_dump(32*(pow(32, 32) + 1));
+
+var_dump('base_convert');
 /*
-
 
 var_dump(strlen(0000000000000000000000000000000000000000000000000000000000000000/8));
 
-
+//
 
 $d = "ff";
 

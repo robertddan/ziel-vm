@@ -48,7 +48,7 @@ class Memory extends Route
 				var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE8
 			case 0x59:
-				
+				//..coefficient
 			break; //MSIZE
 			default: return true; break;
 		}
