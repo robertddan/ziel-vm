@@ -36,8 +36,16 @@ class Memory extends Route
 				$this->aaMemory[1234] = $aMemory;
 				var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE
+			
 			case 0x53:
-				
+				$a_e = array_splice($aaStack, 0, $iDelta); 
+				$i=32;
+				//$hex_i = base_convert($a_e[0], 10, 16);
+				while ($i<$a_e[0]) $i=32+$i; 
+				$aMemory = array_fill(0, $i, 0);
+				$aMemory[$a_e[0]] = $a_e[1];
+				$this->aaMemory[1234] = $aMemory;
+				var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE8
 			case 0x59:
 				
