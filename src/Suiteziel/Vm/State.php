@@ -24,7 +24,7 @@ class State extends Route
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => "transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
-			"Iv" => 70000000000000000000, //"transaction value"
+			"Iv" => 0,//70000000000000000000, //"transaction value"
 			// Ib, the byte array that is the machine code to be executed. 
 			"Ib" => "",
 			// IH, the block header of the present block. 
@@ -57,7 +57,8 @@ class State extends Route
 			case 0x57:
 				$a_e = array_slice($aaStack, 0, $iDelta);
 				if ($a_e[1] != 0) $i_pc = $a_e[0];
-				else $i_pc = $i_pc; // + 1;
+				else $i_pc = $i_pc + 1;
+var_dump($a_e, $i_pc);
 				//var_dump($a_e);
 			break; //JUMPI
 			case 0x58:
@@ -80,6 +81,10 @@ class State extends Route
 			case 0x35:
 			break; //CALLDATALOAD
 			case 0x36:
+				array_unshift($aaStack, mb_strlen(serialize($aaStack), '8bit')); 
+				//array_unshift($aaStack, 3); 
+		print(PHP_EOL);
+		print("Stack::". implode("::", $aaStack));
 			break; //CALLDATASIZE
 			case 0x37:
 			break; //CALLDATACOPY	
@@ -113,8 +118,7 @@ class State extends Route
 				array_unshift($aaStack, $this->aaState["IH"]["l"]);
 			break; //GASLIMIT
 				
-			case 0x50:
-			break; //POP
+
 			case 0x5a:
 				array_unshift($aaStack, $this->aaState["Ip"]);
 			break; //GAS
@@ -132,7 +136,9 @@ class State extends Route
 			break; //INVALID
 			case 0xff:
 			break; //SELFDESTRUCT
-			
+			case 0x00:
+				var_dump('DEBUG');
+			break; //DEBUG
 			default: return true; break;
 		}
 		

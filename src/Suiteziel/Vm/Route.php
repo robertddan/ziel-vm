@@ -58,14 +58,14 @@ class Route extends Vm
 	}
 
 	public function implement () :bool {
-		//if (empty($this->aHex)) die('Route->implement');
-
+		if (empty($this->aHex)) die('Route->implement');
+/*
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
 
 			//0x56, //JUMP
 			0x60, 0x3, //PUSH1
-			0x60, 0x9, //PUSH1
+			0x60, 0x8, //PUSH1
 			0x57, //JUMPI
 			0x30, //ADDRESS
 			0x30, //ADDRESS
@@ -76,7 +76,7 @@ class Route extends Vm
 			0x30, //ADDRESS
 			
 			0x00, //STOP
-/*
+
 			0x60, 33, //PUSH1
 			0x60, 34, //PUSH1
 			0x55, //SSTORE
@@ -116,18 +116,27 @@ class Route extends Vm
 			0xf4, //DELEGATECALL
 			0xfe, //INVALID
 			0xff, //SELFDESTRUCT
-*/
+
 			0x00, //STOP
 		);
-
+*/
+		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 ///return var_dump($this->aHex);
 		$i_opargs = 0;
 		//foreach ($this->aHex as $k => $sHex) {
 		for ($i = 0; $i<count($this->aHex); $i++) {
+/*
+var_dump(array(
+	'$this->i_pc',
+	$this->i_pc,
+	'$i',
+	$i,
+	$this->aHex
+));
+*/
 			$this->i_pc = $i;
 			$sHex = $this->aHex[$i];
-			
 			if ($i_opargs !== 0) { $i_opargs--; continue; }
 			
 			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view

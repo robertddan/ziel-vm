@@ -26,7 +26,8 @@ $this->oStack->aaStack,
 */
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
-
+//var_dump($sHex);
+//die();
 		switch ($sHex) {
 			case 0x01:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
@@ -544,7 +545,10 @@ $this->oStack->aaStack,
 				array_unshift($this->aaStack, 0);
 				////print(implode("::", $this->aaStack));
 				//return true; 
-			break; //LOG4
+			break; //LOG4			
+			case 0x50:
+				array_pop($this->aaStack);
+			break; //POP
 ///
 			case 0x20:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
