@@ -133,7 +133,7 @@ $aa_p = array(
 		
 		print(PHP_EOL);
 		var_dump('$this->oMemory->aaMemory');
-		//var_dump("Memory::". implode("::", $this->oMemory->aaMemory[1234]));
+		var_dump("Memory::". implode("::", $this->oMemory->aaMemory[1234]));
 		var_dump('$this->oStack->aaStack');
 		var_dump("Stack::". implode("::", $this->oStack->aaStack));
 		var_dump('$this->oStorage->aaStorage');

@@ -10,6 +10,7 @@ class Memory extends Route
 
 	public function __construct () {
 		$this->aaMemory = array();
+		$this->aaMemory[1234] = array();
 	}
 /*
 	public function __construct () {

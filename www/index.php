@@ -57,6 +57,7 @@ if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(" ", $oDiamonds->aHex));
 
+/*
 var_dump('base_convert');
 //$f = '0000000000000000000000000000000000000000000000000000000000000000';
 $f = 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAA';
@@ -70,7 +71,7 @@ var_dump($oUtils->encode_32bytes($f));
 var_dump(32*(pow(32, 32) + 1));
 
 var_dump('base_convert');
-/*
+
 
 var_dump(strlen(0000000000000000000000000000000000000000000000000000000000000000/8));
 
