@@ -19,7 +19,7 @@ class Vm
 
 	public function run () {
 		if (!$this->oRoute->implement()) die('oRoute->implement');
-		
+		if (!$this->oRoute->init($this->oEvent)) die('oRoute->init');
 		
 	}
 

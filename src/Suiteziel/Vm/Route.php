@@ -31,37 +31,32 @@ class Route extends Vm
 	function __construct() {
 		$this->i_pc = 0; //if (Session::i_pc !== 0) $this->i_pc = Session::i_pc;
 		
-		// init
-		$this->init_routes();
-		$this->init_events();
 	}
 	
-	public function init_routes () :bool {
+	public function init ($oEvent) :bool {
 		$this->oOpcodes = new Opcodes();
 		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
 		$this->oState = new State();
 		$this->oStorage = new Storage();
-	}
-	
-	public function init_events () :bool {
-		/*
-		$this->oAddress = new Address();
-		$this->oDatabase = new Database();
-		$this->oDiamonds = new Diamonds();
-		$this->oSession = new Session();
-		$this->oUtils = new Utils();
-		*/
-	}
-/*
-	public function set_hex() :bool {
-		$this->aHex = Diamonds::$_aHex;
+
+		$this->oAddress = $oEvent->oAddress;
+		$this->oDatabase = $oEvent->oDatabase;
+		$this->oDiamonds = $oEvent->oDiamonds;
+		$this->oSession = $oEvent->oSession;
+		$this->oUtils = $oEvent->oUtils;
+		
 		return true;
 	}
-*/
-	public function implement () :bool {
-		//if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
 
+	public function set_hex() :bool {
+		$this->aHex = $this->oDiamonds->aHex;
+		return true;
+	}
+
+	public function implement () :bool {
+		if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
+var_dump($this->aHex);
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
 
