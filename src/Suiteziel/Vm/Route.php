@@ -58,18 +58,25 @@ class Route extends Vm
 	}
 
 	public function implement () :bool {
-		if (empty($this->aHex)) die('Route->implement');
-/*
+		//if (empty($this->aHex)) die('Route->implement');
+
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
 
 			//0x56, //JUMP
-			//0x57, //JUMPI
-			//0x5b, //JUMPDEST
+			0x60, 0x3, //PUSH1
+			0x60, 0x9, //PUSH1
+			0x57, //JUMPI
+			0x30, //ADDRESS
+			0x30, //ADDRESS
+			0x30, //ADDRESS
+			0x30, //ADDRESS
+			0x5b, //JUMPDEST
 			//0x58, //PC
 			0x30, //ADDRESS
 			
-			
+			0x00, //STOP
+/*
 			0x60, 33, //PUSH1
 			0x60, 34, //PUSH1
 			0x55, //SSTORE
@@ -109,10 +116,10 @@ class Route extends Vm
 			0xf4, //DELEGATECALL
 			0xfe, //INVALID
 			0xff, //SELFDESTRUCT
-			
+*/
 			0x00, //STOP
 		);
-*/
+
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 ///return var_dump($this->aHex);
 		$i_opargs = 0;
@@ -156,13 +163,15 @@ $aa_p = array(
 			/**/
 		}
 		
-		print(PHP_EOL);
+		print(PHP_EOL);print(PHP_EOL);
+		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
 		var_dump('$this->oMemory->aaMemory');
 		var_dump("Memory::". implode("::", $this->oMemory->aaMemory[1234]));
 		var_dump('$this->oStack->aaStack');
 		var_dump("Stack::". implode("::", $this->oStack->aaStack));
 		var_dump('$this->oStorage->aaStorage');
-		var_dump("Storage::". implode("::", $this->oStorage->aaStorage[0]));
+		//var_dump("Storage::". implode("::", $this->oStorage->aaStorage));
+		var_dump($this->oStorage->aaStorage);
 		return true;
 	}
 
