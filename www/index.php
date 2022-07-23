@@ -11,8 +11,8 @@ use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 
-
 use App\Suiteziel\Org\Address;
+
 $oAddress = new Address();
 if (!$oAddress->generate_keys()) die('$oAddress->generate_keys()');
 
@@ -27,6 +27,7 @@ $aSession = array(
 var_dump($aSession);
 
 use App\Suiteziel\Org\Session;
+
 $oSession = new Session();
 //if (!$oSession->new_session()) die('$oSession->new_session()');
 //if (!$oSession->save_session($aSession)) die('$oSession->save_session()');

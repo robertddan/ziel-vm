@@ -1,8 +1,9 @@
 <?php
 namespace App\Suiteziel\Org;
 
+use App\Suiteziel\Org\Events;
 
-class Database
+class Database extends Events
 {
 	public $sPath;
 	

@@ -15,25 +15,48 @@ class Route extends Vm
 
 	public $i_pc;
 	public $aHex;
+	
 	public $oOpcodes;
 	public $oMemory;
 	public $oStack;
 	public $oState;
-
+	public $oStorage;
+	
+	public $oAddress;
+	public $oDatabase;
+	public $oDiamonds;
+	public $oSession;
+	public $oUtils;
+	
 	function __construct() {
 		$this->i_pc = 0; //if (Session::i_pc !== 0) $this->i_pc = Session::i_pc;
+		
+		// init
+		$this->init_routes();
+		$this->init_events();
+	}
+	
+	public function init_routes () :bool {
 		$this->oOpcodes = new Opcodes();
 		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
 		$this->oState = new State();
 		$this->oStorage = new Storage();
 	}
-
+	
+	public function init_events () :bool {
+		$this->oAddress = new Address();
+		$this->oDatabase = new Database();
+		$this->oDiamonds = new Diamonds();
+		$this->oSession = new Session();
+		$this->oUtils = new Utils();
+	}
+/*
 	public function set_hex() :bool {
 		$this->aHex = Diamonds::$_aHex;
 		return true;
 	}
-
+*/
 	public function implement () :bool {
 		//if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
 

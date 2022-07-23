@@ -1,8 +1,9 @@
 <?php
 namespace App\Suiteziel\Org;
 
+use App\Suiteziel\Org\Events;
 
-class Utils
+class Utils extends Route
 {
 
 	public function encode_32bytes ($d) {

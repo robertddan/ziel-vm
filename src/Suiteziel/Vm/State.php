@@ -24,7 +24,7 @@ class State extends Route
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => "",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
-			"Iv" => "",
+			"Iv" => Session::$_aData["wallet"][0], //70000000000000000000,
 			// Ib, the byte array that is the machine code to be executed. 
 			"Ib" => "",
 			// IH, the block header of the present block. 

@@ -2,12 +2,9 @@
 namespace App\Suiteziel\Org;
 
 
-use Sop\CryptoTypes\Asymmetric\EC\ECPublicKey;
-use Sop\CryptoTypes\Asymmetric\EC\ECPrivateKey;
-use Sop\CryptoEncoding\PEM;
-use kornrunner\Keccak;
+use App\Suiteziel\Org\Events;
 
-class Address
+class Address extends Events
 {
 	private $aConfig;
 	private $oOpaque;
