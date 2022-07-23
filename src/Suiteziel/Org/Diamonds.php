@@ -1,9 +1,10 @@
 <?php
 namespace App\Suiteziel\Org;
 
-use App\Suiteziel\Org\Events;
 
-class Diamonds extends Events
+use App\Suiteziel\Org\Event;
+
+class Diamonds extends Event
 {
 
 	public $sFilePathOutput;

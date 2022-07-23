@@ -3,7 +3,7 @@ namespace App\Suiteziel\Vm;
 
 
 use App\Suiteziel\Vm\Route;
-use App\Suiteziel\Org\Session;
+//use App\Suiteziel\Org\Session;
 
 class State extends Route
 {
@@ -14,7 +14,7 @@ class State extends Route
 
 		$this->aaState = self::$_aaState = array(
 			// Ia, the address of the account which owns the code that is executing. 
-			"Ia" => Session::$_aData["wallet"][0],
+			"Ia" => "",//Session::$_aData["wallet"][0],
 			// Io, the sender address of the transaction that originated this execution. 
 			"Io" => "",
 			// Ip, the price of gas in the transaction that originated this execution. 
@@ -24,7 +24,7 @@ class State extends Route
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => "",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
-			"Iv" => Session::$_aData["wallet"][0], //70000000000000000000,
+			"Iv" => "", //Session::$_aData["wallet"][0], //70000000000000000000,
 			// Ib, the byte array that is the machine code to be executed. 
 			"Ib" => "",
 			// IH, the block header of the present block. 

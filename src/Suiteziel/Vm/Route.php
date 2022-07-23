@@ -2,7 +2,6 @@
 namespace App\Suiteziel\Vm;
 
 
-use App\Suiteziel\Org\Diamonds;
 use App\Suiteziel\Vm;
 use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\Vm\Memory;
@@ -29,24 +28,38 @@ class Route extends Vm
 	public $oUtils;
 	
 	function __construct() {
+		if (!$this->init_classes()) die('$this->init_classes');
+		if (!$this->init_variables()) die('$this->init_variables');
 		$this->i_pc = 0; //if (Session::i_pc !== 0) $this->i_pc = Session::i_pc;
-		
+
 	}
-	
-	public function init ($oEvent) :bool {
+		
+	public function init_classes () :bool {
 		$this->oOpcodes = new Opcodes();
 		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
 		$this->oState = new State();
 		$this->oStorage = new Storage();
-
+		
+		var_dump('$this->oEvent');
+		var_dump($this->oEvent);
+		
+return true; 
 		$this->oAddress = $oEvent->oAddress;
 		$this->oDatabase = $oEvent->oDatabase;
 		$this->oDiamonds = $oEvent->oDiamonds;
 		$this->oSession = $oEvent->oSession;
 		$this->oUtils = $oEvent->oUtils;
+
+		return true;
+	}
+	
+	public function init_variables () :bool {
 		
 		return true;
+	}
+	public function init ($oEvent) :bool {
+
 	}
 
 	public function set_hex() :bool {
@@ -55,8 +68,11 @@ class Route extends Vm
 	}
 
 	public function implement () :bool {
+		return var_dump($this->oDiamonds->aHex);
+		
+		
 		if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
-var_dump($this->aHex);
+
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
 

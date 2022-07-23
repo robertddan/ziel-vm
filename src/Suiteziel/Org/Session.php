@@ -1,9 +1,10 @@
 <?php
 namespace App\Suiteziel\Org;
 
-use App\Suiteziel\Org\Events;
 
-class Session extends Events
+use App\Suiteziel\Org\Event;
+
+class Session extends Event
 {
 	public $sPath;
 	public $aData;

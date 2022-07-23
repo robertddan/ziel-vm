@@ -6,10 +6,15 @@ require __DIR__.'/../config/bootstrap.php';
 
 echo '<pre>';
 
+use App\Suiteziel\Vm;
+$oVm = new Vm();
+$oVm->run();
+
+
+/*
 use App\Suiteziel\Opt\View;
 use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
-use App\Suiteziel\Vm;
 
 use App\Suiteziel\Org\Address;
 
@@ -36,15 +41,13 @@ var_dump(array(
 	'$oSession',
 	$oSession->aData
 ));
+*/
 
 
 
 
-//$oView = new View();
-$oUtils = new Utils();
+/*
 $oDiamonds = new Diamonds();
-$oVm = new Vm();
-
 $oDiamonds->iCursor = 1; // skip compilation
 $oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
 $oDiamonds->sFolder = '20220714123825000000'; // specify folder
@@ -57,8 +60,12 @@ if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 
 var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
 var_dump(implode(" ", $oDiamonds->aHex));
+*/
+
 
 /*
+
+$oUtils = new Utils();
 var_dump('base_convert');
 //$f = '0000000000000000000000000000000000000000000000000000000000000000';
 $f = 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAA';
@@ -196,7 +203,6 @@ bin to dec (32 bytes)
 
 //$binarydata = hash('sha3-256', 'The quick brown fox jumps over the lazy dog');
 
-$oVm->run();
 
 /*
 $a = array(1,2,3,4,5);

@@ -1,11 +1,15 @@
 <?php
 namespace App\Suiteziel\Org;
 
-use App\Suiteziel\Org\Events;
 
-class Utils extends Route
+use App\Suiteziel\Org\Event;
+
+class Utils extends Event
 {
-
+	
+	public function __construct () {
+	}
+	
 	public function encode_32bytes ($d) {
 		list($t, $b, $r) = array("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "", "");
 		foreach(str_split($d) as $c) $b = $b . sprintf("%08b", ord($c));

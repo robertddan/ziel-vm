@@ -8,18 +8,29 @@ use App\Suiteziel\Org\Event;
 class Vm
 {
 
-	public $oRoute;
 	public $oEvent;
+	public $oRoute;
+	public $bLocks;
 	
 	public function __construct() {
-		$this->oRoute = new Route();
-		$this->oEvent = new Event();
+		
+		if (!$this->init_classes()) die('Vm->init_classes');
+
 	}
 	
+	public function init_classes () :bool {
+		
+		if ($this->bLocks) return true;
+		$this->oEvent = new Event();
+		$this->oRoute = new Route();
+		$this->bLocks = true;
+		return true;
+		
+	}
 
 	public function run () {
+		//if (!$this->oRoute->init()) die('oRoute->init');
 		if (!$this->oRoute->implement()) die('oRoute->implement');
-		if (!$this->oRoute->init($this->oEvent)) die('oRoute->init');
 		
 	}
 
