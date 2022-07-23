@@ -21,7 +21,7 @@ class Route extends Vm
 	public $oState;
 
 	function __construct() {
-		$this->i_pc = 0;
+		$this->i_pc = 0; //if (Session::i_pc !== 0) $this->i_pc = Session::i_pc;
 		$this->oOpcodes = new Opcodes();
 		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
@@ -46,10 +46,10 @@ class Route extends Vm
 			//0x58, //PC
 			0x30, //ADDRESS
 			
+			
 			0x60, 33, //PUSH1
-			0x53, //MSTORE8
-			0x59, //MSIZE
-			//0x32, //ORIGIN
+			0x60, 34, //PUSH1
+			0x55, //SSTORE
 			0x00, //STOP
 			
 			//0x33, //CALLER
@@ -112,14 +112,13 @@ $aa_p = array(
 	$this->i_pc,
 	$this->oStack->aaStack
 );
+	
 			
-			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning'); //$i, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
+			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning');
 			
-			
-			//if (!$this->oStack->positioning($i, $sHex, $aArguments, $iDelta)) die('oStack->positioning');
+			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 			if (!$this->oMemory->positioning($aa_p)) die('oMemory->positioning');
 			if (!$this->oStorage->positioning($aa_p)) die('oStorage->positioning');
-			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 			
 			
 			$i = $aa_p[3];
@@ -134,11 +133,11 @@ $aa_p = array(
 		
 		print(PHP_EOL);
 		var_dump('$this->oMemory->aaMemory');
-		//var_dump($this->oMemory->aaMemory[1234]);
-		var_dump("Memory::". implode("::", $this->oMemory->aaMemory[1234]));
+		//var_dump("Memory::". implode("::", $this->oMemory->aaMemory[1234]));
 		var_dump('$this->oStack->aaStack');
-		//var_dump($this->oStack->aaStack);
 		var_dump("Stack::". implode("::", $this->oStack->aaStack));
+		var_dump('$this->oStorage->aaStorage');
+		var_dump("Storage::". implode("::", $this->oStorage->aaStorage[0]));
 		return true;
 	}
 

@@ -2,25 +2,37 @@
 namespace App\Suiteziel\Vm;
 
 
+use App\Suiteziel\Vm\State;
+
 class Storage 
 {
 	public $aaStorage;
 	
 	public function __construct () {
 		$this->aaStorage = array();
+		$this->aSlot = array(
+			"contract" => State::$_aaState["Ia"],
+			"slot" => null,
+			"value" => null
+		);
 	}
 /*
 	public function __construct () {
 
 	}
 */
-	public function positioning($i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+	public function positioning(&$aa_p) {
+		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
 			case 0x54:
-			
+				
 			break; //SLOAD
 			case 0x55:
-				
+				$a_e = array_splice($aaStack, 0, $iDelta);
+				$this->aSlot["slot"] = $a_e[1];
+				$this->aSlot["value"] = $a_e[0];
+				array_push($this->aaStorage, $this->aSlot);
+				print("Storage::". implode("::", $this->aaStorage[0]));
 			break; //SSTORE
 			default: return true; break;
 		}

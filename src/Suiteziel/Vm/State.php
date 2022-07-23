@@ -8,10 +8,11 @@ use App\Suiteziel\Org\Session;
 class State extends Route
 {
 	public $aaState;
+	public static $_aaState;
 
 	public function __construct () {
 
-		$this->aaState = array(
+		$this->aaState = self::$_aaState = array(
 			// Ia, the address of the account which owns the code that is executing. 
 			"Ia" => Session::$_aData["wallet"][0],
 			// Io, the sender address of the transaction that originated this execution. 
@@ -100,7 +101,7 @@ class State extends Route
 			case 0x3c:
 				print("Stack::". implode("::", $aaStack));
 			break; //EXTCODECOPY
-			
+				
 			case 0x40:
 				print("Stack::". implode("::", $aaStack));
 			break; //BLOCKHASH	
