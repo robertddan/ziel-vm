@@ -32,10 +32,12 @@ class Storage
 				$this->aSlot["slot"] = $a_e[1];
 				$this->aSlot["value"] = $a_e[0];
 				array_push($this->aaStorage, $this->aSlot);
-				print("Storage::". implode("::", $this->aaStorage[0]));
 			break; //SSTORE
 			default: return true; break;
 		}
+		
+		print("Storage::". implode("::", $this->aaStorage[0]));
+		print(PHP_EOL);
 		return true;
 	}
 }

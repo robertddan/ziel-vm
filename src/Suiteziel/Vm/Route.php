@@ -59,7 +59,7 @@ class Route extends Vm
 
 	public function implement () :bool {
 		if (empty($this->aHex)) die('Route->implement');
-
+/*
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
 
@@ -112,7 +112,7 @@ class Route extends Vm
 			
 			0x00, //STOP
 		);
-		
+*/
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 ///return var_dump($this->aHex);
 		$i_opargs = 0;
@@ -139,7 +139,6 @@ $aa_p = array(
 	
 			
 			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning');
-			
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 			if (!$this->oMemory->positioning($aa_p)) die('oMemory->positioning');
 			if (!$this->oStorage->positioning($aa_p)) die('oStorage->positioning');
@@ -152,6 +151,8 @@ $aa_p = array(
 			//var_dump($this->oStack->aaStack);
 			if ($aa_p[3] == 'STOP') break;
 			$i_opargs = count($aArguments);
+			
+			
 			/**/
 		}
 		

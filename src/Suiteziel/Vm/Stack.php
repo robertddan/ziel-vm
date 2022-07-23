@@ -31,44 +31,44 @@ $this->oStack->aaStack,
 			case 0x01:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, array_sum($a_e));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //ADD
 			case 0x02:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, array_product($a_e));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //MUL
 			case 0x03:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, ($a_e[0] - $a_e[1]));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SUB
 			case 0x04:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, ($a_e[0] / $a_e[1]));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //DIV
 			case 0x05: 
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, ($a_e[0] / $a_e[1]));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SDIV
 			case 0x06: 
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				if ($a_e[1] == 0) array_unshift($this->aaStack, 0);
 				else array_unshift($this->aaStack, ($a_e[0] % $a_e[1]));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 			break; //MOD
 			case 0x07: 
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				if ($a_e[1] == 0) array_unshift($this->aaStack, 0);
 				else array_unshift($this->aaStack, ($a_e[0] % $a_e[1]));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SMOD
 			case 0x08: 
@@ -84,20 +84,20 @@ $this->oStack->aaStack,
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				if ($a_e[2] == 0) array_unshift($this->aaStack, 0);
 				else array_unshift($this->aaStack, ($a_e[0] + ($a_e[1] % $a_e[2])));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //ADDMOD
 			case 0x09:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				if ($a_e[2] == 0) array_unshift($this->aaStack, 0);
 				else array_unshift($this->aaStack, ($a_e[0] * ($a_e[1] % $a_e[2])));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //MULMOD
 			case 0x0a: 
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, (pow($a_e[0], $a_e[1])));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //EXP
 			case 0x0b:
@@ -108,7 +108,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] < $a_e[1]) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //LT
 			case 0x11: 
@@ -116,7 +116,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] > $a_e[1]) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //GT
 			case 0x12: // Where all values are treated as two’s complement signed 256-bit integers.
@@ -124,7 +124,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] < $a_e[1]) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SLT
 			case 0x13:
@@ -132,7 +132,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] > $a_e[1]) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SGT
 			case 0x14:
@@ -140,7 +140,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] == $a_e[1]) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //EQ
 			case 0x15:
@@ -148,7 +148,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] == 0) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //ISZERO
 			case 0x16:
@@ -156,7 +156,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] and $a_e[1]) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //AND
 			case 0x17:
@@ -164,7 +164,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] or $a_e[1]) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //OR
 			case 0x18: 
@@ -172,7 +172,7 @@ $this->oStack->aaStack,
 				if ($a_e[0] xor $a_e[1]) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //XOR
 			case 0x19:
@@ -180,32 +180,32 @@ $this->oStack->aaStack,
 				if ($a_e[0] == 0) $i = 1;
 				else $i = 0;
 				array_unshift($this->aaStack, $i);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //NOT				
 			case 0x1a:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				for($i = 0; $i < strlen($a_e[1]); $i++) $a_e[0] = ord($a_e[1]);
 				array_unshift($this->aaStack, $a_e[0]);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				return true;
 			break; //BYTE
 			case 0x1b:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, ($a_e[0] >> $a_e[1]));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SHL Left shift operation.
 			case 0x1c:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SHR Logical right shift operation.
 			case 0x1d:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				return true;
 			break; //SAR 
 //
@@ -339,7 +339,7 @@ $this->oStack->aaStack,
 			break; //PUSH32
 			case 0x80:
 				array_unshift($this->aaStack, $this->aaStack[0]);
-				//print(implode("::", $this->aaStack));
+				////print(implode("::", $this->aaStack));
 				//return true; 
 			break; //DUP1
 			case 0x81:
@@ -406,143 +406,143 @@ $this->oStack->aaStack,
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[1];
 				$this->aaStack[1] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP1
 			case 0x91:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[2];
 				$this->aaStack[2] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP2
 			case 0x92:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[3];
 				$this->aaStack[3] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP3
 			case 0x93:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[4];
 				$this->aaStack[4] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP4
 			case 0x94:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[5];
 				$this->aaStack[5] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP5
 			case 0x95:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[6];
 				$this->aaStack[6] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP6
 			case 0x96:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[7];
 				$this->aaStack[7] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP7
 			case 0x97:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[8];
 				$this->aaStack[8] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP8
 			case 0x98:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[9];
 				$this->aaStack[9] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP9
 			case 0x99:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[10];
 				$this->aaStack[10] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP10
 			case 0x9a:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[11];
 				$this->aaStack[11] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP11
 			case 0x9b:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[12];
 				$this->aaStack[12] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP12
 			case 0x9c:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[13];
 				$this->aaStack[13] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP13
 			case 0x9d:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[14];
 				$this->aaStack[14] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP14
 			case 0x9e:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[15];
 				$this->aaStack[15] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP15
 			case 0x9f:
 				$s_preview = $this->aaStack[0];
 				$this->aaStack[0] = $this->aaStack[16];
 				$this->aaStack[16] = $s_preview;
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //SWAP16
 ///
 			case 0xa0:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, 0);
-				//print(implode("::", $this->aaStack));
+				////print(implode("::", $this->aaStack));
 				//return true; 
 			break; //LOG0
 			case 0xa1:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, 0);
-				//print(implode("::", $this->aaStack));
+				////print(implode("::", $this->aaStack));
 				//return true; 
 			break; //LOG1
 			case 0xa2:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, 0);
-				//print(implode("::", $this->aaStack));
+				////print(implode("::", $this->aaStack));
 				//return true; 
 			break; //LOG2
 			case 0xa3:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, 0);
-				//print(implode("::", $this->aaStack));
+				////print(implode("::", $this->aaStack));
 				//return true; 
 			break; //LOG3
 			case 0xa4:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, 0);
-				//print(implode("::", $this->aaStack));
+				////print(implode("::", $this->aaStack));
 				//return true; 
 			break; //LOG4
 ///
@@ -550,13 +550,13 @@ $this->oStack->aaStack,
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				$s_sha3 = hash('sha3-256', $a_e[1]);
 				array_unshift($this->aaStack, $s_sha3);
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				//return true;
 			break; //SHA3
 /*
 			case 0x30:
 
-				print(implode("::", $this->aaStack));
+				//print(implode("::", $this->aaStack));
 				return true;
 			break; //ADDRESS
 			case 0x31: return 1;break; //BALANCE
@@ -596,10 +596,13 @@ $this->oStack->aaStack,
 			case 0xfe: return 1;break; //INVALID
 			case 0xff: return 1;break; //SELFDESTRUCT
 //*/
-			default: //return true; break;
+			
+			default: return true; break;
 		}
 		
 		$aaStack = $this->aaStack;
+		print(PHP_EOL);
+		print("Stack::". implode("::", $this->aaStack));
 		return true;
 		
 		

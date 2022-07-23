@@ -42,14 +42,28 @@ class Opcodes extends Route
 	}
 
 	public function describe($i_k = null, $sHex = null) :bool {
+		
 		$sArguments = implode(",", $this->aArguments);
-		if (!isset($this->aaOpcodes[$sHex])) { print "$i_k\t------------- Default:\t\t$sHex\t# ----------- \n"; return true; }
-		print "$i_k\t". base_convert($sHex, 10, 16) ."\t#". 
-			$this->aaOpcodes[$sHex][2] ."\t". 
-			$this->aaOpcodes[$sHex][0] ."\t". 
-			$this->aaOpcodes[$sHex][3] ."\t\t". 
-			$sArguments ."\t\t". 
-			$this->aaOpcodes[$sHex][4] ."\n";
+		
+		if (!isset($this->aaOpcodes[$sHex])) { 
+			print "$i_k\t------------- Default:\t\t$sHex\t# ----------- \n"; 
+			return true; 
+		}
+		
+		print "\n".
+			str_pad($i_k, 10, 0, STR_PAD_LEFT) ."\t". 
+			"[". 
+			base_convert($sHex, 10, 16) 
+			."->".
+			$this->aaOpcodes[$sHex][3] 
+			."]"
+			//"price: #". $this->aaOpcodes[$sHex][2] 
+			."\t". 
+			$this->aaOpcodes[$sHex][4] ."".
+			//."\t". 
+			"(". $sArguments .")\t"
+			."\t";
+		
 		return true;
 	}
 	
@@ -85,7 +99,7 @@ class Opcodes extends Route
 			0x12 => array(0, 2, 3, 0x12, "SLT", "Signed less-than comparison"),
 			0x13 => array(0, 2, 3, 0x13, "SGT", "Signed greater-than comparison"),
 			0x14 => array(0, 2, 3, 0x14, "EQ", "Equality comparison"),
-			0x15 => array(0, 2, 3, 0x15, "ISZERO", "Simple not operator"),
+			0x15 => array(0, 1, 3, 0x15, "ISZERO", "Simple not operator"),
 			0x16 => array(0, 2, 3, 0x16, "AND", "Bitwise AND operation"),
 			0x17 => array(0, 2, 3, 0x17, "OR", "Bitwise OR operation"),
 			0x18 => array(0, 2, 3, 0x18, "XOR", "Bitwise XOR operation"),
