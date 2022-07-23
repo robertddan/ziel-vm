@@ -81,8 +81,8 @@ var_dump($a_e, $i_pc);
 			case 0x35:
 			break; //CALLDATALOAD
 			case 0x36:
-				array_unshift($aaStack, mb_strlen(serialize($aaStack), '8bit')); 
-				//array_unshift($aaStack, 3); 
+				//array_unshift($aaStack, mb_strlen(serialize($aaStack), '8bit')); 
+				array_unshift($aaStack, 3); 
 		print(PHP_EOL);
 		print("Stack::". implode("::", $aaStack));
 			break; //CALLDATASIZE
