@@ -52,19 +52,13 @@ class Route extends Vm
 	}
 	
 	public function init_variables () :bool {
-		
-		$this->i_pc = 0; //if (Session::i_pc !== 0) $this->i_pc = Session::i_pc;
-		return true;
-	}
-
-
-	private function set_hex() :bool {
+		$this->i_pc = 0;
 		$this->aHex = $this->oDiamonds->aHex;
 		return true;
 	}
 
 	public function implement () :bool {
-		if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
+		if (empty($this->aHex)) die('Route->implement');
 
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
@@ -79,43 +73,44 @@ class Route extends Vm
 			0x60, 33, //PUSH1
 			0x60, 34, //PUSH1
 			0x55, //SSTORE
-			0x00, //STOP
 			
-			//0x33, //CALLER
-			//0x34, //CALLVALUE
-			//0x35, //CALLDATALOAD
-			//0x36, //CALLDATASIZE
-			//0x37, //CALLDATACOPY
-			//0x38, //CODESIZE
-			//0x39, //CODECOPY
+			0x33, //CALLER
+			0x34, //CALLVALUE
+			0x35, //CALLDATALOAD
+			0x36, //CALLDATASIZE
+			0x37, //CALLDATACOPY
+			0x38, //CODESIZE
+			0x39, //CODECOPY
 			
 			//Block Information
-			//0x40, //BLOCKHASH
-			//0x41, //COINBASE
-			//0x42, //TIMESTAMP
-			//0x43, //NUMBER
-			//0x44, //DIFFICULTY
-			//0x45, //GASLIMIT
+			0x40, //BLOCKHASH
+			0x41, //COINBASE
+			0x42, //TIMESTAMP
+			0x43, //NUMBER
+			0x44, //DIFFICULTY
+			0x45, //GASLIMIT
 			
-			//0x31, //BALANCE
-			//0x3b, //EXTCODESIZE
-			//0x3c, //EXTCODECOPY
+			0x31, //BALANCE
+			0x3b, //EXTCODESIZE
+			0x3c, //EXTCODECOPY
 		
-			//0x54, //SLOAD
-			//0x55, //SSTORE
+			0x54, //SLOAD
+			0x55, //SSTORE
 			
 			//Stack, Memory, Storage and Flow Operations
-			//0x50, //POP
-			//0x5a, //GAS
+			0x50, //POP
+			0x5a, //GAS
 			
 			// f0s: System operations
-			//0xf0, //CREATE
-			//0xf1, //CALL
-			//0xf2, //CALLCODE
-			//0xf3, //RETURN
-			//0xf4, //DELEGATECALL
-			//0xfe, //INVALID
-			//0xff, //SELFDESTRUCT
+			0xf0, //CREATE
+			0xf1, //CALL
+			0xf2, //CALLCODE
+			0xf3, //RETURN
+			0xf4, //DELEGATECALL
+			0xfe, //INVALID
+			0xff, //SELFDESTRUCT
+			
+			0x00, //STOP
 		);
 		
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
