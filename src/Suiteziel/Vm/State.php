@@ -35,7 +35,6 @@ class State extends Route
 			"Iw" => "",
 		);
 		
-		var_dump($this->aaState);
 	}
 
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {

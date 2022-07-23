@@ -8,7 +8,7 @@ use App\Suiteziel\Org\Event;
 class Vm
 {
 
-	public $oEvent;
+	protected $oEvent;
 	public $oRoute;
 	public $bLocks;
 	
@@ -20,8 +20,8 @@ class Vm
 	
 	public function init_classes () :bool {
 		
-		if ($this->bLocks) return true;
-		$this->oEvent = new Event();
+		//if ($this->bLocks) return true;
+		$this->oEvent = array(1,2,3,4); //new Event();
 		$this->oRoute = new Route();
 		$this->bLocks = true;
 		return true;
@@ -29,8 +29,8 @@ class Vm
 	}
 
 	public function run () {
-		//if (!$this->oRoute->init()) die('oRoute->init');
-		if (!$this->oRoute->implement()) die('oRoute->implement');
+		if (!$this->oRoute->init()) die('oRoute->init');
+		//if (!$this->oRoute->implement()) die('oRoute->implement');
 		
 	}
 

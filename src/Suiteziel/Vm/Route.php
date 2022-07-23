@@ -30,7 +30,6 @@ class Route extends Vm
 	function __construct() {
 		if (!$this->init_classes()) die('$this->init_classes');
 		if (!$this->init_variables()) die('$this->init_variables');
-		$this->i_pc = 0; //if (Session::i_pc !== 0) $this->i_pc = Session::i_pc;
 
 	}
 		
@@ -40,11 +39,7 @@ class Route extends Vm
 		$this->oStack = new Stack();
 		$this->oState = new State();
 		$this->oStorage = new Storage();
-		
-		var_dump('$this->oEvent');
-		var_dump($this->oEvent);
-		
-return true; 
+return true;
 		$this->oAddress = $oEvent->oAddress;
 		$this->oDatabase = $oEvent->oDatabase;
 		$this->oDiamonds = $oEvent->oDiamonds;
@@ -56,10 +51,16 @@ return true;
 	
 	public function init_variables () :bool {
 		
+		$this->i_pc = 0; //if (Session::i_pc !== 0) $this->i_pc = Session::i_pc;
 		return true;
 	}
-	public function init ($oEvent) :bool {
-
+	
+	public function init () :bool {
+		
+		var_dump('$this->oEvent');
+		var_dump($this->oEvent);
+		
+return true; 
 	}
 
 	public function set_hex() :bool {
