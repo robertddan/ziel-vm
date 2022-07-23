@@ -58,15 +58,12 @@ class Route extends Vm
 	}
 
 
-	public function set_hex() :bool {
+	private function set_hex() :bool {
 		$this->aHex = $this->oDiamonds->aHex;
 		return true;
 	}
 
 	public function implement () :bool {
-		return var_dump($this->oDiamonds->aHex);
-		
-		
 		if (!$this->set_hex() && empty($this->aHex)) die('Route->implement');
 
 		$this->aHex = array(
