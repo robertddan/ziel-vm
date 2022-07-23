@@ -45,11 +45,13 @@ class Route extends Vm
 	}
 	
 	public function init_events () :bool {
+		/*
 		$this->oAddress = new Address();
 		$this->oDatabase = new Database();
 		$this->oDiamonds = new Diamonds();
 		$this->oSession = new Session();
 		$this->oUtils = new Utils();
+		*/
 	}
 /*
 	public function set_hex() :bool {
