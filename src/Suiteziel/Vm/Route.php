@@ -1,7 +1,6 @@
 <?php
 namespace App\Suiteziel\Vm;
 
-
 use App\Suiteziel\Vm;
 use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\Vm\Memory;
@@ -27,19 +26,22 @@ class Route extends Vm
 	public $oSession;
 	public $oUtils;
 	
-	function __construct() {
-		if (!$this->init_classes()) die('$this->init_classes');
+	function __construct() {}
+			
+	public function init ($oEvent) :bool {
+		if (!$this->init_classes($oEvent)) die('$this->init_classes');
 		if (!$this->init_variables()) die('$this->init_variables');
-
+		return true; 
 	}
-		
-	public function init_classes () :bool {
+	
+	public function init_classes ($oEvent) :bool {
+
 		$this->oOpcodes = new Opcodes();
 		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
 		$this->oState = new State();
 		$this->oStorage = new Storage();
-return true;
+		
 		$this->oAddress = $oEvent->oAddress;
 		$this->oDatabase = $oEvent->oDatabase;
 		$this->oDiamonds = $oEvent->oDiamonds;
@@ -54,14 +56,7 @@ return true;
 		$this->i_pc = 0; //if (Session::i_pc !== 0) $this->i_pc = Session::i_pc;
 		return true;
 	}
-	
-	public function init () :bool {
-		
-		var_dump('$this->oEvent');
-		var_dump($this->oEvent);
-		
-return true; 
-	}
+
 
 	public function set_hex() :bool {
 		$this->aHex = $this->oDiamonds->aHex;
