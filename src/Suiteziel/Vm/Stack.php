@@ -189,7 +189,7 @@ $this->oStack->aaStack,
 				for($i = 0; $i < strlen($a_e[1]); $i++) $a_e[0] = ord($a_e[1]);
 				array_unshift($this->aaStack, $a_e[0]);
 				//print(implode("::", $this->aaStack));
-				return true;
+				//return true;
 			break; //BYTE
 			case 0x1b:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
@@ -207,7 +207,7 @@ $this->oStack->aaStack,
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
 				//print(implode("::", $this->aaStack));
-				return true;
+				//return true;
 			break; //SAR 
 //
 			case 0x60:

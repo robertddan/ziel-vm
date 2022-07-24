@@ -127,6 +127,9 @@ class State
 			case 0xf2:
 			break; //CALLCODE
 			case 0xf3:
+				$a_e = array_splice($aaStack, 0, $iDelta);
+				var_dump($a_e);
+				$i_pc = 'STOP';
 			break; //RETURN
 			case 0xf4:
 			break; //DELEGATECALL

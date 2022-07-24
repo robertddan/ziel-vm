@@ -219,7 +219,7 @@ $this->aaOpcodes[$sHex][3] ."\t\t".
 			0xf0 => array(0, 0, 32000, "0xf0", "CREATE", "Create a new account with associated code"),
 			0xf1 => array(0, 0, 40, "0xf1", "CALL", "Message-call into an account"),
 			0xf2 => array(0, 0, 40, "0xf2", "CALLCODE", "Message-call into this account with alternative account’s code"),
-			0xf3 => array(0, 0, 0, "0xf3", "RETURN", "Halt execution returning output data"),
+			0xf3 => array(0, 2, 0, "0xf3", "RETURN", "Halt execution returning output data"),
 			0xf4 => array(0, 0, 40, "0xf4", "DELEGATECALL", "Message-call into this account with an alternative account’s code, but persisting the current values for sender and value"),
 			0xf5 => array(0, 0, 0, "0xf5", "CREATE2", "Create a new account with associated code."),
 			0xfa => array(0, 0, 0, "0xfa", "STATICCALL", "Static message-call into an account."),

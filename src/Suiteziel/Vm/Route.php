@@ -70,13 +70,14 @@ class Route
 	}
 	
 	public function implement () :bool {
-		//if (empty($this->aHex)) die('Route->implement');
+		if (empty($this->aHex)) die('Route->implement');
 		//var_dump($this->oAddress);
 		
-
+		var_dump(strlen('11')/8);
+/*
 		$this->aHex = array(
 			96,128,96,64,82,52,128,21,97,0,16,87,96,0,128,253,91,80,96,200,128,97,0,31,96,0,57,96,0,243,254,96,128,96,64,82,52,128,21,96
-/*
+
 			//0x56, //JUMP
 			0x60, 0x3, //PUSH1
 			0x60, 0x8, //PUSH1
@@ -132,9 +133,9 @@ class Route
 			0xff, //SELFDESTRUCT
 			
 			0x00, //STOP
-*/
-		);
 
+		);
+*/
 
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 
@@ -190,7 +191,7 @@ $aa_p = array(
 			
 			
 			//var_dump($this->oStack->aaStack);
-			if ($aa_p[3] == 'STOP') break;
+			if ($aa_p[3] == 'STOP') break; //array()
 			$i_opargs = count($aArguments);
 			
 			
