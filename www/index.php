@@ -14,10 +14,18 @@ use App\Suiteziel\Vm;
 $oVm = new Vm();
 $oVm->run();
 
+/*
+use App\Suiteziel\Org\Utils;
+$oUtils = new Utils();
 
+$d = "6080604052348015600f57600080fd5b";
+var_dump('decode_32bytes');
+var_dump($oUtils->encode_32bytes($d));
+var_dump($oUtils->decode_32bytes($d));
+var_dump('decode_32bytes');
+*/
 /*
 use App\Suiteziel\Opt\View;
-use App\Suiteziel\Org\Utils;
 use App\Suiteziel\Org\Diamonds;
 
 use App\Suiteziel\Org\Address;
@@ -69,6 +77,7 @@ var_dump(implode(" ", $oDiamonds->aHex));
 
 /*
 
+use App\Suiteziel\Org\Utils;
 $oUtils = new Utils();
 var_dump('base_convert');
 //$f = '0000000000000000000000000000000000000000000000000000000000000000';

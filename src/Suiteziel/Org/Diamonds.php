@@ -59,7 +59,9 @@ class Diamonds
 	public function decode_hex () :bool {
 		$aHex = str_split($this->sHex, 2);
 		$this->aHex = self::$_aHex = array_map(function($sHex) {
-			return base_convert($sHex, 16, 10);
+			$sHex = base_convert($sHex, 16, 10);
+			if ($sHex == 0) $sHex = '00';
+			return $sHex;
 		}, $aHex);
 
 		return true;

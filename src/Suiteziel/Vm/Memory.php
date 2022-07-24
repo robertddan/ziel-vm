@@ -18,6 +18,13 @@ class Memory
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
+			case 0x39:
+				$a_s = array_splice($aaStack, 0, $iDelta);
+				$a_m = $this->aaMemory[1234][$a_s[0]];
+				array_unshift($aaStack, $a_m);
+				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));
+				var_dump("Stack::". implode("::", $aaStack));
+			break; //CODECOPY
 			case 0x51:
 				$a_s = array_splice($aaStack, 0, $iDelta);
 				$a_m = $this->aaMemory[1234][$a_s[0]];

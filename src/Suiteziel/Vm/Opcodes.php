@@ -35,6 +35,7 @@ class Opcodes
 		$this->aArguments = array_map(function($sHex) {
 			//return pack("H*", $sHex);
 			//return "0x". dechex($sHex);
+			if ($sHex == 0) $sHex = '00';
 			return $sHex;
 		}, $aArguments);
 
@@ -46,7 +47,7 @@ class Opcodes
 		$sArguments = implode(",", $this->aArguments);
 		
 		if (!isset($this->aaOpcodes[$sHex])) { 
-			print "$i_k\t------------- Default:\t\t$sHex\t# ----------- \n"; 
+			print "\n". str_pad($i_k, 10, 0, STR_PAD_LEFT) ."\t------------- Default:\t\t$sHex\t# ----------- "; 
 			return true; 
 		}
 		
@@ -147,7 +148,7 @@ $this->aaOpcodes[$sHex][3] ."\t\t".
 			0x5a => array(0, 0, 2, "0x5a", "GAS", "Get the amount of available gas, including the corresponding reduction for the cost of this instruction"),
 			0x5b => array(0, 0, 1, "0x5b", "JUMPDEST", "Mark a valid destination for jumps"),
 			0x60 => array(1, 0, 3, "0x60", "PUSH1", "Place 1 byte item on stack"),
-			0x61 => array(2, 0, 3, "0x61", "PUSH2", "Place 2 byte item on stack"),
+			0x61 => array(2, 2, 3, "0x61", "PUSH2", "Place 2 byte item on stack"),
 			0x62 => array(3, 0, 3, "0x62", "PUSH3", "Place 3 byte item on stack"),
 			0x63 => array(4, 0, 3, "0x63", "PUSH4", "Place 4 byte item on stack"),
 			0x64 => array(5, 0, 3, "0x64", "PUSH5", "Place 5 byte item on stack"),

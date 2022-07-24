@@ -20,7 +20,7 @@ class State
 			// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
 			"Id" => "",
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
-			"Is" => "transaction sender",
+			"Is" => Session::$_aData["wallet"][0], //"transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
 			"Iv" => 0,//70000000000000000000, //"transaction value"
 			// Ib, the byte array that is the machine code to be executed. 
@@ -38,7 +38,6 @@ class State
 			// Iw, the permission to make modi cations to the state.
 			"Iw" => "",
 		);
-		
 	}
 
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
@@ -49,15 +48,15 @@ class State
 				$i_pc = 'STOP';
 			break; //STOP
 			case 0x56:				
-				$a_e = array_slice($aaStack, 0, $iDelta);
+				$a_e = array_unshift($aaStack, 0, $iDelta);
 				//var_dump($a_e);
 				$i_pc = $a_e[0];
 			break; //JUMP
 			case 0x57:
-				$a_e = array_slice($aaStack, 0, $iDelta);
-				if ($a_e[1] != 0) $i_pc = $a_e[0];
-				else $i_pc = $i_pc + 1;
-var_dump($a_e, $i_pc);
+				$a_e = array_splice($aaStack, 0, $iDelta);
+
+				if ($a_e[1] != 0) $i_pc = $a_e[0] -1;
+				else $i_pc = $i_pc;// + 1;
 				//var_dump($a_e);
 			break; //JUMPI
 			case 0x58:
@@ -89,8 +88,7 @@ var_dump($a_e, $i_pc);
 			break; //CALLDATACOPY	
 			case 0x38:
 			break; //CODESIZE
-			case 0x39:
-			break; //CODECOPY
+
 			case 0x3a:
 				array_unshift($aaStack, $this->aaState["Ip"]);
 			break; //GASPRICE
