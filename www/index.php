@@ -7,8 +7,23 @@ require __DIR__.'/../config/bootstrap.php';
 echo '<pre>';
 
 
+/*
+use App\Suiteziel\Org\Diamonds;
+$oDiamonds = new Diamonds();
+$oDiamonds->iCursor = 0; // skip compilation
+$oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
+$oDiamonds->sFolder = '20220724170528000000'; //'20220714123825000000'; // specify folder
+//if (!$oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
+if (!$oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
+if (!$oDiamonds->iCursor) die('oDiamonds->iCursor');
+if (!$oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
+var_dump($oDiamonds->sHex);
+if (!$oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 
+var_dump(implode(" ", str_split($oDiamonds->sHex, 2)));
+var_dump(implode(" ", $oDiamonds->aHex));
 
+*/
 
 use App\Suiteziel\Vm;
 $oVm = new Vm();
@@ -26,7 +41,6 @@ var_dump('decode_32bytes');
 */
 /*
 use App\Suiteziel\Opt\View;
-use App\Suiteziel\Org\Diamonds;
 
 use App\Suiteziel\Org\Address;
 
@@ -59,6 +73,7 @@ var_dump(array(
 
 
 /*
+use App\Suiteziel\Org\Diamonds;
 $oDiamonds = new Diamonds();
 $oDiamonds->iCursor = 1; // skip compilation
 $oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder

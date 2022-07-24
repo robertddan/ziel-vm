@@ -215,7 +215,7 @@ $this->oStack->aaStack,
 				//return true; 
 			break; //PUSH1
 			case 0x61:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, trim($sArgument, "00"));
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, ltrim($sArgument, "00"));
 				var_dump($this->aaStack);
 				//return true; 
 			break; //PUSH2

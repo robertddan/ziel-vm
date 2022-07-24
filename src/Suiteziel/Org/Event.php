@@ -49,7 +49,7 @@ class Event
 	public function init__diamonds () :bool {
 		$this->oDiamonds->iCursor = 1; // skip compilation
 		$this->oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
-		$this->oDiamonds->sFolder = '20220714123825000000'; // specify folder
+		$this->oDiamonds->sFolder = '20220724173530000000'; //'20220714123825000000'; // specify folder
 		if (!$this->oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
 		if (!$this->oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
 		if (!$this->oDiamonds->iCursor) die('oDiamonds->iCursor');

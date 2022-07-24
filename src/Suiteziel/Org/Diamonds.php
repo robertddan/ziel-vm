@@ -29,8 +29,9 @@ class Diamonds
 		if ($this->iCursor === 1) return true;
 		
 		$sFilePath = __APP__ .'contracts/'. $this->sContract;
-		$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->sFilePathOutput .' '.$sFilePath;
-		
+		//$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->sFilePathOutput .' '.$sFilePath;
+		$sCommand = 'solc --evm-version "homestead" --bin '. $sFilePath .' --optimize --optimize-runs 200 -o '. $this->sFilePathOutput;
+			
 		$output=null;
 		$retval=null;
 		exec($sCommand, $output, $retval);
@@ -47,7 +48,8 @@ class Diamonds
 		$sContractName = null;
 	
 		foreach ($aFilesOutput as $sFileOutput) {
-			preg_match("/(\w)*bin-runtime\b/", $sFileOutput, $aMatches);
+			//preg_match("/(\w)*bin-runtime\b/", $sFileOutput, $aMatches);
+			preg_match("/(\w)*.bin\b/", $sFileOutput, $aMatches);
 			$sContractName = $sFileOutput;
 			if(!empty($aMatches)) break;
 		}
