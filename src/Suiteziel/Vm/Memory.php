@@ -20,6 +20,7 @@ class Memory
 		switch ($sHex) {
 			case 0x39:
 				$a_s = array_splice($aaStack, 0, $iDelta);
+
 				$a_m = $this->aaMemory[1234][$a_s[0]];
 				array_unshift($aaStack, $a_m);
 				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));

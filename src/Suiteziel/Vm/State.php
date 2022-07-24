@@ -95,6 +95,7 @@ class State
 			case 0x3b:
 			break; //EXTCODESIZE
 			case 0x3c:
+				
 			break; //EXTCODECOPY
 				
 			case 0x40:
