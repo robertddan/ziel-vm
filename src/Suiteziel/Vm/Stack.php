@@ -2,9 +2,7 @@
 namespace App\Suiteziel\Vm;
 
 
-use App\Suiteziel\Vm\Route;
-
-class Stack extends Route
+class Stack
 { 
 	public $i_sp; //stack pointer
 	public $aaStack;
@@ -26,6 +24,8 @@ $this->oStack->aaStack,
 */
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
+
+		//var_dump($GLOBALS);
 //var_dump($sHex);
 //die();
 		switch ($sHex) {

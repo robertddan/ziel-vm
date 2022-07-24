@@ -2,17 +2,17 @@
 namespace App\Suiteziel\Org;
 
 
-use App\Suiteziel\Org\Event;
-
 use Sop\CryptoTypes\Asymmetric\EC\ECPublicKey;
 use Sop\CryptoTypes\Asymmetric\EC\ECPrivateKey;
 use Sop\CryptoEncoding\PEM;
 use kornrunner\Keccak;
 
-class Address extends Event
+class Address
 {
 	private $aConfig;
 	private $oOpaque;
+	
+	public $aAddress;
 	
 	public $sAddress;
 	public $sKeyPrivate;
@@ -26,6 +26,12 @@ class Address extends Event
 		$this->oOpaque = openssl_pkey_new($this->aConfig);
 		if (!$this->oOpaque) die('ERROR: Fail to generate private key. -> ' . openssl_error_string());
 		$this->generate_keys();
+		
+		$this->aAddress = array(
+			$this->sAddress,
+			$this->sKeyPrivate,
+			$this->sKeyPublic
+		);
 	}
 	
 	public function generate_keys () :bool {
@@ -63,7 +69,11 @@ class Address extends Event
 		$this->sAddress = '0x' . substr($hash, -40);
 		$this->sKeyPrivate = '0x' . $priv_key_hex;
 		$this->sKeyPublic = '0x' . $pub_key_hex;
-
+		$this->aAddress = array(
+			$this->sAddress,
+			$this->sKeyPrivate,
+			$this->sKeyPublic
+		);
 		//return array("address" => $wallet_address, "private_key" => $wallet_private_key, "pubic_key" => $wallet_pubic_key);
 		return true;
 		

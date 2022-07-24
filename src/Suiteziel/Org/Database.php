@@ -2,9 +2,7 @@
 namespace App\Suiteziel\Org;
 
 
-use App\Suiteziel\Org\Event;
-
-class Database extends Event
+class Database
 {
 	public $sPath;
 	

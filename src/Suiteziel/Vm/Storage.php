@@ -36,8 +36,9 @@ class Storage
 			default: return true; break;
 		}
 		
-		print("Storage::". implode("::", $this->aaStorage[0]));
+
 		print(PHP_EOL);
+		print("Storage::". implode("::", $this->aaStorage));
 		return true;
 	}
 }

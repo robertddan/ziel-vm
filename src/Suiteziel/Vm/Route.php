@@ -1,41 +1,42 @@
 <?php
 namespace App\Suiteziel\Vm;
 
-use App\Suiteziel\Vm;
+
+//use App\Suiteziel\Vm;
 use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\Vm\Memory;
 use App\Suiteziel\Vm\Stack;
 use App\Suiteziel\Vm\State;
 use App\Suiteziel\Vm\Storage;
 
-class Route extends Vm
+class Route
 {
 
 	public $i_pc;
 	public $aHex;
-	
+		
 	public $oOpcodes;
 	public $oMemory;
 	public $oStack;
 	public $oState;
 	public $oStorage;
-	
+		
 	public $oAddress;
 	public $oDatabase;
 	public $oDiamonds;
 	public $oSession;
 	public $oUtils;
-	
+		
 	function __construct() {}
-			
+		
 	public function init ($oEvent) :bool {
-		if (!$this->init_classes($oEvent)) die('$this->init_classes');
-		if (!$this->init_variables()) die('$this->init_variables');
+		if (!$this->init_classes_($oEvent)) die('$this->init_classes');
+		if (!$this->init_variables_()) die('$this->init_variables');
 		return true; 
 	}
-	
-	public function init_classes ($oEvent) :bool {
-
+		
+	public function init_classes_ ($oEvent) :bool {
+		
 		$this->oOpcodes = new Opcodes();
 		$this->oMemory = new Memory();
 		$this->oStack = new Stack();
@@ -47,22 +48,36 @@ class Route extends Vm
 		$this->oDiamonds = $oEvent->oDiamonds;
 		$this->oSession = $oEvent->oSession;
 		$this->oUtils = $oEvent->oUtils;
-
+		
 		return true;
 	}
 	
-	public function init_variables () :bool {
+	public function init_variables_ () :bool {
 		$this->i_pc = 0;
 		$this->aHex = $this->oDiamonds->aHex;
+		
+		
 		return true;
 	}
-
+	
+	public function save_session () :bool {
+		$aaSession = array(
+			'oAddress' => $this->oAddress->aAddress,
+			'oDatabase' => $this->oDatabase->sPath,
+			'oDiamonds' => $this->oDiamonds->aHex,
+			'oSession' => $this->oSession->aData,
+		);
+		return true;
+	}
+	
 	public function implement () :bool {
 		if (empty($this->aHex)) die('Route->implement');
+		//var_dump($this->oAddress);
+		
 /*
 		$this->aHex = array(
 			//0x60, 32, 0x60, 33, 0x00, //STOP
-
+			
 			//0x56, //JUMP
 			0x60, 0x3, //PUSH1
 			0x60, 0x8, //PUSH1
@@ -76,7 +91,7 @@ class Route extends Vm
 			0x30, //ADDRESS
 			
 			0x00, //STOP
-
+			
 			0x60, 33, //PUSH1
 			0x60, 34, //PUSH1
 			0x55, //SSTORE
@@ -100,7 +115,7 @@ class Route extends Vm
 			0x31, //BALANCE
 			0x3b, //EXTCODESIZE
 			0x3c, //EXTCODECOPY
-		
+			
 			0x54, //SLOAD
 			0x55, //SSTORE
 			
@@ -116,7 +131,7 @@ class Route extends Vm
 			0xf4, //DELEGATECALL
 			0xfe, //INVALID
 			0xff, //SELFDESTRUCT
-
+			
 			0x00, //STOP
 		);
 */
@@ -181,6 +196,8 @@ $aa_p = array(
 		var_dump('$this->oStorage->aaStorage');
 		//var_dump("Storage::". implode("::", $this->oStorage->aaStorage));
 		var_dump($this->oStorage->aaStorage);
+		
+		if (!$this->save_session()) die('$this->save_session');
 		return true;
 	}
 

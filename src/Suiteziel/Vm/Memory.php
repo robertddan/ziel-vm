@@ -2,9 +2,7 @@
 namespace App\Suiteziel\Vm;
 
 
-use App\Suiteziel\Vm\Route;
-
-class Memory extends Route
+class Memory
 {
 	public $aaMemory;
 

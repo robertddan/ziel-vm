@@ -2,9 +2,7 @@
 namespace App\Suiteziel\Org;
 
 
-use App\Suiteziel\Org\Event;
-
-class Utils extends Event
+class Utils
 {
 	
 	public function __construct () {

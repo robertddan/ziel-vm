@@ -2,16 +2,14 @@
 namespace App\Suiteziel\Vm;
 
 
-use App\Suiteziel\Vm\Route;
 use App\Suiteziel\Org\Session;
 
-class State extends Route
+class State
 {
 	public $aaState;
 	public static $_aaState;
 
 	public function __construct () {
-
 		$this->aaState = self::$_aaState = array(
 			// Ia, the address of the account which owns the code that is executing. 
 			"Ia" => Session::$_aData["wallet"][0],
@@ -44,6 +42,7 @@ class State extends Route
 	}
 
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+		
 		list($sHex, $aArguments, $iDelta, &$i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
 			case 0x00:

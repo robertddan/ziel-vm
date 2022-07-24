@@ -2,9 +2,7 @@
 namespace App\Suiteziel\Org;
 
 
-use App\Suiteziel\Org\Event;
-
-class Session extends Event
+class Session
 {
 	public $sPath;
 	public $aData;
