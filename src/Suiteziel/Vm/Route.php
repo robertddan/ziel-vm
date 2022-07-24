@@ -139,7 +139,7 @@ class Route
 
 		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
 
-/*
+
 		for ($i = 0; $i<count($this->aHex); $i++) {
 				
 			$sHex = $this->aHex[$i];
@@ -151,7 +151,7 @@ class Route
 		
 		print(PHP_EOL);print(PHP_EOL);
 		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
-*/
+
 		var_dump('------------------------------------------------------------------------------');
 		
 
