@@ -45,7 +45,7 @@ class State
 		list($sHex, $aArguments, $iDelta, &$i_pc, &$aaStack) = $aa_p;
 		switch ($sHex) {
 			case 0x00:
-				$i_pc = 'STOP';
+				$i_pc = -1;
 			break; //STOP
 			case 0x56:				
 				$a_e = array_unshift($aaStack, 0, $iDelta);

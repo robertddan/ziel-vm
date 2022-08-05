@@ -191,7 +191,7 @@ $aa_p = array(
 			
 			
 			//var_dump($this->oStack->aaStack);
-			if ($aa_p[3] == 'STOP') break; //array()
+			if ($aa_p[3] == -1) break; //array()
 			$i_opargs = count($aArguments);
 			
 			
