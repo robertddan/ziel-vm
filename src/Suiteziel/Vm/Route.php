@@ -85,12 +85,12 @@ Call Data
 		//$this->aHex = $this->oSession->aData['memory'];
 		#$this->aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000021', 2);
 		#$this->aHex = implode(",0x", $this->aHex);
-		
-/*
+
 		$this->aHex = array(
 			//96,128,96,64,82,52,128,21,97,0,16,87,96,0,128,253,91,80,96,200,128,97,0,31,96,0,57,96,0,243,254,96,128,96,64,82,52,128,21,96
 			0x60,0x57,0x36,0x1d,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x21
-			
+					
+/*
 
 			//0x56, //JUMP
 			0x60, 0xc8, //PUSH1
@@ -147,9 +147,9 @@ Call Data
 			0xff, //SELFDESTRUCT
 			
 			0x00, //STOP
-
-		);
 */
+		);
+
 
 		if (!$this->oOpcodes->hes_set($this->aHex)) die('oOpcodes->hes_set');
 		if (!$this->oMemory->hes_set($this->aHex)) die('oMemory->hes_set');
@@ -158,7 +158,6 @@ Call Data
 		for ($i = 0; $i<count($this->aHex); $i++) {
 				
 			$sHex = $this->aHex[$i];
-			
 			
 			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
