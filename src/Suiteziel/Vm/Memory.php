@@ -53,7 +53,8 @@ class Memory
 				$a_m = $this->aaMemory[1234][$a_s[0]];
 				array_unshift($aaStack, $a_m);
 				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));
-				var_dump("Stack::". implode("::", $aaStack));
+				print(PHP_EOL);
+				print("Stack::". implode("::", $aaStack));
 			break; //MLOAD
 			case 0x52:
 				$a_e = array_splice($aaStack, 0, $iDelta); 
