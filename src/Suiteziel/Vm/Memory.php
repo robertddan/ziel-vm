@@ -5,15 +5,15 @@ namespace App\Suiteziel\Vm;
 class Memory
 {
 	public $aaMemory;
-	public $aHex;
+	public $aHes;
 
 	public function __construct () {
 		$this->aaMemory = array();
 		$this->aaMemory[1234] = array();
 	}
 	
-	public function hex_set ($aHex = null) :bool {
-		$this->aHex = $aHex;
+	public function hes_set ($aHes = null) :bool {
+		$this->aHex = $aHes;
 		return true;
 	}
 	

@@ -5,7 +5,7 @@ namespace App\Suiteziel\Vm;
 class Opcodes
 {
 	
-	public $aHex;
+	public $aHes;
 	public $aArguments;
 	public $aaOpcodes;
 
@@ -21,8 +21,8 @@ class Opcodes
 
 	}
 */
-	public function hex_set ($aHex = null) :bool {
-		$this->aHex = $aHex;
+	public function hes_set ($aHes = null) :bool {
+		$this->aHex = $aHes;
 		return true;
 	}
 

@@ -135,8 +135,8 @@ class Route
 		);
 */
 
-		if (!$this->oOpcodes->hex_set($this->aHex)) die('oOpcodes->hex_set');
-		if (!$this->oMemory->hex_set($this->aHex)) die('oMemory->hex_set');
+		if (!$this->oOpcodes->hes_set($this->aHex)) die('oOpcodes->hes_set');
+		if (!$this->oMemory->hes_set($this->aHex)) die('oMemory->hes_set');
 
 
 		for ($i = 0; $i<count($this->aHex); $i++) {
