@@ -4,37 +4,51 @@ namespace App\Suiteziel\Org;
 
 class Diamonds
 {
-
-	public $sFilePathOutput;
+	
+	public $iCursor;
+	public $sFolder;
+	public $sOutput;
+	
+	public $sContract;
+	public $sContractPath;
+	
 	public static $_aHex;
 	public $aHex;
 	public $sHex;
-	public $iCursor;
-	public $sFolder;
-	public $sContract;
-
+	
 	public function __construct() {
-		$this->sFilePathOutput = "./src/diamonds/". date("YmdHisu") ."/";
+		define("__SUITEZIEL__", dirname( __DIR__ .'../'));
+		define("__SRC__", __SUITEZIEL__ .'/../');
+		
+		$this->sFolder = date("YmdHisu");
+		$this->sOutput = __SRC__ ."diamonds/". $this->sFolder ."/";
+		//$this->sOutput = dirname(__SRC__ ."/diamonds/". date("YmdHisu") ."/");
 		$this->iCursor = 0;
 	}
-
-	public function set_output_folder() :bool {
-		if (empty($this->sFolder)) return false;
-		$this->sFilePathOutput = "./src/diamonds/". $this->sFolder ."/";
+	
+	public function set_input_contract() :bool {
+		if (empty($this->sContract)) return false;
+		$this->sContractPath = __SRC__ ."contracts/". $this->sContract;
 		return true;
 	}
-
+	
+	public function set_output_folder() :bool {
+		if (empty($this->sFolder)) return false;
+		$this->sOutput = __SRC__ ."diamonds/". $this->sFolder ."/";
+		return mkdir($this->sOutput);
+		//return true;
+	}
+	
 	public function compile_contract() :bool {
 		if (empty($this->sContract)) return false; //print '$sFilename missing!'. PHP_EOL;
 		if ($this->iCursor === 1) return true;
-		
-		$sFilePath = __APP__ .'contracts/'. $this->sContract;
-		//$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->sFilePathOutput .' '.$sFilePath;
-		$sCommand = 'solc --evm-version "homestead" --bin '. $sFilePath .' --optimize --optimize-runs 200 -o '. $this->sFilePathOutput;
+
+		//$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->$sOutput .' '.$sFilePath;
+		$sCommand = 'solc --evm-version "homestead" --bin '. $this->sContractPath .' --optimize --optimize-runs 200 -o '. $this->sOutput;
 			
 		$output=null;
 		$retval=null;
-		exec($sCommand, $output, $retval);
+		$bExec = exec($sCommand, $output, $retval);
 		print_r($output);
 		sleep(2);
 		$this->iCursor = 1;
@@ -44,16 +58,16 @@ class Diamonds
 	public function read_from_file() :bool {
 		if ($this->iCursor !== 1) return false;
 
-		$aFilesOutput = scandir($this->sFilePathOutput);
+		$aFilesOutput = scandir($this->sOutput);
 		$sContractName = null;
-	
+
 		foreach ($aFilesOutput as $sFileOutput) {
 			//preg_match("/(\w)*bin-runtime\b/", $sFileOutput, $aMatches);
 			preg_match("/(\w)*.bin\b/", $sFileOutput, $aMatches);
 			$sContractName = $sFileOutput;
 			if(!empty($aMatches)) break;
 		}
-		$this->sHex = file_get_contents($this->sFilePathOutput."/". $sContractName);
+		$this->sHex = file_get_contents($this->sOutput ."/". $sContractName);
 		
 		return true;
 	}
