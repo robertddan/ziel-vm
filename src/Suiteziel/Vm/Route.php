@@ -73,9 +73,25 @@ class Route
 		if (empty($this->aHex)) die('Route->implement');
 		//var_dump($this->oAddress);
 /*
+Call Data
+[
+	"0x6057361d0000000000000000000000000000000000000000000000000000000000000021"
+]
+*/
+
+		var_dump($this->oSession);
+			
+		#$aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000021', 2);
+		//$aHex = str_split($this->oMemory[1234], 2);
+			
+		//var_dump(implode(",0x", $aHex));
+		
+
 		$this->aHex = array(
 			//96,128,96,64,82,52,128,21,97,0,16,87,96,0,128,253,91,80,96,200,128,97,0,31,96,0,57,96,0,243,254,96,128,96,64,82,52,128,21,96
-
+			#0x60,0x57,0x36,0x1d,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x21
+			
+/*
 			//0x56, //JUMP
 			0x60, 0xc8, //PUSH1
 			0x60, 0x8, //PUSH1
@@ -131,9 +147,9 @@ class Route
 			0xff, //SELFDESTRUCT
 			
 			0x00, //STOP
-
-		);
 */
+		);
+
 
 		if (!$this->oOpcodes->hes_set($this->aHex)) die('oOpcodes->hes_set');
 		if (!$this->oMemory->hes_set($this->aHex)) die('oMemory->hes_set');
@@ -146,7 +162,7 @@ class Route
 			
 			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
-
+			
 		}
 		
 		print(PHP_EOL);print(PHP_EOL);
@@ -158,7 +174,7 @@ class Route
 		$i_opargs = 0;
 		//foreach ($this->aHex as $k => $sHex) {
 		for ($i = 0; $i<count($this->aHex); $i++) {
-
+			
 			$this->i_pc = $i;
 			$sHex = $this->aHex[$i];
 			if ($i_opargs !== 0) { $i_opargs--; continue; }
@@ -205,7 +221,10 @@ $aa_p = array(
 		var_dump('$this->oStorage->aaStorage');
 		//var_dump("Storage::". implode("::", $this->oStorage->aaStorage));
 		var_dump($this->oStorage->aaStorage);
-		
+
+		$this->oSession->aData["stack"] = $this->oStack->aaStack;
+		$this->oSession->aData["memory"] = $this->oMemory->aaMemory[1234];
+		$this->oSession->save_session($this->oSession->aData);
 		if (!$this->save_session()) die('$this->save_session');
 		return true;
 	}
