@@ -50,7 +50,7 @@ class Event
 		$this->oDiamonds->iCursor = 1; // skip compilation
 		$this->oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
 		if (!$this->oDiamonds->set_input_contract()) die('oDiamonds->set_input_contract'); //set it
-		#$this->oDiamonds->sFolder = '20220724173530000000'; // specify folder with set_out_folder or at read...
+		$this->oDiamonds->sFolder = '20220806140004000000'; // specify folder with set_out_folder or at read...
 		if (!$this->oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
 		if (!$this->oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
 		if (!$this->oDiamonds->iCursor) die('oDiamonds->iCursor');

@@ -35,14 +35,14 @@ class Diamonds
 	public function set_output_folder() :bool {
 		if (empty($this->sFolder)) return false;
 		$this->sOutput = __SRC__ ."diamonds/". $this->sFolder ."/";
-		return mkdir($this->sOutput);
-		//return true;
+		return true;
 	}
 	
 	public function compile_contract() :bool {
 		if (empty($this->sContract)) return false; //print '$sFilename missing!'. PHP_EOL;
 		if ($this->iCursor === 1) return true;
-
+		mkdir($this->sOutput);
+		
 		//$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->$sOutput .' '.$sFilePath;
 		$sCommand = 'solc --evm-version "homestead" --bin '. $this->sContractPath .' --optimize --optimize-runs 200 -o '. $this->sOutput;
 			
