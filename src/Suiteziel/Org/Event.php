@@ -40,7 +40,17 @@ class Event
 	}
 	
 	/*
+Call Stack
+
+    0:
+    0xd9145CCE52D386f254917e481eB44e9943F39138
+
+Call Data
+
+    0:
+    0x6057361d0000000000000000000000000000000000000000000000000000000000000037
 	*/
+	
 	public function init__address () :bool {
 		if (!$this->oAddress->generate_keys()) die('$this->oAddress->generate_keys()');
 		return true;
