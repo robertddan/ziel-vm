@@ -81,19 +81,25 @@ Call Data
 	"0x6057361d0000000000000000000000000000000000000000000000000000000000000042"
 ]
 */
-
+	
+		#var_dump($this->oSession->aData['memory']);
 		//$aHex = str_split($this->oSession->aData['memory'], 2);
-		$aHex = $this->oSession->aData['memory'];
+		//$aHex = $this->oSession->aData['memory'];
 		//$this->aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
-		//$this->aHex = implode(",0x", $this->aHex);
+		#$this->aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
+		$this->aHex = $this->oSession->aData['memory'];
+		
+		$aHex = array('60', '57', '36', '1d');
+		/*
 		$this->aHex = array_map(function($sHex) {
-			$sHex = base_convert($sHex, 10, 16);
+			$sHex = base_convert($sHex, 16, 10);
 			if ($sHex == 0) $sHex = '00';
 			return $sHex;
 		}, $aHex);
+		*/
 		var_dump(implode(" ", $this->aHex));
+		
 		/*
-
 		$this->aHex = array(
 			//96,128,96,64,82,52,128,21,97,0,16,87,96,0,128,253,91,80,96,200,128,97,0,31,96,0,57,96,0,243,254,96,128,96,64,82,52,128,21,96
 			//0x60,0x57,0x36,0x1d,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x21
@@ -154,7 +160,6 @@ Call Data
 			0xff, //SELFDESTRUCT
 			
 			0x00, //STOP
-
 		);
 */
 
