@@ -68,8 +68,8 @@ class Event
 		//if (!$this->oSession->save_session($aSession)) die('$this->oSession->save_session()');
 		if (!$this->oSession->load_session()) die('$this->oSession->load_session()');
 		var_dump(array(
-			'$this->oSession',
-			$this->oSession->aData
+			#'$this->oSession',
+			#$this->oSession->aData
 		));
 		return true;
 	}

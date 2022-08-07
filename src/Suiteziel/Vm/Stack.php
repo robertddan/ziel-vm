@@ -204,6 +204,8 @@ $this->oStack->aaStack,
 				//return true; 
 			break; //SHR Logical right shift operation.
 			case 0x1d:
+				
+				print("Stack::". implode("::", $this->aaStack));
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
 				//print(implode("::", $this->aaStack));
