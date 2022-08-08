@@ -19,7 +19,9 @@ class Transport
 	public function api () {
 
 	}
-
+	
+	private function rpc_client(o){}
+	private function rpc_server(o){}
 }
 
 ?>
