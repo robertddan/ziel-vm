@@ -18,7 +18,7 @@ class State
 			// Ip, the price of gas in the transaction that originated this execution. 
 			"Ip" => "",
 			// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
-			"Id" => array('60', '57', '36', '1d'),
+			"Id" => array('60','57','36','1d','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','42'),
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => Session::$_aData["wallet"][0], //"transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
@@ -39,7 +39,12 @@ class State
 			"Iw" => "",
 		);
 	}
-
+	
+	private function euclidean($x, $y) {
+		if ($y == 0) return $x;
+		return $this->euclidean($y, (int) $x % $y);
+	}
+	
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		
 		list($sHex, $aArguments, $iDelta, &$i_pc, &$aaStack) = $aa_p;
@@ -77,14 +82,50 @@ class State
 				array_unshift($aaStack, $this->aaState["Iv"]);
 			break; //CALLVALUE
 			case 0x35:
+				$a_e = array_unshift($aaStack, 0, $iDelta);
+				
+var_dump($a_e);
+				foreach ($this->aaState["Id"] as $_k => $aStateId) {
+					if ($_k >= 31) break;
+					$_e = mb_strlen(serialize($aStateId), '8bit');
+					if ($_k >= $_e ) $this->aaState["Id"][$_k] = 0;
+				}
+				
+				$sStateId = implode("", $this->aaState["Id"]); 
+				array_unshift($aaStack, $sStateId);
+				
+/*
+				array_unshift($aaStack, $this->aaState["Iv"]);
+				μ′s[0] ≡ Id[μs[0] . . . (μs[0] + 31)] 
+				Id[x] = 0 if x > ‖Id‖
+				
+				euclidean
+				
+				$this->aaState = self::$_aaState = array(
+			
+			// Ia, the address of the account which owns the code that is executing. 
+			"Ia" => Session::$_aData["wallet"][0],
+			// Io, the sender address of the transaction that originated this execution. 
+			"Io" => "",
+			// Ip, the price of gas in the transaction that originated this execution. 
+			"Ip" => "",
+			// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
+			"Id" => array('60', '57', '36', '1d'),
+*/
+				
+					
+				print(PHP_EOL);
+				print("State::". implode("::", $this->aaState["Id"]));
+				print(PHP_EOL);
+				print("Stack::". implode("::", $aaStack));
 			break; //CALLDATALOAD
 			case 0x36:
 				//array_unshift($aaStack, mb_strlen(serialize($aaStack), '8bit')); 
 				$i_e = mb_strlen(serialize($this->aaState["Id"]), '8bit');
 				array_unshift($aaStack, $i_e); 
 						
-		print(PHP_EOL);
-		print("Stack::". implode("::", $aaStack));
+				print(PHP_EOL);
+				print("Stack::". implode("::", $aaStack));
 			break; //CALLDATASIZE
 			case 0x37:
 			break; //CALLDATACOPY	
@@ -148,8 +189,8 @@ class State
 		
 		print(PHP_EOL);
 		foreach($this->aaState as $aaState) {
-			if (is_array($aaState)) foreach($aaState as $aState) print("State::". implode("::", $aState)); 
-			else print("State::"."::". $aaState); 
+			if (is_array($aaState)) print("State::". implode("::", $aaState)); 
+			//else print(PHP_EOL . "State::"."::". $aaState); 
 		}
 		return true;
 	}

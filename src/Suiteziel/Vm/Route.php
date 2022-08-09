@@ -86,7 +86,12 @@ Call Data
 		//$aHex = str_split($this->oSession->aData['memory'], 2);
 		//$aHex = $this->oSession->aData['memory'];
 		//$this->aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
-		#$this->aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
+		
+		$aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
+		var_dump(implode("','", $aHex));
+		
+		
+		var_dump($aHex);
 		$this->aHex = $this->oSession->aData['memory'];
 		
 		$aHex = array('60', '57', '36', '1d');
@@ -97,7 +102,6 @@ Call Data
 			return $sHex;
 		}, $aHex);
 		*/
-		var_dump(implode(" ", $this->aHex));
 		
 		/*
 		$this->aHex = array(
