@@ -88,20 +88,20 @@ Call Data
 		//$this->aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
 		
 		$aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
-		var_dump(implode("','", $aHex));
+
+		//var_dump(implode("','", $aHex));
+		//var_dump($aHex);
+		//$this->aHex = $this->oSession->aData['memory'];
+		//$aHex = array('60', '57', '36', '1d');
 		
-		
-		var_dump($aHex);
-		$this->aHex = $this->oSession->aData['memory'];
-		
-		$aHex = array('60', '57', '36', '1d');
-		/*
 		$this->aHex = array_map(function($sHex) {
 			$sHex = base_convert($sHex, 16, 10);
 			if ($sHex == 0) $sHex = '00';
 			return $sHex;
 		}, $aHex);
-		*/
+		
+		var_dump(implode(" ", $this->aHex));
+		
 		
 		/*
 		$this->aHex = array(
