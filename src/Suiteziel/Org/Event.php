@@ -71,7 +71,7 @@ Call Data
 		var_dump(implode(" ", str_split($this->oDiamonds->sHex, 2)));
 		var_dump(implode(" ", $this->oDiamonds->aHex));
 		return true;
-	}	
+	}
 	
 	public function init__session () :bool {
 		//if (!$this->oSession->new_session()) die('$this->oSession->new_session()');

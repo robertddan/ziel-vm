@@ -18,7 +18,7 @@ class State
 			// Ip, the price of gas in the transaction that originated this execution. 
 			"Ip" => "",
 			// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
-			"Id" => "",
+			"Id" => array('60', '57', '36', '1d'),
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => Session::$_aData["wallet"][0], //"transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
@@ -80,7 +80,9 @@ class State
 			break; //CALLDATALOAD
 			case 0x36:
 				//array_unshift($aaStack, mb_strlen(serialize($aaStack), '8bit')); 
-				array_unshift($aaStack, 3); 
+				$i_e = mb_strlen(serialize($this->aaState["Id"]), '8bit');
+				array_unshift($aaStack, $i_e); 
+						
 		print(PHP_EOL);
 		print("Stack::". implode("::", $aaStack));
 			break; //CALLDATASIZE
@@ -145,7 +147,10 @@ class State
 		
 		
 		print(PHP_EOL);
-		print("State::". implode("::", $this->aaState));
+		foreach($this->aaState as $aaState) {
+			if (is_array($aaState)) foreach($aaState as $aState) print("State::". implode("::", $aState)); 
+			else print("State::"."::". $aaState); 
+		}
 		return true;
 	}
 }

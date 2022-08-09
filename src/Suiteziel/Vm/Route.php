@@ -232,7 +232,6 @@ $aa_p = array(
 		var_dump('$this->oStorage->aaStorage');
 		//var_dump("Storage::". implode("::", $this->oStorage->aaStorage));
 		var_dump($this->oStorage->aaStorage);
-
 		//$this->oSession->aData["stack"] = $this->oStack->aaStack;
 		//$this->oSession->aData["memory"] = $this->oMemory->aaMemory[1234];
 		//$this->oSession->save_session($this->oSession->aData);
