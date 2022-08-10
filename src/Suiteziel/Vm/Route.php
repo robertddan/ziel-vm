@@ -94,7 +94,7 @@ Call Data
 		//$this->aHex = $this->oSession->aData['memory'];
 		//$aHex = array('60', '57', '36', '1d');
 		
-		$this->aHex = array_map(function($sHex) {
+		$aHex = array_map(function($sHex) {
 			$sHex = base_convert($sHex, 16, 10);
 			if ($sHex == 0) $sHex = '00';
 			return $sHex;

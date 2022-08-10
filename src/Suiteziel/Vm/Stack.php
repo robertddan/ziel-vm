@@ -205,11 +205,20 @@ $this->oStack->aaStack,
 			break; //SHR Logical right shift operation.
 			case 0x1d:
 				
-				print("Stack::". implode("::", $this->aaStack));
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
-				array_unshift($this->aaStack, ($a_e[0] << $a_e[1]));
+				$i_e = $a_e[1] / pow(2, $a_e[0]);
+				
+				array_unshift($this->aaStack, $i_e);
+					
 				//print(implode("::", $this->aaStack));
 				//return true;
+/*
+Arithmetic (signed) right shift operation.
+μ′s[0] ≡ bμs[1] ÷ 2μs[0]c
+Where μ′s[0] and μs[1] are treated as two’s complement signed 256-bit integers,
+while μs[0] is treated as unsigned.
+*/
+				
 			break; //SAR 
 //
 			case 0x60:
