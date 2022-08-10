@@ -89,26 +89,27 @@ class State
 			break; //CALLVALUE
 			case 0x35:
 				$a_e = array_unshift($aaStack, 0, $iDelta);
-				$aId = array_slice($this->aaState["Id"], 0, 3);
-
+				$aId = array_slice($this->aaState["Id"], 0, 4);
+var_dump($aId);
 $ae = array();
 $ie = 0;
 $ik = 0;
 
 foreach($this->aHes as $i_k => $hes) {
-	if ($ie == count($aId)) {$i_pc = $i_k; break;}
+	if ($ie == count($aId)) {$i_pc = $i_k; 
+		var_dump(['$ae',$ae]); break;}
 	
 
 		var_dump([$hes, base_convert($aId[$ie], 16, 10)]);
 	
 	if ($hes == base_convert($aId[$ie], 16, 10)) {
 		array_push($ae, $hes);
-		var_dump($ae);
 		$ie = $ie + 1; 
 		#$ik = $i_k;
 	}
 	else {
-		array_pop($ae);
+		$ae = array();
+		$ie = 0;
 	}
 }
 
