@@ -100,7 +100,7 @@ Call Data
 			return $sHex;
 		}, $aHex);
 		
-		#var_dump(implode(" ", $this->aHex));
+		var_dump(implode(" ", $aHex));
 		
 		
 		/*
@@ -172,8 +172,7 @@ Call Data
 		if (!$this->oOpcodes->hes_set($this->aHex)) die('oOpcodes->hes_set');
 		if (!$this->oMemory->hes_set($this->aHex)) die('oMemory->hes_set');
 		if (!$this->oState->hes_set($this->aHex)) die('oState->hes_set');
-
-
+		
 		for ($i = 0; $i<count($this->aHex); $i++) {
 				
 			$sHex = $this->aHex[$i];

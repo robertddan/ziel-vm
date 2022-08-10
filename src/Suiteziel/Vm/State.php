@@ -42,7 +42,7 @@ class State
 	}
 	
 	public function hes_set ($aHes = null) :bool {
-		$this->aHex = $aHes;
+		$this->aHes = $aHes;
 		return true;
 	}
 
@@ -89,12 +89,39 @@ class State
 			break; //CALLVALUE
 			case 0x35:
 				$a_e = array_unshift($aaStack, 0, $iDelta);
+				$aId = array_slice($this->aaState["Id"], 0, 3);
 
-var_dump($a_e);
-				
-				
-				/*
-				
+$ae = array();
+$ie = 0;
+$ik = 0;
+
+foreach($this->aHes as $i_k => $hes) {
+	if ($ie == count($aId)) {$i_pc = $i_k; break;}
+	
+
+		var_dump([$hes, base_convert($aId[$ie], 16, 10)]);
+	
+	if ($hes == base_convert($aId[$ie], 16, 10)) {
+		array_push($ae, $hes);
+		var_dump($ae);
+		$ie = $ie + 1; 
+		#$ik = $i_k;
+	}
+	else {
+		array_pop($ae);
+	}
+}
+
+
+/*
+	if (!empty($aDiff))
+	
+	foreach ($aId as $aStateId) {
+		if ($hes == $aStateId) array_push($ae, $hes);
+	}
+	$aDiff = array_diff($ae, $aId);
+	if (!empty($aDiff)) array_pop($ae); break;
+	
 				foreach ($this->aaState["Id"] as $_k => $aStateId) {
 					if ($_k >= 31) break;
 					$_e = mb_strlen(serialize($aStateId), '8bit');
