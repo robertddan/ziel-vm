@@ -216,6 +216,7 @@ $aa_p = array(
 			if (!$this->oStorage->positioning($aa_p)) die('oStorage->positioning');
 			
 #if ($this->i_pc !== $i) break;
+			
 			$i = $aa_p[3];
 			$this->oStack->aaStack = $aa_p[4];
 			
