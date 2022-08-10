@@ -91,7 +91,7 @@ Call Data
 
 		//var_dump(implode("','", $aHex));
 		//var_dump($aHex);
-		//$this->aHex = $this->oSession->aData['memory'];
+		$this->aHex = $this->oSession->aData['memory'];
 		//$aHex = array('60', '57', '36', '1d');
 		
 		$aHex = array_map(function($sHex) {
@@ -100,7 +100,7 @@ Call Data
 			return $sHex;
 		}, $aHex);
 		
-		var_dump(implode(" ", $this->aHex));
+		#var_dump(implode(" ", $this->aHex));
 		
 		
 		/*
@@ -171,6 +171,7 @@ Call Data
 
 		if (!$this->oOpcodes->hes_set($this->aHex)) die('oOpcodes->hes_set');
 		if (!$this->oMemory->hes_set($this->aHex)) die('oMemory->hes_set');
+		if (!$this->oState->hes_set($this->aHex)) die('oState->hes_set');
 
 
 		for ($i = 0; $i<count($this->aHex); $i++) {

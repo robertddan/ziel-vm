@@ -209,18 +209,17 @@ $this->oStack->aaStack,
 				$i_e = $a_e[1] / pow(2, $a_e[0]);
 				
 				array_unshift($this->aaStack, $i_e);
-					
+				
 				//print(implode("::", $this->aaStack));
 				//return true;
-/*
-Arithmetic (signed) right shift operation.
-μ′s[0] ≡ bμs[1] ÷ 2μs[0]c
-Where μ′s[0] and μs[1] are treated as two’s complement signed 256-bit integers,
-while μs[0] is treated as unsigned.
-*/
+				/*
+				Arithmetic (signed) right shift operation.
+				μ′s[0] ≡ bμs[1] ÷ 2μs[0]c
+				Where μ′s[0] and μs[1] are treated as two’s complement signed 256-bit integers,
+				while μs[0] is treated as unsigned.
+				*/
 				
-			break; //SAR 
-//
+			break; //SAR
 			case 0x60:
 				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
 				//return true; 

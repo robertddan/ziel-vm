@@ -6,6 +6,7 @@ use App\Suiteziel\Org\Session;
 
 class State
 {
+	public $aHes;
 	public $aaState;
 	public static $_aaState;
 
@@ -40,6 +41,11 @@ class State
 		);
 	}
 	
+	public function hes_set ($aHes = null) :bool {
+		$this->aHex = $aHes;
+		return true;
+	}
+
 	private function euclidean($x, $y) {
 		if ($y == 0) return $x;
 		return $this->euclidean($y, (int) $x % $y);
@@ -83,8 +89,12 @@ class State
 			break; //CALLVALUE
 			case 0x35:
 				$a_e = array_unshift($aaStack, 0, $iDelta);
-				
+
 var_dump($a_e);
+				
+				
+				/*
+				
 				foreach ($this->aaState["Id"] as $_k => $aStateId) {
 					if ($_k >= 31) break;
 					$_e = mb_strlen(serialize($aStateId), '8bit');
@@ -94,24 +104,25 @@ var_dump($a_e);
 				$sStateId = implode("", $this->aaState["Id"]); 
 				array_unshift($aaStack, $sStateId);
 				
-/*
+				
+	
 				array_unshift($aaStack, $this->aaState["Iv"]);
 				μ′s[0] ≡ Id[μs[0] . . . (μs[0] + 31)] 
 				Id[x] = 0 if x > ‖Id‖
-				
+
 				euclidean
-				
+
 				$this->aaState = self::$_aaState = array(
-			
-			// Ia, the address of the account which owns the code that is executing. 
-			"Ia" => Session::$_aData["wallet"][0],
-			// Io, the sender address of the transaction that originated this execution. 
-			"Io" => "",
-			// Ip, the price of gas in the transaction that originated this execution. 
-			"Ip" => "",
-			// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
-			"Id" => array('60', '57', '36', '1d'),
-*/
+
+				// Ia, the address of the account which owns the code that is executing. 
+				"Ia" => Session::$_aData["wallet"][0],
+				// Io, the sender address of the transaction that originated this execution. 
+				"Io" => "",
+				// Ip, the price of gas in the transaction that originated this execution. 
+				"Ip" => "",
+				// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
+				"Id" => array('60', '57', '36', '1d'),
+				*/
 				
 					
 				print(PHP_EOL);
