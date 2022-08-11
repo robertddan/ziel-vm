@@ -116,6 +116,10 @@ class State
 					}
 				}
 				
+				$sArgument = implode("", $aId);
+				array_unshift($aaStack, '0x'.$sArgument);
+				
+				
 /*
 	if (!empty($aDiff))
 	
