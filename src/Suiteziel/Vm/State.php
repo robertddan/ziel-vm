@@ -19,7 +19,18 @@ class State
 			// Ip, the price of gas in the transaction that originated this execution. 
 			"Ip" => "",
 			// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
-			"Id" => array('60','57','36','1d','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','42'),
+			"Id" => array('60','57','36','1d','00','00','00','00',
+										'00','00','00','00','00','00','00','00',
+										'00','00','00','00','00','00','00','00',
+										'00','00','00','00','00','00','00','42'),
+/*
+6057361d 
+00000000 00000000 
+00000000 00000000 
+00000000 00000000 
+00000000 00000042
+*/
+
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => Session::$_aData["wallet"][0], //"transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
@@ -92,9 +103,9 @@ class State
 				$aId = array_slice($this->aaState["Id"], 0, 4);
 				$ae = array();
 				$ie = 0;
-
+				
 				foreach($this->aHes as $i_k => $hes) {
-					if ($ie == count($aId)) {$i_pc = $i_k +1; break;}
+					if ($ie == count($aId)) {$i_pc = $i_k; break;}
 					if ($hes == base_convert($aId[$ie], 16, 10)) {
 						array_push($ae, $hes);
 						$ie = $ie + 1;
@@ -104,8 +115,7 @@ class State
 						$ie = 0;
 					}
 				}
-
-
+				
 /*
 	if (!empty($aDiff))
 	
@@ -114,7 +124,6 @@ class State
 	}
 	$aDiff = array_diff($ae, $aId);
 	if (!empty($aDiff)) array_pop($ae); break;
-	
 				foreach ($this->aaState["Id"] as $_k => $aStateId) {
 					if ($_k >= 31) break;
 					$_e = mb_strlen(serialize($aStateId), '8bit');
@@ -125,15 +134,11 @@ class State
 				array_unshift($aaStack, $sStateId);
 				
 				
-	
 				array_unshift($aaStack, $this->aaState["Iv"]);
 				μ′s[0] ≡ Id[μs[0] . . . (μs[0] + 31)] 
 				Id[x] = 0 if x > ‖Id‖
-
 				euclidean
-
 				$this->aaState = self::$_aaState = array(
-
 				// Ia, the address of the account which owns the code that is executing. 
 				"Ia" => Session::$_aData["wallet"][0],
 				// Io, the sender address of the transaction that originated this execution. 
@@ -151,8 +156,18 @@ class State
 				print("Stack::". implode("::", $aaStack));
 			break; //CALLDATALOAD
 			case 0x36:
+				$aId = array_slice($this->aaState["Id"], 8, 32);
+				
+/*
+var_dump([
+	count($aId),
+	$aId,
+	strlen(implode($aId))
+]);
+die();
+*/
 				//array_unshift($aaStack, mb_strlen(serialize($aaStack), '8bit')); 
-				$i_e = mb_strlen(serialize($this->aaState["Id"]), '8bit');
+				$i_e = count($aId);
 				array_unshift($aaStack, $i_e); 
 						
 				print(PHP_EOL);
