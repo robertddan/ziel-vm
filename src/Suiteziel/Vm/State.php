@@ -105,7 +105,7 @@ class State
 				$ie = 0;
 				
 				foreach($this->aHes as $i_k => $hes) {
-					if ($ie == count($aId)) {$i_pc = $i_k; break;}
+					if ($ie == count($aId)) {/*$i_pc = $i_k;*/ break;}
 					if ($hes == base_convert($aId[$ie], 16, 10)) {
 						array_push($ae, $hes);
 						$ie = $ie + 1;
@@ -147,7 +147,7 @@ class State
 				"Ip" => "",
 				// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
 				"Id" => array('60', '57', '36', '1d'),
-				*/
+	*/
 				
 					
 				print(PHP_EOL);
