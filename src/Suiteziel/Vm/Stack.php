@@ -49,7 +49,19 @@ $this->oStack->aaStack,
 			break; //SUB
 			case 0x04:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
-				array_unshift($this->aaStack, ($a_e[0] / $a_e[1]));
+      
+        $n_r = bcdiv(base_convert($a_e[0], 16, 10), $a_e[1], 64);
+      
+$value = unpack('H*', "Stack");
+$base = base_convert($a_e[0], 16, 2);
+      
+var_dump([
+         $value,
+         $base,
+ $a_e,
+$n_r
+         ]);
+				array_unshift($this->aaStack, $n_r);
 				//print(implode("::", $this->aaStack));
 				//return true; 
 			break; //DIV
