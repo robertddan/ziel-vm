@@ -99,7 +99,10 @@ class State
 				array_unshift($aaStack, $this->aaState["Iv"]);
 			break; //CALLVALUE
 			case 0x35:
-				$a_e = array_unshift($aaStack, 0, $iDelta);
+				
+				
+				$a_e = array_splice($aaStack, 0, $iDelta);
+
 				$aId = array_slice($this->aaState["Id"], 0, 4);
 				$ae = array();
 				$ie = 0;
@@ -154,8 +157,8 @@ class State
 	*/
 				
 					
-				print(PHP_EOL);
-				print("State::". implode("::", $this->aaState["Id"]));
+				#print(PHP_EOL);
+				#print("State::". implode("::", $this->aaState["Id"]));
 				print(PHP_EOL);
 				print("Stack::". implode("::", $aaStack));
 			break; //CALLDATALOAD
