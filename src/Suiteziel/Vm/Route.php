@@ -105,7 +105,6 @@ Call Data
 		
 		var_dump(implode(" ", $aHex));
 		
-		
 		/*
 		!!! if firs hex is identic check out if the second is also identic.
 		
