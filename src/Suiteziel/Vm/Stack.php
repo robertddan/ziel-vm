@@ -48,19 +48,38 @@ $this->oStack->aaStack,
 				//return true; 
 			break; //SUB
 			case 0x04:
-				$a_e = array_splice($this->aaStack, 0, $iDelta);
+
       
-        $n_r = bcdiv(base_convert($a_e[0], 16, 10), $a_e[1], 64);
+$a_e = array_splice($this->aaStack, 0, $iDelta);
+
+var_dump([
+$a_e[0],
+$a_e[1],
+number_format(
+(6313782
+/
+26959946667150639794667015087019630673637144422540572481103610249216),
+72, ',', ' ')
+]);
       
+      
+$n_r = bcdiv($a_e[0], $a_e[1], 1164);
+//$n_r = bcdiv(base_convert($a_e[0], 16, 10), $a_e[1], 64);
+
 $value = unpack('H*', "Stack");
 $base = base_convert($a_e[0], 16, 2);
-      
+$base = base_convert($n_r, 10, 16);
+
 var_dump([
-         $value,
-         $base,
- $a_e,
-$n_r
-         ]);
+  $value,
+  $base,
+  $a_e,
+  $n_r
+]);
+
+
+
+         
 				array_unshift($this->aaStack, $n_r);
 				//print(implode("::", $this->aaStack));
 				//return true; 
