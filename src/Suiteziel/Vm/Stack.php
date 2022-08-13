@@ -52,14 +52,42 @@ $this->oStack->aaStack,
       
 $a_e = array_splice($this->aaStack, 0, $iDelta);
 
+$aHex = str_split(str_replace("0x", "", $a_e[0]));
+
+foreach($aHex as $sHex) {
+  $sHex = base_convert($sHex, 16, 10);
+  $iDivisor = base_convert($a_e[1], 16, 10);
+  var_dump([$sHex, $iDivisor]);
+  
+  if (true) {
+
+  }
+/*
+12	in	F	!=	0
+borrow
+lower the C				
+12	in	10C	!	E
+E	x	12	!	FC
+10C	-	FC	!	10
+*/
+}
+
+
+var_dump($aHex);
 var_dump([
+str_replace("0x", "", $a_e[0]),
 $a_e[0],
 $a_e[1],
+number_format($a_e[0], 72, ',', ' '),
 number_format(
-(6313782
-/
-26959946667150639794667015087019630673637144422540572481103610249216),
-72, ',', ' ')
+         $a_e[0] / $a_e[1]
+, 72, ',', ' '),
+number_format(
+  6313782
+  /
+  26959946667150639794667015087019630673637144422540572481103610249216
+, 72, ',', ' ')
+         
 ]);
       
       
