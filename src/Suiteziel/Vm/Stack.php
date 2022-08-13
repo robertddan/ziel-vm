@@ -63,12 +63,30 @@ foreach($aHex as $sHex) {
 
   }
 /*
-12	in	F	!=	0
-borrow
-lower the C				
-12	in	10C	!	E
-E	x	12	!	FC
-10C	-	FC	!	10
+		D	E	F							
+12	F	A	C	E							
+	E	A	#	#		12	18				
+	1	0	C	#		F	15				
+	-	F	C	#			FA 	250			
+		1	0	E			D	13			
+	-	1	0	E			EA	234			
+				0				10C	268		
+								FC	252		
+12	in	F	!=	0					10E	270	
+borrow											
+12	in	FA	!	D							
+D	x	12	!	EA							
+FA	-	EA	!	10							
+											
+lower the C											
+12	in	10C	!	E							
+E	x	12	!	FC							
+10C	-	FC	!	10							
+											
+lower the E											
+12	in	10E	!	F							
+F	x	12	!	10E							
+10E	-	10E	!	0							
 */
 }
 
