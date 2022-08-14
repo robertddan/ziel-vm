@@ -51,26 +51,26 @@ $this->oStack->aaStack,
 
 $iScale = bcscale();
 bcscale(0);
-$a_e = array_splice($this->aaStack, 0, $iDelta);
-$a_e[0] = str_pad($a_e[0], 66, 0);
+#$a_e = array_splice($this->aaStack, 0, $iDelta);
+#$a_e[0] = str_pad($a_e[0], 66, 0);
 
 #12	F	A	C	E
-#$a_e = array("FACE00000", "12000");
-$sDivisible = substr($a_e[0], 0, 15);
-$aDivisible = str_split(str_replace("0x", "", $sDivisible));
+$a_e = array("FACE", "12");
+#$sDivisible = substr($a_e[0], 0, 15);
+#$aDivisible = str_split(str_replace("0x", "", $sDivisible));
+$aDivisible = str_split(str_replace("0x", "", $a_e[0]));
   
-$sDivisor = substr($a_e[1], 0, 15);
-$sDivisor = str_replace("0x", "", $sDivisor);
-var_dump($sDivisible, $sDivisor);
+#$sDivisor = substr($a_e[1], 0, 15);
+#$sDivisor = str_replace("0x", "", $sDivisor);
+$sDivisor = base_convert(str_replace("0x", "", $a_e[1]), 16, 10);
+var_dump($aDivisible, $sDivisor);
 
 $bDivisible = null;
 $iProduct = null;
 $iDifference = null;
 $sDifference = "";
 $sQuotient = null;
-  
-  
-//for ($iHex = 0; $iHex < count($aHex); $iHex++) {
+
 foreach ($aDivisible as $sHex) {
   $sDividend = base_convert($sHex, 16, 10);
 
@@ -78,28 +78,30 @@ foreach ($aDivisible as $sHex) {
     // start
     $iQuotientSmall = bcdiv($sDividend, $sDivisor);
     $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
+
+    var_dump([$iQuotientSmall, $sQuotient]);
     $iProduct = bcmul($iQuotientSmall, $sDivisor);
     $iDifference = bcsub($sDividend, $iProduct);
     $sDifference = base_convert($iDifference, 10, 16);
     $bDivisible = true;
+
     var_dump([$iQuotientSmall, $sQuotient]);
-    #die();
   }
   else {
     $sRemainder = base_convert($sDifference . $sHex, 16, 10);
     $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
     $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
 
-    $sDifference = base_convert($sDifference . $sHex, 16, 10);
     $iProduct = bcmul($iQuotientSmall, $sDivisor);
+    $sDifference = base_convert($sDifference . $sHex, 16, 10);
     $iDifference = bcsub($sDifference, $iProduct);
     $sDifference = base_convert($iDifference, 10, 16);
 
     var_dump([$iQuotientSmall, $sQuotient]);
   }
   
-  die();
-  var_dump([$sQuotient]);
+
+
 }
       /*
 die();
