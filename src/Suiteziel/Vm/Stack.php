@@ -81,7 +81,7 @@ $aDivisible = str_split(str_replace("0x", "", $a_e[0]));
   var_dump($a_e);
 #$sDivisor = substr($a_e[1], 0, 15);
 #$sDivisor = str_replace("0x", "", $sDivisor);
-$sDivisor = base_convert(str_replace("0x", "", 1000), 16, 10);
+$sDivisor = base_convert(str_replace("0x", "", 100000000000000), 16, 10);
 #var_dump($aDivisible, $sDivisor);
 
 $bDivisible = null;
