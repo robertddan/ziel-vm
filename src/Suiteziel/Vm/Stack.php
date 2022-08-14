@@ -74,15 +74,15 @@ $a_e = array_splice($this->aaStack, 0, $iDelta);
 $a_e[0] = str_pad($a_e[0], 66, 0);
 
 #12	F	A	C	E
-$a_e = array("FACE", "12");
+#$a_e = array("FACE", "12");
 #$sDivisible = substr($a_e[0], 0, 15);
 #$aDivisible = str_split(str_replace("0x", "", $sDivisible));
 $aDivisible = str_split(str_replace("0x", "", $a_e[0]));
   var_dump($a_e);
 #$sDivisor = substr($a_e[1], 0, 15);
 #$sDivisor = str_replace("0x", "", $sDivisor);
-$sDivisor = base_convert(str_replace("0x", "", $a_e[1]), 16, 10);
-var_dump($aDivisible, $sDivisor);
+$sDivisor = base_convert(str_replace("0x", "", 1000), 16, 10);
+#var_dump($aDivisible, $sDivisor);
 
 $bDivisible = null;
 $iProduct = null;
