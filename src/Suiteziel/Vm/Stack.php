@@ -51,7 +51,8 @@ $this->oStack->aaStack,
 
 $iScale = bcscale();
 bcscale(0);
-
+$a_e = array_splice($this->aaStack, 0, $iDelta);
+      
 /*
 $a_e = array_splice($this->aaStack, 0, $iDelta);
 $sDivisible = base_convert(str_replace("0x", "", $a_e[0]), 16, 10);
@@ -69,21 +70,110 @@ octdec(
 ]);
 die();
 */
+
+/*
+var_dump([
+         
+    162333706895897063457689962472701817150402654871363475243388691808256
+         /
+  26959946667150639794667015087019630673637144422540572481103610249216,
+number_format(6 * 162333706895897063457689962472701817150402654871363475243388691808256, 0, '.', '')
+]);  
+var_dump([
+  $a_e
+]);   
+#$a = gmp_init($a_e[0]);
+#$b = gmp_init($a_e[1]);
+#$gcd = gmp_gcd($a, $b);
+#$a = gmp_init(gmp_div_q($a, $gcd));
+#$b = gmp_init(gmp_div_q($b, $gcd));
+$a__e = $a_e;
+$a_e[0] = base_convert($a_e[0], 16, 32);
+$a_e[1] = base_convert($a_e[1], 16, 32);
+
+var_dump([
+  $a_e
+]);
       
-$a_e = array_splice($this->aaStack, 0, $iDelta);
+$a_e[0] = base_convert($a_e[0], 32, 16);
+$a_e[1] = base_convert($a_e[1], 32, 16);
+
+var_dump([
+  $a_e
+]);
+die();
+#1616328221
+#100000000000000000000000000000000000000000000000000000000
+#100000000000000000000000000000000000000000000000000000000
+#26959946667150639794667015087019630673637144422540572481103610249216 # rapidtables
+#9946667150658626602828282606886466848266086008062602462446642046 # base_convert
+#431359146674410236714672241392314090778194310760649159697657763987456
+
+$aHexToDec = str_split('100000000000000000000000000000000000000000000000000000000');
+$iCounter = count($aHexToDec);
+$sDec = "";
+      
+foreach($aHexToDec as $i => $sHex)
+{
+  $a = number_format(pow(16, $iCounter-$i), 0, '.', '');
+  var_dump([$sHex, $a]);
+  $sDec += ($sHex * $a);
+
+} 
+var_dump(number_format($sDec, 0, '.', ''));
+die();
+$a = gmp_init($a_e[0]);
+$b = gmp_init($a_e[1]);
+$gcd = gmp_gcd($a_e[0], $a_e[1]);
+      
+var_dump([
+  $a_e,
+  $gcd
+]);
+die();
+      
+var_dump([
+$gcd,
+gmp_div_q($a, $gcd),
+gmp_div_q($b, $gcd),
+gmp_div_q(
+  $a,
+  $b
+), 
+$a_e    
+]);
+die();
+*/
+      
 $a_e[0] = str_pad($a_e[0], 66, 0);
+
 
 #12	F	A	C	E
 #$a_e = array("FACE", "12");
 #$sDivisible = substr($a_e[0], 0, 15);
 #$aDivisible = str_split(str_replace("0x", "", $sDivisible));
 $aDivisible = str_split(str_replace("0x", "", $a_e[0]));
-  var_dump($a_e);
 #$sDivisor = substr($a_e[1], 0, 15);
 #$sDivisor = str_replace("0x", "", $sDivisor);
-$sDivisor = base_convert(str_replace("0x", "", 100000000000000), 16, 10);
-#var_dump($aDivisible, $sDivisor);
+$xDivisor = str_replace("0x", "", $a_e[1]); #$a_e[1]);
+$iDivisor = number_format($xDivisor, 0, '.', '');
+#$iDivisor = str_pad($iDivisor, $a_e[1], 0);
+$sDivisor = base_convert($iDivisor, 16, 10);
 
+      
+/*
+0000000100000000000000000000000000000000000000000000000000000000
+26959946667150600000000000000000000000000000000000000000000000000000
+162333706895897063457689962472701817150402654871363475243388691808256
+6057361d0000000000000000000000000000000000000000000000000
+var_dump($gcd);
+var_dump($iDivisor);
+die(); 
+var_dump([$sDividend, $sDivisor]);
+die();
+*/
+      
+#var_dump($aDivisible, $sDivisor);
 $bDivisible = null;
 $iProduct = null;
 $iDifference = null;
@@ -92,35 +182,38 @@ $sQuotient = null;
 
 foreach ($aDivisible as $sHex) {
   $sDividend = base_convert($sHex, 16, 10);
-
+  
   if (is_null($bDivisible)) {
     // start
-    $iQuotientSmall = bcdiv($sDividend, $sDivisor);
+    $iQuotientSmall = number_format(bcdiv($sDividend, $sDivisor), 0, '.', '');
     $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
     
-    $iProduct = bcmul($iQuotientSmall, $sDivisor);
+    $iProduct = number_format(bcmul($iQuotientSmall, $sDivisor), 0, '.', '');
     $iDifference = bcsub($sDividend, $iProduct);
     $sDifference = base_convert($iDifference, 10, 16);
     $bDivisible = true;
 
-    var_dump([$iQuotientSmall, $sQuotient]);
   }
   else {
     $sRemainder = base_convert($sDifference . $sHex, 16, 10);
     $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
+
     $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
-    
+
     $iProduct = bcmul($iQuotientSmall, $sDivisor);
+
+ 
     $sDifference = base_convert($sDifference . $sHex, 16, 10);
     $iDifference = bcsub($sDifference, $iProduct);
     $sDifference = base_convert($iDifference, 10, 16);
 
-    var_dump([$iQuotientSmall, $sQuotient]);
   }
-  
-
 
 }
+      
+  
+
+    var_dump([$iQuotientSmall, $sQuotient]);
       /*
 die();
   
