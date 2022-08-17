@@ -204,7 +204,20 @@ foreach ($aDivisible as $k => $sHex) {
 
     $iDifference = bcsub($sRemainder, $iProduct);
     
-var_dump([$k, $sRemainder, $iProduct, $iDifference, $sDifference, $sHex, $sRemainder, $sDivisor, $iQuotientSmall, $sQuotient, base_convert($iDifference, 10, 16)]);
+var_dump([
+         $k, 
+         $sRemainder, 
+         $iProduct, 
+         $iDifference, 
+         $sDifference, 
+         $sHex, 
+         $sRemainder, 
+         $sDivisor, 
+         $iQuotientSmall, 
+         $sQuotient, 
+         base_convert($iQuotientSmall, 10, 16), 
+         base_convert($iDifference, 10, 16)
+]);
 
     $sDifference = base_convert($iDifference, 10, 16);
     
@@ -212,7 +225,7 @@ var_dump([$k, $sRemainder, $iProduct, $iDifference, $sDifference, $sHex, $sRemai
 var_dump([$sDifference, $iProduct]);
   }
 
-  if ($k >= 16) break;
+  #if ($k >= 19) break;
 }
       
   
