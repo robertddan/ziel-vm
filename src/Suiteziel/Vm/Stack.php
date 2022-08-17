@@ -77,16 +77,100 @@ $aHexBin = array(
   'F' => '1111'
 );
 
+$aBinDec = array(
+  '0000' => '0',
+  '0001' => '1',
+  '0010' => '2',
+  '0011' => '3',
+  '0100' => '4',
+  '0101' => '5',
+  '0110' => '6',
+  '0111' => '7',
+  '1000' => '8',
+  '1001' => '9',
+  '1010' => '10',
+  '1011' => '11',
+  '1100' => '12',
+  '1101' => '13',
+  '1110' => '14',
+  '1111' => '15'
+);
+
 foreach($a_e as &$eS) $eS = substr($eS, 2);  
 $aHexDivident = str_split($a_e[0]);    
 $aHexDivisor = str_split($a_e[1]);
 
-$aDivident = $aDivisor = array();
-foreach ($aHexDivident as $sHex) array_push($aDivident, $aHexBin[strtoupper($sHex)]);
-foreach ($aHexDivisor as $sHex) array_push($aDivisor, $aHexBin[strtoupper($sHex)]);
+$aDivisor = $aDividend = array();
+foreach ($aHexDivisor as $sHex) array_push($aDivisor, $aBinDec[$aHexBin[strtoupper($sHex)]]);
+foreach ($aHexDivident as $sHex) array_push($aDividend, $aHexBin[strtoupper($sHex)]);
 $sDivisor = implode($aDivisor);
+$sDividend = implode($aDividend);
 
-var_dump($aDivident, $sDivisor);
+var_dump($sDivisor, $sDividend);
+
+$sQuotient = "";
+$bDivisible = null;
+
+foreach ($aDividend as $k => $sHex) {
+
+  if (is_null($bDivisible)) {
+    // start
+    $iQuotientSmall = bcdiv($aBinDec[$sHex], $sDivisor);
+    $sQuotient = $sQuotient.$iQuotientSmall;
+    $iProduct = bcmul($iQuotientSmall, $sDivisor);
+    $iDifference = bcsub($sDividend, $iProduct);
+    var_dump(['$iDifference', $iDifference]);
+    
+    $sDifference = $iDifference;
+    $bDivisible = true;
+  }
+  else {
+    $sRemainder = $sDifference . $sHex;
+/*
+    if ($sRemainder == 0) die();
+    $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
+    $sQuotient = $sQuotient.$iQuotientSmall;
+
+    $iProduct = bcmul($iQuotientSmall, $sDivisor);
+    $sDifference = $sDifference . $sHex;
+
+    $iDifference = bcsub($sRemainder, $iProduct
+*/
+    
+  var_dump(['$sRemainder', $sRemainder, '$sRemainder', $sRemainder]);
+  }
+}
+
+var_dump(['$sDifference', $sDifference, '$iProduct', $iProduct]);
+/*
+  if (!strlen($sHex) % 2) {$sHex = $sHex;} else {$sHex = "0".$sHex;}
+
+  $sDividend = base_convert($sHex, 16, 10);
+
+  if (is_null($bDivisible)) {
+    // start
+    $iQuotientSmall = bcdiv($sDividend, $sDivisor);
+    $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
+
+    $iProduct = bcmul($iQuotientSmall, $sDivisor);
+    $iDifference = bcsub($sDividend, $iProduct);
+    $sDifference = base_convert($iDifference, 10, 16);
+    $bDivisible = true;
+
+  }
+  else {
+    $sRemainder = number_format(base_convert($sDifference . $sHex, 16, 10), 0, '.', '');
+
+    if ($sRemainder == 0) die();
+    $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
+    $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
+
+    $iProduct = bcmul($iQuotientSmall, $sDivisor);
+    $sDifference = number_format(base_convert($sDifference . $sHex, 16, 10), 0, '.', '');
+
+    $iDifference = bcsub($sRemainder, $iProduct);
+  }
+*/
 
 
 
