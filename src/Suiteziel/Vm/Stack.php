@@ -102,46 +102,47 @@ $aHexDivisor = str_split($a_e[1]);
 
 $aDivisor = $aDividend = array();
 foreach ($aHexDivisor as $sHex) array_push($aDivisor, $aBinDec[$aHexBin[strtoupper($sHex)]]);
-foreach ($aHexDivident as $sHex) array_push($aDividend, $aHexBin[strtoupper($sHex)]);
+foreach ($aHexDivident as $sHex) array_push($aDividend, $aBinDec[$aHexBin[strtoupper($sHex)]]);
 $sDivisor = implode($aDivisor);
 $sDividend = implode($aDividend);
 
-var_dump($sDivisor, $sDividend);
+var_dump(['$sDivisor', $sDivisor, '$sDividend', $sDividend]);
 
 $sQuotient = "";
 $bDivisible = null;
 
-foreach ($aDividend as $k => $sHex) {
+foreach ($aDividend as $k => $sDec) {
 
   if (is_null($bDivisible)) {
-    // start
-    $iQuotientSmall = bcdiv($aBinDec[$sHex], $sDivisor);
+    // 
+    var_dump($sDec);
+    $iQuotientSmall = bcdiv($sDec, $sDivisor);
     $sQuotient = $sQuotient.$iQuotientSmall;
     $iProduct = bcmul($iQuotientSmall, $sDivisor);
-    $iDifference = bcsub($sDividend, $iProduct);
+    $iDifference = bcsub($sDec, $iProduct);
     var_dump(['$iDifference', $iDifference]);
     
     $sDifference = $iDifference;
     $bDivisible = true;
   }
   else {
-    $sRemainder = $sDifference . $sHex;
-/*
-    if ($sRemainder == 0) die();
+    $sRemainder = $sDifference . $sDec;
+    #$sDifference = "";
+    #if ($sRemainder == 0) die();
     $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
     $sQuotient = $sQuotient.$iQuotientSmall;
 
     $iProduct = bcmul($iQuotientSmall, $sDivisor);
-    $sDifference = $sDifference . $sHex;
+    $sDifference = $sDifference . $sDec;
 
-    $iDifference = bcsub($sRemainder, $iProduct
-*/
+    $iDifference = bcsub($sRemainder, $iProduct);
+
     
-  var_dump(['$sRemainder', $sRemainder, '$sRemainder', $sRemainder]);
+    var_dump(['$sRemainder', $sRemainder, '$sRemainder', $sRemainder]);
   }
 }
 
-var_dump(['$sDifference', $sDifference, '$iProduct', $iProduct]);
+var_dump(['$sDifference', $sDifference, '$sQuotient', $sQuotient]);
 /*
   if (!strlen($sHex) % 2) {$sHex = $sHex;} else {$sHex = "0".$sHex;}
 
