@@ -180,35 +180,39 @@ $iDifference = null;
 $sDifference = "";
 $sQuotient = null;
 
-foreach ($aDivisible as $sHex) {
+foreach ($aDivisible as $k => $sHex) {
   $sDividend = base_convert($sHex, 16, 10);
   
   if (is_null($bDivisible)) {
     // start
-    $iQuotientSmall = number_format(bcdiv($sDividend, $sDivisor), 0, '.', '');
+    $iQuotientSmall = bcdiv($sDividend, $sDivisor);
     $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
     
-    $iProduct = number_format(bcmul($iQuotientSmall, $sDivisor), 0, '.', '');
+    $iProduct = bcmul($iQuotientSmall, $sDivisor);
     $iDifference = bcsub($sDividend, $iProduct);
     $sDifference = base_convert($iDifference, 10, 16);
     $bDivisible = true;
 
   }
   else {
-    $sRemainder = base_convert($sDifference . $sHex, 16, 10);
+    $sRemainder = number_format(base_convert($sDifference . $sHex, 16, 10), 0, '.', '');
     $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
-
     $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
 
     $iProduct = bcmul($iQuotientSmall, $sDivisor);
-
- 
     $sDifference = base_convert($sDifference . $sHex, 16, 10);
-    $iDifference = bcsub($sDifference, $iProduct);
-    $sDifference = base_convert($iDifference, 10, 16);
 
+    $iDifference = bcsub($sRemainder, $iProduct);
+    
+var_dump([$k, $sRemainder, $iProduct, $iDifference, $sDifference, $sHex, $sRemainder, $sDivisor, $iQuotientSmall, $sQuotient]);
+
+    $sDifference = base_convert($iDifference, 10, 16);
+    
+
+var_dump([$sDifference, $iProduct]);
   }
 
+  if ($k >= 24) break;
 }
       
   
