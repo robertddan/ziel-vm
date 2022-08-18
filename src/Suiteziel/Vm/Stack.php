@@ -21,6 +21,24 @@ $aArguments,
 $iDelta,
 $this->i_pc,
 $this->oStack->aaStack,
+*/#
+/*
+	# addition multiplication subtraction division
+	public function addition ($aBin) {
+    foreach($aBin as $sBin)
+	}
+  public function multiplication ($aBin) {
+		$this->i_sp = 0;
+		$this->aaStack = array();
+	}
+  public function subtraction ($aBin) {
+		$this->i_sp = 0;
+		$this->aaStack = array();
+	}
+  public function division ($aBin) {
+		$this->i_sp = 0;
+		$this->aaStack = array();
+	}
 */
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
@@ -51,13 +69,13 @@ $this->oStack->aaStack,
 
 $iScale = bcscale();
 bcscale(0);
-
 $a_e = array_splice($this->aaStack, 0, $iDelta);
 $a_e = [
 	"0x6057361d00000000000000000000000000000000000000000000000000000000",
 	"0x0000000100000000000000000000000000000000000000000000000000000000"
 ];
-
+$a_e = array('0xFACE', '0x12');
+      
 $aHexBin = array(
   '0' => '0000',
   '1' => '0001',
@@ -99,14 +117,18 @@ $aBinDec = array(
 foreach($a_e as &$eS) $eS = substr($eS, 2);  
 $aHexDivident = str_split($a_e[0]);    
 $aHexDivisor = str_split($a_e[1]);
-
+      
 $aDivisor = $aDividend = array();
-foreach ($aHexDivisor as $sHex) array_push($aDivisor, $aBinDec[$aHexBin[strtoupper($sHex)]]);
-foreach ($aHexDivident as $sHex) array_push($aDividend, $aBinDec[$aHexBin[strtoupper($sHex)]]);
-$sDivisor = implode($aDivisor);
-$sDividend = implode($aDividend);
+foreach ($aHexDivisor as $sHex) {
 
-var_dump(['$sDivisor', $sDivisor, '$sDividend', $sDividend]);
+  array_push($aDivisor, $aBinDec[$aHexBin[strtoupper($sHex)]]);
+    var_dump($aHexBin[strtoupper($sHex)]);
+  
+}
+foreach ($aHexDivident as $sHex) array_push($aDividend, $aBinDec[$aHexBin[strtoupper($sHex)]]);
+          
+$sDivisor = implode($aDivisor);
+#$sDividend = implode($aDividend);
 
 $sQuotient = "";
 $bDivisible = null;
@@ -114,32 +136,38 @@ $bDivisible = null;
 foreach ($aDividend as $k => $sDec) {
 
   if (is_null($bDivisible)) {
-    // 
-    var_dump($sDec);
+    
+
     $iQuotientSmall = bcdiv($sDec, $sDivisor);
+    
+    var_dump(['$iQuotientSmall'.$k, $iQuotientSmall, '$iDifference_'.$k, $sDivisor]);
     $sQuotient = $sQuotient.$iQuotientSmall;
     $iProduct = bcmul($iQuotientSmall, $sDivisor);
     $iDifference = bcsub($sDec, $iProduct);
-    var_dump(['$iDifference', $iDifference]);
     
     $sDifference = $iDifference;
     $bDivisible = true;
   }
   else {
+    
+    var_dump(['$sDifference'.'_'.$k, $sDifference, '$sDec'.'_'.$k, $sDec]);
+    #if ($sRemainder == 0) die();
     $sRemainder = $sDifference . $sDec;
     #$sDifference = "";
     #if ($sRemainder == 0) die();
     $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
     $sQuotient = $sQuotient.$iQuotientSmall;
 
+    var_dump(['$iQuotientSmall', $iQuotientSmall, '$sQuotient', $sQuotient]);
     $iProduct = bcmul($iQuotientSmall, $sDivisor);
     $sDifference = $sDifference . $sDec;
 
     $iDifference = bcsub($sRemainder, $iProduct);
 
     
-    var_dump(['$sRemainder', $sRemainder, '$sRemainder', $sRemainder]);
+    var_dump(['$sQuotient', $sQuotient, '$iDifference', $iDifference]);
   }
+
 }
 
 var_dump(['$sDifference', $sDifference, '$sQuotient', $sQuotient]);
