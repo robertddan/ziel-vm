@@ -75,44 +75,6 @@ $a_e = [
 	"0x0000000100000000000000000000000000000000000000000000000000000000"
 ];
 $a_e = array('0xFACE', '0x12');
-      
-$aHexBin = array(
-  '0' => '0000',
-  '1' => '0001',
-  '2' => '0010',
-  '3' => '0011',
-  '4' => '0100',
-  '5' => '0101',
-  '6' => '0110',
-  '7' => '0111',
-  '8' => '1000',
-  '9' => '1001',
-  'A' => '1010',
-  'B' => '1011',
-  'C' => '1100',
-  'D' => '1101',
-  'E' => '1110',
-  'F' => '1111'
-);
-
-$aBinDec = array(
-  '0000' => '0',
-  '0001' => '1',
-  '0010' => '2',
-  '0011' => '3',
-  '0100' => '4',
-  '0101' => '5',
-  '0110' => '6',
-  '0111' => '7',
-  '1000' => '8',
-  '1001' => '9',
-  '1010' => '10',
-  '1011' => '11',
-  '1100' => '12',
-  '1101' => '13',
-  '1110' => '14',
-  '1111' => '15'
-);
 
 foreach($a_e as &$eS) $eS = substr($eS, 2);  
 $aHexDivident = str_split($a_e[0]);    
@@ -120,23 +82,23 @@ $aHexDivisor = str_split($a_e[1]);
       
 $aDivisor = $aDividend = array();
 foreach ($aHexDivisor as $sHex) {
-
-  array_push($aDivisor, $aBinDec[$aHexBin[strtoupper($sHex)]]);
-    var_dump($aHexBin[strtoupper($sHex)]);
-  
+  array_push($aDivisor, bindec(base_convert(strtoupper($sHex), 16, 2)));
+  #var_dump($aHexBin[strtoupper($sHex)]);
 }
-foreach ($aHexDivident as $sHex) array_push($aDividend, $aBinDec[$aHexBin[strtoupper($sHex)]]);
+foreach ($aHexDivident as $sHex) {
+  array_push($aDividend, bindec(base_convert(strtoupper($sHex), 16, 2)));
+}
           
 $sDivisor = implode($aDivisor);
 #$sDividend = implode($aDividend);
-
+var_dump($sDivisor);
+      die();
 $sQuotient = "";
 $bDivisible = null;
 
 foreach ($aDividend as $k => $sDec) {
 
   if (is_null($bDivisible)) {
-    
 
     $iQuotientSmall = bcdiv($sDec, $sDivisor);
     
@@ -172,6 +134,22 @@ foreach ($aDividend as $k => $sDec) {
 
 var_dump(['$sDifference', $sDifference, '$sQuotient', $sQuotient]);
 /*
+0110000001010111
+0011011000011101
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
   if (!strlen($sHex) % 2) {$sHex = $sHex;} else {$sHex = "0".$sHex;}
 
   $sDividend = base_convert($sHex, 16, 10);
