@@ -174,8 +174,23 @@ $a_e = [
 			break; //SGT
 			case 0x14:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
-				if ($a_e[0] == $a_e[1]) $i = 1;
+      
+          var_dump($a_e);
+      die();
+        foreach ($a_e as &$iArgument) {
+          if (substr($iArgument, 0, 2) === '0x') continue;
+          
+          var_dump($iArgument);
+          $iArgument = "0x".str_pad(dechex($iArgument), 64, 0, STR_PAD_LEFT);
+          
+          var_dump($iArgument);
+        }
+      var_dump($a_e);
+
+      
+				if ($a_e[0] === $a_e[1]) $i = 1;
 				else $i = 0;
+      
 				array_unshift($this->aaStack, $i);
 				//print(implode("::", $this->aaStack));
 				//return true; 
@@ -270,11 +285,14 @@ $a_e = [
 				//return true; 
 			break; //PUSH3
 			case 0x63:
+      	$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+/*
         $sArgument = "";
         foreach ($aArguments as $iArgument) $sArgument = $sArgument . dechex($iArgument);
 				#$sArgument = implode("", $aArguments); 
         $sArgument = "0x".str_pad($sArgument, 64, 0, STR_PAD_LEFT);
         array_unshift($this->aaStack, $sArgument);
+*/
 				//return true; 
 			break; //PUSH4
 			case 0x64:

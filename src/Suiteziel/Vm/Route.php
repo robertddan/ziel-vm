@@ -177,9 +177,9 @@ Call Data
 		
 		for ($i = 0; $i<count($this->aHex); $i++) {
 				
-			$sHex = $this->aHex[$i];
-			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
-			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
+			#$sHex = $this->aHex[$i];
+			#if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
+			#if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
 			
 		}
 		

@@ -73,8 +73,22 @@ class State
 				$a_e = array_splice($aaStack, 0, $iDelta);
 				//var_dump($a_e);
 				$i_pc = $a_e[0] -1;
-      
-
+				print(PHP_EOL);
+				print("Stack::". implode("::", $aaStack));
+/*
+    0:
+    0x000000000000000000000000000000000000000000000000000000000000007a
+    1:
+    0x0000000000000000000000000000000000000000000000000000000000000004
+    2:
+    0x0000000000000000000000000000000000000000000000000000000000000024
+    3:
+    0x0000000000000000000000000000000000000000000000000000000000000073
+    4:
+    0x0000000000000000000000000000000000000000000000000000000000000078
+    5:
+    0x000000000000000000000000000000000000000000000000000000006057361d
+*/
 			break; //JUMP
 			case 0x57:
 				$a_e = array_splice($aaStack, 0, $iDelta);
@@ -90,9 +104,10 @@ class State
 				array_unshift($aaStack, $i_pc);
 			break; //PC
 			case 0x62:
-      var_dump($i_pc);
-      
-      die();
+        var_dump($i_pc);
+
+				print(PHP_EOL);
+				print("Stack::". implode("::", $aaStack));
 			break; //JUMPDEST
 			case 0x30:
 				array_unshift($aaStack, $this->aaState["Ia"]);
