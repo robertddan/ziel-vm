@@ -70,21 +70,29 @@ class State
 				$i_pc = -1;
 			break; //STOP
 			case 0x56:				
-				$a_e = array_unshift($aaStack, 0, $iDelta);
+				$a_e = array_splice($aaStack, 0, $iDelta);
 				//var_dump($a_e);
-				$i_pc = $a_e[0];
+				$i_pc = $a_e[0] -1;
+      
+
 			break; //JUMP
 			case 0x57:
 				$a_e = array_splice($aaStack, 0, $iDelta);
-
-				if ($a_e[1] != 0) $i_pc = $a_e[0] -1;
+#μs[0] if μs[1] 6 = 0
+#μpc + 1 otherwise
+      
+				if ($a_e[1] != 0) $i_pc = $a_e[0] - 1;
 				else $i_pc = $i_pc;// + 1;
+        #if ($i_pc == 104) die();
 				//var_dump($a_e);
 			break; //JUMPI
 			case 0x58:
 				array_unshift($aaStack, $i_pc);
 			break; //PC
 			case 0x62:
+      var_dump($i_pc);
+      
+      die();
 			break; //JUMPDEST
 			case 0x30:
 				array_unshift($aaStack, $this->aaState["Ia"]);
@@ -238,7 +246,6 @@ die();
 			break; //DEBUG
 			default: return true; break;
 		}
-		
 		
 		print(PHP_EOL);
 		foreach($this->aaState as $aaState) {

@@ -270,7 +270,11 @@ $a_e = [
 				//return true; 
 			break; //PUSH3
 			case 0x63:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+        $sArgument = "";
+        foreach ($aArguments as $iArgument) $sArgument = $sArgument . dechex($iArgument);
+				#$sArgument = implode("", $aArguments); 
+        $sArgument = "0x".str_pad($sArgument, 64, 0, STR_PAD_LEFT);
+        array_unshift($this->aaStack, $sArgument);
 				//return true; 
 			break; //PUSH4
 			case 0x64:

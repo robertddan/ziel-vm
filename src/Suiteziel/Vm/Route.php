@@ -177,9 +177,9 @@ Call Data
 		
 		for ($i = 0; $i<count($this->aHex); $i++) {
 				
-			#$sHex = $this->aHex[$i];
-			#if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
-			#if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
+			$sHex = $this->aHex[$i];
+			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
+			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
 			
 		}
 		
@@ -219,6 +219,9 @@ $aa_p = array(
 #if ($this->i_pc !== $i) break;
 			
 			$i = $aa_p[3];
+      
+      print PHP_EOL;
+      var_dump($aa_p[3]);
 			$this->oStack->aaStack = $aa_p[4];
 			
 			
