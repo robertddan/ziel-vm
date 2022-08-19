@@ -67,119 +67,23 @@ $this->oStack->aaStack,
 			break; //SUB
 			case 0x04:
 
-$iScale = bcscale();
-bcscale(0);
-$a_e = array_splice($this->aaStack, 0, $iDelta);
+        $a_e = array_splice($this->aaStack, 0, $iDelta);
+        $a_e[0] = str_pad($a_e[0], 66, 0);
+        $a_e[1] = "0x".str_pad($a_e[1], 64, 0, STR_PAD_LEFT);
+
+#foreach($a_e as &$eS) {$eS = substr($eS, 2);} 
+/*
 $a_e = [
-	"0x6057361d00000000000000000000000000000000000000000000000000000000",
+	"0x000000000000000000000000000000000000000000000000000000006057361d",
 	"0x0000000100000000000000000000000000000000000000000000000000000000"
 ];
-$a_e = array('0xFACE', '0x12');
-
-foreach($a_e as &$eS) $eS = substr($eS, 2);  
-$aHexDivident = str_split($a_e[0]);    
-$aHexDivisor = str_split($a_e[1]);
-      
-$aDivisor = $aDividend = array();
-foreach ($aHexDivisor as $sHex) {
-  array_push($aDivisor, bindec(base_convert(strtoupper($sHex), 16, 2)));
-  #var_dump($aHexBin[strtoupper($sHex)]);
-}
-foreach ($aHexDivident as $sHex) {
-  array_push($aDividend, bindec(base_convert(strtoupper($sHex), 16, 2)));
-}
-          
-$sDivisor = implode($aDivisor);
-#$sDividend = implode($aDividend);
-var_dump($sDivisor);
-      die();
-$sQuotient = "";
-$bDivisible = null;
-
-foreach ($aDividend as $k => $sDec) {
-
-  if (is_null($bDivisible)) {
-
-    $iQuotientSmall = bcdiv($sDec, $sDivisor);
-    
-    var_dump(['$iQuotientSmall'.$k, $iQuotientSmall, '$iDifference_'.$k, $sDivisor]);
-    $sQuotient = $sQuotient.$iQuotientSmall;
-    $iProduct = bcmul($iQuotientSmall, $sDivisor);
-    $iDifference = bcsub($sDec, $iProduct);
-    
-    $sDifference = $iDifference;
-    $bDivisible = true;
-  }
-  else {
-    
-    var_dump(['$sDifference'.'_'.$k, $sDifference, '$sDec'.'_'.$k, $sDec]);
-    #if ($sRemainder == 0) die();
-    $sRemainder = $sDifference . $sDec;
-    #$sDifference = "";
-    #if ($sRemainder == 0) die();
-    $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
-    $sQuotient = $sQuotient.$iQuotientSmall;
-
-    var_dump(['$iQuotientSmall', $iQuotientSmall, '$sQuotient', $sQuotient]);
-    $iProduct = bcmul($iQuotientSmall, $sDivisor);
-    $sDifference = $sDifference . $sDec;
-
-    $iDifference = bcsub($sRemainder, $iProduct);
-
-    
-    var_dump(['$sQuotient', $sQuotient, '$iDifference', $iDifference]);
-  }
-
-}
-
-var_dump(['$sDifference', $sDifference, '$sQuotient', $sQuotient]);
-/*
-0110000001010111
-0011011000011101
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-0000000000000000
-  if (!strlen($sHex) % 2) {$sHex = $sHex;} else {$sHex = "0".$sHex;}
-
-  $sDividend = base_convert($sHex, 16, 10);
-
-  if (is_null($bDivisible)) {
-    // start
-    $iQuotientSmall = bcdiv($sDividend, $sDivisor);
-    $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
-
-    $iProduct = bcmul($iQuotientSmall, $sDivisor);
-    $iDifference = bcsub($sDividend, $iProduct);
-    $sDifference = base_convert($iDifference, 10, 16);
-    $bDivisible = true;
-
-  }
-  else {
-    $sRemainder = number_format(base_convert($sDifference . $sHex, 16, 10), 0, '.', '');
-
-    if ($sRemainder == 0) die();
-    $iQuotientSmall = bcdiv($sRemainder, $sDivisor);
-    $sQuotient = $sQuotient.base_convert($iQuotientSmall, 10, 16);
-
-    $iProduct = bcmul($iQuotientSmall, $sDivisor);
-    $sDifference = number_format(base_convert($sDifference . $sHex, 16, 10), 0, '.', '');
-
-    $iDifference = bcsub($sRemainder, $iProduct);
-  }
 */
+#$a_e = array('0xFACE', '0x12');
 
-
+        $a = gmp_init($a_e[0]);
+        $res = gmp_div_qr($a, $a_e[1]);
+        $xQuotient = "0x".str_pad(dechex(gmp_strval($res[0])), 64, 0, STR_PAD_LEFT);
+        array_unshift($this->aaStack, $xQuotient);
 
 				#array_unshift($this->aaStack, $n_r);
 				//print(implode("::", $this->aaStack));
