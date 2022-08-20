@@ -7,13 +7,14 @@ use App\Suiteziel\Vm\Stack;
 
 class Storage 
 {
+	public $aSlot;
 	public static $aaStorage;
 	
 	public function __construct () {
 		Self::$aaStorage = array();
 		$this->aSlot = array(
 			"contract" => State::$aaState["Ia"],
-			"slot" => null,
+			"key" => null,
 			"value" => null
 		);
 	}
@@ -38,16 +39,16 @@ class Storage
 			break; //SLOAD
 			case 0x55:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-				$this->aSlot["slot"] = $a_e[1];
-				$this->aSlot["value"] = $a_e[0];
-				array_push(Self::$aaStorage, $this->aSlot);
+				$this->aSlot["key"] = $a_e[0];
+				$this->aSlot["value"] = $a_e[1];
+				array_push(Self::$aaStorage, (object) $this->aSlot);
 			break; //SSTORE
 			default: return true; break;
 		}
 		
 
 		print(PHP_EOL);
-		print("Storage::". implode("::", Self::$aaStorage));
+		foreach(Self::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
 		return true;
 	}
 }
