@@ -8,6 +8,8 @@ class Opcodes
 	public $aHes;
 	public $aArguments;
 	public $aaOpcodes;
+	public static $_aArguments;
+	public static $_aaOpcodes;
 
 	public function __construct () {
 		$this->iCursor = 0;
@@ -25,7 +27,7 @@ class Opcodes
 		$sDec = hexdec($sHex);
 		$i_k_start = $i_k + 1;                                        
 		if (!isset($this->aaOpcodes[$sDec])) { $this->aArguments = array(); return true; }
-		$aArguments = array_slice($this->aHex, $i_k_start, $this->aaOpcodes[$sDec][0]);
+		$aArguments = self::$_aArguments = array_slice($this->aHex, $i_k_start, $this->aaOpcodes[$sDec][0]);
 		$this->aArguments = $aArguments;
 		return true;
 	}
@@ -88,7 +90,7 @@ class Opcodes
 	}
 
 	public function set_opcodes () {
-		$this->aaOpcodes = array(
+		$this->aaOpcodes = self::$_aaOpcodes = array(
 			0x00 => array(0, 0, 0, "0x00", "STOP", "Halts execution"),
 			0x01 => array(0, 2, 3, "0x01", "ADD", "Addition operation"),
 			0x02 => array(0, 2, 5, "0x02", "MUL", "Multiplication operation"),

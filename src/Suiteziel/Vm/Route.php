@@ -207,26 +207,26 @@ Call Data
 			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
 		
-			$aArguments = $this->oOpcodes->aArguments;
-			$iDelta = $this->oOpcodes->aaOpcodes[$sDec][1];
+			#$aArguments = Opcodes::$_aArguments; #$this->oOpcodes->aArguments;
+			#$iDelta = Opcodes::$_aaOpcodes[$sDec][1]; #$this->oOpcodes->aaOpcodes[$sDec][1];
 			
       $aa_p = array(
       	$sHex,
-      	$aArguments,
-      	$iDelta,
+      	#$aArguments,
+      	#$iDelta,
       	$this->i_pc,
       	$this->oStack->aaStack
       );
 			
-			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning');
-			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
-			if (!$this->oMemory->positioning($aa_p)) die('oMemory->positioning');
-			if (!$this->oStorage->positioning($aa_p)) die('oStorage->positioning');
+			if (!$this->oStack->positioning($i, $sHex)) die('oStack->positioning');
+			#if (!$this->oState->positioning($aa_p)) die('oState->positioning');
+			#if (!$this->oMemory->positioning($aa_p)) die('oMemory->positioning');
+			#if (!$this->oStorage->positioning($aa_p)) die('oStorage->positioning');
 			
-			$i = $aa_p[3];
-			$this->oStack->aaStack = $aa_p[4];
-			if ($aa_p[3] == -1) break; //array()
-			$i_opargs = count($aArguments);
+			$i = $aa_p[1];
+			$this->oStack->aaStack = $aa_p[2];
+			if ($aa_p[1] == -1) break; //array()
+			$i_opargs = count(Opcodes::$_aArguments);
 			
 			
 		}

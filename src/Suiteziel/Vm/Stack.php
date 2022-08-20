@@ -2,10 +2,13 @@
 namespace App\Suiteziel\Vm;
 
 
+use App\Suiteziel\Vm\Opcodes;
+
 class Stack
 { 
 	public $i_sp; //stack pointer
 	public $aaStack;
+	public static $_aaStack;
 		
 	public function __construct () {
 		$this->i_sp = 0;
@@ -40,9 +43,15 @@ $this->oStack->aaStack,
 		$this->aaStack = array();
 	}
 */
-	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
-		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
+	public function positioning(&$i_pc, $sHex) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
+    
+    $sDec = hexdec($sHex);
+    $aArguments = Opcodes::$_aArguments; #$this->oOpcodes->aArguments;
+    $iDelta = Opcodes::$_aaOpcodes[$sDec][1]; #$this->oOpcodes->aaOpcodes[$sDec][1];
+                                
+		#list($sHex, $i_pc, &$aaStack) = $aa_p;
 
+                                           
 		//var_dump($GLOBALS);
 //var_dump($sHex);
 //die();
@@ -673,7 +682,7 @@ $a_e = [
 			default: return true; break;
 		}
 		
-		$aaStack = $this->aaStack;
+		self::$_aaStack = $this->aaStack;
 		print(PHP_EOL);
 		print("Stack::". implode("::", $this->aaStack));
 		return true;
