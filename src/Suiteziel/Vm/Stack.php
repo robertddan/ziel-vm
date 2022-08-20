@@ -16,11 +16,11 @@ class Stack
 	}
   		
 	public function shift_left ($sHex) {
-		return "0x". str_pad($sHex, 32, 0, STR_PAD_LEFT);
+		return "0x". str_pad($sHex, 64, 0, STR_PAD_LEFT);
 	}
     		
 	public function shift_right ($sHex) {
-		return "0x". str_pad($sHex, 32, 0, STR_PAD_RIGHT);
+		return "0x". str_pad($sHex, 64, 0, STR_PAD_RIGHT);
 	}
 
 	public function positioning(&$i_pc, $sHex) {
@@ -51,6 +51,9 @@ class Stack
 			case 0x04:
 
         $a_e = array_splice(self::$aaStack, 0, $iDelta);
+        #foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+      var_dump($a_e);
+      
         $a_e[0] = str_pad($a_e[0], 66, 0);
         $a_e[1] = "0x".str_pad($a_e[1], 64, 0, STR_PAD_LEFT);
 

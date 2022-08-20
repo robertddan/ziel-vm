@@ -19,7 +19,7 @@ class Opcodes
 	}
 
 	public function hes_set () :bool {
-		$this->aHex = Route::$_aHex;
+		$this->aHex = Route::$aHex;
 		return true;
 	}
 

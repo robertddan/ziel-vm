@@ -12,8 +12,7 @@ class Route
 {
 
 	public $i_pc;
-	public $aHex;
-	public static $_aHex;
+	public static $aHex;
 		
 	public $oOpcodes;
 	public $oMemory;
@@ -54,8 +53,9 @@ class Route
 	
 	public function init_variables_ ($bSession = 0) :bool {
 		$this->i_pc = 0;
-    if ($bSession) $this->aHex = self::$_aHex = $this->oSession->aData['aHex'];
-    else $this->aHex = self::$_aHex = $this->oDiamonds->aHex;
+    if ($bSession == 1) self::$aHex = $this->oSession->aData['aHex'];
+    elseif($bSession == 2) self::$aHex = $this->oSession->aData["memory"];
+    else self::$aHex = $this->oDiamonds->aHex;
 		
 		return true;
 	}
@@ -67,10 +67,10 @@ class Route
 			'oDiamonds' => $this->oDiamonds->aHex,
 			'oSession' => $this->oSession->aData,
 		);*/
-
-    $this->oSession->aData["stack"] = $this->oStack->aaStack;
-    $this->oSession->aData["memory"] = $this->oMemory->aaMemory;
-		$this->oSession->aData['aHex'] = $this->aHex;
+    
+    $this->oSession->aData["stack"] = Stack::$aaStack;
+    $this->oSession->aData["memory"] = Memory::$aaMemory;
+		$this->oSession->aData['aHex'] = self::$aHex;
     $this->oSession->save_session($this->oSession->aData);
     var_dump($this->oSession->aData);
     
@@ -79,23 +79,17 @@ class Route
 	
 	public function implement () :bool {
 
-    if (!$this->init_variables_(1)) die('init_variables_');
-    #if (1) if (!$this->save_session()) die('$this->save_session');
+    if (!$this->init_variables_(2)) die('init_variables_');
     
 
-		if (empty($this->aHex)) die('Route->implement');
-		var_dump('sHex: '. implode("", $this->aHex));
-		var_dump('aHex: '. implode(" ", $this->aHex));
+		if (empty(self::$aHex)) die('Route->implement');
+		var_dump('sHex: '. implode("", self::$aHex));
+		var_dump('aHex: '. implode(" ", self::$aHex));
     
-    #$this->aHex = array(0x00); //STOP
-    
-		#if (!$this->oOpcodes->hes_set($this->aHex)) die('oOpcodes->hes_set');
-		#if (!$this->oMemory->hes_set($this->aHex)) die('oMemory->hes_set');
-		#if (!$this->oState->hes_set($this->aHex)) die('oState->hes_set');
-		
-		for ($i = 0; $i<count($this->aHex); $i++) {
+    #self::$aHex = array(0x00); //STOP
+		for ($i = 0; $i < count(self::$aHex); $i++) {
 				
-			#$sHex = $this->aHex[$i];
+			#$sHex = self::$aHex[$i];
 			#if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
 			#if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
 			
@@ -108,10 +102,10 @@ class Route
 		
 		
 		$i_opargs = 0;
-		#foreach ($this->aHex as $i => $sHex) {
-		for ($i = 0; $i < count($this->aHex); $i++) {
+		#foreach (self::$aHex as $i => $sHex) {
+		for ($i = 0; $i < count(self::$aHex); $i++) {
 			
-			$sHex = $this->aHex[$i];
+			$sHex = self::$aHex[$i];
       $sDec = hexdec($sHex);
       
 			$this->i_pc = $i;
@@ -158,6 +152,9 @@ class Route
     print(PHP_EOL);
 		print("Storage::". implode("::", Storage::$aaStorage));
 
+    // save session
+    if (0) if (!$this->save_session()) die('$this->save_session');
+    
     return true;
 	}
 

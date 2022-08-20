@@ -5,10 +5,11 @@ namespace App\Suiteziel\Vm;
 use App\Suiteziel\Org\Session;
 use App\Suiteziel\Vm\Opcodes;
 use App\Suiteziel\VM\Stack;
+use App\Suiteziel\VM\Route;
 
 class State
 {
-	public $aHex;
+	public $aHes;
 	public static $aaState;
 
 	public function __construct () {
@@ -53,17 +54,17 @@ class State
 		);
 	}
 	
-	public function hes_set ($aHes = null) :bool {
-		$this->aHes = $aHes;
+	public function hes_set () :bool {
+		$this->aHes = Route::$aHex;
 		return true;
 	}
 
 	public function shift_left ($sHex) {
-		return "0x". str_pad($sHex, 32, 0, STR_PAD_LEFT);
+		return "0x". str_pad($sHex, 64, 0, STR_PAD_LEFT);
 	}
     		
 	public function shift_right ($sHex) {
-		return "0x". str_pad($sHex, 32, 0, STR_PAD_RIGHT);
+		return "0x". str_pad($sHex, 64, 0, STR_PAD_RIGHT);
 	}
 
 	public function positioning(&$i_pc, $sHex) {
@@ -71,7 +72,7 @@ class State
     $sDec = hexdec($sHex);
     $aArguments = Opcodes::$aArguments;
     $iDelta = Opcodes::$aaOpcodes[$sDec][1];
-
+    if (!$this->hes_set()) die('$this->hes_set()');
 		switch ($sDec) {
 			case 0x00:
 				$i_pc = -1;
@@ -129,11 +130,10 @@ class State
 			case 0x35:
 				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-
 				$aId = array_slice(self::$aaState["Id"], 0, 4);
+      
 				$ae = array();
 				$ie = 0;
-				
 				foreach($this->aHes as $i_k => $hes) {
 					if ($ie == count($aId)) {/*$i_pc = $i_k;*/ break;}
 					if ($hes == base_convert($aId[$ie], 16, 10)) {
@@ -147,41 +147,8 @@ class State
 				}
 				
 				$sArgument = implode("", $aId);
-				array_unshift(Stack::$aaStack, '0x'.$sArgument);
-				
-/*
-	if (!empty($aDiff))
-	
-	foreach ($aId as $aStateId) {
-		if ($hes == $aStateId) array_push($ae, $hes);
-	}
-	$aDiff = array_diff($ae, $aId);
-	if (!empty($aDiff)) array_pop($ae); break;
-				foreach (self::$aaState["Id"] as $_k => $aStateId) {
-					if ($_k >= 31) break;
-					$_e = mb_strlen(serialize($aStateId), '8bit');
-					if ($_k >= $_e ) self::$aaState["Id"][$_k] = 0;
-				}
-				
-				$sStateId = implode("", self::$aaState["Id"]); 
-				array_unshift(Stack::$aaStack, $sStateId);
-				
-				
-				array_unshift(Stack::$aaStack, self::$aaState["Iv"]);
-				μ′s[0] ≡ Id[μs[0] . . . (μs[0] + 31)] 
-				Id[x] = 0 if x > ‖Id‖
-				euclidean
-				self::$aaState = self::$aaState = array(
-				// Ia, the address of the account which owns the code that is executing. 
-				"Ia" => Session::$_aData["wallet"][0],
-				// Io, the sender address of the transaction that originated this execution. 
-				"Io" => "",
-				// Ip, the price of gas in the transaction that originated this execution. 
-				"Ip" => "",
-				// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
-				"Id" => array('60', '57', '36', '1d'),
-	*/
-				
+				array_unshift(Stack::$aaStack, $this->shift_right($sArgument));
+
 				#print(PHP_EOL);
 				#print("State::". implode("::", self::$aaState["Id"]));
 				#print(PHP_EOL);

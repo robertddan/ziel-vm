@@ -18,11 +18,11 @@ class Storage
 	}
   		
 	public function shift_left ($sHex) {
-		return "0x". str_pad($sHex, 32, 0, STR_PAD_LEFT);
+		return "0x". str_pad($sHex, 64, 0, STR_PAD_LEFT);
 	}
     		
 	public function shift_right ($sHex) {
-		return "0x". str_pad($sHex, 32, 0, STR_PAD_RIGHT);
+		return "0x". str_pad($sHex, 64, 0, STR_PAD_RIGHT);
 	}
 
 	public function positioning(&$i_pc, $sHex) {
