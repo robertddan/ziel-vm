@@ -33,7 +33,8 @@ class Memory
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
 
         foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-        print(PHP_EOL ."sHexDec::". implode(" ", $a_e));
+				#print(PHP_EOL);
+        #print("sHexDec::". implode(" ", $a_e));
 
         $this->aHex = Route::$_aHex;
 				$aCopyCode1 = array_fill(0, $a_e[2], '0x00');
@@ -54,8 +55,8 @@ class Memory
 				//$a_m = self::$aaMemory[$a_s[0]];
 				//array_unshift(Stack::$aaStack, $a_m);
 				//var_dump("Memory::". implode("::", self::$aaMemory));
-				print(PHP_EOL);
-				print("Stack::". implode("::", Stack::$aaStack));
+				#print(PHP_EOL);
+				#print("Stack::". implode("::", Stack::$aaStack));
 			break; //CODECOPY
 			case 0x51:
 				$a_s = array_splice(Stack::$aaStack, 0, $iDelta);
@@ -63,14 +64,14 @@ class Memory
 				array_unshift(Stack::$aaStack, $a_m);
 				//var_dump("Memory::". implode("::", self::$aaMemory));
 				#print(PHP_EOL);
-				print("Stack::". implode("::", Stack::$aaStack));
+				#print("Stack::". implode("::", Stack::$aaStack));
 			break; //MLOAD
 			case 0x52:
 				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
         foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-				print(PHP_EOL);
-        print("sHexDec::". implode(" ", $a_e));
+				#print(PHP_EOL);
+        #print("sHexDec::". implode(" ", $a_e));
 				$i=32;
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);
@@ -79,7 +80,9 @@ class Memory
 				$aMemory[$a_e[0]] = dechex($a_e[1]);
 				self::$aaMemory = $aMemory;
 				//var_dump("Memory::". implode("::", $aMemory));
-        
+				
+				print("Stack::". implode("::", Stack::$aaStack));
+        print(PHP_EOL);
 			break; //MSTORE
 			
 			case 0x53:
@@ -105,7 +108,8 @@ class Memory
 			default: return true; break;
 		}
 		
-		print(PHP_EOL);
+		/**/
+		#print(PHP_EOL);
 		print("Memory::". implode("::", self::$aaMemory));
 		
 		return true;

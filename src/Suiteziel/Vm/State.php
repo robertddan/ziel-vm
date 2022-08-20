@@ -36,7 +36,7 @@ class State
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => Session::$_aData["wallet"][0], //"transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
-			"Iv" => $this->shift_left(10),//70000000000000000000, //"transaction value"
+			"Iv" => $this->shift_left(0), //70000000000000000000, //"transaction value"
 			// Ib, the byte array that is the machine code to be executed. 
 			"Ib" => "",
 			// IH, the block header of the present block. 
@@ -95,10 +95,11 @@ class State
 			case 0x58:
 				array_unshift(Stack::$aaStack, $i_pc);
 			break; //PC
-			case 0x62:
-				var_dump($i_pc);
+			case 0x5b:
+				print("i_pc: ". $i_pc);
 				print(PHP_EOL);
-				print("i_pc: ". $i_pc . " Stack::". implode("::", Stack::$aaStack));
+				print("Stack::". implode("::", Stack::$aaStack));
+				print(PHP_EOL);
 			break; //JUMPDEST
 			case 0x30:
 				array_unshift(Stack::$aaStack, self::$aaState["Ia"]);
@@ -111,6 +112,10 @@ class State
 			break; //CALLER
 			case 0x34:
 				array_unshift(Stack::$aaStack, self::$aaState["Iv"]);
+				
+				print("Stack::". implode("::", Stack::$aaStack));
+				print(PHP_EOL);
+				
 			break; //CALLVALUE
 			case 0x35:
 				
@@ -216,14 +221,16 @@ die();
 			default: return true; break;
 		}
 
-		print(PHP_EOL);
-		foreach(self::$aaState as $aState) {
-			if (is_array($aState)) print("State::". implode("::", $aState)); 
-			//else print(PHP_EOL . "State::"."::". $aState); 
+		$__aState = array();
+		foreach(self::$aaState as $k => $aaState) {
+			
+			if (is_array($aaState)) foreach($aaState as $aState) array_push($__aState, $aState); 
+			else array_push($__aState, $aaState); 
 		}
-    
-		print(PHP_EOL);
-    
+		
+		#print(PHP_EOL);
+    print("State::". implode("::", $__aState)); 
+		
 		#print(PHP_EOL);
 		#print("Stack::". implode("::", Stack::$aaStack));
     

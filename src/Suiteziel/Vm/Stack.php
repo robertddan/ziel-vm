@@ -112,12 +112,9 @@ class Stack
         $a_e = array_splice(self::$aaStack, 0, $iDelta);
         $oaOf = gmp_init($a_e[0]);
         $oaFor = gmp_init($a_e[1]);
-
         $oaResult = gmp_cmp($oaOf, $oaFor);
-
         if ($oaResult <= 0 ) $i = 1;
         else $i = 0;
-      
         array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //LT
 			case 0x11: 
@@ -157,12 +154,12 @@ class Stack
         array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //EQ
 			case 0x15:
-				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-				if ($a_e[0] == 0) $i = 1;
-				else $i = 0;
-				array_unshift(self::$aaStack, $this->shift_left($i));
-				//print(implode("::", self::$aaStack));
-				//return true; 
+        $a_e = array_splice(self::$aaStack, 0, $iDelta);
+        $oaOf = gmp_init($a_e[0]);
+        $oaResult = gmp_cmp($oaOf, 0);
+        if ($oaResult == 0 ) $i = 1;
+        else $i = 0;
+        array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //ISZERO
 			case 0x16:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
@@ -635,7 +632,7 @@ class Stack
 			case 0xff: return 1;break; //SELFDESTRUCT
 //*/
 			
-			default: print(" "); break;
+			default: return true; break;
 		}
                                               
 		#print(PHP_EOL);
