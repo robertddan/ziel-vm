@@ -49,31 +49,11 @@ class Stack
 				//return true; 
 			break; //SUB
 			case 0x04:
-
         $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        #foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-      var_dump($a_e);
-      
-        $a_e[0] = str_pad($a_e[0], 66, 0);
-        $a_e[1] = "0x".str_pad($a_e[1], 64, 0, STR_PAD_LEFT);
-
-#foreach($a_e as &$eS) {$eS = substr($eS, 2);} 
-/*
-$a_e = [
-	"0x000000000000000000000000000000000000000000000000000000006057361d",
-	"0x0000000100000000000000000000000000000000000000000000000000000000"
-];
-*/
-#$a_e = array('0xFACE', '0x12');
-
-        $a = gmp_init($a_e[0]);
-        $res = gmp_div_qr($a, $a_e[1]);
-        $xQuotient = "0x".str_pad(dechex(gmp_strval($res[0])), 64, 0, STR_PAD_LEFT);
+        $oaNumber = gmp_init($a_e[0]);
+        $oaQuotient = gmp_div_qr($oaNumber, $a_e[1]);
+        $xQuotient = "0x".str_pad(dechex(gmp_strval($oaQuotient[0])), 64, 0, STR_PAD_LEFT);
         array_unshift(self::$aaStack, $xQuotient);
-
-				#array_unshift(self::$aaStack, $n_r);
-				//print(implode("::", self::$aaStack));
-				//return true; 
 			break; //DIV
 			case 0x05: 
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
@@ -159,27 +139,16 @@ $a_e = [
 				//return true; 
 			break; //SGT
 			case 0x14:
-				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-      
-          var_dump($a_e);
-      die();
-        foreach ($a_e as &$iArgument) {
-          if (substr($iArgument, 0, 2) === '0x') continue;
-          
-          var_dump($iArgument);
-          $iArgument = "0x".str_pad(dechex($iArgument), 64, 0, STR_PAD_LEFT);
-          
-          var_dump($iArgument);
-        }
-      var_dump($a_e);
+        $a_e = array_splice(self::$aaStack, 0, $iDelta);
+        $oaOf = gmp_init($a_e[0]);
+        $oaFor = gmp_init($a_e[1]);
 
+        $oaResult = gmp_cmp($oaOf, $oaFor);
+
+        if ($oaResult == 0 ) $i = 1;
+        else $i = 0;
       
-				if ($a_e[0] === $a_e[1]) $i = 1;
-				else $i = 0;
-      
-				array_unshift(self::$aaStack, $i);
-				//print(implode("::", self::$aaStack));
-				//return true; 
+        array_unshift(self::$aaStack, $i);
 			break; //EQ
 			case 0x15:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);

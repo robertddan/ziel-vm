@@ -100,40 +100,25 @@ class Route
 
 		print('------------------------------------------------------------------------------');
 		
-		
 		$i_opargs = 0;
-		#foreach (self::$aHex as $i => $sHex) {
 		for ($i = 0; $i < count(self::$aHex); $i++) {
 			
 			$sHex = self::$aHex[$i];
       $sDec = hexdec($sHex);
-      
 			$this->i_pc = $i;
       
 			if ($i_opargs !== 0) { $i_opargs--; continue; }
 		
 			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
-		
-			#$aArguments = Opcodes::$_aArguments; #$this->oOpcodes->aArguments;
-			#$iDelta = Opcodes::$_aaOpcodes[$sDec][1]; #$this->oOpcodes->aaOpcodes[$sDec][1];
-			/*
-      $aa_p = array(
-      	$sHex,
-      	$this->i_pc,
-      	$this->oStack->aaStack
-      );
-			*/
 			if (!$this->oStack->positioning($i, $sHex)) die('oStack->positioning');
 			if (!$this->oState->positioning($i, $sHex)) die('oState->positioning');
 			if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
 			if (!$this->oStorage->positioning($i, $sHex)) die('oStorage->positioning');
 			
-			#$i = $aa_p[1];
-			#$this->oStack->aaStack = $aa_p[2];
 			$i_opargs = count(Opcodes::$aArguments);
-			if ($i == -1) break; //array()
-			
+			if ($i == -1) break; 
+			if ($i == 56) break; 
 		}
 		
 		print(PHP_EOL);print(PHP_EOL);
