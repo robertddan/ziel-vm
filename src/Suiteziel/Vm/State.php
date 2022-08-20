@@ -253,7 +253,7 @@ die();
 			case 0xf3:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
 				//var_dump($a_e);
-				$i_pc = 'STOP';
+				$i_pc = -1;
 			break; //RETURN
 			case 0xf4:
 			break; //DELEGATECALL
