@@ -3,6 +3,7 @@ namespace App\Suiteziel\Vm;
 
 
 use App\Suiteziel\Vm\State;
+use App\Suiteziel\Vm\Stack;
 
 class Storage 
 {
@@ -36,7 +37,7 @@ class Storage
 				
 			break; //SLOAD
 			case 0x55:
-				$a_e = array_splice($aaStack, 0, $iDelta);
+				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
 				$this->aSlot["slot"] = $a_e[1];
 				$this->aSlot["value"] = $a_e[0];
 				array_push(Self::$aaStorage, $this->aSlot);

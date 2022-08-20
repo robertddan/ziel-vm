@@ -82,7 +82,11 @@ class State
 			case 0x56:				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
 				foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-				$i_pc = $a_e[0] -1;
+				$i_pc = $a_e[0] - 1;
+				print("i_pc: ". $i_pc + 1);
+				print(PHP_EOL);
+				print("Stack::". implode("::", Stack::$aaStack));
+				print(PHP_EOL);
 			break; //JUMP
 			case 0x57:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
@@ -123,35 +127,18 @@ class State
 			break; //CALLVALUE
 			case 0x35:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-				if (hexdec($a_e[0] == 0)
+				if (hexdec($a_e[0]) == 0)
 				{
-					var_dump(self::$aaState["Id"]);
-					#$sRight = array_slice(self::$aaState["Id"], 4, 28);
-					#var_dump($sRight);
-					#$aArgument = $this->shift_left($sRight);
+					$sLeft = array_slice(self::$aaState["Id"], 0, 4);
+					$sArgument = $this->shift_right(implode($sLeft));
 				}
 				else {
-					#$aArgument = $this->shift_left(implode(array_slice(self::$aaState["Id"], hexdec($a_e[0]), (32 - hexdec($a_e[0])))));
+					$sRight = array_slice(self::$aaState["Id"], 4, 28);
+					$sArgument = $this->shift_left(implode("", $sRight));
 
 				}
 
-				var_dump($aArgument);
-				die();
-				$ae = array();
-				$ie = 0;
-				foreach($this->aHes as $i_k => $hes) {
-					if ($ie == count($aId)) {/*$i_pc = $i_k;*/ break;}
-					if ($hes == base_convert($aId[$ie], 16, 10)) {
-						array_push($ae, $hes);
-						$ie = $ie + 1;
-					}
-					else {
-						$ae = array();
-						$ie = 0;
-					}
-				}
-				$sArgument = implode("", $aId);
-				array_unshift(Stack::$aaStack, $this->shift_right($sArgument));
+				array_unshift(Stack::$aaStack, $sArgument);
 
 				#print("State::". implode("::", self::$aaState["Id"]));
 				#print(PHP_EOL);
