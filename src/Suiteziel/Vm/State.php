@@ -103,8 +103,19 @@ class State
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
         foreach($a_e as &$s_x) $s_x = hexdec($s_x);
       
-				if ($a_e[1] != 0) $i_pc = $a_e[0] - 1;
-				else $i_pc = $i_pc;// + 1;
+        #$oaOf = gmp_init($a_e[0]);
+        $oaFor = gmp_init($a_e[1]);
+
+        $oaResult = gmp_cmp($oaFor, 0);
+var_dump([$oaResult, $s_x[0]]);
+        
+        if ($oaResult == 0) $i_pc = $s_x[0];
+        else $i_pc = $i_pc - 1;
+
+      
+				#if ($a_e[1] != 0) $i_pc = $a_e[0] - 1;
+				#else $i_pc = $i_pc;// + 1;
+			  if ($i_pc >= 65) die();
         #if ($i_pc == 104) die();
 			break; //JUMPI
 			case 0x58:
@@ -236,6 +247,8 @@ die();
 			if (is_array($aState)) print("State::". implode("::", $aState)); 
 			//else print(PHP_EOL . "State::"."::". $aState); 
 		}
+    
+		print(PHP_EOL);
     
 		#print(PHP_EOL);
 		#print("Stack::". implode("::", Stack::$aaStack));

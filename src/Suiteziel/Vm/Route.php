@@ -118,7 +118,6 @@ class Route
 			
 			$i_opargs = count(Opcodes::$aArguments);
 			if ($i == -1) break; 
-			if ($i == 56) break; 
 		}
 		
 		print(PHP_EOL);print(PHP_EOL);
