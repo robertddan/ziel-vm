@@ -1,0 +1,1 @@
+solc --evm-version "homestead" --bin /workspace/VM/src/Suiteziel/../contracts/Addition.sol --optimize --optimize-runs 200 -o /workspace/VM/src/Suiteziel/../diamonds/20220820075259000000/

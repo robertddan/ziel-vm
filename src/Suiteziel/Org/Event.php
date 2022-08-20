@@ -38,37 +38,27 @@ class Event
 		if (!$this->init__session()) die('$this->init__session');
 		return true;
 	}
-	
-	/*
-Call Stack
 
-    0:
-    0xd9145CCE52D386f254917e481eB44e9943F39138
-
-Call Data
-
-    0:
-    0x6057361d0000000000000000000000000000000000000000000000000000000000000037
-	*/
-	
 	public function init__address () :bool {
 		if (!$this->oAddress->generate_keys()) die('$this->oAddress->generate_keys()');
 		return true;
 	}
 	
-	public function init__diamonds ($bInit = -1) :bool {
-  	$this->oDiamonds->iCursor = $bInit; // skip compilation
-    
+	public function init__diamonds ($bInit = 1) :bool {
     if ($bInit == -1) return true;
-    if ($bInit == 1) {
-  		$this->oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
-  		if (!$this->oDiamonds->set_input_contract()) die('oDiamonds->set_input_contract'); //set it
-		  if (!$this->oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
-		  if (!$this->oDiamonds->iCursor) die('oDiamonds->iCursor');
-    }
-    
+		
+  	$this->oDiamonds->iCursor = $bInit; // skip compilation
+		
     $this->oDiamonds->sFolder = '20220820075259000000'; // specify folder with set_out_folder or at read...
     if (!$this->oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
+		
+    if ($bInit == 1) {
+  		$this->oDiamonds->sContract = 'Addition.sol'; // contract file name in contracts folder
+  		if (!$this->oDiamonds->set_input_contract()) die('oDiamonds->set_input_contract'); //set it
+		  if (!$this->oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
+    }
+    
+		if ($this->oDiamonds->iCursor) die('oDiamonds->iCursor');
 		if (!$this->oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
 		if (!$this->oDiamonds->sHex) die(PHP_EOL .'oDiamonds->sHex');
 

@@ -79,7 +79,7 @@ class Route
 	
 	public function implement () :bool {
 
-    if (!$this->init_variables_(2)) die('init_variables_');
+    if (!$this->init_variables_(0)) die('init_variables_');
     
 
 		if (empty(self::$aHex)) die('Route->implement');
