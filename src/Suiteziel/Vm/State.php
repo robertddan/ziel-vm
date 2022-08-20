@@ -72,7 +72,9 @@ class State
     $sDec = hexdec($sHex);
     $aArguments = Opcodes::$aArguments;
     $iDelta = Opcodes::$aaOpcodes[$sDec][1];
+    
     if (!$this->hes_set()) die('$this->hes_set()');
+    
 		switch ($sDec) {
 			case 0x00:
 				$i_pc = -1;
@@ -101,18 +103,24 @@ class State
 			break; //JUMP
 			case 0x57:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-      
-			  if ($i_pc >= 64) die();
         #$oaOf = gmp_init($a_e[0]);
         $oaFor = gmp_init($a_e[1]);
+      
+        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+        $iResult = gmp_cmp($oaFor, 0);
+      
+        var_dump([$i_pc, $a_e, $iResult, $i_pc]);
+    
+if ($i_pc == 67) {
+  $i_pc = $i_pc;
+}
+else {
+  if ($iResult !== 0) $i_pc = $a_e[0] - 1;
+  else $i_pc = $i_pc;
+}
 
-        $oaResult = gmp_cmp($oaFor, 0);
-var_dump([$oaResult, $s_x[0]]);
-        
-        if ($oaResult == 0) $i_pc = $s_x[0];
-        else $i_pc = $i_pc - 1;
-
+      
+#if ($i_pc >= 67) die();
       
 				#if ($a_e[1] != 0) $i_pc = $a_e[0] - 1;
 				#else $i_pc = $i_pc;// + 1;
