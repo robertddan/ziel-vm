@@ -44,9 +44,11 @@ class Stack
 			break; //MUL
 			case 0x03:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-				array_unshift(self::$aaStack, ($a_e[0] - $a_e[1]));
-				//print(implode("::", self::$aaStack));
-				//return true; 
+        $oMinuend = gmp_init($a_e[0]);
+        $oSubtrahend = gmp_init($a_e[1]);
+				$oRest = gmp_sub($oMinuend, $oSubtrahend);
+        $sRest = "0x".str_pad(dechex(gmp_strval($oRest)), 64, 0, STR_PAD_LEFT);
+        array_unshift(self::$aaStack, $sRest);
 			break; //SUB
 			case 0x04:
         $a_e = array_splice(self::$aaStack, 0, $iDelta);

@@ -81,58 +81,24 @@ class State
 			break; //STOP
 			case 0x56:				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-				//var_dump($a_e);
+				foreach($a_e as &$s_x) $s_x = hexdec($s_x);
 				$i_pc = $a_e[0] -1;
-				#print(PHP_EOL);
-				#print("Stack::". implode("::", Stack::$aaStack));
-/*
-    0:
-    0x000000000000000000000000000000000000000000000000000000000000007a
-    1:
-    0x0000000000000000000000000000000000000000000000000000000000000004
-    2:
-    0x0000000000000000000000000000000000000000000000000000000000000024
-    3:
-    0x0000000000000000000000000000000000000000000000000000000000000073
-    4:
-    0x0000000000000000000000000000000000000000000000000000000000000078
-    5:
-    0x000000000000000000000000000000000000000000000000000000006057361d
-*/
 			break; //JUMP
 			case 0x57:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-        #$oaOf = gmp_init($a_e[0]);
-        $oaFor = gmp_init($a_e[1]);
-      
-        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-        $iResult = gmp_cmp($oaFor, 0);
-      
-        var_dump([$i_pc, $a_e, $iResult, $i_pc]);
-    
-if ($i_pc == 67) {
-  $i_pc = $i_pc;
-}
-else {
-  if ($iResult !== 0) $i_pc = $a_e[0] - 1;
-  else $i_pc = $i_pc;
-}
-
-      
-#if ($i_pc >= 67) die();
-      
-				#if ($a_e[1] != 0) $i_pc = $a_e[0] - 1;
-				#else $i_pc = $i_pc;// + 1;
-        #if ($i_pc == 104) die();
+				$oaFor = gmp_init($a_e[1]);
+				foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+				$iResult = gmp_cmp($oaFor, 0);
+				if ($iResult !== 0) $i_pc = $a_e[0] - 1;
+				else $i_pc = $i_pc;
 			break; //JUMPI
 			case 0x58:
 				array_unshift(Stack::$aaStack, $i_pc);
 			break; //PC
 			case 0x62:
-        var_dump($i_pc);
+				var_dump($i_pc);
 				print(PHP_EOL);
-				print("Stack::". implode("::", Stack::$aaStack));
+				print("Stack::". implode("::", Stack::$aaStack) ."i_pc: ". $i_pc);
 			break; //JUMPDEST
 			case 0x30:
 				array_unshift(Stack::$aaStack, self::$aaState["Ia"]);
