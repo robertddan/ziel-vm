@@ -13,6 +13,7 @@ class Route
 
 	public $i_pc;
 	public $aHex;
+	public static $_aHex;
 		
 	public $oOpcodes;
 	public $oMemory;
@@ -51,9 +52,10 @@ class Route
 		return true;
 	}
 	
-	public function init_variables_ () :bool {
+	public function init_variables_ ($bSession = 0) :bool {
 		$this->i_pc = 0;
-		$this->aHex = $this->oDiamonds->aHex;
+    if ($bSession) $this->aHex = self::$_aHex = $this->oSession->aData['aHex'];
+    else $this->aHex = self::$_aHex = $this->oDiamonds->aHex;
 		
 		return true;
 	}
@@ -75,17 +77,20 @@ class Route
 	}
 	
 	public function implement () :bool {
-		$this->aHex = $this->oSession->aData['aHex'];
+
+    if (!$this->init_variables_(1)) die('init_variables_');
+      
+		#$this->aHex = $this->oSession->aData['aHex'];
 
 		if (empty($this->aHex)) die('Route->implement');
 		var_dump('sHex: '. implode("", $this->aHex));
 		var_dump('aHex: '. implode(" ", $this->aHex));
     
-    $this->aHex = array(0x00); //STOP
+    #$this->aHex = array(0x00); //STOP
     
-		if (!$this->oOpcodes->hes_set($this->aHex)) die('oOpcodes->hes_set');
-		if (!$this->oMemory->hes_set($this->aHex)) die('oMemory->hes_set');
-		if (!$this->oState->hes_set($this->aHex)) die('oState->hes_set');
+		#if (!$this->oOpcodes->hes_set($this->aHex)) die('oOpcodes->hes_set');
+		#if (!$this->oMemory->hes_set($this->aHex)) die('oMemory->hes_set');
+		#if (!$this->oState->hes_set($this->aHex)) die('oState->hes_set');
 		
 		for ($i = 0; $i<count($this->aHex); $i++) {
 				

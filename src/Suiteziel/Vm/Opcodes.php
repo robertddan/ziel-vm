@@ -2,6 +2,8 @@
 namespace App\Suiteziel\Vm;
 
 
+use App\Suiteziel\Vm\Route;
+
 class Opcodes
 {
 	
@@ -18,8 +20,8 @@ class Opcodes
 		$this->set_opcodes();
 	}
 
-	public function hes_set ($aHes = null) :bool {
-		$this->aHex = $aHes;
+	public function hes_set () :bool {
+		$this->aHex = Route::$_aHex;
 		return true;
 	}
 
@@ -34,6 +36,7 @@ class Opcodes
 
 	public function initiate ($i_k = null, $sHex = null) :bool {  // view
 		$sDec = hexdec($sHex);
+    if (!$this->hes_set()) die('oOpcodes->hes_set()');
     if (!$this->set_arguments($i_k, $sHex)) die('oOpcodes->set_arguments()');
 /*
 		$this->aArguments = array_map(function($sHex) {
