@@ -9,10 +9,19 @@ class Stack
 	public $i_sp; //stack pointer
 	public $aaStack;
 	public static $_aaStack;
+  
 		
 	public function __construct () {
 		$this->i_sp = 0;
-		$this->aaStack = array();
+		$this->aaStack = self::$_aaStack = array();
+	}
+  		
+	public function shift_left ($sHex) {
+		return "0x". str_pad($sHex, 32, 0, STR_PAD_LEFT);
+	}
+    		
+	public function shift_right ($sHex) {
+		return "0x". str_pad($sHex, 32, 0, STR_PAD_RIGHT);
 	}
 /*
 	public function __construct () {
@@ -49,13 +58,14 @@ $this->oStack->aaStack,
     $aArguments = Opcodes::$_aArguments; #$this->oOpcodes->aArguments;
     $iDelta = Opcodes::$_aaOpcodes[$sDec][1]; #$this->oOpcodes->aaOpcodes[$sDec][1];
                                 
+		$this->aaStack = self::$_aaStack;
 		#list($sHex, $i_pc, &$aaStack) = $aa_p;
 
                                            
 		//var_dump($GLOBALS);
 //var_dump($sHex);
 //die();
-		switch ($sHex) {
+		switch ($sDec) {
 			case 0x01:
 				$a_e = array_splice($this->aaStack, 0, $iDelta);
 				array_unshift($this->aaStack, array_sum($a_e));
@@ -281,139 +291,143 @@ $a_e = [
 				
 			break; //SAR
 			case 0x60:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); 
+        /*foreach ($aArguments as $iArgument)*/         
+        array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH1
 			case 0x61:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, ltrim($sArgument, "00"));
+				$sArgument = implode("", $aArguments); 
+        /*foreach ($aArguments as $iArgument)*/ 
+        array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//var_dump($this->aaStack);
 				//return true; 
 			break; //PUSH2
 			case 0x62:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH3
 			case 0x63:
-      	$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+      	$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 /*
         $sArgument = "";
         foreach ($aArguments as $iArgument) $sArgument = $sArgument . dechex($iArgument);
 				#$sArgument = implode("", $aArguments); 
         $sArgument = "0x".str_pad($sArgument, 64, 0, STR_PAD_LEFT);
-        array_unshift($this->aaStack, $sArgument);
+        array_unshift($this->aaStack, $this->shift_left($sArgument));
 */
 				//return true; 
 			break; //PUSH4
 			case 0x64:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH5
 			case 0x65:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH6
 			case 0x66:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH7
 			case 0x67:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH8
 			case 0x68:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH9
 			case 0x69:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH10
 			case 0x6a:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH11
 			case 0x6b:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH12
 			case 0x6c:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH13
 			case 0x6d:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH14
 			case 0x6e:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH15
 			case 0x6f:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH16
 			case 0x70:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH17
 			case 0x71:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH18
 			case 0x72:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH19
 			case 0x73:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH20
 			case 0x74:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH21
 			case 0x75:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH22
 			case 0x76:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH23
 			case 0x77:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH24
 			case 0x78:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH25
 			case 0x79:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH26
 			case 0x7a:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH27
 			case 0x7b:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH28
 			case 0x7c:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH29
 			case 0x7d:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH30
 			case 0x7e:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH31
 			case 0x7f:
-				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $sArgument);
+				$sArgument = implode("", $aArguments); /*foreach ($aArguments as $iArgument)*/ array_unshift($this->aaStack, $this->shift_left($sArgument));
 				//return true; 
 			break; //PUSH32
 			case 0x80:
@@ -679,11 +693,11 @@ $a_e = [
 			case 0xff: return 1;break; //SELFDESTRUCT
 //*/
 			
-			default: return true; break;
+			default: print(PHP_EOL); break;
 		}
-		
+                                              
 		self::$_aaStack = $this->aaStack;
-		print(PHP_EOL);
+		#print(PHP_EOL);
 		print("Stack::". implode("::", $this->aaStack));
 		return true;
 		

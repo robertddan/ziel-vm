@@ -60,7 +60,7 @@ class Opcodes
         $sHex,
         $sDec,
       );
-      $sFormat = "\n %s \t Default: [ sHex: %s, sDec: %s ] \t";
+      $sFormat = "\n%s \t Default: [ sHex: %s, sDec: %s ] \n";
       print sprintf($sFormat, $aValues[0], $aValues[1], $aValues[2]);
 			return true; 
 		}
@@ -73,7 +73,7 @@ class Opcodes
       $this->aaOpcodes[$sDec][4],
       $sArguments
     );
-    $sFormat = "\n %s \t [ %s -> %s ] \t %s \t %s(%s) \t";
+    $sFormat = "\n%s \t [ %s -> %s ] \t %s \t %s(%s) \n";
     print sprintf($sFormat, $aValues[0], $aValues[1], $aValues[2], $aValues[3], $aValues[4], $aValues[5]);
 
 		return true;

@@ -61,15 +61,16 @@ class Route
 	}
 	
 	public function save_session () :bool {
-		$aaSession = array(
+		/*$aaSession = array(
 			'oAddress' => $this->oAddress->aAddress,
 			'oDatabase' => $this->oDatabase->sPath,
 			'oDiamonds' => $this->oDiamonds->aHex,
 			'oSession' => $this->oSession->aData,
-		);
+		);*/
 
     $this->oSession->aData["stack"] = $this->oStack->aaStack;
     $this->oSession->aData["memory"] = $this->oMemory->aaMemory[1234];
+		$this->oSession->aData['aHex'] = $this->aHex;
     $this->oSession->save_session($this->oSession->aData);
     var_dump($this->oSession->aData);
     
@@ -79,8 +80,8 @@ class Route
 	public function implement () :bool {
 
     if (!$this->init_variables_(1)) die('init_variables_');
-      
-		#$this->aHex = $this->oSession->aData['aHex'];
+    #if (1) if (!$this->save_session()) die('$this->save_session');
+    
 
 		if (empty($this->aHex)) die('Route->implement');
 		var_dump('sHex: '. implode("", $this->aHex));
@@ -159,9 +160,6 @@ class Route
 		var_dump("Storage::". implode("::", $this->oStorage->aaStorage));
 		print_r($this->oStorage->aaStorage);
 
-    if (0) {
-  		if (!$this->save_session()) die('$this->save_session');
-    }
 
     return true;
 	}
