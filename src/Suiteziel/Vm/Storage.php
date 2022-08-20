@@ -42,6 +42,8 @@ class Storage
 				$this->aSlot["key"] = $a_e[0];
 				$this->aSlot["value"] = $a_e[1];
 				array_push(Self::$aaStorage, (object) $this->aSlot);
+				
+				print("Stack::". implode("::", Stack::$aaStack));
 			break; //SSTORE
 			default: return true; break;
 		}
