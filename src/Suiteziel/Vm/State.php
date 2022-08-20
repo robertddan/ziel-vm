@@ -91,6 +91,10 @@ class State
 				$iResult = gmp_cmp($oaFor, 0);
 				if ($iResult !== 0) $i_pc = $a_e[0] - 1;
 				else $i_pc = $i_pc;
+				print("i_pc: ". $i_pc + 1);
+				print(PHP_EOL);
+				print("Stack::". implode("::", Stack::$aaStack));
+				print(PHP_EOL);
 			break; //JUMPI
 			case 0x58:
 				array_unshift(Stack::$aaStack, $i_pc);
@@ -118,10 +122,21 @@ class State
 				
 			break; //CALLVALUE
 			case 0x35:
-				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-				$aId = array_slice(self::$aaState["Id"], 0, 4);
-      
+				if (hexdec($a_e[0] == 0)
+				{
+					var_dump(self::$aaState["Id"]);
+					#$sRight = array_slice(self::$aaState["Id"], 4, 28);
+					#var_dump($sRight);
+					#$aArgument = $this->shift_left($sRight);
+				}
+				else {
+					#$aArgument = $this->shift_left(implode(array_slice(self::$aaState["Id"], hexdec($a_e[0]), (32 - hexdec($a_e[0])))));
+
+				}
+
+				var_dump($aArgument);
+				die();
 				$ae = array();
 				$ie = 0;
 				foreach($this->aHes as $i_k => $hes) {
@@ -135,32 +150,20 @@ class State
 						$ie = 0;
 					}
 				}
-				
 				$sArgument = implode("", $aId);
 				array_unshift(Stack::$aaStack, $this->shift_right($sArgument));
 
-				#print(PHP_EOL);
 				#print("State::". implode("::", self::$aaState["Id"]));
 				#print(PHP_EOL);
-				#print("Stack::". implode("::", Stack::$aaStack));
+				print("Stack::". implode("::", Stack::$aaStack));
+				print(PHP_EOL);
 			break; //CALLDATALOAD
 			case 0x36:
 				$aId = array_slice(self::$aaState["Id"], 8, 32);
-				
-/*
-var_dump([
-	count($aId),
-	$aId,
-	strlen(implode($aId))
-]);
-die();
-*/
-				//array_unshift(Stack::$aaStack, mb_strlen(serialize(Stack::$aaStack), '8bit')); 
 				$i_e = count($aId);
-				array_unshift(Stack::$aaStack, $i_e); 
-						
-				#print(PHP_EOL);
-				#print("Stack::". implode("::", Stack::$aaStack));
+				array_unshift(Stack::$aaStack, $this->shift_left($i_e)); 
+				print("Stack::". implode("::", Stack::$aaStack));
+				print(PHP_EOL);
 			break; //CALLDATASIZE
 			case 0x37:
 			break; //CALLDATACOPY	

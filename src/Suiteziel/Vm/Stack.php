@@ -126,12 +126,20 @@ class Stack
 				//return true; 
 			break; //GT
 			case 0x12: // Where all values are treated as two’s complement signed 256-bit integers.
-				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-				if ($a_e[0] < $a_e[1]) $i = 1;
-				else $i = 0;
-				array_unshift(self::$aaStack, $i);
+				#$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				#if ($a_e[0] < $a_e[1]) $i = 1;
+				#else $i = 0;
+				#array_unshift(self::$aaStack, $i);
 				//print(implode("::", self::$aaStack));
 				//return true; 
+        $a_e = array_splice(self::$aaStack, 0, $iDelta);
+        $oaOf = gmp_init($a_e[0]);
+        $oaFor = gmp_init($a_e[1]);
+        $oaResult = gmp_cmp($oaOf, $oaFor);
+        if ($oaResult > 0) $i = $a_e[1];
+        else $i = 0;
+        array_unshift(self::$aaStack, $this->shift_left($i));
+					
 			break; //SLT
 			case 0x13:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
@@ -578,7 +586,7 @@ class Stack
 				//return true; 
 			break; //LOG4			
 			case 0x50:
-				array_pop(self::$aaStack);
+				array_shift(self::$aaStack);
 			break; //POP
 ///
 			case 0x20:
