@@ -103,6 +103,7 @@ class State
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
         foreach($a_e as &$s_x) $s_x = hexdec($s_x);
       
+			  if ($i_pc >= 64) die();
         #$oaOf = gmp_init($a_e[0]);
         $oaFor = gmp_init($a_e[1]);
 
@@ -115,7 +116,6 @@ var_dump([$oaResult, $s_x[0]]);
       
 				#if ($a_e[1] != 0) $i_pc = $a_e[0] - 1;
 				#else $i_pc = $i_pc;// + 1;
-			  if ($i_pc >= 65) die();
         #if ($i_pc == 104) die();
 			break; //JUMPI
 			case 0x58:

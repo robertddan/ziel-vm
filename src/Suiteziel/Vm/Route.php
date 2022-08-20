@@ -118,6 +118,7 @@ class Route
 			
 			$i_opargs = count(Opcodes::$aArguments);
 			if ($i == -1) break; 
+			if ($i_pc >= 14) die();
 		}
 		
 		print(PHP_EOL);print(PHP_EOL);
