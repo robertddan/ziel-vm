@@ -111,7 +111,6 @@ class State
 			break; //PC
 			case 0x62:
         var_dump($i_pc);
-
 				print(PHP_EOL);
 				print("Stack::". implode("::", Stack::$aaStack));
 			break; //JUMPDEST
@@ -203,8 +202,8 @@ die();
 				$i_e = count($aId);
 				array_unshift(Stack::$aaStack, $i_e); 
 						
-				print(PHP_EOL);
-				print("Stack::". implode("::", Stack::$aaStack));
+				#print(PHP_EOL);
+				#print("Stack::". implode("::", Stack::$aaStack));
 			break; //CALLDATASIZE
 			case 0x37:
 			break; //CALLDATACOPY	
@@ -270,6 +269,10 @@ die();
 			if (is_array($aState)) print("State::". implode("::", $aState)); 
 			//else print(PHP_EOL . "State::"."::". $aState); 
 		}
+    
+		print(PHP_EOL);
+		print("Stack::". implode("::", Stack::$aaStack));
+    
 		return true;
 	}
 }

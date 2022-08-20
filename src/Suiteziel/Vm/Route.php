@@ -132,7 +132,7 @@ class Route
 			*/
 			if (!$this->oStack->positioning($i, $sHex)) die('oStack->positioning');
 			if (!$this->oState->positioning($i, $sHex)) die('oState->positioning');
-			#if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
+			if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
 			#if (!$this->oStorage->positioning($i, $sHex)) die('oStorage->positioning');
 			
 			#$i = $aa_p[1];

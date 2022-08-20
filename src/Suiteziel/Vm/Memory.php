@@ -2,6 +2,8 @@
 namespace App\Suiteziel\Vm;
 
 
+use App\Suiteziel\VM\Stack;
+
 class Memory
 {
 	public $aaMemory;
@@ -20,21 +22,16 @@ class Memory
 	public function shift_right ($sHex) {
 		return "0x". str_pad($sHex, 32, 0, STR_PAD_RIGHT);
 	}
-/*
+
 	public function positioning(&$i_pc, $sHex) {
     
     $sDec = hexdec($sHex);
-    $aArguments = Opcodes::$_aArguments;
-    $iDelta = Opcodes::$_aaOpcodes[$sDec][1];
-		$this->aaState = self::$_aaState;
+    $aArguments = Opcodes::$aArguments;
+    $iDelta = Opcodes::$aaOpcodes[$sDec][1];
 
 		switch ($sDec) {
-*/
-	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
-		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
-		switch ($sHex) {
 			case 0x39:
-				$a_s = array_splice($aaStack, 0, $iDelta);
+				$a_s = array_splice(Stack::$aaStack, 0, $iDelta);
 				$aCopyCode1 = array_fill(0, $a_s[2], '0x00');
 				$aCopyCode2 = array_slice($this->aHex, $a_s[1], ($a_s[1] + $a_s[2]));
 				$aCopyCode = array_replace($aCopyCode1, $aCopyCode2);
@@ -51,33 +48,36 @@ class Memory
 */
 //var_dump($a_s);
 				//$a_m = $this->aaMemory[1234][$a_s[0]];
-				//array_unshift($aaStack, $a_m);
+				//array_unshift(Stack::$aaStack, $a_m);
 				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));
 				print(PHP_EOL);
-				print("Stack::". implode("::", $aaStack));
+				print("Stack::". implode("::", Stack::$aaStack));
 			break; //CODECOPY
 			case 0x51:
-				$a_s = array_splice($aaStack, 0, $iDelta);
+				$a_s = array_splice(Stack::$aaStack, 0, $iDelta);
 				$a_m = $this->aaMemory[1234][$a_s[0]];
-				array_unshift($aaStack, $a_m);
+				array_unshift(Stack::$aaStack, $a_m);
 				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));
 				print(PHP_EOL);
-				print("Stack::". implode("::", $aaStack));
+				print("Stack::". implode("::", Stack::$aaStack));
 			break; //MLOAD
 			case 0x52:
-				$a_e = array_splice($aaStack, 0, $iDelta); 
+				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
+        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+        print(PHP_EOL ."sHexDec::". implode(" ", $a_e));
 				$i=32;
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);
 				
 				//$hex_i = base_convert($a_e[0], 10, 16);
-				$aMemory[$a_e[0]] = base_convert($a_e[1], 10, 16);
+				$aMemory[$a_e[0]] = dechex($a_e[1]);
 				$this->aaMemory[1234] = $aMemory;
 				//var_dump("Memory::". implode("::", $aMemory));
+        
 			break; //MSTORE
 			
 			case 0x53:
-				$a_e = array_splice($aaStack, 0, $iDelta); 
+				$a_e = array_splice(Stack::$aaStack, 0, $iDelta); 
 				$i=32;
 				//$hex_i = base_convert($a_e[0], 10, 16);
 				while ($i<$a_e[0]) $i=32+$i; 
@@ -87,7 +87,7 @@ class Memory
 				//var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE8
 			case 0x59:
-				array_unshift($aaStack, (count($this->aaMemory[1234])/3.2));
+				array_unshift(Stack::$aaStack, (count($this->aaMemory[1234])/3.2));
 				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));
 				//... Linear Diophantine Equations
 				// ...congruence equation (mod 8 or 9)
