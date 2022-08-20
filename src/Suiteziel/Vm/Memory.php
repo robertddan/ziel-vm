@@ -36,24 +36,6 @@ class Memory
         print(PHP_EOL ."sHexDec::". implode(" ", $a_e));
 
         $this->aHex = Route::$_aHex;
-/*
-{
-	"0x0": "6080604052348015600f57600080fd5b\t????R4????W?????",
-	"0x10": "5060043610604e577c01000000000000\tP??6??NW????????",
-	"0x20": "00000000000000000000000000000000\t????????????????",
-	"0x30": "00000000000060003504632e64cec181\t????????5?c?d???",
-	"0x40": "1460535780636057361d146068575b60\t??SW?c?W6???hW??",
-	"0x50": "0080fd5b600054604051908152602001\t??????T??Q??R? ?",
-	"0x60": "60405180910390f35b60786073366004\t??Q???????x?s6??",
-	"0x70": "607a565b600055565b005b6000602082\t?zV???UV?????? ?",
-	"0x80": "84031215608b57600080fd5b50359190\t??????W?????P5??",
-	"0x90": "5056fea2646970667358221220dab79a\tPV??dipfsX?? ???",
-	"0xa0": "df0bab9a66d12c2f0a303f9e36d28727\t?\u000b??f???\n0??6???",
-	"0xb0": "a0c7d10bac72bfc420dab4656d64736f\t ??\u000b?r?? ??emdso",
-	"0xc0": "6c634300080f00330000000000000000\tlcC????3????????",
-	"0xd0": "00000000000000000000000000000000\t????????????????"
-}
-*/
 				$aCopyCode1 = array_fill(0, $a_e[2], '0x00');
 				$aCopyCode2 = array_slice($this->aHex, $a_e[1], ($a_e[1] + $a_e[2]));
 				$aCopyCode = array_replace($aCopyCode1, $aCopyCode2);
@@ -80,13 +62,15 @@ class Memory
 				$a_m = self::$aaMemory[$a_s[0]];
 				array_unshift(Stack::$aaStack, $a_m);
 				//var_dump("Memory::". implode("::", self::$aaMemory));
-				print(PHP_EOL);
+				#print(PHP_EOL);
 				print("Stack::". implode("::", Stack::$aaStack));
 			break; //MLOAD
 			case 0x52:
+				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
         foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-        print(PHP_EOL ."sHexDec::". implode(" ", $a_e));
+				print(PHP_EOL);
+        print("sHexDec::". implode(" ", $a_e));
 				$i=32;
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);

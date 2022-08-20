@@ -98,7 +98,7 @@ class State
 			case 0x62:
 				var_dump($i_pc);
 				print(PHP_EOL);
-				print("Stack::". implode("::", Stack::$aaStack) ."i_pc: ". $i_pc);
+				print("i_pc: ". $i_pc . " Stack::". implode("::", Stack::$aaStack));
 			break; //JUMPDEST
 			case 0x30:
 				array_unshift(Stack::$aaStack, self::$aaState["Ia"]);
