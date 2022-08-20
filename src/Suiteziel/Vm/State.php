@@ -80,6 +80,7 @@ class State
 			break; //STOP
 			case 0x56:				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
+        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
 				//var_dump($a_e);
 				$i_pc = $a_e[0] -1;
 				print(PHP_EOL);
@@ -101,12 +102,11 @@ class State
 			break; //JUMP
 			case 0x57:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-#μs[0] if μs[1] 6 = 0
-#μpc + 1 otherwise
+        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+      
 				if ($a_e[1] != 0) $i_pc = $a_e[0] - 1;
 				else $i_pc = $i_pc;// + 1;
         #if ($i_pc == 104) die();
-				//var_dump($a_e);
 			break; //JUMPI
 			case 0x58:
 				array_unshift(Stack::$aaStack, $i_pc);
