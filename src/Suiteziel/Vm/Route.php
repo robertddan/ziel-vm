@@ -51,12 +51,12 @@ class Route
 		return true;
 	}
 	
-	public function init_variables_ ($bSession = 0) :bool {
+	public function init_variables_ ($bSession = 2) :bool {
 		$this->i_pc = 0;
     if ($bSession == 1) self::$aHex = $this->oSession->aData['aHex'];
     elseif($bSession == 2) self::$aHex = $this->oSession->aData["memory"];
     else self::$aHex = $this->oDiamonds->aHex;
-	var_dump(self::$aHex);
+
 		return true;
 	}
 	
@@ -77,21 +77,13 @@ class Route
 		return true;
 	}
 	
-	public function implement () :bool {
-
-    if (!$this->init_variables_(0)) die('init_variables_');
-    
-
-		if (empty(self::$aHex)) die('Route->implement');
-		var_dump('sHex: '. implode("", self::$aHex));
-		var_dump('aHex: '. implode(" ", self::$aHex));
-    
-    #self::$aHex = array(0x00); //STOP
+		
+	public function debug_counter () :bool {
 		for ($i = 0; $i < count(self::$aHex); $i++) {
 				
-			#$sHex = self::$aHex[$i];
-			#if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
-			#if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
+			$sHex = self::$aHex[$i];
+			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
+			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
 			
 		}
 		
@@ -99,6 +91,19 @@ class Route
 		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
 
 		print('------------------------------------------------------------------------------');
+		return true;
+	}
+
+	
+	public function implement () :bool {
+
+    if (!$this->init_variables_(0)) die('init_variables_');
+    
+		if (empty(self::$aHex)) die('Route->implement');
+		var_dump('sHex: '. implode("", self::$aHex));
+		var_dump('aHex: '. implode(" ", self::$aHex));
+    
+		#if (!$this->debug_counter()) die('$this->debug_counter()');
 		
 		$i_opargs = 0;
 		for ($i = 0; $i < count(self::$aHex); $i++) {

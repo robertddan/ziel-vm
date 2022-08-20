@@ -31,32 +31,16 @@ class Memory
 		switch ($sDec) {
 			case 0x39:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-
-        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
-				#print(PHP_EOL);
-        #print("sHexDec::". implode(" ", $a_e));
-
-        $this->aHex = Route::$aHex;
+				foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+				$this->aHex = Route::$aHex;
 				$aCopyCode1 = array_fill(0, $a_e[2], '0x00');
 				$aCopyCode2 = array_slice($this->aHex, $a_e[1], ($a_e[1] + $a_e[2]));
 				$aCopyCode = array_replace($aCopyCode1, $aCopyCode2);
 				$iKeyStart = base_convert($a_e[0], 16, 10);
 				if (!isset(self::$aaMemory[$iKeyStart])) die('CODECOPY');
-				foreach($aCopyCode1 as $__k => $sHex){
-					self::$aaMemory[$__k] = $aCopyCode[$__k];
-				}
-
-/*
-	destOffset: byte offset in the memory where the result will be copied.
-	offset: byte offset in the code to copy.
-	size: byte size to copy.
-*/
-//var_dump($a_s);
-				//$a_m = self::$aaMemory[$a_s[0]];
-				//array_unshift(Stack::$aaStack, $a_m);
-				//var_dump("Memory::". implode("::", self::$aaMemory));
-				#print(PHP_EOL);
-				#print("Stack::". implode("::", Stack::$aaStack));
+				foreach($aCopyCode1 as $__k => $sHex) self::$aaMemory[$__k] = $aCopyCode[$__k];
+				print("Stack::". implode("::", Stack::$aaStack));
+				print(PHP_EOL);
 			break; //CODECOPY
 			case 0x51:
 				$a_s = array_splice(Stack::$aaStack, 0, $iDelta);

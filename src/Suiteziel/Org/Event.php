@@ -44,7 +44,7 @@ class Event
 		return true;
 	}
 	
-	public function init__diamonds ($bInit = 1) :bool {
+	public function init__diamonds ($bInit = 0) :bool {
     if ($bInit == -1) return true;
 		
   	$this->oDiamonds->iCursor = $bInit; // skip compilation
@@ -54,7 +54,7 @@ class Event
 		
     if (!$this->oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
 		
-    if ($bInit == 1) {
+    if ($this->oDiamonds->iCursor == 1) {
   		if (!$this->oDiamonds->set_input_contract()) die('oDiamonds->set_input_contract'); //set it
 		  if (!$this->oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
     }
