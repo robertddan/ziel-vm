@@ -23,13 +23,13 @@ class Diamonds
 		$this->sFolder = date("YmdHisu");
 		$this->sOutput = __SRC__ ."diamonds/". $this->sFolder ."/";
 		//$this->sOutput = dirname(__SRC__ ."/diamonds/". date("YmdHisu") ."/");
-		$this->iCursor = 1;
+		#$this->iCursor = 1;
 	}
 	
 	public function set_input_contract() :bool {
 		if (empty($this->sContract)) return false;
-    print_r(['set_input_contract()','file_exists:',file_exists(__SRC__ ."contracts/". $this->sContract)]);
-		$this->sContractPath = __SRC__ ."contracts/". $this->sContract;
+    print_r(['set_input_contract()','file_exists:',file_exists(__SRC__ ."contracts/". $this->sContract .".sol")]);
+		$this->sContractPath = __SRC__ ."contracts/". $this->sContract .".sol";
 		return true;
 	}
 	
@@ -40,13 +40,14 @@ class Diamonds
 	}
 	
 	public function compile_contract() :bool {
-    print_r(['compile_contract()', 'sContract:', $this->sContract, 'iCursor:', $this->iCursor]);
+    print_r(['compile_contract()', 'sContract:', $this->sContract .".sol", 'iCursor:', $this->iCursor]);
 		if (empty($this->sContract)) return false; //print '$sFilename missing!'. PHP_EOL;
-		if ($this->iCursor === 0) return true;
+		#if ($this->iCursor === 0) return true;
 		if (!file_exists($this->sOutput)) mkdir($this->sOutput);
 		
 		#$sCommand = 'solc --bin-runtime --overwrite --asm --optimize -o '. $this->sContractPath .' '.$this->sOutput;
-		$sCommand = 'solc --evm-version "homestead" --bin '. $this->sContractPath .' --optimize --optimize-runs 200 -o '. $this->sOutput;
+		$sCommand = 'solc --evm-version "homestead" --bin '. $this->sContractPath 
+			.' --optimize --optimize-runs 200 -o '. $this->sOutput;
 		
 		$sOutput = $sRetval = null;
 		$sArgs = array();
@@ -61,23 +62,8 @@ class Diamonds
 	}
 
 	public function read_from_file() :bool {
-		if ($this->iCursor == 1) return false;
-		
-		$aFilesOutput = scandir($this->sOutput);
-		$sContractName = null;
-		
-		foreach ($aFilesOutput as $sFileOutput) {
-			//preg_match("/(\w)*bin-runtime\b/", $sFileOutput, $aMatches);
-			#preg_match("/(\w)*.bin\b/", $sFileOutput, $aMatches);
-			preg_match("/(". explode(".", $this->sContract)[0] .")*.bin\b/", $sFileOutput, $aMatches);
-			#explode(".", $this->sContract)[0];
-			$sContractName = $sFileOutput;
-			
-			var_dump(['$sContractName', $sContractName]);
-			if(!empty($aMatches)) break;
-		}
-		$bExec = exec('pwd', $output, $retval);
-		#print_r([$output, $this->sOutput ."/". $sContractName]);
+		#if ($this->iCursor == 1) return false;
+		$sContractName = $this->sContract .".bin";
 		$this->sHex = file_get_contents($this->sOutput ."/". $sContractName);
 		
 		return true;

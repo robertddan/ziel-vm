@@ -44,16 +44,17 @@ class Event
 		return true;
 	}
 	
-	public function init__diamonds ($bInit = 0) :bool {
+	public function init__diamonds ($bInit = 1) :bool {
     if ($bInit == -1) return true;
 		
   	$this->oDiamonds->iCursor = $bInit; // skip compilation
 		
+  	$this->oDiamonds->sContract = 'Addition'; // contract file name in contracts folder
     $this->oDiamonds->sFolder = '20220820075259000000'; // specify folder with set_out_folder or at read...
+		
     if (!$this->oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
 		
     if ($bInit == 1) {
-  		$this->oDiamonds->sContract = 'Addition.sol'; // contract file name in contracts folder
   		if (!$this->oDiamonds->set_input_contract()) die('oDiamonds->set_input_contract'); //set it
 		  if (!$this->oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
     }
