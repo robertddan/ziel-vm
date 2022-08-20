@@ -7,13 +7,12 @@ use App\Suiteziel\Vm\Route;
 
 class Memory
 {
-	public $aaMemory;
-	public static $_aaMemory;
+	public static $aaMemory;
 	public $aHes;
 
 	public function __construct () {
-		$this->aaMemory = array();
-		$this->aaMemory[1234] = array();
+		self::$aaMemory = array();
+		self::$aaMemory = array();
 	}
 	
 	public function shift_left ($sHex) {
@@ -60,9 +59,9 @@ class Memory
 				$aCopyCode2 = array_slice($this->aHex, $a_e[1], ($a_e[1] + $a_e[2]));
 				$aCopyCode = array_replace($aCopyCode1, $aCopyCode2);
 				$iKeyStart = base_convert($a_e[0], 16, 10);
-				if (!isset($this->aaMemory[1234][$iKeyStart])) die('CODECOPY');
+				if (!isset(self::$aaMemory[$iKeyStart])) die('CODECOPY');
 				foreach($aCopyCode1 as $__k => $sHex){
-					$this->aaMemory[1234][$__k] = $aCopyCode[$__k];
+					self::$aaMemory[$__k] = $aCopyCode[$__k];
 				}
 
 /*
@@ -71,17 +70,17 @@ class Memory
 	size: byte size to copy.
 */
 //var_dump($a_s);
-				//$a_m = $this->aaMemory[1234][$a_s[0]];
+				//$a_m = self::$aaMemory[$a_s[0]];
 				//array_unshift(Stack::$aaStack, $a_m);
-				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));
+				//var_dump("Memory::". implode("::", self::$aaMemory));
 				print(PHP_EOL);
 				print("Stack::". implode("::", Stack::$aaStack));
 			break; //CODECOPY
 			case 0x51:
 				$a_s = array_splice(Stack::$aaStack, 0, $iDelta);
-				$a_m = $this->aaMemory[1234][$a_s[0]];
+				$a_m = self::$aaMemory[$a_s[0]];
 				array_unshift(Stack::$aaStack, $a_m);
-				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));
+				//var_dump("Memory::". implode("::", self::$aaMemory));
 				print(PHP_EOL);
 				print("Stack::". implode("::", Stack::$aaStack));
 			break; //MLOAD
@@ -95,7 +94,7 @@ class Memory
 				
 				//$hex_i = base_convert($a_e[0], 10, 16);
 				$aMemory[$a_e[0]] = dechex($a_e[1]);
-				$this->aaMemory[1234] = $aMemory;
+				self::$aaMemory = $aMemory;
 				//var_dump("Memory::". implode("::", $aMemory));
         
 			break; //MSTORE
@@ -107,12 +106,12 @@ class Memory
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);
 				$aMemory[$a_e[0]] = $a_e[1];
-				$this->aaMemory[1234] = $aMemory;
+				self::$aaMemory = $aMemory;
 				//var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE8
 			case 0x59:
-				array_unshift(Stack::$aaStack, (count($this->aaMemory[1234])/3.2));
-				//var_dump("Memory::". implode("::", $this->aaMemory[1234]));
+				array_unshift(Stack::$aaStack, (count(self::$aaMemory)/3.2));
+				//var_dump("Memory::". implode("::", self::$aaMemory));
 				//... Linear Diophantine Equations
 				// ...congruence equation (mod 8 or 9)
 				// .. 8 ≡ 23 (mod 5)...which is read, “8 is congruent to 23 modulo 5” (or just “mod 5”), by Levin (2019). 
@@ -124,7 +123,7 @@ class Memory
 		}
 		
 		print(PHP_EOL);
-		print("Memory::". implode("::", $this->aaMemory[1234]));
+		print("Memory::". implode("::", self::$aaMemory));
 		
 		return true;
 	}

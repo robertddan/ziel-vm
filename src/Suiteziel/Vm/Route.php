@@ -69,7 +69,7 @@ class Route
 		);*/
 
     $this->oSession->aData["stack"] = $this->oStack->aaStack;
-    $this->oSession->aData["memory"] = $this->oMemory->aaMemory[1234];
+    $this->oSession->aData["memory"] = $this->oMemory->aaMemory;
 		$this->oSession->aData['aHex'] = $this->aHex;
     $this->oSession->save_session($this->oSession->aData);
     var_dump($this->oSession->aData);
@@ -146,9 +146,9 @@ class Route
 		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
 		print('------------------------------------------------------------------------------');
     print(PHP_EOL);
-		print('$this->oMemory->aaMemory');
+		print('Memory::$aaMemory');
     print(PHP_EOL);
-		print("Memory::". implode("::", $this->oMemory->aaMemory[1234]));
+		print("Memory::". implode("::", Memory::$aaMemory));
     print(PHP_EOL);
 		print('Stack::$aaStack');
     print(PHP_EOL);
@@ -157,8 +157,6 @@ class Route
 		print('Storage::$aaStorage');
     print(PHP_EOL);
 		print("Storage::". implode("::", Storage::$aaStorage));
-
-
 
     return true;
 	}
