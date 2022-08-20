@@ -33,7 +33,7 @@ class Memory
 		switch ($sDec) {
 			case 0x39:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-var_dump($a_e);
+
         foreach($a_e as &$s_x) $s_x = hexdec($s_x);
         print(PHP_EOL ."sHexDec::". implode(" ", $a_e));
 

@@ -6,24 +6,32 @@ use App\Suiteziel\Vm\State;
 
 class Storage 
 {
-	public $aaStorage;
+	public static $aaStorage;
 	
 	public function __construct () {
-		$this->aaStorage = array();
+		Self::$aaStorage = array();
 		$this->aSlot = array(
 			"contract" => State::$aaState["Ia"],
 			"slot" => null,
 			"value" => null
 		);
 	}
-/*
-	public function __construct () {
-
+  		
+	public function shift_left ($sHex) {
+		return "0x". str_pad($sHex, 32, 0, STR_PAD_LEFT);
 	}
-*/
-	public function positioning(&$aa_p) {
-		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;
-		switch ($sHex) {
+    		
+	public function shift_right ($sHex) {
+		return "0x". str_pad($sHex, 32, 0, STR_PAD_RIGHT);
+	}
+
+	public function positioning(&$i_pc, $sHex) {
+    
+    $sDec = hexdec($sHex);
+    $aArguments = Opcodes::$aArguments;
+    $iDelta = Opcodes::$aaOpcodes[$sDec][1];
+    
+		switch ($sDec) {
 			case 0x54:
 				
 			break; //SLOAD
@@ -31,14 +39,14 @@ class Storage
 				$a_e = array_splice($aaStack, 0, $iDelta);
 				$this->aSlot["slot"] = $a_e[1];
 				$this->aSlot["value"] = $a_e[0];
-				array_push($this->aaStorage, $this->aSlot);
+				array_push(Self::$aaStorage, $this->aSlot);
 			break; //SSTORE
 			default: return true; break;
 		}
 		
 
 		print(PHP_EOL);
-		print("Storage::". implode("::", $this->aaStorage));
+		print("Storage::". implode("::", Self::$aaStorage));
 		return true;
 	}
 }

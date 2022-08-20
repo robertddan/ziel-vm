@@ -133,7 +133,7 @@ class Route
 			if (!$this->oStack->positioning($i, $sHex)) die('oStack->positioning');
 			if (!$this->oState->positioning($i, $sHex)) die('oState->positioning');
 			if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
-			#if (!$this->oStorage->positioning($i, $sHex)) die('oStorage->positioning');
+			if (!$this->oStorage->positioning($i, $sHex)) die('oStorage->positioning');
 			
 			#$i = $aa_p[1];
 			#$this->oStack->aaStack = $aa_p[2];
@@ -154,10 +154,10 @@ class Route
     print(PHP_EOL);
 		print("Stack::". implode("::", Stack::$aaStack));
     print(PHP_EOL);
-		print('$this->oStorage->aaStorage');
+		print('Storage::$aaStorage');
     print(PHP_EOL);
-		var_dump("Storage::". implode("::", $this->oStorage->aaStorage));
-		print_r($this->oStorage->aaStorage);
+		print("Storage::". implode("::", Storage::$aaStorage));
+
 
 
     return true;
