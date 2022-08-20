@@ -3,6 +3,7 @@ namespace App\Suiteziel\Vm;
 
 
 use App\Suiteziel\VM\Stack;
+use App\Suiteziel\Vm\Route;
 
 class Memory
 {
@@ -31,11 +32,17 @@ class Memory
 
 		switch ($sDec) {
 			case 0x39:
-				$a_s = array_splice(Stack::$aaStack, 0, $iDelta);
-				$aCopyCode1 = array_fill(0, $a_s[2], '0x00');
-				$aCopyCode2 = array_slice($this->aHex, $a_s[1], ($a_s[1] + $a_s[2]));
+				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
+var_dump($a_e);
+        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+        print(PHP_EOL ."sHexDec::". implode(" ", $a_e));
+
+      $this->aHex = Route::$_aHex;
+      
+				$aCopyCode1 = array_fill(0, $a_e[2], '0x00');
+				$aCopyCode2 = array_slice($this->aHex, $a_e[1], ($a_e[1] + $a_e[2]));
 				$aCopyCode = array_replace($aCopyCode1, $aCopyCode2);
-				$iKeyStart = base_convert($a_s[0], 16, 10);
+				$iKeyStart = base_convert($a_e[0], 16, 10);
 				if (!isset($this->aaMemory[1234][$iKeyStart])) die('CODECOPY');
 				foreach($aCopyCode1 as $__k => $sHex){
 					$this->aaMemory[1234][$__k] = $aCopyCode[$__k];

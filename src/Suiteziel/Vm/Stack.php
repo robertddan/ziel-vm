@@ -656,7 +656,7 @@ $a_e = [
 			case 0xff: return 1;break; //SELFDESTRUCT
 //*/
 			
-			default: print(PHP_EOL); break;
+			default: print(" "); break;
 		}
                                               
 		#print(PHP_EOL);

@@ -35,7 +35,7 @@ class State
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => Session::$_aData["wallet"][0], //"transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
-			"Iv" => $this->shift_left(0),//70000000000000000000, //"transaction value"
+			"Iv" => $this->shift_left(10),//70000000000000000000, //"transaction value"
 			// Ib, the byte array that is the machine code to be executed. 
 			"Ib" => "",
 			// IH, the block header of the present block. 
@@ -81,8 +81,8 @@ class State
         foreach($a_e as &$s_x) $s_x = hexdec($s_x);
 				//var_dump($a_e);
 				$i_pc = $a_e[0] -1;
-				print(PHP_EOL);
-				print("Stack::". implode("::", Stack::$aaStack));
+				#print(PHP_EOL);
+				#print("Stack::". implode("::", Stack::$aaStack));
 /*
     0:
     0x000000000000000000000000000000000000000000000000000000000000007a
@@ -184,8 +184,8 @@ class State
 				
 				#print(PHP_EOL);
 				#print("State::". implode("::", self::$aaState["Id"]));
-				print(PHP_EOL);
-				print("Stack::". implode("::", Stack::$aaStack));
+				#print(PHP_EOL);
+				#print("Stack::". implode("::", Stack::$aaStack));
 			break; //CALLDATALOAD
 			case 0x36:
 				$aId = array_slice(self::$aaState["Id"], 8, 32);
@@ -270,8 +270,8 @@ die();
 			//else print(PHP_EOL . "State::"."::". $aState); 
 		}
     
-		print(PHP_EOL);
-		print("Stack::". implode("::", Stack::$aaStack));
+		#print(PHP_EOL);
+		#print("Stack::". implode("::", Stack::$aaStack));
     
 		return true;
 	}
