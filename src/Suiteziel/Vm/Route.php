@@ -194,8 +194,8 @@ Call Data
 		
 		
 		$i_opargs = 0;
-		//foreach ($this->aHex as $k => $sHex) {
-		for ($i = 0; $i<count($this->aHex); $i++) {
+		#foreach ($this->aHex as $i => $sHex) {
+		for ($i = 0; $i < count($this->aHex); $i++) {
 			
 			$this->i_pc = $i;
 			$sHex = $this->aHex[$i];

@@ -31,7 +31,7 @@ class Opcodes
 			//return pack("H*", $sHex);
 			//return "0x". dechex($sHex);
       #$sHex = base_convert($sHex, 10, 16);
-			if ($sHex == 0) $sHex = '00';
+			#if ($sHex == 0) $sHex = '00';
 			return $sHex;
 		}, $aArguments);
 
