@@ -131,9 +131,9 @@ class Route
       );
 			*/
 			if (!$this->oStack->positioning($i, $sHex)) die('oStack->positioning');
-			#if (!$this->oState->positioning($aa_p)) die('oState->positioning');
-			#if (!$this->oMemory->positioning($aa_p)) die('oMemory->positioning');
-			#if (!$this->oStorage->positioning($aa_p)) die('oStorage->positioning');
+			if (!$this->oState->positioning($i, $sHex)) die('oState->positioning');
+			#if (!$this->oMemory->positioning($i, $sHex)) die('oMemory->positioning');
+			#if (!$this->oStorage->positioning($i, $sHex)) die('oStorage->positioning');
 			
 			#$i = $aa_p[1];
 			#$this->oStack->aaStack = $aa_p[2];
@@ -144,16 +144,15 @@ class Route
 		
 		print(PHP_EOL);print(PHP_EOL);
 		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
-		
 		print('------------------------------------------------------------------------------');
     print(PHP_EOL);
 		print('$this->oMemory->aaMemory');
     print(PHP_EOL);
 		print("Memory::". implode("::", $this->oMemory->aaMemory[1234]));
     print(PHP_EOL);
-		print('$this->oStack->aaStack');
+		print('Stack::$aaStack');
     print(PHP_EOL);
-		print("Stack::". implode("::", $this->oStack->aaStack));
+		print("Stack::". implode("::", Stack::$aaStack));
     print(PHP_EOL);
 		print('$this->oStorage->aaStorage');
     print(PHP_EOL);

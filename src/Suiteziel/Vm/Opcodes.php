@@ -52,7 +52,8 @@ class Opcodes
 
 	public function describe($i_k = null, $sHex = null) :bool {
 		$sDec = hexdec($sHex);
-    $sArguments = implode(",", $this->aArguments);
+    $sxArguments = implode(",", $this->aArguments);
+    $sdArguments = implode(",", array_map('hexdec', $this->aArguments));
     
 		if (!isset($this->aaOpcodes[$sDec])) { 
       $aValues = array(
@@ -71,10 +72,11 @@ class Opcodes
       $sDec,
       $this->aaOpcodes[$sDec][3],
       $this->aaOpcodes[$sDec][4],
-      $sArguments
+      $sxArguments,
+      $sdArguments
     );
-    $sFormat = "\n%s \t [ %s -> %s ] \t %s \t %s(%s) \n";
-    print sprintf($sFormat, $aValues[0], $aValues[1], $aValues[2], $aValues[3], $aValues[4], $aValues[5]);
+    $sFormat = "\n%s \t [ %s -> %s ] \t %s \t %s(%s)(%s) \n";
+    print sprintf($sFormat, $aValues[0], $aValues[1], $aValues[2], $aValues[3], $aValues[4], $aValues[5], $aValues[6]);
 
 		return true;
 	}
