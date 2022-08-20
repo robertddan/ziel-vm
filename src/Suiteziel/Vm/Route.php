@@ -134,8 +134,8 @@ class Route
     print(PHP_EOL);
 		print('Storage::$aaStorage');
     print(PHP_EOL);
-		print("Storage::". implode("::", Storage::$aaStorage));
-
+		foreach(Storage::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
+		return true;
     // save session
     if (0) if (!$this->save_session()) die('$this->save_session');
     
