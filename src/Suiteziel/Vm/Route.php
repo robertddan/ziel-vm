@@ -70,9 +70,14 @@ class Route
 	}
 	
 	public function implement () :bool {
-		if (empty($this->aHex)) die('Route->implement');
-		//var_dump($this->oAddress);
+		$this->aHex = $this->oSession->aData['aHex'];
 
+		if (empty($this->aHex)) die('Route->implement');
+		var_dump('sHex: '. implode("", $this->aHex));
+		var_dump('aHex: '. implode(" ", $this->aHex));
+    
+    #var_dump(['$this->aHex', $this->aHex]);
+		//var_dump($this->oAddress);
 /*
 Call Data
 [
@@ -88,24 +93,23 @@ Call Data
 		//$this->aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
 		
 		#$aHex = str_split('6057361d0000000000000000000000000000000000000000000000000000000000000042', 2);
-		$aHex = str_split('2e64cec1', 2);
-		var_dump(	$aHex);
+		#$aHex = str_split('2e64cec1', 2);
+		#var_dump(	$aHex);
 		#array('60','57','36','1d','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','00','42')
 
 		//var_dump(implode("','", $aHex));
 		//var_dump($aHex);
-		$this->aHex = $this->oSession->aData['memory'];
-		//$aHex = array('60', '57', '36', '1d');
-		
+    /*
+		$aHex = array('60', '57', '36', '1d');
 		$aHex = array_map(function($sHex) {
 			$sHex = base_convert($sHex, 16, 10);
 			if ($sHex == 0) $sHex = '00';
 			return $sHex;
 		}, $aHex);
-		
 		var_dump(implode(" ", $aHex));
-		
+		*/
 		/*
+
 		!!! if firs hex is identic check out if the second is also identic.
 		
 		$this->aHex = array(
@@ -203,29 +207,21 @@ Call Data
 			$aArguments = $this->oOpcodes->aArguments;
 			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
 			
-$aa_p = array(
-	$sHex,
-	$aArguments,
-	$iDelta,
-	$this->i_pc,
-	$this->oStack->aaStack
-);
+      $aa_p = array(
+      	$sHex,
+      	$aArguments,
+      	$iDelta,
+      	$this->i_pc,
+      	$this->oStack->aaStack
+      );
 			
 			if (!$this->oStack->positioning($aa_p)) die('oStack->positioning');
 			if (!$this->oState->positioning($aa_p)) die('oState->positioning');
 			if (!$this->oMemory->positioning($aa_p)) die('oMemory->positioning');
 			if (!$this->oStorage->positioning($aa_p)) die('oStorage->positioning');
 			
-#if ($this->i_pc !== $i) break;
-			
 			$i = $aa_p[3];
-      
-      print PHP_EOL;
-      var_dump($aa_p[3]);
 			$this->oStack->aaStack = $aa_p[4];
-			
-			
-			//var_dump($this->oStack->aaStack);
 			if ($aa_p[3] == -1) break; //array()
 			$i_opargs = count($aArguments);
 			
@@ -245,9 +241,9 @@ $aa_p = array(
 		var_dump($this->oStorage->aaStorage);
 		//$this->oSession->aData["stack"] = $this->oStack->aaStack;
 		//$this->oSession->aData["memory"] = $this->oMemory->aaMemory[1234];
-		//$this->oSession->save_session($this->oSession->aData);
+		#$this->oSession->save_session($this->oSession->aData);
 		//if (!$this->save_session()) die('$this->save_session');
-		//var_dump($this->oSession->aData);
+		#var_dump($this->oSession->aData);
 		return true;
 	}
 

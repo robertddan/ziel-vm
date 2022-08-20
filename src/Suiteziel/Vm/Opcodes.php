@@ -13,14 +13,9 @@ class Opcodes
 		$this->iCursor = 0;
 		$this->aaStack = array();
 		$this->aArguments = array();
-		
 		$this->set_opcodes();
 	}
-/*
-	public function __construct () {
 
-	}
-*/
 	public function hes_set ($aHes = null) :bool {
 		$this->aHex = $aHes;
 		return true;
@@ -35,6 +30,7 @@ class Opcodes
 		$this->aArguments = array_map(function($sHex) {
 			//return pack("H*", $sHex);
 			//return "0x". dechex($sHex);
+      #$sHex = base_convert($sHex, 10, 16);
 			if ($sHex == 0) $sHex = '00';
 			return $sHex;
 		}, $aArguments);

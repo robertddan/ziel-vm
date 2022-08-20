@@ -56,20 +56,27 @@ Call Data
 		return true;
 	}
 	
-	public function init__diamonds () :bool {
-		$this->oDiamonds->iCursor = 1; // skip compilation
-		$this->oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
-		if (!$this->oDiamonds->set_input_contract()) die('oDiamonds->set_input_contract'); //set it
-		$this->oDiamonds->sFolder = '20220806140004000000'; // specify folder with set_out_folder or at read...
-		if (!$this->oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
-		if (!$this->oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
-		if (!$this->oDiamonds->iCursor) die('oDiamonds->iCursor');
+	public function init__diamonds ($bInit = -1) :bool {
+  	$this->oDiamonds->iCursor = $bInit; // skip compilation
+    
+    if ($bInit == -1) return true;
+    if ($bInit == 1) {
+  		$this->oDiamonds->sContract = 'Storage.sol'; // contract file name in contracts folder
+  		if (!$this->oDiamonds->set_input_contract()) die('oDiamonds->set_input_contract'); //set it
+		  if (!$this->oDiamonds->compile_contract()) die('oDiamonds->compile_contract');
+		  if (!$this->oDiamonds->iCursor) die('oDiamonds->iCursor');
+    }
+    
+    $this->oDiamonds->sFolder = '20220820075259000000'; // specify folder with set_out_folder or at read...
+    if (!$this->oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
 		if (!$this->oDiamonds->read_from_file()) die('oDiamonds->read_from_file');
-		var_dump($this->oDiamonds->sHex);
-		if (!$this->oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
+		if (!$this->oDiamonds->sHex) die(PHP_EOL .'oDiamonds->sHex');
 
-		var_dump(implode(" ", str_split($this->oDiamonds->sHex, 2)));
-		var_dump(implode(" ", $this->oDiamonds->aHex));
+		#if (!$this->oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
+		if (!$this->oDiamonds->split_hex()) die('oDiamonds->split_hex');
+
+		var_dump('sHex: '. $this->oDiamonds->sHex);
+		var_dump('aHex: '. implode(" ", $this->oDiamonds->aHex));
 		return true;
 	}
 	
@@ -77,10 +84,6 @@ Call Data
 		//if (!$this->oSession->new_session()) die('$this->oSession->new_session()');
 		//if (!$this->oSession->save_session($aSession)) die('$this->oSession->save_session()');
 		if (!$this->oSession->load_session()) die('$this->oSession->load_session()');
-		var_dump(array(
-			#'$this->oSession',
-			#$this->oSession->aData
-		));
 		return true;
 	}
 }
