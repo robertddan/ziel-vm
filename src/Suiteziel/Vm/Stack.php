@@ -616,6 +616,7 @@ class Stack
 			case 0x45: return 1;break; //GASLIMIT
 			case 0x50: return 1;break; //POP
 
+
 			case 0x54: return 1;break; //SLOAD
 			case 0x55: return 1;break; //SSTORE
 			case 0x56: return 1;break; //JUMP
