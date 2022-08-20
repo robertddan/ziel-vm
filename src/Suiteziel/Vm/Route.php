@@ -197,15 +197,18 @@ Call Data
 		#foreach ($this->aHex as $i => $sHex) {
 		for ($i = 0; $i < count($this->aHex); $i++) {
 			
-			$this->i_pc = $i;
 			$sHex = $this->aHex[$i];
+      $sDec = hexdec($sHex);
+      
+			$this->i_pc = $i;
+      
 			if ($i_opargs !== 0) { $i_opargs--; continue; }
-			
+		
 			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
-			
+		
 			$aArguments = $this->oOpcodes->aArguments;
-			$iDelta = $this->oOpcodes->aaOpcodes[$sHex][1];
+			$iDelta = $this->oOpcodes->aaOpcodes[$sDec][1];
 			
       $aa_p = array(
       	$sHex,

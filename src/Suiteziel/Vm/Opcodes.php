@@ -21,12 +21,19 @@ class Opcodes
 		return true;
 	}
 
-	public function initiate ($i_k = null, $sHex = null) :bool {  // view
-		$i_k = $i_k + 1;
-		if (!isset($this->aaOpcodes[$sHex])) { $this->aArguments = array(); return true; }
-		$aArguments = array_slice($this->aHex, $i_k, $this->aaOpcodes[$sHex][0]);
-		//$this->aArguments = $aArguments;
+	public function set_arguments ($i_k = null, $sHex = null) :bool {                  
+		$sDec = hexdec($sHex);
+		$i_k_start = $i_k + 1;                                        
+		if (!isset($this->aaOpcodes[$sDec])) { $this->aArguments = array(); return true; }
+		$aArguments = array_slice($this->aHex, $i_k_start, $this->aaOpcodes[$sDec][0]);
+		$this->aArguments = $aArguments;
+		return true;
+	}
 
+	public function initiate ($i_k = null, $sHex = null) :bool {  // view
+		$sDec = hexdec($sHex);
+    if (!$this->set_arguments($i_k, $sHex)) die('oOpcodes->set_arguments()');
+/*
 		$this->aArguments = array_map(function($sHex) {
 			//return pack("H*", $sHex);
 			//return "0x". dechex($sHex);
@@ -34,39 +41,36 @@ class Opcodes
 			#if ($sHex == 0) $sHex = '00';
 			return $sHex;
 		}, $aArguments);
-
+*/
 		return true;
 	}
 
 	public function describe($i_k = null, $sHex = null) :bool {
-		
-		$sArguments = implode(",", $this->aArguments);
-		
-		if (!isset($this->aaOpcodes[$sHex])) { 
-			print "\n". str_pad($i_k, 10, 0, STR_PAD_LEFT) ."\t------------- Default:\t\t$sHex\t# ----------- "; 
+		$sDec = hexdec($sHex);
+    $sArguments = implode(",", $this->aArguments);
+    
+		if (!isset($this->aaOpcodes[$sDec])) { 
+      $aValues = array(
+        str_pad($i_k, 10, 0, STR_PAD_LEFT),
+        $sHex,
+        $sDec,
+      );
+      $sFormat = "\n %s \t Default: [ sHex: %s, sDec: %s ] \t";
+      print sprintf($sFormat, $aValues[0], $aValues[1], $aValues[2]);
 			return true; 
 		}
-		
-		print "\n".
-			
-			str_pad($i_k, 10, 0, STR_PAD_LEFT) ."\t". 
-			"[". 
-			base_convert($sHex, 10, 16)
-			."->".
-			$sHex
-			."]\t".
-			$this->aaOpcodes[$sHex][3] 
-			//"price: #". $this->aaOpcodes[$sHex][2] 
-			."\t". 
-			$this->aaOpcodes[$sHex][4] ."".
-			//."\t". 
-			"(". $sArguments .")\t"
-			."\t";
-/*
-$this->aaOpcodes[$sHex][2] ."\t".  			
-$this->aaOpcodes[$sHex][0] ."\t".  			
-$this->aaOpcodes[$sHex][3] ."\t\t".
-*/
+
+    $aValues = array(
+      str_pad($i_k, 10, 0, STR_PAD_LEFT),
+      $sHex,
+      $sDec,
+      $this->aaOpcodes[$sDec][3],
+      $this->aaOpcodes[$sDec][4],
+      $sArguments
+    );
+    $sFormat = "\n %s \t [ %s -> %s ] \t %s \t %s(%s) \t";
+    print sprintf($sFormat, $aValues[0], $aValues[1], $aValues[2], $aValues[3], $aValues[4], $aValues[5]);
+
 		return true;
 	}
 	
