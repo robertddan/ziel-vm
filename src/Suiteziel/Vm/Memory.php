@@ -36,7 +36,7 @@ class Memory
 				#print(PHP_EOL);
         #print("sHexDec::". implode(" ", $a_e));
 
-        $this->aHex = Route::$_aHex;
+        $this->aHex = Route::$aHex;
 				$aCopyCode1 = array_fill(0, $a_e[2], '0x00');
 				$aCopyCode2 = array_slice($this->aHex, $a_e[1], ($a_e[1] + $a_e[2]));
 				$aCopyCode = array_replace($aCopyCode1, $aCopyCode2);

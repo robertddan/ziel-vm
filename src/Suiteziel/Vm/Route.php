@@ -56,7 +56,7 @@ class Route
     if ($bSession == 1) self::$aHex = $this->oSession->aData['aHex'];
     elseif($bSession == 2) self::$aHex = $this->oSession->aData["memory"];
     else self::$aHex = $this->oDiamonds->aHex;
-		
+	var_dump(self::$aHex);
 		return true;
 	}
 	

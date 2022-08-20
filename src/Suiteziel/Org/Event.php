@@ -44,7 +44,7 @@ class Event
 		return true;
 	}
 	
-	public function init__diamonds ($bInit = 1) :bool {
+	public function init__diamonds ($bInit = 0) :bool {
     if ($bInit == -1) return true;
 		
   	$this->oDiamonds->iCursor = $bInit; // skip compilation
