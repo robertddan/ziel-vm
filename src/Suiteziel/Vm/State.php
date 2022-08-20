@@ -8,12 +8,11 @@ use App\Suiteziel\VM\Stack;
 
 class State
 {
-	public $aHes;
-	public $aaState;
-	public static $_aaState;
+	public $aHex;
+	public static $aaState;
 
 	public function __construct () {
-		$this->aaState = self::$_aaState = array(
+		self::$aaState = array(
 			// Ia, the address of the account which owns the code that is executing. 
 			"Ia" => Session::$_aData["wallet"][0],
 			// Io, the sender address of the transaction that originated this execution. 
@@ -70,9 +69,8 @@ class State
 	public function positioning(&$i_pc, $sHex) {
     
     $sDec = hexdec($sHex);
-    $aArguments = Opcodes::$_aArguments;
-    $iDelta = Opcodes::$_aaOpcodes[$sDec][1];
-		$this->aaState = self::$_aaState;
+    $aArguments = Opcodes::$aArguments;
+    $iDelta = Opcodes::$aaOpcodes[$sDec][1];
 
 		switch ($sDec) {
 			case 0x00:
@@ -118,22 +116,22 @@ class State
 				print("Stack::". implode("::", Stack::$aaStack));
 			break; //JUMPDEST
 			case 0x30:
-				array_unshift(Stack::$aaStack, $this->aaState["Ia"]);
+				array_unshift(Stack::$aaStack, self::$aaState["Ia"]);
 			break; //ADDRESS
 			case 0x32:
-				array_unshift(Stack::$aaStack, $this->aaState["Io"]);
+				array_unshift(Stack::$aaStack, self::$aaState["Io"]);
 			break; //ORIGIN
 			case 0x33:
-				array_unshift(Stack::$aaStack, $this->aaState["Is"]);
+				array_unshift(Stack::$aaStack, self::$aaState["Is"]);
 			break; //CALLER
 			case 0x34:
-				array_unshift(Stack::$aaStack, $this->aaState["Iv"]);
+				array_unshift(Stack::$aaStack, self::$aaState["Iv"]);
 			break; //CALLVALUE
 			case 0x35:
 				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
 
-				$aId = array_slice($this->aaState["Id"], 0, 4);
+				$aId = array_slice(self::$aaState["Id"], 0, 4);
 				$ae = array();
 				$ie = 0;
 				
@@ -160,21 +158,21 @@ class State
 	}
 	$aDiff = array_diff($ae, $aId);
 	if (!empty($aDiff)) array_pop($ae); break;
-				foreach ($this->aaState["Id"] as $_k => $aStateId) {
+				foreach (self::$aaState["Id"] as $_k => $aStateId) {
 					if ($_k >= 31) break;
 					$_e = mb_strlen(serialize($aStateId), '8bit');
-					if ($_k >= $_e ) $this->aaState["Id"][$_k] = 0;
+					if ($_k >= $_e ) self::$aaState["Id"][$_k] = 0;
 				}
 				
-				$sStateId = implode("", $this->aaState["Id"]); 
+				$sStateId = implode("", self::$aaState["Id"]); 
 				array_unshift(Stack::$aaStack, $sStateId);
 				
 				
-				array_unshift(Stack::$aaStack, $this->aaState["Iv"]);
+				array_unshift(Stack::$aaStack, self::$aaState["Iv"]);
 				μ′s[0] ≡ Id[μs[0] . . . (μs[0] + 31)] 
 				Id[x] = 0 if x > ‖Id‖
 				euclidean
-				$this->aaState = self::$_aaState = array(
+				self::$aaState = self::$aaState = array(
 				// Ia, the address of the account which owns the code that is executing. 
 				"Ia" => Session::$_aData["wallet"][0],
 				// Io, the sender address of the transaction that originated this execution. 
@@ -186,12 +184,12 @@ class State
 	*/
 				
 				#print(PHP_EOL);
-				#print("State::". implode("::", $this->aaState["Id"]));
+				#print("State::". implode("::", self::$aaState["Id"]));
 				print(PHP_EOL);
 				print("Stack::". implode("::", Stack::$aaStack));
 			break; //CALLDATALOAD
 			case 0x36:
-				$aId = array_slice($this->aaState["Id"], 8, 32);
+				$aId = array_slice(self::$aaState["Id"], 8, 32);
 				
 /*
 var_dump([
@@ -214,7 +212,7 @@ die();
 			break; //CODESIZE
 
 			case 0x3a:
-				array_unshift(Stack::$aaStack, $this->aaState["Ip"]);
+				array_unshift(Stack::$aaStack, self::$aaState["Ip"]);
 			break; //GASPRICE
 			case 0x3b:
 			break; //EXTCODESIZE
@@ -225,24 +223,24 @@ die();
 			case 0x40:
 			break; //BLOCKHASH	
 			case 0x41:
-				array_unshift(Stack::$aaStack, $this->aaState["IH"]["c"]);
+				array_unshift(Stack::$aaStack, self::$aaState["IH"]["c"]);
 			break; //COINBASE
 			case 0x42:
-				array_unshift(Stack::$aaStack, $this->aaState["IH"]["s"]);
+				array_unshift(Stack::$aaStack, self::$aaState["IH"]["s"]);
 			break; //TIMESTAMP
 			case 0x43:
-				array_unshift(Stack::$aaStack, $this->aaState["IH"]["i"]);
+				array_unshift(Stack::$aaStack, self::$aaState["IH"]["i"]);
 			break; //NUMBER
 			case 0x44:
-				array_unshift(Stack::$aaStack, $this->aaState["IH"]["d"]);
+				array_unshift(Stack::$aaStack, self::$aaState["IH"]["d"]);
 			break; //DIFFICULTY
 			case 0x45:
-				array_unshift(Stack::$aaStack, $this->aaState["IH"]["l"]);
+				array_unshift(Stack::$aaStack, self::$aaState["IH"]["l"]);
 			break; //GASLIMIT
 				
 
 			case 0x5a:
-				array_unshift(Stack::$aaStack, $this->aaState["Ip"]);
+				array_unshift(Stack::$aaStack, self::$aaState["Ip"]);
 			break; //GAS
 			case 0xf0:
 			break; //CREATE
@@ -267,11 +265,10 @@ die();
 			default: return true; break;
 		}
 
-
 		print(PHP_EOL);
-		foreach($this->aaState as $aaState) {
-			if (is_array($aaState)) print("State::". implode("::", $aaState)); 
-			//else print(PHP_EOL . "State::"."::". $aaState); 
+		foreach(self::$aaState as $aState) {
+			if (is_array($aState)) print("State::". implode("::", $aState)); 
+			//else print(PHP_EOL . "State::"."::". $aState); 
 		}
 		return true;
 	}

@@ -7,7 +7,6 @@ use App\Suiteziel\Vm\Opcodes;
 class Stack
 { 
 	public $i_sp; //stack pointer
-	#public $aaStack;
 	public static $aaStack;
   
 		
@@ -27,8 +26,8 @@ class Stack
 	public function positioning(&$i_pc, $sHex) {
     
     $sDec = hexdec($sHex);
-    $aArguments = Opcodes::$_aArguments;
-    $iDelta = Opcodes::$_aaOpcodes[$sDec][1];
+    $aArguments = Opcodes::$aArguments;
+    $iDelta = Opcodes::$aaOpcodes[$sDec][1];
     
 		switch ($sDec) {
 			case 0x01:
@@ -628,7 +627,6 @@ $a_e = [
 			case 0x36: return 1;break; //CALLDATASIZE
 			case 0x37: return 1;break; //CALLDATACOPY
 			case 0x38: return 1;break; //CODESIZE
-			case 0x39: return 1;break; //CODECOPY
 			case 0x3a: return 1;break; //GASPRICE
 			case 0x3b: return 1;break; //EXTCODESIZE
 			case 0x3c: return 1;break; //EXTCODECOPY

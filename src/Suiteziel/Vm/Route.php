@@ -137,7 +137,7 @@ class Route
 			
 			#$i = $aa_p[1];
 			#$this->oStack->aaStack = $aa_p[2];
-			$i_opargs = count(Opcodes::$_aArguments);
+			$i_opargs = count(Opcodes::$aArguments);
 			if ($i == -1) break; //array()
 			
 		}

@@ -5,6 +5,7 @@ namespace App\Suiteziel\Vm;
 class Memory
 {
 	public $aaMemory;
+	public static $_aaMemory;
 	public $aHes;
 
 	public function __construct () {
@@ -12,15 +13,22 @@ class Memory
 		$this->aaMemory[1234] = array();
 	}
 	
-	public function hes_set ($aHes = null) :bool {
-		$this->aHex = $aHes;
-		return true;
+	public function shift_left ($sHex) {
+		return "0x". str_pad($sHex, 32, 0, STR_PAD_LEFT);
 	}
-	
+    		
+	public function shift_right ($sHex) {
+		return "0x". str_pad($sHex, 32, 0, STR_PAD_RIGHT);
+	}
 /*
-	public function __construct () {
+	public function positioning(&$i_pc, $sHex) {
+    
+    $sDec = hexdec($sHex);
+    $aArguments = Opcodes::$_aArguments;
+    $iDelta = Opcodes::$_aaOpcodes[$sDec][1];
+		$this->aaState = self::$_aaState;
 
-	}
+		switch ($sDec) {
 */
 	public function positioning(&$aa_p) { //$i_k = null, $sHex = null, $aArguments = null, $iDelta = null) {
 		list($sHex, $aArguments, $iDelta, $i_pc, &$aaStack) = $aa_p;

@@ -8,15 +8,13 @@ class Opcodes
 {
 	
 	public $aHes;
-	public $aArguments;
-	public $aaOpcodes;
-	public static $_aArguments;
-	public static $_aaOpcodes;
+	public static $aArguments;
+	public static $aaOpcodes;
 
 	public function __construct () {
 		$this->iCursor = 0;
 		$this->aaStack = array();
-		$this->aArguments = array();
+		self::$aArguments = array();
 		$this->set_opcodes();
 	}
 
@@ -28,9 +26,9 @@ class Opcodes
 	public function set_arguments ($i_k = null, $sHex = null) :bool {                  
 		$sDec = hexdec($sHex);
 		$i_k_start = $i_k + 1;                                        
-		if (!isset($this->aaOpcodes[$sDec])) { $this->aArguments = array(); return true; }
-		$aArguments = self::$_aArguments = array_slice($this->aHex, $i_k_start, $this->aaOpcodes[$sDec][0]);
-		$this->aArguments = $aArguments;
+		if (!isset(self::$aaOpcodes[$sDec])) { self::$aArguments = array(); return true; }
+		$aArguments = self::$aArguments = array_slice($this->aHex, $i_k_start, self::$aaOpcodes[$sDec][0]);
+		self::$aArguments = $aArguments;
 		return true;
 	}
 
@@ -39,7 +37,7 @@ class Opcodes
     if (!$this->hes_set()) die('oOpcodes->hes_set()');
     if (!$this->set_arguments($i_k, $sHex)) die('oOpcodes->set_arguments()');
 /*
-		$this->aArguments = array_map(function($sHex) {
+		self::$aArguments = array_map(function($sHex) {
 			//return pack("H*", $sHex);
 			//return "0x". dechex($sHex);
       #$sHex = base_convert($sHex, 10, 16);
@@ -52,10 +50,10 @@ class Opcodes
 
 	public function describe($i_k = null, $sHex = null) :bool {
 		$sDec = hexdec($sHex);
-    $sxArguments = implode(",", $this->aArguments);
-    $sdArguments = implode(",", array_map('hexdec', $this->aArguments));
+    $sxArguments = implode(",", self::$aArguments);
+    $sdArguments = implode(",", array_map('hexdec', self::$aArguments));
     
-		if (!isset($this->aaOpcodes[$sDec])) { 
+		if (!isset(self::$aaOpcodes[$sDec])) { 
       $aValues = array(
         str_pad($i_k, 10, 0, STR_PAD_LEFT),
         $sHex,
@@ -70,8 +68,8 @@ class Opcodes
       str_pad($i_k, 10, 0, STR_PAD_LEFT),
       $sHex,
       $sDec,
-      $this->aaOpcodes[$sDec][3],
-      $this->aaOpcodes[$sDec][4],
+      self::$aaOpcodes[$sDec][3],
+      self::$aaOpcodes[$sDec][4],
       $sxArguments,
       $sdArguments
     );
@@ -83,19 +81,19 @@ class Opcodes
 	
 	public function opcodes ($i_k = null, $sHex = null) {
 		switch ($i_k) {
-			case 1: return $this->aaOpcodes[$sHex][0]; break; //arguments
-			case 1: return $this->aaOpcodes[$sHex][1]; break; //arguments stack (delta)
-			case 2: return $this->aaOpcodes[$sHex][2]; break; //price
-			case 3: return $this->aaOpcodes[$sHex][3]; break; //hex name
-			case 4: return $this->aaOpcodes[$sHex][4]; break; //name
-			case 5: return $this->aaOpcodes[$sHex][5]; break; //description
+			case 1: return self::$aaOpcodes[$sHex][0]; break; //arguments
+			case 1: return self::$aaOpcodes[$sHex][1]; break; //arguments stack (delta)
+			case 2: return self::$aaOpcodes[$sHex][2]; break; //price
+			case 3: return self::$aaOpcodes[$sHex][3]; break; //hex name
+			case 4: return self::$aaOpcodes[$sHex][4]; break; //name
+			case 5: return self::$aaOpcodes[$sHex][5]; break; //description
 			default: return false;
 		}
 		return true;
 	}
 
 	public function set_opcodes () {
-		$this->aaOpcodes = self::$_aaOpcodes = array(
+		self::$aaOpcodes = array(
 			0x00 => array(0, 0, 0, "0x00", "STOP", "Halts execution"),
 			0x01 => array(0, 2, 3, "0x01", "ADD", "Addition operation"),
 			0x02 => array(0, 2, 5, "0x02", "MUL", "Multiplication operation"),

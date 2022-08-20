@@ -11,7 +11,7 @@ class Storage
 	public function __construct () {
 		$this->aaStorage = array();
 		$this->aSlot = array(
-			"contract" => State::$_aaState["Ia"],
+			"contract" => State::$aaState["Ia"],
 			"slot" => null,
 			"value" => null
 		);
