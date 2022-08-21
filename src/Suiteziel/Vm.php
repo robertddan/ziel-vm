@@ -24,9 +24,12 @@ class Vm
 	}
 
 	public function run () {
-		if (!$this->oRoute->init($this->oEvent)) die('oRoute->init');
-		if (!$this->oRoute->implement()) die('oRoute->implement');
 		if (!$this->oTransport->implement()) die('oTransport->implement');
+		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
+		if (!$this->oRoute->init($this->oEvent)) die('oRoute->init');
+		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
+		if (!$this->oRoute->implement()) die('oRoute->implement');
+		
 	}
 }
 

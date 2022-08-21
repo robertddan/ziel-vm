@@ -60,8 +60,8 @@ class Memory
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);
 				
-				//$hex_i = base_convert($a_e[0], 10, 16);
-				$aMemory[$a_e[0]] = dechex($a_e[1]);
+				$hex_i = base_convert($a_e[0], 10, 16);
+				$aMemory[$a_e[0]] = $hex_i; //dechex($a_e[1]);
 				self::$aaMemory = $aMemory;
 				//var_dump("Memory::". implode("::", $aMemory));
 				
