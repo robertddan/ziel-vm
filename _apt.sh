@@ -20,6 +20,6 @@
 
 #apt-get install php8.1
 #composer require web3p/web3.php dev-master
-#composer require web3-php/web3
+composer require web3-php/web3 dev-master
 
-composer require digitaldonkey/ethereum-php
+#composer require digitaldonkey/ethereum-php
