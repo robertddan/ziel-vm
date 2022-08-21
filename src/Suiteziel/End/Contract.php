@@ -1,5 +1,5 @@
 <?php
-namespace App\Suiteziel\Vm;
+namespace App\Suiteziel\End;
 
 
 use App\Suiteziel\Org\Session;

@@ -15,4 +15,11 @@
 #sudo apt-get install solc
 
 #npm i generate-license
-npm install --global generate generate-license
+#npm install --global generate generate-license
+
+
+#apt-get install php8.1
+#composer require web3p/web3.php dev-master
+#composer require web3-php/web3
+
+composer require digitaldonkey/ethereum-php
