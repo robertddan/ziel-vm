@@ -20,12 +20,20 @@ class State
 			"Io" => "",
 			// Ip, the price of gas in the transaction that originated this execution. 
 			"Ip" => "",
-			// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data. 
+			// Id, the byte array that is the input data to this execution; if the execution agent is a transaction, this would be the transaction data.
+      /*
 			"Id" => array('60','57','36','1d','00','00','00','00',
 										'00','00','00','00','00','00','00','00',
 										'00','00','00','00','00','00','00','00',
 										'00','00','00','00','00','00','00','42'),
+      */
+			"Id" => array('4f','2b','e9','1f','00','00','00','00',
+										'00','00','00','00','00','00','00','00',
+										'00','00','00','00','00','00','00','00',
+										'00','00','00','00','00','00','00','42'),
+      
 /*
+0x2be91f
 6057361d e
 00000000 00000000 
 00000000 00000000 

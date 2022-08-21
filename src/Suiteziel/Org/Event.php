@@ -66,8 +66,8 @@ class Event
 		#if (!$this->oDiamonds->decode_hex()) die('oDiamonds->decode_hex');
 		if (!$this->oDiamonds->split_hex()) die('oDiamonds->split_hex');
 
-		var_dump('sHex: '. $this->oDiamonds->sHex);
-		var_dump('aHex: '. implode(" ", $this->oDiamonds->aHex));
+		#var_dump('sHex: '. $this->oDiamonds->sHex);
+		#var_dump('aHex: '. implode(" ", $this->oDiamonds->aHex));
 		return true;
 	}
 	

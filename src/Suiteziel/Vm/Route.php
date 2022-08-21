@@ -51,15 +51,21 @@ class Route
 		return true;
 	}
 	
-	public function init_variables_ ($bSession = 2) :bool {
+	public function init_variables_ () :bool {
 		$this->i_pc = 0;
+		return true;
+	}
+
+	public function get_hex ($bSession = 2) :bool {
     if ($bSession == 1) self::$aHex = $this->oSession->aData['aHex'];
     elseif($bSession == 2) self::$aHex = $this->oSession->aData["memory"];
     else self::$aHex = $this->oDiamonds->aHex;
-
+    
+    #var_dump("self".implode("", self::$aHex));
+    #var_dump("memory".implode("", $this->oSession->aData["memory"]));
 		return true;
 	}
-	
+  
 	public function save_session () :bool {
 		/*$aaSession = array(
 			'oAddress' => $this->oAddress->aAddress,
@@ -97,7 +103,7 @@ class Route
 	
 	public function implement () :bool {
 
-    if (!$this->init_variables_(0)) die('init_variables_');
+    if (!$this->get_hex(0)) die('get_hex');
     
 		if (empty(self::$aHex)) die('Route->implement');
 		var_dump('sHex: '. implode("", self::$aHex));
