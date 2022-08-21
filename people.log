@@ -29,3 +29,29 @@ eth_getTransactionReceipt: {"jsonrpc":"2.0","id":1,"error":{"code":-32602,"messa
 {"jsonrpc":"2.0","id":1,"error":{"code":-32602,"message":"invalid argument 0: hex string has length 0, want 64 for common.Hash"}}
 {"jsonrpc":"2.0","id":1,"result":"0xc74257ef31d93619b82e984660c9c7d05b713789cea24fb4a91e284752675993"}
 {"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"replacement transaction underpriced"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"insufficient funds for gas * price + value"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"insufficient funds for gas * price + value"}}
+{"jsonrpc":"2.0","id":1,"result":"0x7d52c7c245454ca8c62e7ab28a4075851a075d50ddd1eb2b09ef7301d850d38a"}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":"0xeb80b552e9016f70fc38ad0981994e99eba385246eb762073189dc20e4e9b0df"}
+{"jsonrpc":"2.0","id":1,"result":"0xeb80b552e9016f70fc38ad0981994e99eba385246eb762073189dc20e4e9b0df"}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"result":"0xf68a90282744db7f576f7f9f74984e357b4454a99d484bb4e5ef2ee52044601d"}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
