@@ -3,7 +3,7 @@
 const ethers = require('ethers');
 const path = require('path')
 const fs = require('fs')
-const ziel = require('./ziel');
+//const ziel = require('./ziel');
 
 	
 let sNetwork = 'ropsten'; //homestead
@@ -16,11 +16,11 @@ let provider = new ethers.providers.InfuraProvider(sNetwork, "3e7f88ed3dc242c383
 		#0x23A14e97A59779165BF83310a712B84F101c9140
 */
 let receiverAddress1 = "0x02CC64973a38A82A446A9c4BF3C68c126ecF764d";
-let receiverAddress2 = "0x23A14e97A59779165BF83310a712B84F101c9140";
+let receiverAddress2 = "0x2DFe5B0D283B81AA88D77083C9FBA195B2eF3bA1";
 //let amountInEther = "0.001";
 
-let gas_limit = 5000000 //"0x100000" // Gas Limit & Usage by Txn: 5,000,000 | 21,000 (0.42%) 
-let gas_price = 250000000000 //22500000000 // fast-33 average-30 slow-22.5 // 0.0000001 Ether (100 Gwei) // gas calculator
+let gas_limit = '0x989680'; //5000000 //"0x100000" // Gas Limit & Usage by Txn: 5,000,000 | 21,000 (0.42%) 
+let gas_price = '0xD09DC30E'; //250000000000 //22500000000 // fast-33 average-30 slow-22.5 // 0.0000001 Ether (100 Gwei) // gas calculator
 
 /*
 Value: 1 wei ($0.00)
@@ -51,7 +51,7 @@ https://docs.ethers.io/v5/api/utils/transactions/
 */
 const tx = {
 	from: txFromAddress,
-	to: txToAddress,
+	//to: txToAddress,
 	value: 1, //ethers.utils.parseEther(send_token_amount),
 	nonce: provider.getTransactionCount(
 		txFromAddress,
@@ -59,6 +59,7 @@ const tx = {
 	),
 	gasLimit: ethers.utils.hexlify(gas_limit),
 	gasPrice: gas_price,
+	data: '0x600060006007f0'
 }
 console.dir(tx)
 
