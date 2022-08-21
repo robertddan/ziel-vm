@@ -106,9 +106,12 @@ class Route
 		if (empty(self::$aHex)) die('Route->implement');
 		var_dump('sHex: '. implode("", self::$aHex));
 		var_dump('aHex: '. implode(" ", self::$aHex));
-    
+		
+    $sHex = "60006000674978815011915260f0";
+		self::$aHex = str_split($sHex, 2);
+		
 		#if (!$this->debug_counter()) die('$this->debug_counter()');
-		var_dump($this->oSession->aData);
+		#var_dump($this->oSession->aData);
 		
 		$i_opargs = 0;
 		for ($i = 0; $i < count(self::$aHex); $i++) {
