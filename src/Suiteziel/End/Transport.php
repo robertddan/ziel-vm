@@ -1,27 +1,29 @@
 <?php
 namespace App\Suiteziel\End;
 
+use Web3\Web3;
+use kornrunner\Ethereum\Transaction;
 
 class Transport
 {
 
 	public function __construct () {
+		$web3 = new Web3('https://ropsten.infura.io/v3/3e7f88ed3dc242c38332ecf58900a68e');
 	}
 
 	public function implement($o = null) {
 
 		#$sPayload = '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}';
 		#$sPayload = '{"method":"parity_enode","params":[],"id":1,"jsonrpc":"2.0"}';
+
 		
-		// Contract address after transaction
-		$sTransactionHash = "";
-		$sContractAddress = '{"method":"eth_getTransactionReceipt","params":["'.$sTransactionHash.'"],"id":1,"jsonrpc":"2.0"}';
+		
 		#'{"method":"eth_sendTransaction","params":[{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567",
 		#"gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a","data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"}]
 		#,"id":1,"jsonrpc":"2.0"}'
 		$sSendFrom = "0xe9884777D9F377530788CeE12A40269f812cF30a";
 		$sSendTo = ""; #"0xd46e8dd67c5d32be8058bb8eb970870f07244567";
-		$sSendData = "0x600060006009f0"; #0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675
+		$sSendData = "0x600060006008f0"; #0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675
 		$sSendTransaction = '{"method":"eth_sendTransaction",
 		"params":[{
 		"from":"'. $sSendFrom .'",
@@ -36,7 +38,7 @@ class Transport
 		#'{"method":"eth_sendRawTransaction","params":["0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675"],"id":1,"jsonrpc":"2.0"}'
 		$sSendFrom = "0xe9884777D9F377530788CeE12A40269f812cF30a";
 		$sSendTo = ""; #"0xd46e8dd67c5d32be8058bb8eb970870f07244567";
-		$sSendData = "0x600060006009f0"; #0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675
+		$sSendData = "0x600060006008f0"; #0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675
 		$sRawTransaction = '{"method":"eth_signTransaction",
 		"params":[{
 		"from":"'. $sSendFrom .'",
@@ -44,27 +46,92 @@ class Transport
 		"data":"'. $sSendData .'"}],
 		"id":1,
 		"jsonrpc":"2.0"}';
-
+		
+		
+		$s_gasPrice = '{"method":"eth_gasPrice",
+		"params":[],
+		"id":1,
+		"jsonrpc":"2.0"}';
+		
+		#$sResult_gasPrice = $this->rpc_request($s_gasPrice);
+		#var_dump($sResult_gasPrice);
+		
+		
+		/*
+		"gas":"0x76c0",
+		"gasPrice":"0x9184e72a000",
+		let gas_limit = 5000000 //"0x100000" // Gas Limit & Usage by Txn: 5,000,000 | 21,000 (0.42%) 
+		let gas_price =  25000000000 //22500000000 // fast-33 average-30 slow-22.5 // 0.0000001 Ether (100 Gwei) // gas calculator
+									10000000000000
+										  5000000014
+											2000000014
+		*/
+		$nonce    = '04';
+		$gasPrice = "0x";
+		$gasLimit = "0x989680";
+		$to       = '';
+		$value    = '';
+		$chainId  = 3;
+		$sSendData = "0x600060006009f0";
+		$privateKey = '99b3969b60796ddf89480448423420ee2cee807936867885909508b17d0e635a';
+		#31a24edad8548ae2ab963156c2ec15b8480fd66e4c3e39278e2247ed5c6ac035 
+		#0x02CC64973a38A82A446A9c4BF3C68c126ecF764d
+		#9c20c00af708be5f1870e138d48c96eaa54e5eea406194d9f1405bf3793c488f 
+		#0x23A14e97A59779165BF83310a712B84F101c9140
+		#99b3969b60796ddf89480448423420ee2cee807936867885909508b17d0e635a 
+		#0x2DFe5B0D283B81AA88D77083C9FBA195B2eF3bA1
+		#( $nonce = '',  $gasPrice = '',  $gasLimit = '',  $to = '',  $value = '',  $data = '') 
+		
+		$transaction = new Transaction ($nonce, $gasPrice, $gasLimit, $to, $value, $sSendData);
+		$sResultData = $transaction->getRaw ($privateKey, $chainId);
+		// f86d048503f5476a0083027f4b941a8c8adfbe1c59e8b58cc0d515f07b7225f51c72882a45907d1bef7c008025a0db4efcc22a7d9b2cab180ce37f81959412594798cb9af7c419abb6323763cdd5a0631a0c47d27e5b6e3906a419de2d732e290b73ead4172d8598ce4799c13bda69
+		// f850048080808087600060006009f025a0fa47e482938932e7d78da5b267d4bb6b6092ea59fd9784601b484aa292a14444a0521c528e77afffbef7f6838274ab8417cf23081ce1c875d73c717ecc66cc1564
+		var_dump($sResultData);
 		
 		
 		#'{"method":"eth_sign","params":["0xcd2a3d9f938e13cd947ec05abc7fe734df8dd826","0x5363686f6f6c627573"],"id":1,"jsonrpc":"2.0"}'
-		$sSendFrom = "0xe9884777D9F377530788CeE12A40269f812cF30a";
-		$sSendTo = ""; #"0xd46e8dd67c5d32be8058bb8eb970870f07244567";
-		$sSendData = "0x600060006009f0"; #0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675
-		$sRawTransaction = '{"method":"eth_sign",
+		#$sSendFrom = "0x02CC64973a38A82A446A9c4BF3C68c126ecF764d";
+		#$sSendTo = ""; #"0xd46e8dd67c5d32be8058bb8eb970870f07244567";
+		#$sSendData = "0x600060006008f0"; #0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675
+		$sRawTransaction = '{"method":"eth_sendRawTransaction",
 		"params":[
-			"0xe9884777D9F377530788CeE12A40269f812cF30a",
-			"0x600060006009f0"
+			"0x'. $sResultData .'"
 		],
 		"id":1,
 		"jsonrpc":"2.0"}';
 		
-		$sResult = $this->rpc_request($sRawTransaction);
-		var_dump($sResult);
+		$sResultRequest = $this->rpc_request($sRawTransaction);
+		var_dump(["eth_sendRawTransaction: ", $sResultRequest]);
 		
+		$fileLog = 'people.log';
+		if (isset($sResultRequest))
+		file_put_contents($fileLog, ($sResultRequest.PHP_EOL), FILE_APPEND | LOCK_EX);
+		
+		
+		
+		// Contract address after transaction
+		$aTransactionHash = json_decode($sResultRequest, true);
+		var_dump($aTransactionHash);
+		$sTransactionHash = $aTransactionHash['result'];
+		#$sTransactionHash = "0x4cf9f9c37424d9287edb61fe64065dfdbefa92e49c78eb5ed0716d844d668759";
+		$sContractAddress = '{"method":"eth_getTransactionReceipt","params":["'. $sTransactionHash .'"],"id":1,"jsonrpc":"2.0"}';
+		$sResultRequest = $this->rpc_request($sContractAddress);
+
+		var_dump(["eth_getTransactionReceipt: ", $sResultRequest]);
+
+
+		
+		
+		$fileLog = 'people.log';
+		if (isset($sResultRequest))
+		file_put_contents($fileLog, ($sResultRequest.PHP_EOL), FILE_APPEND | LOCK_EX);
 		
 		return true;
 	}
+	
+	
+	
+	
 	
 	public function rpc_request($aPayload, $aHeaders = array()) {
 		$sUrl = 'https://ropsten.infura.io/v3/3e7f88ed3dc242c38332ecf58900a68e';

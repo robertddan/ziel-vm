@@ -74,6 +74,7 @@ class Route
 			'oSession' => $this->oSession->aData,
 		);*/
     
+    $this->oSession->aData["wallet"] = $this->oAddress->aAddress;
     $this->oSession->aData["stack"] = Stack::$aaStack;
     $this->oSession->aData["memory"] = Memory::$aaMemory;
 		$this->oSession->aData['aHex'] = self::$aHex;
@@ -90,12 +91,9 @@ class Route
 			$sHex = self::$aHex[$i];
 			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
-			
 		}
-		
 		print(PHP_EOL);print(PHP_EOL);
 		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
-
 		print('------------------------------------------------------------------------------');
 		return true;
 	}
@@ -110,6 +108,7 @@ class Route
 		var_dump('aHex: '. implode(" ", self::$aHex));
     
 		#if (!$this->debug_counter()) die('$this->debug_counter()');
+		var_dump($this->oSession->aData);
 		
 		$i_opargs = 0;
 		for ($i = 0; $i < count(self::$aHex); $i++) {
