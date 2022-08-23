@@ -39,7 +39,12 @@ class Memory
 				$iKeyStart = base_convert($a_e[0], 16, 10);
 				if (!isset(self::$aaMemory[$iKeyStart])) die('CODECOPY');
 				foreach($aCopyCode1 as $__k => $sHex) self::$aaMemory[$__k] = $aCopyCode[$__k];
-				print("Stack::". implode("::", Stack::$aaStack));
+				#print("Stack::". implode("::", Stack::$aaStack));
+			print(
+				str_pad("Stack", 10, ":"). 
+				implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+			);
+		
 				print(PHP_EOL);
 			break; //CODECOPY
 			case 0x51:
@@ -65,7 +70,11 @@ class Memory
 				self::$aaMemory = $aMemory;
 				//var_dump("Memory::". implode("::", $aMemory));
 				
-				print("Stack::". implode("::", Stack::$aaStack));
+				#print("Stack::". implode("::", Stack::$aaStack));
+			print(
+				str_pad("Stack", 10, ":"). 
+				implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+			);
         print(PHP_EOL);
 			break; //MSTORE
 			
