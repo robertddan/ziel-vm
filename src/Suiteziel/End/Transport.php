@@ -51,9 +51,10 @@ class Transport
 		"id":1,
 		"jsonrpc":"2.0"}';
 		
-		#$sResult_gasPrice = $this->rpc_request($s_gasPrice);
-		#var_dump($sResult_gasPrice);
-		
+		$sResult_gasPrice = $this->rpc_request($s_gasPrice);
+		$aResult_gasPrice = json_decode($sResult_gasPrice, true);
+		var_dump([$sResult_gasPrice, $aResult_gasPrice["result"]]);
+
 		
 		/*
 		"gas":"0x76c0",
@@ -61,25 +62,41 @@ class Transport
 		let gas_limit = 5000000 //"0x100000" // Gas Limit & Usage by Txn: 5,000,000 | 21,000 (0.42%) 
 		let gas_price =  25000000000 //22500000000 // fast-33 average-30 slow-22.5 // 0.0000001 Ether (100 Gwei) // gas calculator
 									10000000000000
+										 25000000000
 										  5000000014
 											2000000014
 											3500000014
 												10000000
+												 1000000007 
+												25000000000
 		*/
-		$nonce    = '15';
-		$gasPrice = '0x578B58B0E';
-		$gasLimit = '0x989680';
-		$to       = '0x02CC64973a38A82A446A9c4BF3C68c126ecF764d';
+		$nonce    = '1';
+		$gasPrice = $aResult_gasPrice["result"]; #'0x5D21DBA00';
+		$gasLimit = '0x2DC6C0';
+		$to       = '0xB726E3FfBbC61945Ceca71472c27FE4F303b2642';
 		$value    = '0x01';
 		$chainId  = 3;
-		$sSendData = '0x60006000674978815011915260f060005260326000f3';
-		$privateKey = '99b3969b60796ddf89480448423420ee2cee807936867885909508b17d0e635a';
+		$sSendData = '0x820104d0cE35eF9170dA6376b573f4863E8712A1';
+		$privateKey = '5fba50974f0313c21251e92083ef26e281f802fd66781cc73d33f06e726c583b';
 		#31a24edad8548ae2ab963156c2ec15b8480fd66e4c3e39278e2247ed5c6ac035 
 		#0x02CC64973a38A82A446A9c4BF3C68c126ecF764d
 		#9c20c00af708be5f1870e138d48c96eaa54e5eea406194d9f1405bf3793c488f 
 		#0x23A14e97A59779165BF83310a712B84F101c9140
 		#99b3969b60796ddf89480448423420ee2cee807936867885909508b17d0e635a 
 		#0x2DFe5B0D283B81AA88D77083C9FBA195B2eF3bA1
+		#a0d7745a697a52a9ff1301172d5e679f338016a0b88734e0f1665e4a04412bcf
+		#0x17F6359532E4F36BF4E585fa454D90F8892791Dd
+		#941af33d724b29eebfc2ab0f32801e7b1a16de0d6669136ce53f7c9f36378364
+		#0xe76Aec25Df7400D1086f12B7979Ce11188Ccdf96
+		#227a2aab82a3ef71e9bf1fdecd9c8d9366e2764524f9f0cb4c1869dda1158821
+		#0xE1488040EAbc242BE9C1bEc9E85F00505f2F273c
+		#ad4dcf50f02f629a6a3c1c408820fe58642dc858d9580cc88c34990a74f5f62b
+		#0xB726E3FfBbC61945Ceca71472c27FE4F303b2642
+		#5fba50974f0313c21251e92083ef26e281f802fd66781cc73d33f06e726c583b
+		#0x820104d0cE35eF9170dA6376b573f4863E8712A1
+		# 9
+		#4fe2a86577890107ee3c9720deec8f8abc314c10fca33266ae1b823396c95da9
+		#0x222a0F8d5501504d407Bae20F3802c55D7A4B8AA
 		#( $nonce = '',  $gasPrice = '',  $gasLimit = '',  $to = '',  $value = '',  $data = '') 
 		
 		$transaction = new Transaction ($nonce, $gasPrice, $gasLimit, $to, $value, $sSendData);
@@ -114,13 +131,18 @@ class Transport
 		var_dump($aTransactionHash);
 		if (isset($aTransactionHash['result']))
 		$sTransactionHash = $aTransactionHash['result'];
-		else $sTransactionHash = "0xdf4f4421fc0691995bafb0b88129ada30741feeb98c68339735c44c4a2d735e9";
+		else $sTransactionHash = "0x57fdfdcef87e59d11b01526dc16c44fbc0bf4d46510731604b549a8bb13b6c6c";
 		#$sTransactionHash = "0x4cf9f9c37424d9287edb61fe64065dfdbefa92e49c78eb5ed0716d844d668759";
 		$sContractAddress = '{"method":"eth_getTransactionReceipt","params":["'. $sTransactionHash .'"],"id":1,"jsonrpc":"2.0"}';
 		$sResultRequest = $this->rpc_request($sContractAddress);
 		
+		$aResultRequest = json_decode($sResultRequest, true);
 		var_dump(["sResultRequest: ", $sResultRequest]);
 		var_dump(["eth_getTransactionReceipt: ", $sResultRequest]);
+		if (isset($aResultRequest['result']))
+		var_dump(["transactionHash: ", $aResultRequest['result']['transactionHash']]);
+		else 
+		var_dump(["transactionHash: "]);
 		$fileLog = 'people.log';
 		file_put_contents($fileLog, ($sResultRequest.PHP_EOL), FILE_APPEND | LOCK_EX);
 		
