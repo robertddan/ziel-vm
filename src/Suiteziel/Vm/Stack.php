@@ -182,6 +182,13 @@ class Stack
 				array_unshift(self::$aaStack, $i);
 				//print(implode("::", self::$aaStack));
 				//return true; 
+        $a_e = array_splice(self::$aaStack, 0, $iDelta);
+        $oaOf = gmp_init($a_e[0]);
+        $oaFor = gmp_init($a_e[1]);
+        $oaResult = gmp_and($oaOf, $oaFor);
+
+        $sPower = "0x".str_pad(dechex((int)gmp_strval($oaResult)), 64, 0, STR_PAD_LEFT);
+				
 			break; //AND
 			case 0x17:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
