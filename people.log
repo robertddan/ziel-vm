@@ -509,3 +509,45 @@ root@goorm:/workspace/VM/www(master)# node index.js
 {"jsonrpc":"2.0","id":1,"result":null}
 {"jsonrpc":"2.0","id":1,"result":"0x907f215b2da463092eafdf7ce5c6e4b894c6c78b140ec5847ac9073c3c01ea0c"}
 {"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}

@@ -53,7 +53,7 @@ class Transport
 		
 		$sResult_gasPrice = $this->rpc_request($s_gasPrice);
 		$aResult_gasPrice = json_decode($sResult_gasPrice, true);
-		var_dump([$sResult_gasPrice, $aResult_gasPrice["result"]]);
+		var_dump([$sResult_gasPrice, $aResult_gasPrice]);
 
 		
 		/*
@@ -173,11 +173,18 @@ class Transport
 		#curl_setopt($ch, CURLOPT_PORT, 30303);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sPayload);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $aHeaders);
-		
+		#curl_setopt($ch, CURLOPT_WRITEFUNCTION, array($this, 'myProgressFunc'));
+
+
 		$output = curl_exec($ch);
 		curl_close($ch);
 		return $output;
 	}
+		
+	function myProgressFunc($ch, $str){ 
+		echo $str;
+		return strlen($str);
+	} 
 	
 	public function shift_left ($sHex) {
 		return "0x". str_pad($sHex, 64, 0, STR_PAD_LEFT);

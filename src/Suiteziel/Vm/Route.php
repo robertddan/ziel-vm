@@ -100,15 +100,14 @@ class Route
 
 	
 	public function implement () :bool {
-
+/*
     if (!$this->get_hex(0)) die('get_hex');
     
 		if (empty(self::$aHex)) die('Route->implement');
 		var_dump('sHex: '. implode("", self::$aHex));
 		var_dump('aHex: '. implode(" ", self::$aHex));
 		
-    #$sHex = "60006000674978815011915260f060005260326000f3";
-		
+
 		$sHex = "6080604081815260018054600160a060020a0319163390811790915560008181526020818152929".
 		"02034908190558352917f88a5966d370b9919b20f3e2c13ff65706f196a4e32cc2c12bf57088f88525874".
 			"9190a26103cc806100636000396000f3fe608060405260043610610051577c010000000000000000000".
@@ -137,6 +136,20 @@ class Route
 			"611924b5b5224d6621ced150b80b82b89cf3ea11065926964736f6c63430008060033";
 			
 			
+PUSH1 00
+PUSH1 00
+PUSH8 4978815011915260
+CREATE
+
+PUSH1 00
+MSTORE
+PUSH1 32
+PUSH1 00
+RETURN
+
+*/
+
+		$sHex = "60006000612328f060005260206000f3";
 		self::$aHex = str_split($sHex, 2);
 		
 		#if (!$this->debug_counter()) die('$this->debug_counter()');
