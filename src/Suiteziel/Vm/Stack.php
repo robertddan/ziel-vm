@@ -656,7 +656,11 @@ class Stack
 		}
                                               
 		#print(PHP_EOL);
-		print("Stack::". implode("::", self::$aaStack));
+		print(
+			str_pad("Stack", 10, ":"). 
+			implode(PHP_EOL.str_pad("", 10, ":") , self::$aaStack)
+		);
+		
 		return true;
 		
 		
