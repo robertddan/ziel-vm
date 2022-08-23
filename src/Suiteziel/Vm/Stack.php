@@ -115,8 +115,8 @@ class Stack
         $a_e = array_splice(self::$aaStack, 0, $iDelta);
         $oExponent = gmp_init($a_e[0]);
         $oBase = gmp_init($a_e[1]);
-        $oPower = gmp_pow($oExponent, $oBase);
-        $sPower = "0x".str_pad(dechex(gmp_strval($oPower[0])), 64, 0, STR_PAD_LEFT);
+        $oPower = gmp_pow($oExponent, gmp_strval($oBase));
+        $sPower = "0x".str_pad(dechex((int)gmp_strval($oPower)), 64, 0, STR_PAD_LEFT);
         array_unshift(self::$aaStack, $sPower);
 			break; //EXP
 			case 0x0b:
