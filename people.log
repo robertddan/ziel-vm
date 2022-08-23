@@ -597,3 +597,11 @@ root@goorm:/workspace/VM/www(master)# node index.js
 {"jsonrpc":"2.0","id":1,"result":null}
 {"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
 {"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}

@@ -162,7 +162,7 @@ RETURN
 		#$sHex = "60006000612328f060005260206000f3";
 		
 		
-    if (!$this->get_hex(0, 'Callvalue')) die('get_hex');
+    if (!$this->get_hex(2, 'Callvalue')) die('get_hex');
 		self::$aHex = str_split($sHex, 2);
 		if (empty(self::$aHex)) die('Route->implement');
 		var_dump('sHex: '. implode("", self::$aHex));
@@ -215,7 +215,7 @@ RETURN
 		foreach(Storage::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
 
 		// save session
-		if (1) if (!$this->save_session('Callvalue')) die('$this->save_session');
+		if (0) if (!$this->save_session('Callvalue')) die('$this->save_session');
 
 		return true;
 	}
