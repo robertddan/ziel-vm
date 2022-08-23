@@ -56,31 +56,35 @@ class Route
 		return true;
 	}
 
-	public function get_hex ($bSession = 2) :bool {
-    if ($bSession == 1) self::$aHex = $this->oSession->aData['aHex'];
-    elseif($bSession == 2) self::$aHex = $this->oSession->aData["memory"];
+	public function get_hex ($bSession = 2, $sContract = null) :bool {
+    if ($bSession == 1) self::$aHex = $this->oSession->aData[$sContract]['aHex'];
+    elseif($bSession == 2) self::$aHex = $this->oSession->aData[$sContract]["memory"];
     else self::$aHex = $this->oDiamonds->aHex;
     
+		if ($bSession == 1) print "<h2>aHex</h2>";
+    elseif($bSession == 2) print "<h2>memory</h2>";
+    else print "<h2>oDiamonds</h2>";
     #var_dump("self".implode("", self::$aHex));
     #var_dump("memory".implode("", $this->oSession->aData["memory"]));
 		return true;
 	}
   
-	public function save_session () :bool {
+	public function save_session ($sContract = null) :bool {
 		/*$aaSession = array(
 			'oAddress' => $this->oAddress->aAddress,
 			'oDatabase' => $this->oDatabase->sPath,
 			'oDiamonds' => $this->oDiamonds->aHex,
 			'oSession' => $this->oSession->aData,
 		);*/
-    
-    $this->oSession->aData["wallet"] = $this->oAddress->aAddress;
-    $this->oSession->aData["stack"] = Stack::$aaStack;
-    $this->oSession->aData["memory"] = Memory::$aaMemory;
+		print "<h2>save_session()</h2>";
+		$this->oSession->aData["wallet"] = $this->oAddress->aAddress;
+		$this->oSession->aData["memory"] = Memory::$aaMemory;
+		$this->oSession->aData["stack"] = Stack::$aaStack;
 		$this->oSession->aData['aHex'] = self::$aHex;
-    $this->oSession->save_session($this->oSession->aData);
-    var_dump($this->oSession->aData);
-    
+		$this->oSession->aData[$sContract] = $this->oSession->aData;
+		#$this->oSession->aData = array();
+		$this->oSession->save_session($this->oSession->aData);
+		var_dump($this->oSession->aData);
 		return true;
 	}
 	
@@ -100,8 +104,6 @@ class Route
 
 	public function setup() {
 /*
-    if (!$this->get_hex(0)) die('get_hex');
-
 		$sHex = "6080604081815260018054600160a060020a0319163390811790915560008181526020818152929".
 		"02034908190558352917f88a5966d370b9919b20f3e2c13ff65706f196a4e32cc2c12bf57088f88525874".
 			"9190a26103cc806100636000396000f3fe608060405260043610610051577c010000000000000000000".
@@ -158,7 +160,9 @@ PUSH1 00
 RETURN
 */
 		#$sHex = "60006000612328f060005260206000f3";
-
+		
+		
+    if (!$this->get_hex(0, 'Callvalue')) die('get_hex');
 		self::$aHex = str_split($sHex, 2);
 		if (empty(self::$aHex)) die('Route->implement');
 		var_dump('sHex: '. implode("", self::$aHex));
@@ -197,23 +201,23 @@ RETURN
 		print(PHP_EOL);print(PHP_EOL);
 		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
 		print('------------------------------------------------------------------------------');
-    print(PHP_EOL);
+		print(PHP_EOL);
 		print('Memory::$aaMemory');
-    print(PHP_EOL);
+		print(PHP_EOL);
 		print("Memory::". implode("::", Memory::$aaMemory));
-    print(PHP_EOL);
+		print(PHP_EOL);
 		print('Stack::$aaStack');
-    print(PHP_EOL);
+		print(PHP_EOL);
 		print("Stack::". implode("::", Stack::$aaStack));
-    print(PHP_EOL);
+		print(PHP_EOL);
 		print('Storage::$aaStorage');
-    print(PHP_EOL);
+		print(PHP_EOL);
 		foreach(Storage::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
+
+		// save session
+		if (1) if (!$this->save_session('Callvalue')) die('$this->save_session');
+
 		return true;
-    // save session
-    if (0) if (!$this->save_session()) die('$this->save_session');
-    
-    return true;
 	}
 
 }
