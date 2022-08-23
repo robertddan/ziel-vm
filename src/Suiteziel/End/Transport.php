@@ -135,8 +135,8 @@ class Transport
 		else $sPayload = $aPayload;
 		
 		if (empty($aHeaders)) $aHeaders = array(
-				'Content-Type: application/json',
-				'Content-Length: '. strlen($sPayload)
+			'Content-Type: application/json',
+			'Content-Length: '. strlen($sPayload)
 		);
 			
 		$ch = curl_init();
