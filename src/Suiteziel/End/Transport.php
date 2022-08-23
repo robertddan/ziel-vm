@@ -8,8 +8,7 @@ class Transport
 	private $web3;
 	
 	
-	public function __construct () {
-	}
+	public function __construct () {}
 
 	public function implement($o = null) {
 		#$this->web3 = new Web3('https://ropsten.infura.io/v3/3e7f88ed3dc242c38332ecf58900a68e');
@@ -64,15 +63,17 @@ class Transport
 									10000000000000
 										  5000000014
 											2000000014
+											3500000014
+												10000000
 		*/
-		$nonce    = '04';
-		$gasPrice = "0xD09DC30E";
-		$gasLimit = "0x989680";
-		$to       = '0x23A14e97A59779165BF83310a712B84F101c9140';
-		$value    = '0x09';
+		$nonce    = '15';
+		$gasPrice = '0x324A9A70E';
+		$gasLimit = '0x989680';
+		$to       = '0x02CC64973a38A82A446A9c4BF3C68c126ecF764d';
+		$value    = '0x01';
 		$chainId  = 3;
-		$sSendData = "0x600060006009f0";
-		$privateKey = '9c20c00af708be5f1870e138d48c96eaa54e5eea406194d9f1405bf3793c488f';
+		$sSendData = '0x60006000674978815011915260f060005260326000f3';
+		$privateKey = '99b3969b60796ddf89480448423420ee2cee807936867885909508b17d0e635a';
 		#31a24edad8548ae2ab963156c2ec15b8480fd66e4c3e39278e2247ed5c6ac035 
 		#0x02CC64973a38A82A446A9c4BF3C68c126ecF764d
 		#9c20c00af708be5f1870e138d48c96eaa54e5eea406194d9f1405bf3793c488f 
@@ -111,11 +112,14 @@ class Transport
 		// Contract address after transaction
 		$aTransactionHash = json_decode($sResultRequest, true);
 		var_dump($aTransactionHash);
-		$sTransactionHash = "0xeb80b552e9016f70fc38ad0981994e99eba385246eb762073189dc20e4e9b0df"; #$aTransactionHash['result'];
+		if (isset($aTransactionHash['result']))
+		$sTransactionHash = $aTransactionHash['result'];
+		else $sTransactionHash = "0x1a41f894ef45046c1d13a8217bae30e2588791fe55fea82ec6a0bd9a582a4ab8";
 		#$sTransactionHash = "0x4cf9f9c37424d9287edb61fe64065dfdbefa92e49c78eb5ed0716d844d668759";
 		$sContractAddress = '{"method":"eth_getTransactionReceipt","params":["'. $sTransactionHash .'"],"id":1,"jsonrpc":"2.0"}';
 		$sResultRequest = $this->rpc_request($sContractAddress);
 		
+		var_dump(["sResultRequest: ", $sResultRequest]);
 		var_dump(["eth_getTransactionReceipt: ", $sResultRequest]);
 		$fileLog = 'people.log';
 		file_put_contents($fileLog, ($sResultRequest.PHP_EOL), FILE_APPEND | LOCK_EX);

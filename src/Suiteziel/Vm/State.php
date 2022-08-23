@@ -197,10 +197,12 @@ class State
 				array_unshift(Stack::$aaStack, self::$aaState["Ip"]);
 			break; //GAS
 			case 0xf0:
+				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
+				
+				array_unshift(Stack::$aaStack, self::$aaState["Ia"]);
+				
 				print("Stack::". implode("::", Stack::$aaStack));
 				print(PHP_EOL);
-				
-				
 			break; //CREATE
 			case 0xf1:
 			break; //CALL

@@ -221,7 +221,7 @@ class Opcodes
 			0xa2 => array(0, 0, 1125, "0xa2", "LOG2", "Append log record with two topics"),
 			0xa3 => array(0, 0, 1500, "0xa3", "LOG3", "Append log record with three topics"),
 			0xa4 => array(0, 0, 1875, "0xa4", "LOG4", "Append log record with four topics"),
-			0xf0 => array(0, 0, 32000, "0xf0", "CREATE", "Create a new account with associated code"),
+			0xf0 => array(0, 3, 32000, "0xf0", "CREATE", "Create a new account with associated code"),
 			0xf1 => array(0, 0, 40, "0xf1", "CALL", "Message-call into an account"),
 			0xf2 => array(0, 0, 40, "0xf2", "CALLCODE", "Message-call into this account with alternative account’s code"),
 			0xf3 => array(0, 2, 0, "0xf3", "RETURN", "Halt execution returning output data"),

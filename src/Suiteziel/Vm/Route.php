@@ -107,7 +107,7 @@ class Route
 		var_dump('sHex: '. implode("", self::$aHex));
 		var_dump('aHex: '. implode(" ", self::$aHex));
 		
-    $sHex = "60006000674978815011915260f0";
+    $sHex = "60006000674978815011915260f060005260326000f3";
 		self::$aHex = str_split($sHex, 2);
 		
 		#if (!$this->debug_counter()) die('$this->debug_counter()');
