@@ -400,3 +400,24 @@ root@goorm:/workspace/VM/www(master)# node index.js
 {"jsonrpc":"2.0","id":1,"result":null}
 {"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
 {"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"result":"0xdf4f4421fc0691995bafb0b88129ada30741feeb98c68339735c44c4a2d735e9"}
+{"jsonrpc":"2.0","id":1,"result":null}
+
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"already known"}}
+{"jsonrpc":"2.0","id":1,"result":null}
