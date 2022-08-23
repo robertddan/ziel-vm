@@ -26,12 +26,17 @@ class State
 										'00','00','00','00','00','00','00','00',
 										'00','00','00','00','00','00','00','00',
 										'00','00','00','00','00','00','00','42'),
-      */
+										
 			"Id" => array('4f','2b','e9','1f','00','00','00','00',
 										'00','00','00','00','00','00','00','00',
 										'00','00','00','00','00','00','00','00',
 										'00','00','00','00','00','00','00','42'),
-      
+      */
+			"Id" => array('1a','69','52','30','00','00','00','00',
+										'00','00','00','00','00','00','00','00',
+										'ab','84','83','f6','4d','9c','6d','1e',
+										'cf','9b','84','9a','e6','77','dd','33',
+										'15','83','5c','b2'),
 /*
 0x2be91f
 6057361d e
@@ -95,6 +100,7 @@ class State
 				print(PHP_EOL);
 				print("Stack::". implode("::", Stack::$aaStack));
 				print(PHP_EOL);
+				if (!in_array($i_pc, array(12, 411))) die($i_pc);
 			break; //JUMP
 			case 0x57:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
@@ -107,6 +113,7 @@ class State
 				print(PHP_EOL);
 				print("Stack::". implode("::", Stack::$aaStack));
 				print(PHP_EOL);
+				if (!in_array($i_pc, array(12, 115, 429, 461))) die($i_pc);
 			break; //JUMPI
 			case 0x58:
 				array_unshift(Stack::$aaStack, $i_pc);
@@ -141,7 +148,7 @@ class State
 					$sArgument = $this->shift_right(implode($sLeft));
 				}
 				else {
-					$sRight = array_slice(self::$aaState["Id"], 4, 28);
+					$sRight = array_slice(self::$aaState["Id"], 4, (count(self::$aaState["Id"]) - 4));
 					$sArgument = $this->shift_left(implode("", $sRight));
 
 				}
@@ -154,7 +161,7 @@ class State
 				print(PHP_EOL);
 			break; //CALLDATALOAD
 			case 0x36:
-				$aId = array_slice(self::$aaState["Id"], 8, 32);
+				$aId = array_slice(self::$aaState["Id"], 8, (count(self::$aaState["Id"]) - 8));
 				$i_e = count($aId);
 				array_unshift(Stack::$aaStack, $this->shift_left($i_e)); 
 				print("Stack::". implode("::", Stack::$aaStack));
