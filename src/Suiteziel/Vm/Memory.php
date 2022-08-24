@@ -35,14 +35,9 @@ class Memory
 				$this->aHex = Route::$aHex;
 				$aCopyCode1 = array_fill(0, gmp_strval($a_e[2]), '0x00');
 				$aCopyCode2 = array_slice($this->aHex, gmp_strval($a_e[1]), gmp_strval(gmp_add($a_e[1], $a_e[2])));
-				$aCopyCode = array_replace($aCopyCode1, $aCopyCode2);
+				self::$aaMemory = array_replace($aCopyCode1, $aCopyCode2);
 				if (!isset(self::$aaMemory[gmp_strval($a_e[0])])) die('CODECOPY');
-								
-var_dump([ $aCopyCode ]);
-				die();
-				
-				
-				foreach($aCopyCode1 as $__k => $sHex) self::$aaMemory[$__k] = $aCopyCode[$__k];
+
 				#print("Stack::". implode("::", Stack::$aaStack));
 			print(
 				str_pad("Stack", 10, ":"). 

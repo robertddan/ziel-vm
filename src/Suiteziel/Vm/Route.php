@@ -63,7 +63,7 @@ class Route
 		
 		# private
 		$this->bSaveSession = 0;
-		$this->rFrom = 0;
+		$this->rFrom = 2;
 		return true;
 	}
 
