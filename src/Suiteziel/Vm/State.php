@@ -160,10 +160,10 @@ class State
 					$sArgument = $this->shift_right(implode($sLeft));
 				}
 				else {
-					var_dump([(-1 * (count(self::$aaState["Id"]) -4) ), (count(self::$aaState["Id"])), self::$aaState["Id"]]);
+					#var_dump([(-1 * (count(self::$aaState["Id"]) -4) ), (count(self::$aaState["Id"])), self::$aaState["Id"]]);
 					
 					$sRight = array_slice(self::$aaState["Id"], (-1 * count(self::$aaState["Id"]))/2 -4, (count(self::$aaState["Id"])/2 +4) );
-					var_dump($sRight);
+					#var_dump($sRight);
 					
 					$sArgument = $this->shift_left(implode("", $sRight));
 

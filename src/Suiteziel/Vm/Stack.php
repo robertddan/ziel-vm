@@ -176,19 +176,15 @@ class Stack
         array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //ISZERO
 			case 0x16:
-				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-				if ($a_e[0] and $a_e[1]) $i = 1;
-				else $i = 0;
-				array_unshift(self::$aaStack, $i);
-				//print(implode("::", self::$aaStack));
-				//return true; 
+
         $a_e = array_splice(self::$aaStack, 0, $iDelta);
         $oaOf = gmp_init($a_e[0]);
         $oaFor = gmp_init($a_e[1]);
-        $oaResult = gmp_and($oaOf, $oaFor);
+        $oaResult = ($a_e[0] and $a_e[1]);
 
-        $sPower = "0x".str_pad(dechex((int)gmp_strval($oaResult)), 64, 0, STR_PAD_LEFT);
+				var_dump($oaResult);
 				
+        array_unshift(self::$aaStack, $this->shift_left($oaResult));
 			break; //AND
 			case 0x17:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
