@@ -43,6 +43,7 @@ class State
 										'4b','20','99','3b','c4','81','17','7e',
 										'c7','e8','f5','71','ce','ca','e8','a9',
 										'e2','2c','02','db'),
+			#0x1a6952300000000000000000000000004b20993bc481177ec7e8f571cecae8a9
 /*
 0x2be91f
 6057361d e
@@ -53,7 +54,7 @@ class State
 */
 
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
-			"Is" => Session::$_aData["wallet"][0], //"transaction sender",
+			"Is" => substr(Session::$_aData["wallet"][0], 2), //"transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
 			"Iv" => $this->shift_left('16'), //70000000000000000000, //"transaction value"
 			// Ib, the byte array that is the machine code to be executed. 
