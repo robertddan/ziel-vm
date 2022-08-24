@@ -63,7 +63,7 @@ const tx = {
 	),
 	gasLimit: ethers.utils.hexlify(gas_limit),
 	gasPrice: gas_price,
-	data: '0x60006000612328f0ff' //60005260206000f3'
+	data: '0x60006028206010905560006000f3' //60005260206000f3'
 }
 console.dir(tx)
 
