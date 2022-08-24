@@ -139,11 +139,19 @@ class State
 			case 0x32:
 				array_unshift(Stack::$aaStack, self::$aaState["Io"]);
 			break; //ORIGIN
-			case 0x33:
-				array_unshift(Stack::$aaStack, self::$aaState["Is"]);
+			case 0x33:#
+				array_unshift(Stack::$aaStack, $this->shift_left(self::$aaState["Is"])); 
+				
+				print(
+					str_pad("Stack", 10, ":"). 
+					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+				);
+				print(PHP_EOL);
 			break; //CALLER
 			case 0x34:
 				array_unshift(Stack::$aaStack, self::$aaState["Iv"]);
+				
+				
 				print(
 					str_pad("Stack", 10, ":"). 
 					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
