@@ -64,9 +64,10 @@ class Memory
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);
 				
-				$hex_i = $a_e[0]; #base_convert($a_e[0], 10, 16);
-				$aMemory[$a_e[0]] = $hex_i; //dechex($a_e[1]);
-				self::$aaMemory = $aMemory;
+				$hex_i = $a_e[1]; #base_convert($a_e[0], 10, 16);
+				self::$aaMemory[$a_e[0]] = $hex_i; //dechex($a_e[1]);
+				var_dump(self::$aaMemory);
+				
 				//var_dump("Memory::". implode("::", $aMemory));
 				
 				#print("Stack::". implode("::", Stack::$aaStack));
@@ -83,8 +84,8 @@ class Memory
 				//$hex_i = base_convert($a_e[0], 10, 16);
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);
-				$aMemory[$a_e[0]] = $a_e[1];
-				self::$aaMemory = $aMemory;
+				self::$aaMemory[$a_e[0]] = $a_e[1];
+				#self::$aaMemory = $aMemory;
 				//var_dump("Memory::". implode("::", $aMemory));
 			break; //MSTORE8
 			case 0x59:

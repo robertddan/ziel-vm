@@ -96,6 +96,9 @@ class Route
 		print "<h2>save_session()</h2>";
 		$this->oSession->aData["wallet"] = $this->oAddress->aAddress;
 		$this->oSession->aData['hex'] = self::$aHex;
+		$this->oSession->aData['program'] = self::$aHex;
+		$this->oSession->aData['deployed'] = self::$aHex;
+		
 		$this->oSession->aData["stack"] = Stack::$aaStack;
 		$this->oSession->aData["memory"] = Memory::$aaMemory;
 		$this->oSession->aData["storage"] = Storage::$aaStorage;
