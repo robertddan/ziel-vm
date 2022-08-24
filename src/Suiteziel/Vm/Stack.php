@@ -182,7 +182,7 @@ class Stack
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
 				$oaOf = gmp_init($a_e[0]);
 				$oaFor = gmp_init($a_e[1]);
-				$oaResult = gmp_and($oaOf,$oaFor);
+				$oaResult = gmp_and($oaOf, $oaFor);
 				$sResult = gmp_strval($oaResult, 16);
 				array_unshift(self::$aaStack, $this->shift_left($sResult));
 			break; //AND
