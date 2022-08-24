@@ -116,7 +116,9 @@ class Stack
 				$oExponent = gmp_init($a_e[0]);
 				$oBase = gmp_init($a_e[1]);
 				$oPower = gmp_pow($oExponent, gmp_strval($oBase));
+				
 				$sPower = "0x".str_pad(dechex((int)gmp_strval($oPower)), 64, 0, STR_PAD_LEFT);
+				
 				array_unshift(self::$aaStack, $sPower);
 			break; //EXP
 			case 0x0b:
@@ -177,19 +179,23 @@ class Stack
 			break; //ISZERO
 			case 0x16:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-
 				$oaOf = gmp_init($a_e[0]);
 				$oaFor = gmp_init($a_e[1]);
-				$oaResult = gmp_and($a_e[0], $a_e[1]);
-
-				$and1 = gmp_and("0xfffffffff4", "0x4");
-				$and2 = gmp_and("0xfffffffff4", "0x8");
-				echo gmp_strval($and1) . "\n";
-				echo gmp_strval($and2) . "\n";
-
-				var_dump($oaResult);
-
-				array_unshift(self::$aaStack, $this->shift_left($oaResult));
+				$oaResult = gmp_and($oaOf,$oaFor);
+				
+				var_dump( gmp_strval($oaResult) );
+				
+				var_dump( base_convert(gmp_strval($oaResult), 16, 10) );
+				var_dump( intval( base_convert(gmp_strval($oaResult), 16, 10) ) );
+				var_dump( base_convert(gmp_strval($oaResult), 10, 16) );
+				
+				#var_dump(base_convert(dechex($oaResult)));
+				
+				
+				#var_dump( dechex( (int) $oaResult ) );
+				
+				array_unshift(self::$aaStack, $this->shift_left(gmp_strval($oaResult)));
+				
 				die();
 			break; //AND
 			case 0x17:
