@@ -31,62 +31,62 @@ class Stack
     
 		switch ($sDec) {
 			case 0x01:
-      	$a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oSummand = gmp_init($a_e[0]);
-        $oAddend = gmp_init($a_e[1]);
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oSummand = gmp_init($a_e[0]);
+				$oAddend = gmp_init($a_e[1]);
 				$oSum = gmp_add($oSummand, $oAddend);
-        $sSum = "0x".str_pad(dechex(gmp_strval($oSum)), 64, 0, STR_PAD_LEFT);
-        array_unshift(self::$aaStack, $sSum);
+				$sSum = "0x".str_pad(dechex(gmp_strval($oSum)), 64, 0, STR_PAD_LEFT);
+				array_unshift(self::$aaStack, $sSum);
 			break; //ADD
 			case 0x02:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oMultiplicand = gmp_init($a_e[0]);
-        $oMultiplicator = gmp_init($a_e[1]);
+				$oMultiplicand = gmp_init($a_e[0]);
+				$oMultiplicator = gmp_init($a_e[1]);
 				$oProduct = gmp_mul($oMultiplicand, $oMultiplicator);
-        $sProduct = "0x".str_pad(dechex(gmp_strval($oProduct)), 64, 0, STR_PAD_LEFT);
-        array_unshift(self::$aaStack, $sProduct);
+				$sProduct = "0x".str_pad(dechex(gmp_strval($oProduct)), 64, 0, STR_PAD_LEFT);
+				array_unshift(self::$aaStack, $sProduct);
 			break; //MUL
 			case 0x03:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oMinuend = gmp_init($a_e[0]);
-        $oSubtrahend = gmp_init($a_e[1]);
+				$oMinuend = gmp_init($a_e[0]);
+				$oSubtrahend = gmp_init($a_e[1]);
 				$oRest = gmp_sub($oMinuend, $oSubtrahend);
-        $sRest = "0x".str_pad(dechex(gmp_strval($oRest)), 64, 0, STR_PAD_LEFT);
-        array_unshift(self::$aaStack, $sRest);
+				$sRest = "0x".str_pad(dechex(gmp_strval($oRest)), 64, 0, STR_PAD_LEFT);
+				array_unshift(self::$aaStack, $sRest);
 			break; //SUB
 			case 0x04:
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oDividend = gmp_init($a_e[0]);
-        #$oDivisor = gmp_init($a_e[1]);
-        #$oQuotient = gmp_div_qr($oDividend, $oDivisor);
-        $oQuotient = gmp_div_qr($oDividend, $a_e[1]);
-        $sQuotient = "0x".str_pad(dechex(gmp_strval($oQuotient[0])), 64, 0, STR_PAD_LEFT);
-        array_unshift(self::$aaStack, $sQuotient);
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oDividend = gmp_init($a_e[0]);
+				#$oDivisor = gmp_init($a_e[1]);
+				#$oQuotient = gmp_div_qr($oDividend, $oDivisor);
+				$oQuotient = gmp_div_qr($oDividend, $a_e[1]);
+				$sQuotient = "0x".str_pad(dechex(gmp_strval($oQuotient[0])), 64, 0, STR_PAD_LEFT);
+				array_unshift(self::$aaStack, $sQuotient);
 			break; //DIV
 			case 0x05: 
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oDividend = gmp_init($a_e[0]);
-        #$oDivisor = gmp_init($a_e[1]);
-        #$oQuotient = gmp_div_qr($oDividend, $oDivisor);
-        $oQuotient = gmp_div_qr($oDividend, $a_e[1]);
-        $sQuotient = "0x".str_pad(dechex(gmp_strval($oQuotient[0])), 64, 0, STR_PAD_LEFT);
-        array_unshift(self::$aaStack, $sQuotient);
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oDividend = gmp_init($a_e[0]);
+				#$oDivisor = gmp_init($a_e[1]);
+				#$oQuotient = gmp_div_qr($oDividend, $oDivisor);
+				$oQuotient = gmp_div_qr($oDividend, $a_e[1]);
+				$sQuotient = "0x".str_pad(dechex(gmp_strval($oQuotient[0])), 64, 0, STR_PAD_LEFT);
+				array_unshift(self::$aaStack, $sQuotient);
 			break; //SDIV
 			case 0x06: 
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oDividend = gmp_init($a_e[0]);
-        $oDivisor = gmp_init($a_e[1]);
-        $oQuotient = gmp_mod($oDividend, $oDivisor);
-        $sQuotient = "0x".str_pad(dechex(gmp_strval($oQuotient[0])), 64, 0, STR_PAD_LEFT);
-        array_unshift(self::$aaStack, $sQuotient);
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oDividend = gmp_init($a_e[0]);
+				$oDivisor = gmp_init($a_e[1]);
+				$oQuotient = gmp_mod($oDividend, $oDivisor);
+				$sQuotient = "0x".str_pad(dechex(gmp_strval($oQuotient[0])), 64, 0, STR_PAD_LEFT);
+				array_unshift(self::$aaStack, $sQuotient);
 			break; //MOD
 			case 0x07: 
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oDividend = gmp_init($a_e[0]);
-        $oDivisor = gmp_init($a_e[1]);
-        $oQuotient = gmp_mod($oDividend, $oDivisor);
-        $sQuotient = "0x".str_pad(dechex(gmp_strval($oQuotient[0])), 64, 0, STR_PAD_LEFT);
-        array_unshift(self::$aaStack, $sQuotient);
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oDividend = gmp_init($a_e[0]);
+				$oDivisor = gmp_init($a_e[1]);
+				$oQuotient = gmp_mod($oDividend, $oDivisor);
+				$sQuotient = "0x".str_pad(dechex(gmp_strval($oQuotient[0])), 64, 0, STR_PAD_LEFT);
+				array_unshift(self::$aaStack, $sQuotient);
 			break; //SMOD
 			case 0x08: 
 				
@@ -112,84 +112,84 @@ class Stack
 				//return true; 
 			break; //MULMOD
 			case 0x0a:
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oExponent = gmp_init($a_e[0]);
-        $oBase = gmp_init($a_e[1]);
-        $oPower = gmp_pow($oExponent, gmp_strval($oBase));
-        $sPower = "0x".str_pad(dechex((int)gmp_strval($oPower)), 64, 0, STR_PAD_LEFT);
-        array_unshift(self::$aaStack, $sPower);
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oExponent = gmp_init($a_e[0]);
+				$oBase = gmp_init($a_e[1]);
+				$oPower = gmp_pow($oExponent, gmp_strval($oBase));
+				$sPower = "0x".str_pad(dechex((int)gmp_strval($oPower)), 64, 0, STR_PAD_LEFT);
+				array_unshift(self::$aaStack, $sPower);
 			break; //EXP
 			case 0x0b:
 			
 			break; //SIGNEXTEND
 			case 0x10:
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oaOf = gmp_init($a_e[0]);
-        $oaFor = gmp_init($a_e[1]);
-        $oaResult = gmp_cmp($oaOf, $oaFor);
-        if ($oaResult < 0 ) $i = 1;
-        else $i = 0;
-        array_unshift(self::$aaStack, $this->shift_left($i));
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oaOf = gmp_init($a_e[0]);
+				$oaFor = gmp_init($a_e[1]);
+				$oaResult = gmp_cmp($oaOf, $oaFor);
+				if ($oaResult < 0 ) $i = 1;
+				else $i = 0;
+				array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //LT
 			case 0x11: 
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oaOf = gmp_init($a_e[0]);
-        $oaFor = gmp_init($a_e[1]);
-        $oaResult = gmp_cmp($oaOf, $oaFor);
-        if ($oaResult > 0 ) $i = 1;
-        else $i = 0;
-        array_unshift(self::$aaStack, $this->shift_left($i));
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oaOf = gmp_init($a_e[0]);
+				$oaFor = gmp_init($a_e[1]);
+				$oaResult = gmp_cmp($oaOf, $oaFor);
+				if ($oaResult > 0 ) $i = 1;
+				else $i = 0;
+				array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //GT
 			case 0x12: // Where all values are treated as two’s complement signed 256-bit integers.
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oaOf = gmp_init($a_e[0]);
-        $oaFor = gmp_init($a_e[1]);
-        $oaResult = gmp_cmp($oaOf, $oaFor);
-        if ($oaResult < 0 ) $i = 1;
-        else $i = 0;
-        array_unshift(self::$aaStack, $this->shift_left($i));
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oaOf = gmp_init($a_e[0]);
+				$oaFor = gmp_init($a_e[1]);
+				$oaResult = gmp_cmp($oaOf, $oaFor);
+				if ($oaResult < 0 ) $i = 1;
+				else $i = 0;
+				array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //SLT
 			case 0x13:
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oaOf = gmp_init($a_e[0]);
-        $oaFor = gmp_init($a_e[1]);
-        $oaResult = gmp_cmp($oaOf, $oaFor);
-        if ($oaResult > 0 ) $i = 1;
-        else $i = 0;
-        array_unshift(self::$aaStack, $this->shift_left($i));
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oaOf = gmp_init($a_e[0]);
+				$oaFor = gmp_init($a_e[1]);
+				$oaResult = gmp_cmp($oaOf, $oaFor);
+				if ($oaResult > 0 ) $i = 1;
+				else $i = 0;
+				array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //SGT
 			case 0x14:
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oaOf = gmp_init($a_e[0]);
-        $oaFor = gmp_init($a_e[1]);
-        $oaResult = gmp_cmp($oaOf, $oaFor);
-        if ($oaResult == 0 ) $i = 1;
-        else $i = 0;
-        array_unshift(self::$aaStack, $this->shift_left($i));
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oaOf = gmp_init($a_e[0]);
+				$oaFor = gmp_init($a_e[1]);
+				$oaResult = gmp_cmp($oaOf, $oaFor);
+				if ($oaResult == 0 ) $i = 1;
+				else $i = 0;
+				array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //EQ
 			case 0x15:
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
-        $oaOf = gmp_init($a_e[0]);
-        $oaResult = gmp_cmp($oaOf, 0);
-        if ($oaResult == 0 ) $i = 1;
-        else $i = 0;
-        array_unshift(self::$aaStack, $this->shift_left($i));
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$oaOf = gmp_init($a_e[0]);
+				$oaResult = gmp_cmp($oaOf, 0);
+				if ($oaResult == 0 ) $i = 1;
+				else $i = 0;
+				array_unshift(self::$aaStack, $this->shift_left($i));
 			break; //ISZERO
 			case 0x16:
-        $a_e = array_splice(self::$aaStack, 0, $iDelta);
+				$a_e = array_splice(self::$aaStack, 0, $iDelta);
 
-        $oaOf = gmp_init($a_e[0]);
-        $oaFor = gmp_init($a_e[1]);
-        $oaResult = gmp_and($a_e[0], $a_e[1]);
-				
-$and1 = gmp_and("0xfffffffff4", "0x4");
-$and2 = gmp_and("0xfffffffff4", "0x8");
-echo gmp_strval($and1) . "\n";
-echo gmp_strval($and2) . "\n";
-				
+				$oaOf = gmp_init($a_e[0]);
+				$oaFor = gmp_init($a_e[1]);
+				$oaResult = gmp_and($a_e[0], $a_e[1]);
+
+				$and1 = gmp_and("0xfffffffff4", "0x4");
+				$and2 = gmp_and("0xfffffffff4", "0x8");
+				echo gmp_strval($and1) . "\n";
+				echo gmp_strval($and2) . "\n";
+
 				var_dump($oaResult);
-				
-        array_unshift(self::$aaStack, $this->shift_left($oaResult));
+
+				array_unshift(self::$aaStack, $this->shift_left($oaResult));
 				die();
 			break; //AND
 			case 0x17:
