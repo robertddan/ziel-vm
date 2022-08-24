@@ -36,13 +36,16 @@ class Storage
 		switch ($sDec) {
 			case 0x54:
 				
+				array_unshift(Stack::$aaStack, Self::$aaStorage[$a_e[0]]);
 			break; //SLOAD
 			case 0x55:
+				/*
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
 				$this->aSlot["key"] = $a_e[0];
 				$this->aSlot["value"] = $a_e[1];
 				array_push(Self::$aaStorage, (object) $this->aSlot);
-				
+				*/
+				Self::$aaStorage[$a_e[0]] = $a_e[1];
 				print("Stack::". implode("::", Stack::$aaStack));
 			break; //SSTORE
 			default: return true; break;
