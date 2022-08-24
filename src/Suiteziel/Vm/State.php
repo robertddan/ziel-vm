@@ -31,12 +31,18 @@ class State
 										'00','00','00','00','00','00','00','00',
 										'00','00','00','00','00','00','00','00',
 										'00','00','00','00','00','00','00','42'),
-      */
+									
 			"Id" => array('1a','69','52','30','00','00','00','00',
 										'00','00','00','00','00','00','00','00',
 										'ab','84','83','f6','4d','9c','6d','1e',
 										'cf','9b','84','9a','e6','77','dd','33',
 										'15','83','5c','b2'),
+			*/
+			"Id" => array('1a','69','52','30','00','00','00','00',
+										'00','00','00','00','00','00','00','00',
+										'4b','20','99','3b','c4','81','17','7e',
+										'c7','e8','f5','71','ce','ca','e8','a9',
+										'e2','2c','02','db'),
 /*
 0x2be91f
 6057361d e
@@ -187,13 +193,15 @@ class State
 				print(PHP_EOL);
 			break; //CALLDATALOAD
 			case 0x36:
-				$aId = array_slice(self::$aaState["Id"], 8, (count(self::$aaState["Id"]) - 8));
+				#$aId = array_slice(self::$aaState["Id"], 8, (count(self::$aaState["Id"]) - 8));
+				$aId = array_slice(self::$aaState["Id"], (-1 * count(self::$aaState["Id"]))/2 -6, (count(self::$aaState["Id"])/2 +6) );
+					
 				$i_e = count($aId);
 				array_unshift(Stack::$aaStack, $this->shift_left($i_e)); 
-		print(
-			str_pad("Stack", 10, ":"). 
-			implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
-		);
+				print(
+					str_pad("Stack", 10, ":"). 
+					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+				);
 				print(PHP_EOL);
 			break; //CALLDATASIZE
 			case 0x37:

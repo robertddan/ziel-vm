@@ -29,6 +29,7 @@ class Route
 	public $rContract;
 	
 	private $bSaveSession;
+	private $rFrom;
 		
 	function __construct() {
 		$this->rContract = 'Callvalue';
@@ -61,7 +62,8 @@ class Route
 		$this->i_pc = 0;
 		
 		# private
-		$this->bSaveSession = 1;
+		$this->bSaveSession = 0;
+		$this->rFrom = 0;
 		return true;
 	}
 
@@ -75,6 +77,12 @@ class Route
     else print "<h2>oDiamonds '{$this->rContract}'</h2>";
     #var_dump("self".implode("", self::$aHex));
     #var_dump("memory".implode("", $this->oSession->aData["memory"]));
+		if($bSession == 2) {
+			$this->oAddress->aAddress = $this->oSession->aData[$sContract]["wallet"];
+			Memory::$aaMemory = $this->oSession->aData[$sContract]["memory"];
+			Storage::$aaStorage = $this->oSession->aData[$sContract]["storage"];
+		}
+		
 		return true;
 	}
   
@@ -92,6 +100,7 @@ class Route
 		$this->oSession->aData["memory"] = Memory::$aaMemory;
 		$this->oSession->aData["storage"] = Storage::$aaStorage;
 			
+		$this->oSession->aData[$sContract] = array();
 		$this->oSession->aData[$sContract] = $this->oSession->aData;
 		#$this->oSession->aData = array();
 		$this->oSession->save_session($this->oSession->aData);
@@ -113,8 +122,8 @@ class Route
 		return true;
 	}
 
-	public function setup($rFrom = 3) {
-		if (!$this->get_hex($rFrom, $this->rContract)) die('get_hex');
+	public function setup() {
+		if (!$this->get_hex($this->rFrom, $this->rContract)) die('get_hex');
 		#self::$aHex = str_split($sHex, 2);
 		if (empty(self::$aHex)) die('Route->implement');
 		$sHex = self::$aHex;

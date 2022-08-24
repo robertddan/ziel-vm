@@ -31,13 +31,17 @@ class Memory
 		switch ($sDec) {
 			case 0x39:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-				foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+				foreach($a_e as &$s_x) $s_x = gmp_init($s_x);
 				$this->aHex = Route::$aHex;
-				$aCopyCode1 = array_fill(0, $a_e[2], '0x00');
-				$aCopyCode2 = array_slice($this->aHex, $a_e[1], ($a_e[1] + $a_e[2]));
+				$aCopyCode1 = array_fill(0, gmp_strval($a_e[2]), '0x00');
+				$aCopyCode2 = array_slice($this->aHex, gmp_strval($a_e[1]), gmp_strval(gmp_add($a_e[1], $a_e[2])));
 				$aCopyCode = array_replace($aCopyCode1, $aCopyCode2);
-				$iKeyStart = base_convert($a_e[0], 16, 10);
-				if (!isset(self::$aaMemory[$iKeyStart])) die('CODECOPY');
+				if (!isset(self::$aaMemory[gmp_strval($a_e[0])])) die('CODECOPY');
+								
+var_dump([ $aCopyCode ]);
+				die();
+				
+				
 				foreach($aCopyCode1 as $__k => $sHex) self::$aaMemory[$__k] = $aCopyCode[$__k];
 				#print("Stack::". implode("::", Stack::$aaStack));
 			print(
