@@ -49,7 +49,7 @@ class State
 			// Is, the address of the account which caused the code to be executing; if the execution agent is a transaction, this would be the transaction sender. 
 			"Is" => Session::$_aData["wallet"][0], //"transaction sender",
 			// Iv, the value, in Wei, passed to this account as part of the same procedure as execution; if the execution agent is a transaction, this would be the transaction value. 
-			"Iv" => $this->shift_left(0), //70000000000000000000, //"transaction value"
+			"Iv" => $this->shift_left('16'), //70000000000000000000, //"transaction value"
 			// Ib, the byte array that is the machine code to be executed. 
 			"Ib" => "",
 			// IH, the block header of the present block. 

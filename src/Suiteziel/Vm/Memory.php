@@ -58,23 +58,23 @@ class Memory
 			case 0x52:
 				
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-        foreach($a_e as &$s_x) $s_x = hexdec($s_x);
+        #foreach($a_e as &$s_x) $s_x = hexdec($s_x);
 				#print(PHP_EOL);
         #print("sHexDec::". implode(" ", $a_e));
 				$i=32;
 				while ($i<$a_e[0]) $i=32+$i; 
 				$aMemory = array_fill(0, $i, 0);
 				
-				$hex_i = base_convert($a_e[0], 10, 16);
+				$hex_i = $a_e[0]; #base_convert($a_e[0], 10, 16);
 				$aMemory[$a_e[0]] = $hex_i; //dechex($a_e[1]);
 				self::$aaMemory = $aMemory;
 				//var_dump("Memory::". implode("::", $aMemory));
 				
 				#print("Stack::". implode("::", Stack::$aaStack));
-			print(
-				str_pad("Stack", 10, ":"). 
-				implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
-			);
+				print(
+					str_pad("Stack", 10, ":"). 
+					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+				);
         print(PHP_EOL);
 			break; //MSTORE
 			
