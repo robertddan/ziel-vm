@@ -28,6 +28,7 @@ class Route
 	
 	public $rContract;
 	
+	private $bSaveSession;
 		
 	function __construct() {
 		$this->rContract = 'Callvalue';
@@ -58,6 +59,9 @@ class Route
 	
 	public function init_variables_ () :bool {
 		$this->i_pc = 0;
+		
+		# private
+		$this->bSaveSession = 0;
 		return true;
 	}
 
@@ -68,7 +72,7 @@ class Route
     
 		if ($bSession == 1) print "<h2>aHex</h2>";
     elseif($bSession == 2) print "<h2>memory</h2>";
-    else print "<h2>oDiamonds</h2>";
+    else print "<h2>oDiamonds '{$this->rContract}'</h2>";
     #var_dump("self".implode("", self::$aHex));
     #var_dump("memory".implode("", $this->oSession->aData["memory"]));
 		return true;
@@ -107,8 +111,8 @@ class Route
 		return true;
 	}
 
-	public function setup() {
-		if (!$this->get_hex(2, $this->rContract)) die('get_hex');
+	public function setup($rFrom = 3) {
+		if (!$this->get_hex($rFrom, $this->rContract)) die('get_hex');
 		#self::$aHex = str_split($sHex, 2);
 		if (empty(self::$aHex)) die('Route->implement');
 		$sHex = self::$aHex;
@@ -119,11 +123,8 @@ class Route
 		return true;
 	}
 	
-	
-	
 	public function implement () :bool {
 		if (!$this->setup()) die('$this->setup()');
-
 		$i_opargs = 0;
 		for ($i = 0; $i < count(self::$aHex); $i++) {
 			$sHex = self::$aHex[$i];
@@ -142,7 +143,7 @@ class Route
 		// end_vars
 		if (!$this->end_vars()) die('$this->end_vars()');
 		// save session
-		if (0) if (!$this->save_session($this->rContract)) die('$this->save_session');
+		if ($this->bSaveSession) if (!$this->save_session($this->rContract)) die('$this->save_session');
 		return true;
 	}
 

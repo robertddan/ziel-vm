@@ -49,7 +49,7 @@ class Event
 		
   	$this->oDiamonds->iCursor = $bInit; // skip compilation
 		
-  	$this->oDiamonds->sContract = 'Hippytree'; // contract file name in contracts folder
+  	$this->oDiamonds->sContract = 'Callvalue'; // contract file name in contracts folder
     $this->oDiamonds->sFolder = '20220820075259000000'; // specify folder with set_out_folder or at read...
 		
     if (!$this->oDiamonds->set_output_folder()) die('oDiamonds->set_output_folder'); //set it
