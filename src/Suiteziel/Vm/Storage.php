@@ -71,7 +71,12 @@ class Storage
 		
 
 		print(PHP_EOL);
-		foreach(Self::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
+		#foreach(Self::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
+		print(
+			str_pad("Storage", 10, ":"). 
+			implode(PHP_EOL.str_pad("", 10, ":") , Self::$aaStorage)
+		);
+		
 		return true;
 	}
 }
