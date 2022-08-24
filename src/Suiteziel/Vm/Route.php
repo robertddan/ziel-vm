@@ -61,12 +61,12 @@ class Route
 		$this->i_pc = 0;
 		
 		# private
-		$this->bSaveSession = 0;
+		$this->bSaveSession = 1;
 		return true;
 	}
 
 	public function get_hex ($bSession = 2, $sContract = null) :bool {
-    if ($bSession == 1) self::$aHex = $this->oSession->aData[$sContract]['aHex'];
+    if ($bSession == 1) self::$aHex = $this->oSession->aData[$sContract]['hex'];
     elseif($bSession == 2) self::$aHex = $this->oSession->aData[$sContract]["memory"];
     else self::$aHex = $this->oDiamonds->aHex;
     
@@ -87,9 +87,11 @@ class Route
 		);*/
 		print "<h2>save_session()</h2>";
 		$this->oSession->aData["wallet"] = $this->oAddress->aAddress;
-		$this->oSession->aData["memory"] = Memory::$aaMemory;
+		$this->oSession->aData['hex'] = self::$aHex;
 		$this->oSession->aData["stack"] = Stack::$aaStack;
-		$this->oSession->aData['aHex'] = self::$aHex;
+		$this->oSession->aData["memory"] = Memory::$aaMemory;
+		$this->oSession->aData["storage"] = Storage::$aaStorage;
+			
 		$this->oSession->aData[$sContract] = $this->oSession->aData;
 		#$this->oSession->aData = array();
 		$this->oSession->save_session($this->oSession->aData);
