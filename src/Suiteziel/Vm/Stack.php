@@ -204,11 +204,24 @@ class Stack
 			break; //XOR
 			case 0x19:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
-				if ($a_e[0] == 0) $i = 1;
-				else $i = 0;
-				array_unshift(self::$aaStack, $i);
-				//print(implode("::", self::$aaStack));
-				//return true; 
+				$a_e[0] = str_split(substr($a_e[0], 2));
+				#$a_e[0] = array_map('dechex', str_split($a_e[0]));
+				$a_e[0] = array_map(function($sHex) {
+					$sHex = base_convert($sHex, 16, 2);
+					$sHex = str_pad($sHex, 4, '0');
+					return $sHex;
+				}, $a_e[0]);
+				
+				$sBinary = "";
+				foreach (str_split(implode("",$a_e[0])) as $sBin) {
+					if ($sBin !== 0) $sBinary .= 1;
+					else  $sBinary .= 0;
+				}
+				
+				$aBinary = str_split($sBinary, 4);
+				foreach ($aBinary as &$sBin) $sBin = base_convert($sBin, 2, 16);
+				$sBinary = implode("", $aBinary);
+				array_unshift(self::$aaStack, $this->shift_left($sBinary));
 			break; //NOT				
 			case 0x1a:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
