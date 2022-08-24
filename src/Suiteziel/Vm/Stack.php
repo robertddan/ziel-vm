@@ -35,8 +35,8 @@ class Stack
 				$oSummand = gmp_init($a_e[0]);
 				$oAddend = gmp_init($a_e[1]);
 				$oSum = gmp_add($oSummand, $oAddend);
-				$sSum = "0x".str_pad(dechex(gmp_strval($oSum)), 64, 0, STR_PAD_LEFT);
-				array_unshift(self::$aaStack, $sSum);
+				$sSum = gmp_strval($oSum, 16);
+				array_unshift(self::$aaStack, $this->shift_left($sSum));
 			break; //ADD
 			case 0x02:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
@@ -51,8 +51,9 @@ class Stack
 				$oMinuend = gmp_init($a_e[0]);
 				$oSubtrahend = gmp_init($a_e[1]);
 				$oRest = gmp_sub($oMinuend, $oSubtrahend);
-				$sRest = "0x".str_pad(dechex(gmp_strval($oRest)), 64, 0, STR_PAD_LEFT);
-				array_unshift(self::$aaStack, $sRest);
+				$sRest = gmp_strval($oRest, 16);
+				array_unshift(self::$aaStack, $this->shift_left($sRest));
+				
 			break; //SUB
 			case 0x04:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
@@ -606,9 +607,7 @@ class Stack
 			case 0x20:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
 				$s_sha3 = hash('sha3-256', $a_e[1]);
-				array_unshift(self::$aaStack, $s_sha3);
-				//print(implode("::", self::$aaStack));
-				//return true;
+				array_unshift(self::$aaStack, $this->shift_left($s_sha3));
 			break; //SHA3
 /*
 			case 0x30:

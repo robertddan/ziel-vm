@@ -98,12 +98,12 @@ class State
 				$i_pc = $a_e[0] - 1;
 				print("i_pc: ".( $i_pc + 1));
 				print(PHP_EOL);
-		print(
-			str_pad("Stack", 10, ":"). 
-			implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
-		);
+				print(
+					str_pad("Stack", 10, ":"). 
+					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+				);
 				print(PHP_EOL);
-				if (!in_array($i_pc, array(12, 411))) die($i_pc);
+				#if (!in_array($i_pc, array(12, 411))) die($i_pc);
 			break; //JUMP
 			case 0x57:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
@@ -114,12 +114,12 @@ class State
 				else $i_pc = $i_pc;
 				print("i_pc: ". ($i_pc + 1));
 				print(PHP_EOL);
-		print(
-			str_pad("Stack", 10, ":"). 
-			implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
-		);
+				print(
+					str_pad("Stack", 10, ":"). 
+					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+				);
 				print(PHP_EOL);
-				if (!in_array($i_pc, array(12, 115, 429, 461))) die($i_pc);
+				#if (!in_array($i_pc, array(12, 115, 429, 461))) die($i_pc);
 			break; //JUMPI
 			case 0x58:
 				array_unshift(Stack::$aaStack, $i_pc);
@@ -127,10 +127,10 @@ class State
 			case 0x5b:
 				print("i_pc: ". $i_pc);
 				print(PHP_EOL);
-		print(
-			str_pad("Stack", 10, ":"). 
-			implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
-		);
+				print(
+					str_pad("Stack", 10, ":"). 
+					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+				);
 				print(PHP_EOL);
 			break; //JUMPDEST
 			case 0x30:
@@ -144,11 +144,10 @@ class State
 			break; //CALLER
 			case 0x34:
 				array_unshift(Stack::$aaStack, self::$aaState["Iv"]);
-				
-		print(
-			str_pad("Stack", 10, ":"). 
-			implode(PHP_EOL.str_pad("", 10, ":") , $aaStack)
-		);
+				print(
+					str_pad("Stack", 10, ":"). 
+					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+				);
 				print(PHP_EOL);
 				
 			break; //CALLVALUE
