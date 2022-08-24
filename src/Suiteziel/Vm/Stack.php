@@ -182,21 +182,8 @@ class Stack
 				$oaOf = gmp_init($a_e[0]);
 				$oaFor = gmp_init($a_e[1]);
 				$oaResult = gmp_and($oaOf,$oaFor);
-				
-				var_dump( gmp_strval($oaResult) );
-				
-				var_dump( base_convert(gmp_strval($oaResult), 16, 10) );
-				var_dump( intval( base_convert(gmp_strval($oaResult), 16, 10) ) );
-				var_dump( base_convert(gmp_strval($oaResult), 10, 16) );
-				
-				#var_dump(base_convert(dechex($oaResult)));
-				
-				
-				#var_dump( dechex( (int) $oaResult ) );
-				
-				array_unshift(self::$aaStack, $this->shift_left(gmp_strval($oaResult)));
-				
-				die();
+				$sResult = gmp_strval($oaResult, 16);
+				array_unshift(self::$aaStack, $this->shift_left($sResult));
 			break; //AND
 			case 0x17:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
