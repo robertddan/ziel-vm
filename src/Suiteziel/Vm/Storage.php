@@ -36,13 +36,17 @@ class Storage
 		switch ($sDec) {
 			case 0x54:
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
-				foreach (Self::$aaStorage as $oStorage) {
+				array_unshift(Stack::$aaStack, Self::$aaStorage[$a_e[0]]);
+/*
+				var_dump( Self::$aaStorage );
+				foreach (Self::$aaStorage as $aStorage) {
 					#$aStorage = (array)$oStorage;
-					if ($a_e[0] !== $oStorage->key) continue;
-					array_unshift(Stack::$aaStack, $oStorage->value);
+					var_dump($aStorage);
+					if ($a_e[0] !== $aStorage['key']) continue;
+					array_unshift(Stack::$aaStack, $aStorage['value']);
 					break;
 				}
-				
+*/
 				print(
 					str_pad("Stack", 10, ":"). 
 					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)

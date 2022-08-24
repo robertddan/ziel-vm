@@ -66,7 +66,7 @@ class Memory
 				
 				$hex_i = $a_e[1]; #base_convert($a_e[0], 10, 16);
 				self::$aaMemory[$a_e[0]] = $hex_i; //dechex($a_e[1]);
-				var_dump(self::$aaMemory);
+				#var_dump(self::$aaMemory);
 				
 				//var_dump("Memory::". implode("::", $aMemory));
 				

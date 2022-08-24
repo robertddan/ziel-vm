@@ -69,12 +69,12 @@ class Route
 
 	public function get_hex ($bSession = 2, $sContract = null) :bool {
     if ($bSession == 1) self::$aHex = $this->oSession->aData[$sContract]['hex'];
-    elseif($bSession == 2) self::$aHex = $this->oSession->aData[$sContract]["memory"];
+    elseif($bSession == 2) self::$aHex = $this->oSession->aData[$sContract]["deployed"];
     else self::$aHex = $this->oDiamonds->aHex;
     
-		if ($bSession == 1) print "<h2>aHex</h2>";
-    elseif($bSession == 2) print "<h2>memory</h2>";
-    else print "<h2>oDiamonds '{$this->rContract}'</h2>";
+		if ($bSession == 1) print "<h2>Hex '{$this->rContract}'</h2>";
+    elseif($bSession == 2) print "<h2>Deployed '{$this->rContract}'</h2>";
+    else print "<h2>File '{$this->rContract}'</h2>";
     #var_dump("self".implode("", self::$aHex));
     #var_dump("memory".implode("", $this->oSession->aData["memory"]));
 		if($bSession == 2) {
@@ -96,18 +96,24 @@ class Route
 		print "<h2>save_session()</h2>";
 		$this->oSession->aData["wallet"] = $this->oAddress->aAddress;
 		$this->oSession->aData['hex'] = self::$aHex;
-		$this->oSession->aData['program'] = self::$aHex;
-		$this->oSession->aData['deployed'] = self::$aHex;
+		if ($this->rFrom == 0) {
+			$this->oSession->aData['deployed'] = Memory::$aaMemory;
+			$this->oSession->aData["memory"] = array();
+			#Memory::$aaMemory = array();
+		}
+		else {
+			$this->oSession->aData['deployed'] = array();
+			$this->oSession->aData["memory"] = Memory::$aaMemory;
+		}
 		
 		$this->oSession->aData["stack"] = Stack::$aaStack;
-		$this->oSession->aData["memory"] = Memory::$aaMemory;
 		$this->oSession->aData["storage"] = Storage::$aaStorage;
 			
 		$this->oSession->aData[$sContract] = array();
 		$this->oSession->aData[$sContract] = $this->oSession->aData;
 		#$this->oSession->aData = array();
 		$this->oSession->save_session($this->oSession->aData);
-		var_dump($this->oSession->aData);
+		#var_dump($this->oSession->aData);
 		return true;
 	}
 	
@@ -177,6 +183,7 @@ class Route
 		print('Storage::$aaStorage');
 		print(PHP_EOL);
 		foreach(Storage::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
+		
 		return true;
 	}
 }
