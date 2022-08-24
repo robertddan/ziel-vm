@@ -144,7 +144,7 @@ class Opcodes
 			0x51 => array(1, 1, 3, "0x51", "MLOAD", "Load word from memory"),
 			0x52 => array(0, 2, 3, "0x52", "MSTORE", "Save word to memory"),
 			0x53 => array(0, 2, 3, "0x53", "MSTORE8", "Save byte to memory"),
-			0x54 => array(0, 0, 50, "0x54", "SLOAD", "Load word from storage"),
+			0x54 => array(0, 1, 50, "0x54", "SLOAD", "Load word from storage"),
 			0x55 => array(0, 2, 5000, "0x55", "SSTORE", "Save word to storage"),
 			0x56 => array(0, 1, 8, "0x56", "JUMP", "Alter the program counter"),
 			0x57 => array(0, 2, 10, "0x57", "JUMPI", "Conditionally alter the program counter"),
