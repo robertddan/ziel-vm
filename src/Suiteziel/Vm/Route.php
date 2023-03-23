@@ -133,6 +133,7 @@ class Route
 
 	public function setup() {
 		if (!$this->get_hex($this->rFrom, $this->rContract)) die('get_hex');
+		#$sHex = "60006028206010905560006000f3";
 		#self::$aHex = str_split($sHex, 2);
 		if (empty(self::$aHex)) die('Route->implement');
 		$sHex = self::$aHex;

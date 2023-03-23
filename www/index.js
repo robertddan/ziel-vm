@@ -1,8 +1,8 @@
 (async function(){
 
 const ethers = require('ethers');
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
+const fs = require('fs');
 //const ziel = require('./ziel');
 
 let sNetwork = 'ropsten'; //homestead
