@@ -68,7 +68,7 @@ class Route
         elseif($bSession == 2) self::$aHex = $this->oSession->aData[$sContract]["deployed"];
         else self::$aHex = $this->oDiamonds->aHex;
         if ($bSession == 1) print "<h2>Hex '{$this->rContract}'</h2>";
-        elseif($bSession == 2) print "<h2>Deployed '{$this->rContract}'</h2>";
+        elseif($bSession == 2) print "<h2>Stack '{$this->rContract}'</h2>";
         else print "<h2>File '{$this->rContract}'</h2>";
         #var_dump("self".implode("", self::$aHex));
         #var_dump("memory".implode("", $this->oSession->aData["memory"]));

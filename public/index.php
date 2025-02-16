@@ -33,6 +33,7 @@ switch ($aRouter['host']) {
     break;
 }
 
+
 echo '<pre>';
 
 use Ziel\Vm;
