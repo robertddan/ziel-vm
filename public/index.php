@@ -20,6 +20,19 @@ define('VENDOR', ROOT . DS . 'vendor' . DS);
 
 require(CONFIG . DS . 'bootstrap.php');
 
+
+$aRouter = array();
+$aRouter = parse_url('/'. $_SERVER["REQUEST_URI"]);
+
+if (isset($aRouter['host']))
+switch ($aRouter['host']) {
+    case 'favicon.ico':
+        header('Content-Type: text/x-icon');
+        print file_get_contents(ROOT .'public'. DS .'favicon.ico');
+        exit();
+    break;
+}
+
 echo '<pre>';
 
 use Ziel\Vm;
