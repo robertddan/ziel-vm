@@ -34,10 +34,12 @@ switch ($aRouter['host']) {
 }
 
 
-echo '<pre>';
+print '<pre>';
 
 use Ziel\Vm;
 $oVm = new Vm();
 $oVm->run();
+
+print '</pre>';
 
 ?>
