@@ -1,0 +1,23 @@
+{
+    "name": "root/ziel-ide",
+    "description": "Ziel - Cloud IDE Service",
+    "type": "project",
+    "autoload": {
+        "psr-4": { 
+            "Ziel\\": ["draft"]
+        }
+    },
+    "authors": [
+        {
+            "name": "Robert-Dan",
+            "email": "robertddanedu@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        
+    },
+    "license": [
+        "AGPL-3.0-only"
+    ]
+}
