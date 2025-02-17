@@ -291,7 +291,7 @@ class State
     #print("State::". implode("::", $__aState)); 
 		print(
 			str_pad("State", 10, ":"). 
-			implode("::", $__aState)
+			implode(PHP_EOL.str_pad("State", 10, ":"), $__aState)
 		);
 
 		

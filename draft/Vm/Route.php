@@ -169,17 +169,17 @@ class Route
 		print(PHP_EOL);print(PHP_EOL);print(PHP_EOL);
 		print('------------------------------------------------------------------------------');
 		print(PHP_EOL);
-		print('Memory::$aaMemory');
+		print('Memory::::$aaMemory');
 		print(PHP_EOL);
-		print("Memory::". implode("::", Memory::$aaMemory));
+		print("Memory::::". implode(PHP_EOL.'Memory::::', Memory::$aaMemory));
 		print(PHP_EOL);
-		print('Stack::$aaStack');
+		print('Stack:::::$aaStack');
 		print(PHP_EOL);
-		print("Stack::". implode("::", Stack::$aaStack));
+		print("Stack:::::". implode("::", Stack::$aaStack));
 		print(PHP_EOL);
-		print('Storage::$aaStorage');
+		print('Storage:::$aaStorage');
 		print(PHP_EOL);
-		foreach(Storage::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
+		foreach(Storage::$aaStorage as $k => $aaStorage) print("Storage:::". implode("::", (array) $aaStorage));
 		return true;
 	}
 }

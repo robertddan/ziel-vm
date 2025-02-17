@@ -72,7 +72,7 @@ class Storage
 		#foreach(Self::$aaStorage as $k => $aaStorage) print("Storage::". implode("::", (array) $aaStorage));
 		print(
 			str_pad("Storage", 10, ":"). 
-			implode(PHP_EOL.str_pad("", 10, ":") , Self::$aaStorage)
+			implode(PHP_EOL.str_pad("Storage", 10, ":") , Self::$aaStorage)
 		);
 		
 		return true;

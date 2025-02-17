@@ -661,8 +661,9 @@ class Stack
 		#print(PHP_EOL);
 		print(
 			str_pad("Stack", 10, ":"). 
-			implode(PHP_EOL.str_pad("", 10, ":") , self::$aaStack)
+			implode(PHP_EOL.str_pad("Stack", 10, ":") , self::$aaStack)
 		);
+		#print("Memory::::". implode(PHP_EOL.'Memory::::', Memory::$aaMemory));
 		
 		return true;
 		

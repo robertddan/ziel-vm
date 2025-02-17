@@ -98,7 +98,8 @@ class Memory
 		
 		/**/
 		#print(PHP_EOL);
-		print("Memory::::". implode("::", self::$aaMemory));
+		print("Memory::::". implode(PHP_EOL.'Memory::::', Memory::$aaMemory));
+		#print("Memory::::". implode("::", self::$aaMemory));
 		
 		return true;
 	}
