@@ -20,7 +20,6 @@ define('VENDOR', ROOT . DS . 'vendor' . DS);
 
 require(CONFIG . DS . 'bootstrap.php');
 
-
 $aRouter = array();
 $aRouter = parse_url('/'. $_SERVER["REQUEST_URI"]);
 
@@ -32,7 +31,6 @@ switch ($aRouter['host']) {
         exit();
         break;
 }
-
 
 print '<pre>';
 use Ziel\Vm;

@@ -25,7 +25,9 @@
 
 #composer require kornrunner/keccak
 
+#sudo apt-get install software-properties-common
 #sudo add-apt-repository ppa:ethereum/ethereum
+#sudo add-apt-repository ppa:ethereum/ethereum-dev
 #sudo apt-get update
 #sudo apt-get install solc
 
@@ -72,4 +74,10 @@
 #######################
 
 
-sudo apt install php-gmp
+#sudo apt install php-gmp
+
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:ethereum/ethereum
+sudo add-apt-repository ppa:ethereum/ethereum-dev
+sudo apt-get update
+sudo apt-get install solc
