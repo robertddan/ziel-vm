@@ -1,4 +1,5 @@
 <?php
+
 namespace Ziel;
 
 use Ziel\Vm\Route;

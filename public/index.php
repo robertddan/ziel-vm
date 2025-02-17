@@ -24,15 +24,15 @@ require(CONFIG . DS . 'bootstrap.php');
 $aRouter = array();
 $aRouter = parse_url('/'. $_SERVER["REQUEST_URI"]);
 
-if (isset($aRouter['host']))
+
+if (isset($aRouter['host'])) #["host"]=>"favicon.ico"
 switch ($aRouter['host']) {
     case 'favicon.ico':
         header('Content-Type: text/x-icon');
         print file_get_contents(ROOT .'public'. DS .'favicon.ico');
         exit();
-    break;
+        break;
 }
-
 
 print '<pre>';
 
@@ -43,47 +43,3 @@ $oVm->run();
 print '</pre>';
 
 ?>
-
-
-<script>
-var solc = require('solc');
-
-var input = {
-  language: 'Solidity',
-  sources: {
-    'test.sol': {
-      content: 'import "lib.sol"; contract C { function f() public { L.f(); } }'
-    }
-  },
-  settings: {
-    outputSelection: {
-      '*': {
-        '*': ['*']
-      }
-    }
-  }
-};
-
-function findImports(path) {
-  if (path === 'lib.sol')
-    return {
-      contents:
-        'library L { function f() internal returns (uint) { return 7; } }'
-    };
-  else return { error: 'File not found' };
-}
-
-// New syntax (supported from 0.5.12, mandatory from 0.6.0)
-var output = JSON.parse(
-  solc.compile(JSON.stringify(input), { import: findImports })
-);
-
-// `output` here contains the JSON output as specified in the documentation
-for (var contractName in output.contracts['test.sol']) {
-  console.log(
-    contractName +
-      ': ' +
-      output.contracts['test.sol'][contractName].evm.bytecode.object
-  );
-}
-</script>

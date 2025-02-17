@@ -60,10 +60,10 @@ class Storage
 				*/
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
 				Self::$aaStorage[$a_e[0]] = $a_e[1];
-        		print(
-        			str_pad("Stack", 10, ":"). 
-        			implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
-        		);
+                print(
+                    str_pad("Stack", 10, ":"). 
+                    implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+                );
 			break; //SSTORE
 			default: return true; break;
 		}

@@ -8,7 +8,6 @@ class Stack
 { 
 	public $i_sp; //stack pointer
 	public static $aaStack;
-  
 		
 	public function __construct () {
 		$this->i_sp = 0;
@@ -24,7 +23,6 @@ class Stack
 	}
 
 	public function positioning(&$i_pc, $sHex) {
-    
         $sDec = hexdec($sHex);
         $aArguments = Opcodes::$aArguments;
         $iDelta = Opcodes::$aaOpcodes[$sDec][1];
@@ -53,7 +51,6 @@ class Stack
 				$oRest = gmp_sub($oMinuend, $oSubtrahend);
 				$sRest = gmp_strval($oRest, 16);
 				array_unshift(self::$aaStack, $this->shift_left($sRest));
-				
 			break; //SUB
 			case 0x04:
 				$a_e = array_splice(self::$aaStack, 0, $iDelta);
@@ -639,7 +636,6 @@ class Stack
 			case 0x44: return 1;break; //DIFFICULTY
 			case 0x45: return 1;break; //GASLIMIT
 			case 0x50: return 1;break; //POP
-
 
 			case 0x54: return 1;break; //SLOAD
 			case 0x55: return 1;break; //SSTORE

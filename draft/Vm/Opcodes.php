@@ -75,7 +75,7 @@ class Opcodes
         print sprintf($sFormat, $aValues[0], $aValues[1], $aValues[2], $aValues[3], $aValues[4], $aValues[5], $aValues[6]);
 		return true;
 	}
-	
+/*
 	public function opcodes ($i_k = null, $sHex = null) {
 		switch ($i_k) {
 			case 1: return self::$aaOpcodes[$sHex][0]; break; //arguments
@@ -88,7 +88,7 @@ class Opcodes
 		}
 		return true;
 	}
-
+*/
 	public function set_opcodes () {
 		self::$aaOpcodes = array(
 			0x00 => array(0, 0, 0, "0x00", "STOP", "Halts execution"),

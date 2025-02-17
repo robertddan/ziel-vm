@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "solc": "^0.8.28",
-    "solc-browserify": "^1.3.0"
-  }
-}

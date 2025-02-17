@@ -1,6 +1,6 @@
 <?php
-namespace Ziel\Org;
 
+namespace Ziel\Org;
 
 class Utils
 {
