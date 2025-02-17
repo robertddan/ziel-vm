@@ -24,8 +24,7 @@ require(CONFIG . DS . 'bootstrap.php');
 $aRouter = array();
 $aRouter = parse_url('/'. $_SERVER["REQUEST_URI"]);
 
-
-if (isset($aRouter['host'])) #["host"]=>"favicon.ico"
+if (isset($aRouter['host'])) //[["host"]=>"favicon.ico"
 switch ($aRouter['host']) {
     case 'favicon.ico':
         header('Content-Type: text/x-icon');
@@ -34,12 +33,12 @@ switch ($aRouter['host']) {
         break;
 }
 
-print '<pre>';
 
+print '<pre>';
 use Ziel\Vm;
 $oVm = new Vm();
 $oVm->run();
-
 print '</pre>';
+
 
 ?>
