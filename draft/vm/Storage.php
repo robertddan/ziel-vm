@@ -37,10 +37,8 @@ class Storage
 				$a_e = array_splice(Stack::$aaStack, 0, $iDelta);
 				array_unshift(Stack::$aaStack, Self::$aaStorage[$a_e[0]]);
 /*
-				var_dump( Self::$aaStorage );
 				foreach (Self::$aaStorage as $aStorage) {
 					#$aStorage = (array)$oStorage;
-					var_dump($aStorage);
 					if ($a_e[0] !== $aStorage['key']) continue;
 					array_unshift(Stack::$aaStack, $aStorage['value']);
 					break;
@@ -78,6 +76,7 @@ class Storage
 		return true;
 	}
 }
+
 /*
 type Account struct {
 	Nonce uint64
@@ -86,4 +85,5 @@ type Account struct {
 	CodeHash []byte
 }
 */
+
 ?>

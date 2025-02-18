@@ -38,7 +38,7 @@ class Memory
 				#print("Stack::". implode("::", Stack::$aaStack));
                 print(
                     str_pad("Stack", 10, ":"). 
-                    implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+                    implode(PHP_EOL.str_pad("Stack", 10, ":") , Stack::$aaStack)
                 );
 				print(PHP_EOL);
 			break; //CODECOPY
@@ -61,14 +61,10 @@ class Memory
 				
 				$hex_i = $a_e[1]; #base_convert($a_e[0], 10, 16);
 				self::$aaMemory[$a_e[0]] = $hex_i; //dechex($a_e[1]);
-				#var_dump(self::$aaMemory);
-				
-				//var_dump("Memory::". implode("::", $aMemory));
-				
-				#print("Stack::". implode("::", Stack::$aaStack));
+
 				print(
 					str_pad("Stack", 10, ":"). 
-					implode(PHP_EOL.str_pad("", 10, ":") , Stack::$aaStack)
+					implode(PHP_EOL.str_pad("Stack", 10, ":") , Stack::$aaStack)
 				);
                 print(PHP_EOL);
 			break; //MSTORE
@@ -96,10 +92,7 @@ class Memory
 			default: return true; break;
 		}
 		
-		/**/
-		#print(PHP_EOL);
 		print("Memory::::". implode(PHP_EOL.'Memory::::', Memory::$aaMemory));
-		#print("Memory::::". implode("::", self::$aaMemory));
 		
 		return true;
 	}

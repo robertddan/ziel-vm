@@ -1,6 +1,6 @@
 {
-    "name": "root/ziel-ide",
-    "description": "Ziel - Cloud IDE Service",
+    "name": "root/ziel-vm",
+    "description": "Ziel - Ethereum Decentralised Transaction Ledger",
     "type": "project",
     "autoload": {
         "psr-4": { 
@@ -9,7 +9,7 @@
     },
     "authors": [
         {
-            "name": "Robert-Dan",
+            "name": "Robert-Dan Dumitrascu",
             "email": "robertddanedu@gmail.com",
             "role": "Developer"
         }

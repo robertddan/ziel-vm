@@ -8,7 +8,6 @@ use Ziel\End\Transport;
 
 class Vm
 {
-
 	public $oEvent;
 	public $oRoute;
 	
@@ -19,7 +18,7 @@ class Vm
 	protected function init_ () :bool {
 		$this->oEvent = new Event();
 		$this->oRoute = new Route();
-		$this->oTransport = new Transport();
+		#$this->oTransport = new Transport();
 		return true;
 	}
 

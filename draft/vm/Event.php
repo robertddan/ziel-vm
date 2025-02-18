@@ -1,6 +1,6 @@
 <?php
-namespace Ziel\Org;
 
+namespace Ziel\Org;
 
 use Ziel\Org\Address;
 use Ziel\Org\Database;
@@ -34,7 +34,7 @@ class Event
 	
 	public function init_variables () :bool {
 		if (!$this->init__address()) die('$this->init__address');
-		if (!$this->init__diamonds()) die('$this->init__diamonds');
+		#if (!$this->init__diamonds()) die('$this->init__diamonds');
 		if (!$this->init__session()) die('$this->init__session');
 		return true;
 	}

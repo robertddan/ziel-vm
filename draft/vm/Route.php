@@ -67,16 +67,20 @@ class Route
         if ($bSession == 1) self::$aHex = $this->oSession->aData[$sContract]['hex'];
         elseif($bSession == 2) self::$aHex = $this->oSession->aData[$sContract]["deployed"];
         else self::$aHex = $this->oDiamonds->aHex;
+        
         if ($bSession == 1) print "<h2>Hex '{$this->rContract}'</h2>";
         elseif($bSession == 2) print "<h2>Stack '{$this->rContract}'</h2>";
         else print "<h2>File '{$this->rContract}'</h2>";
+        
         #var_dump("self".implode("", self::$aHex));
         #var_dump("memory".implode("", $this->oSession->aData["memory"]));
+        
 		if($bSession == 2) {
 			$this->oAddress->aAddress = $this->oSession->aData[$sContract]["wallet"];
 			Memory::$aaMemory = $this->oSession->aData[$sContract]["memory"];
 			Storage::$aaStorage = $this->oSession->aData[$sContract]["storage"];
 		}
+		
 		return true;
 	}
   
@@ -87,9 +91,11 @@ class Route
 			'oDiamonds' => $this->oDiamonds->aHex,
 			'oSession' => $this->oSession->aData,
 		);*/
+		
 		print "<h2>save_session()</h2>";
 		$this->oSession->aData["wallet"] = $this->oAddress->aAddress;
 		$this->oSession->aData['hex'] = self::$aHex;
+		
 		if ($this->rFrom == 0) {
 			$this->oSession->aData['deployed'] = Memory::$aaMemory;
 			$this->oSession->aData["memory"] = array();
@@ -113,7 +119,6 @@ class Route
 		
 	public function debug_counter () :bool {
 		for ($i = 0; $i < count(self::$aHex); $i++) {
-				
 			$sHex = self::$aHex[$i];
 			if (!$this->oOpcodes->initiate($i, $sHex)) die('oOpcodes->initiate'); // view
 			if (!$this->oOpcodes->describe($i, $sHex)) die('oOpcodes->describe');
@@ -126,14 +131,19 @@ class Route
 
 	public function setup() {
 		if (!$this->get_hex($this->rFrom, $this->rContract)) die('get_hex');
+		
 		#$sHex = "60006028206010905560006000f3";
 		#self::$aHex = str_split($sHex, 2);
+		
 		if (empty(self::$aHex)) die('Route->implement');
 		$sHex = self::$aHex;
+		
 		var_dump('sHex: '. implode("", self::$aHex));
 		var_dump('aHex: '. implode(" ", self::$aHex));
+		
 		#if (!$this->debug_counter()) die('$this->debug_counter()');
 		#var_dump($this->oSession->aData);
+		
 		return true;
 	}
 	
@@ -142,6 +152,7 @@ class Route
 	*/
 	public function implement () :bool {
 		if (!$this->setup()) die('$this->setup()');
+		
 		$i_opargs = 0;
 		for ($i = 0; $i < count(self::$aHex); $i++) {
 			$sHex = self::$aHex[$i];

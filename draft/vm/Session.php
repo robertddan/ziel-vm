@@ -1,6 +1,6 @@
 <?php
-namespace Ziel\Org;
 
+namespace Ziel\Org;
 
 class Session
 {
@@ -9,7 +9,7 @@ class Session
 	public static $_aData;
 	
 	public function __construct () {
-		$this->sPath = __DIR__ .'/../Suiteziel/.database/.session';
+		$this->sPath = __DIR__ .'/../database/session.char';
 	}
 	
 	public function new_session ($aData = array()) :bool {
