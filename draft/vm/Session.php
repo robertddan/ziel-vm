@@ -9,7 +9,7 @@ class Session
 	public static $_aData;
 	
 	public function __construct () {
-		$this->sPath = __DIR__ .'/../database/session.char';
+		$this->sPath = ROOT .'var/database/session.chr';
 	}
 	
 	public function new_session ($aData = array()) :bool {

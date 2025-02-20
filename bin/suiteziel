@@ -1,5 +1,11 @@
 #!/usr/bin/env php
 
+define('DS', DIRECTORY_SEPARATOR);
+chdir(__DIR__ . DS . '..' . DS);
+define('ROOT', getcwd() . DS);
+define('CONFIG', ROOT . 'config' . DS);
+define('VENDOR', ROOT . 'vendor' . DS);
+
 require(CONFIG . DS . 'bootstrap.php');
 
 

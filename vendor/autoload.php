@@ -6,11 +6,17 @@ class Autoload {
     public static $aDirectories = array();
     public static $aClasses = array();
     public static $aComposer = array();
-    
-    const DS = DIRECTORY_SEPARATOR;
-    const ROOT = __DIR__ . DS . '..' . DS;
-    const CONFIG = ROOT . DS . 'config' . DS;
+/*
+const DS = DIRECTORY_SEPARATOR;
+const ROOT = __DIR__ . DS . '..' . DS;
+const CONFIG = ROOT . DS . 'config' . DS;
 
+define('DS', DIRECTORY_SEPARATOR);
+chdir(__DIR__ . DS . '..' . DS);
+define('ROOT', getcwd() . DS);
+define('CONFIG', ROOT . 'config' . DS);
+define('VENDOR', ROOT . 'vendor' . DS);
+*/
     
     public static $i = 0;
     
@@ -39,6 +45,7 @@ class Autoload {
 
     public static function autoload_json()
     {
+        #var_dump(CONFIG);
         $sComposer = file_get_contents(CONFIG . self::$sJsonName);
         self::$aComposer = json_decode($sComposer, true);
         

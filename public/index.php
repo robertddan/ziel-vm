@@ -1,6 +1,15 @@
 <?php
 
-require(CONFIG . DS . 'bootstrap.php');
+define('DS', DIRECTORY_SEPARATOR);
+chdir(__DIR__ . DS . '..' . DS);
+define('ROOT', getcwd() . DS);
+define('CONFIG', ROOT . 'config' . DS);
+define('VENDOR', ROOT . 'vendor' . DS);
+
+#echo '<pre>';
+#var_dump([__DIR__, getcwd(), ROOT, CONFIG, VENDOR]);
+
+require(CONFIG . 'bootstrap.php');
 
 /* will be replaced by http */
 $aRouter = array();

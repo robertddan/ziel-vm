@@ -13,9 +13,4 @@ function throw_exception ($sException) {
 
 set_exception_handler('exception_handler');
 
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', __DIR__ . DS . '..' . DS);
-define('CONFIG', ROOT . DS . 'config' . DS);
-define('VENDOR', ROOT . DS . 'vendor' . DS);
-
 require(VENDOR . DS . "autoload.php");
