@@ -1,3 +1,21 @@
+- back to hex sending data in the main loop
+- Call Stack
+    0: 0xd9145CCE52D386f254917e481eB44e9943F39138
+
+- Call Data
+    0:0x6057361d0000000000000000000000000000000000000000000000000000000000000037
+		
+{
+	"vm trace step": 1,
+	"execution step": 1,
+	"add memory": "",
+	"gas": "3",
+	"remaining gas": "28839",
+	"loaded address": "0xd9145CCE52D386f254917e481eB44e9943F39138"
+}
+
+---------------
+
 cron\console
 scheduler\task
 dispatcher\pid
@@ -28,3 +46,5 @@ $result = $process->process( new Order() );
 -exclude every time to include files instead use cache
 -
 */
+
+----------------
