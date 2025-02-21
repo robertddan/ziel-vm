@@ -30,6 +30,3 @@ use Ziel\Vm;
 $oVm = new Vm();
 $oVm->run();
 print '</pre>';
-
-
-?>

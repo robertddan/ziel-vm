@@ -8,6 +8,9 @@ class Opcodes
 {
 	
 	public $aHes;
+	public $aHex;
+	public $iCursor;
+	public $aaStack;
 	public static $aArguments;
 	public static $aaOpcodes;
 
