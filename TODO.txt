@@ -1,6 +1,9 @@
 
-1. Git archive and tree
-2. 
+
+1. Server, HTTP
+2. Git, archive and tree
+3. Interpreter, like for HTML templates
+3. Server, DNS
 
 ----------------
 cron\console
@@ -10,14 +13,11 @@ pipeline:
 -server\http
 -server\ssh
 
-
-
 Pipeline:
 $process = (new Pipeline)
     ->pipe([new RegistratorLog, 'register'])
     ->pipe([new NotificationSms, 'notification'])
     ->pipe([new NotificationEmail, 'notification']);
-
 $result = $process->process( new Order() );
 
 #-view
@@ -38,10 +38,8 @@ $result = $process->process( new Order() );
 - back to hex sending data in the main loop
 - Call Stack
     0: 0xd9145CCE52D386f254917e481eB44e9943F39138
-
 - Call Data
     0:0x6057361d0000000000000000000000000000000000000000000000000000000000000037
-		
 {
 	"vm trace step": 1,
 	"execution step": 1,
@@ -50,5 +48,4 @@ $result = $process->process( new Order() );
 	"remaining gas": "28839",
 	"loaded address": "0xd9145CCE52D386f254917e481eB44e9943F39138"
 }
-
 ---------------

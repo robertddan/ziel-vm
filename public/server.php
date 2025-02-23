@@ -1,30 +1,10 @@
 <?php
-/*
-Docker containers
 
-
-*/
-
-function exception_handler (Throwable $exception) {
-    print PHP_EOL. $exception->getMessage() .PHP_EOL.
-    "On file: ".$exception->getFile() .PHP_EOL.
-    "On line: ". $exception->getLine() .PHP_EOL.
-    $exception->getTraceAsString() .PHP_EOL;
-}
-
-function throw_exception ($sException) {
-    throw new Exception($sException);
-}
-
-set_exception_handler('exception_handler');
-
-define("DS", DIRECTORY_SEPARATOR);
-define("ROOT", __DIR__ . DS . '..' . DS);
-define("CONFIG", ROOT . DS . "config" . DS);
-define("DRAFT", ROOT . DS . "draft" . DS);
-define("VENDOR", ROOT . DS . "vendor" . DS);
-
-require(CONFIG . DS . 'bootstrap.php');
+define('DS', DIRECTORY_SEPARATOR);
+chdir(__DIR__ . DS . '..' . DS);
+define('ROOT', getcwd() . DS);
+define('CONFIG', ROOT . 'config' . DS);
+define('VENDOR', ROOT . 'vendor' . DS);
 
 #var_dump(base64_encode(pack("H*", sha1('NnRlZW4gYnl0ZXMgbG9uZw==258EAFA5-E914-47DA-95CA-C5AB0DC85B11'))));
 #if (!Ziel\Dispatcher::threads()) throw_exception('dispatcher_threads()');
